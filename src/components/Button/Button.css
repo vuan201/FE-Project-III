@@ -1,0 +1,36 @@
+
+.button{
+  width: 100%;
+  border: none;
+  /* margin: 10px 0 30px 0; */
+  padding: 10px;
+  text-align: center;
+  display: inline;
+  transition-duration: 0.5S;
+  font-size: 18px;
+  cursor: grab;
+  border-style: solid ;
+  border-radius: 990px;
+}
+.button:active{
+  transform: scale(0.8);
+}
+
+.blueBtn {
+  background-color: #00163a;
+  color: white;
+}
+.blueBtn:hover {
+  background-color: white;
+  color: #00163a;
+  border-color: #00163a;
+}
+.reverse {
+  background-color: #fff;
+  color: #00163a;
+}
+.reverse:hover {
+  background-color: #00163a;
+  color: #fff;
+  border-color: #fff;
+}

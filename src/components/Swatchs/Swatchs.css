@@ -1,0 +1,51 @@
+.swatchs .item {
+  position: relative;
+  display: inline-block;
+  padding: 2px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 2px;
+  border: 1px solid #cbcbcb;
+  cursor: pointer;
+}
+.swatchs .active{
+  border-color: #000;
+}
+
+.swatchs .item .clearfix {
+  display: block;
+  position: absolute;
+  min-width: 60px;
+  background-color: #000;
+  color: white;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0;
+}
+
+.swatchs .item:hover .clearfix {
+  font-size: 15px;
+  opacity: 1;
+  visibility: visible;
+}
+
+.clearfix {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+
+.titleSwatch::before{
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  height: 0;
+  width: 0;
+  border-top: 7px solid #232323;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  transform: translate(-50%);
+}
