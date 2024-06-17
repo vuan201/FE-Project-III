@@ -1,7 +1,6 @@
 import { React, useRef } from "react";
 import { useReducer } from "react";
 import reducer, { initValue } from "../../Reducer/Reducer";
-import Logo from "../../components/Logo/Logo";
 import {
   setName,
   setEmail,

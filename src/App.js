@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./pages/Form/Login";
 import Home from "./pages/Home/Home";
-
+import Filter from "./pages/Filter";
 import ScrollToTop from "./utils/ScrollToTop";
 
 function App() {
@@ -19,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/filter" element={<Filter />} />
         </Routes>
       </div>
       <Footer />

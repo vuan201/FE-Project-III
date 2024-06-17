@@ -1,9 +1,12 @@
-import clsx from 'clsx';
-import React, { useState, useEffect } from 'react';
+import clsx from "clsx";
+import React, { useState, useEffect } from "react";
 
 function Footer() {
   const [dateTime, setDateTime] = useState(new Date());
-  const className = clsx('bg-gradient-to-b from-indigo-50 to-indigo-300')
+  const className = clsx(
+    "w-full bg-white-50 text-black text-center py-4",
+    "border-t-1 border-line-border"
+  );
 
   useEffect(() => {
     const timer = setInterval(() => {

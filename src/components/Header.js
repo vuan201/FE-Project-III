@@ -1,38 +1,55 @@
 import React from "react";
-import Navbar from "./Navbar";
 import clsx from "clsx";
-import Logo from "./Logo/Logo";
-import SearchProduct from "./SearchProduct";
-import ListPage from "./ListPage";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
+
+import { FaSearch } from "react-icons/fa";
+import { FiUser } from "react-icons/fi";
+import { FaRegHeart } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Header = () => {
+  const headerClassName = clsx(
+    "w-full bg-white-50 text-black text-center mb-8 mx-2",
+    "border-b-1 border-line-border"
+  );
+
   const navClassName = clsx(
-    "grid",
-    "grid-cols-12",
+    "flex flex-row",
     "gap-2",
     "relative",
-    'bg-gradient-to-t from-indigo-50 to-indigo-300'
+    "bg-transparent"
   );
 
   return (
-    <header>
+    <header className={headerClassName}>
       <div className={navClassName}>
-        <div className="col-span-1 self-center">
+        <div className="basis-1/3 self-center">
+          <Navbar />
+        </div>
+        <div className="basis-1/3 self-center">
           {/* <Logo /> */}
           <h1>QM Shoe</h1>
         </div>
-        <div className="col-span-1 self-center">
-          <ListPage />
-        </div>
-        <div className="col-start-4 col-span-6 self-center">
-          <SearchProduct />
-        </div>
-        <div className="col-start-11 col-span-1 self-center">
-          <Link to={"/register"}>Đăng ký</Link>
-        </div>
-        <div className="col-span-1 self-center">
-          <Link to={"/login"}>Đăng nhập</Link>
+        <div className="basis-1/3 self-center flex flex-row-reverse ">
+          <div className="mx-4">
+            <Link to={"/register "}>Đăng ký</Link>
+          </div>
+          <div className="mx-4">
+            <Link to={"/login"}>Đăng nhập</Link>
+          </div>
+          <div className="mx-4 self-center">
+            <FaShoppingCart />
+          </div>
+          <div className="mx-4 self-center">
+            <FaRegHeart />
+          </div>
+          <div className="mx-4 self-center">
+            <FiUser />
+          </div>
+          <div className="mx-4 self-center">
+            <FaSearch />
+          </div>
         </div>
       </div>
     </header>

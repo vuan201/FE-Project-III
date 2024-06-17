@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 
 // API
 import axios from "axios";
@@ -9,26 +9,19 @@ import stylesApi from "../../Api/stylesApi";
 // Conponent
 import Button from "../../components/Button";
 import NewProducts from "../../components/NewProducts";
-import ShowBanner from "../../components/ShowBanner";
 import ProductCard from "../../components/Card/ProductCard";
 import CategoryCard from "../../components/Card/CategoryCard";
 import StyleImageCard from "../../components/Card/StyleImageCard";
-
+import BannerSlider from "../../components/Banner/BannerSlider";
+import Image from "../../components/Image";
 // Slider
-import Sliders from "../../components/Sliders/Sliders";
+import Sliders from "../../components/Sliders/Sliders/Sliders";
 import SlickSlide from "../../components/Sliders/SlickSlide";
 import PrevArrow from "../../components/Sliders/DirectionButton/PrevArrow ";
 import NextArrow from "../../components/Sliders/DirectionButton/NextArrow";
 
 // Banner Image
-import slider from "../../assets/images/home-shoes-slider-01.webp";
-import banner1 from "../../assets/images/banner/banner-image-1_870x.webp";
-import banner2 from "../../assets/images/banner/banner-image-2_870x.webp";
-import banner3 from "../../assets/images/banner/banner-image-3_420x.webp";
-import banner4 from "../../assets/images/banner/banner-image-4_420x.webp";
-import banner5 from "../../assets/images/banner/banner-image-5_870x.webp";
-import banner6 from "../../assets/images/banner/banner-image-6_870x.webp";
-
+import { sliderImage } from "../../config";
 import "./Home.css";
 
 const Home = () => {
@@ -60,7 +53,6 @@ const Home = () => {
   useEffect(() => {
     const source = axios.CancelToken.source();
 
-
     productApi.getAll({}).then((response) => setTrendingProducts(response));
 
     // call Categories API
@@ -75,8 +67,36 @@ const Home = () => {
     };
   }, []);
 
+  const StylesSlidesettings = {
+    slidesToScroll: 1,
+    speed: 500,
+    dots: false,
+    infinite: true,
+    slidesToShow: 5,
+    autoplay: false,
+    autoplaySpeed: 0,
+    arrows: false,
+  };
+
+  const bannerSliderSettings = {
+    customPaging: (i) => {
+      // console.log(sliderImage[i].url); 
+      return (
+        <a>
+          <Image data={sliderImage[i]} />
+        </a>
+      );
+    },
+    dots: true,
+    dotsClass: "slick-thumb hidden lg:block",
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   const handleSetProducts = (response) => {
-    if(response){
+    if (response) {
       setProducts(response);
       response.length < limit ? setIsFull(true) : setIsFull(false);
     }
@@ -86,138 +106,21 @@ const Home = () => {
     products.length % 4 === 0 ? setLimit(limit + 4) : setIsFull(true);
   };
 
-
-  // Slider Settings
-  const productSlidesettings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    arrows: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-  };
-
-  const categoriesSlidesettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: false,
-    autoplaySpeed: 0,
-    arrows: false,
-    appendDots: (dots) => (
-      <div
-        style={{
-          borderRadius: "10px",
-          padding: "10px",
-        }}
-      >
-        <ul style={{ margin: "0px" }}> {dots} </ul>
-      </div>
-    ),
-    customPaging: (i) => <SlickSlide>{i + 1}</SlickSlide>,
-  };
-
-  const StylesSlidesettings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    autoplay: false,
-    autoplaySpeed: 0,
-    arrows: false,
-  };
-
   return (
     <div className="m-auto">
-      {/* banner 1 */}
-      <div className="banner1 m-auto px-8 mb-10">
-        <ShowBanner image={slider} name={"slider"} link={"category"} />
-      </div>
-      {/* banner 2 */}
-      <div className="banner2 grid grid-rows-4 md:grid-rows-2 grid-flow-col gap-7 mb-10 px-8">
-        <div className="row-span-2 col-span-2 ">
-          <ShowBanner
-            shadowAnimation
-            image={banner1}
-            name={"slider"}
-            link={"category"}
-          />
-        </div>
-        <div className="row-span-1 col-span-2 ">
-          <ShowBanner
-            shadowAnimation
-            image={banner2}
-            name={"slider"}
-            link={"category"}
-          />
-        </div>
-        <div className="row-span-1 col-span-1">
-          <ShowBanner
-            shadowAnimation
-            image={banner3}
-            name={"slider"}
-            link={"category"}
-          />
-        </div>
-        <div className="row-span-1 col-span-1">
-          <ShowBanner
-            shadowAnimation
-            image={banner4}
-            name={"slider"}
-            link={"category"}
-          />
-        </div>
-      </div>
-      {/* New product */}
-      <div className="max-w-6xl m-auto mb-10">
-        <NewProducts products={products} onClick={handleSetLimit} isFull={isFull}/>
-      </div>
-      {/* Banner 3 */}
-      <div className="banner3 grid grid-rows-4 md:grid-rows-2 grid-flow-col gap-7 mb-10 px-8">
-        <div className="row-span-2 col-span-2">
-          <ShowBanner
-            shadowAnimation
-            image={banner5}
-            name={"slider"}
-            link={"category"}
-          />
-        </div>
-        <div className="row-span-2 col-span-2">
-          <ShowBanner
-            shadowAnimation
-            image={banner6}
-            name={"slider"}
-            link={"category"}
-          />
-        </div>
-      </div>
-      {/* Product Slide */}
-      <div className="productTrending max-w-6xl m-auto mb-10 px-8">
-        <div className="headerCard mb-10">
-          <span className="title">thịnh hành</span>
-        </div>
-        <Sliders settings={productSlidesettings} datas={trendingProducts}>
-          <ProductCard />
+      <div className="slider-container mb-10">
+        <Sliders settings={bannerSliderSettings} datas={sliderImage}>
+          <BannerSlider />
         </Sliders>
       </div>
-      {/* Categories Slide */}
-      <div className="spotlight w-full m-auto px-4 bg-stone-200">
-        <div className="max-w-screen-2xl m-auto mb-10 py-10 px-8">
-          <div className="headerCard mb-10 ">
-            <span className="title">điểm nhấn</span>
-          </div>
-          <Sliders settings={categoriesSlidesettings} datas={categories}>
-            <CategoryCard />
-          </Sliders>
-        </div>
+      <div className="max-w-6xl m-auto mb-10 relative">
+        <NewProducts
+          products={products}
+          onClick={handleSetLimit}
+          isFull={isFull}
+        />
       </div>
+
       <div className="StyleImage m-auto mb-10 px-8">
         <div className="headerCard text-2xl mb-10">
           <span className="title">thư viện ảnh</span>

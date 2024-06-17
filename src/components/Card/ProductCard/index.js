@@ -2,7 +2,7 @@ import { React, memo, useState } from "react";
 import "./ProductCard.css";
 import Button from "../../Button";
 import Swatchs from "../../Swatchs";
-
+import Image from "../../Image";
 import clsx from "clsx";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -29,11 +29,11 @@ const ProductCard = ({ data }) => {
         onMouseMove={() => setMouseMoved(true)}
         onMouseDown={() => setMouseMoved(false)}
       >
-        <div className="cardInfomation1 cardShadowImage">
+        <div className="cardInfomation1 cardShadow">
           <div className="sale">
             <span>-30%</span>
           </div>
-          <img className="image" src={image} />
+          <Image data={{image:image, name:name}} />
           <div className="cardBtn">
             <Button blueBtn>mua hàng</Button>
           </div>
@@ -52,19 +52,6 @@ const ProductCard = ({ data }) => {
       </div>
       <div className="cardColors">
         <Swatchs swatchs={colors}/>
-        {/* <ul className="listColor">
-          {colors.map((color, index) => (
-            <li
-              key={index}
-              style={{ backgroundColor: color.code }}
-              className="item"
-            >
-              <div className="clearfix">
-                <span className="titleColor">{color.color}</span>
-              </div>
-            </li>
-          ))}
-        </ul> */}
       </div>
     </div>
   );
