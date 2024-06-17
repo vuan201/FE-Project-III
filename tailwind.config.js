@@ -17,8 +17,10 @@ module.exports = {
       },
       colors:{
         "line-border":"var(--color-line-border)"
-      }
-  
+      },
+      maxWidth:{
+        "container":"1440px"
+      },
     },
   },
   plugins: [],

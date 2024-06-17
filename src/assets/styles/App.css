@@ -1,7 +1,10 @@
 :root{
   --color-line-border: rgb(235 235 235);
   --color-foreground: rgb(84 84 84);
-  --color-background: rgb(255 255 255);
+  --light-font-color: black;
+  --dark-font-color: white;
+  --light-color-background: rgb(255 255 255);
+  --dark-color-background: rgb(0, 0, 0);
   --color-border-item: #000;
   --color-button-text: 255 255 255;
   --light_skew-color: rgb(var(--color-button-text)/.25);
@@ -40,7 +43,7 @@ body {
 header h1 {
   font-size: 30px;
 }
-
+/* 
 .cardShadow {
   transition: box-shadow 0.5s, ease-in-out transform 1s;
 }
@@ -66,25 +69,4 @@ header h1 {
 .shopNow {
   transition: transform 1s ease, box-shadow 1s ease !important;
   transform-origin: center;
-}
-
-/* .slick-active .slick {
-  background: rgba(0, 0, 0, 0);
-  border-color: #142849;
-} */
-/* 
-.slick {
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-  border-radius: 50%;
-  font-size: 0;
-  letter-spacing: 0;
-  padding: 0;
-  cursor: pointer;
-  width: 12px;
-  height: 12px;
-  transition: all ease 0.3s;
-  border: 1px solid #abb2bd;
-  background: #abb2bd;
 } */

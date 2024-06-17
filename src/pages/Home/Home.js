@@ -79,8 +79,10 @@ const Home = () => {
   };
 
   const bannerSliderSettings = {
+    // rết style của thẻ ul để cho nó chỉ sử dụng style theo class
+    appendDots: (dots) => <ul>{dots}</ul>,
     customPaging: (i) => {
-      // console.log(sliderImage[i].url); 
+      // console.log(sliderImage[i].url);
       return (
         <a>
           <Image data={sliderImage[i]} />
@@ -88,11 +90,58 @@ const Home = () => {
       );
     },
     dots: true,
-    dotsClass: "slick-thumb hidden lg:block",
+    dotsClass: "slick-thumb slick-thumb-image hidden lg:block",
     infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+  };
+
+  const categoriesSlidesettings = {
+    // dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    arrows: false,
+    appendDots: (dots) => (
+      <div
+        style={{
+          borderRadius: "10px",
+          padding: "10px",
+        }}
+      >
+        <ul style={{ margin: "0px" }}> {dots} </ul>
+      </div>
+    ),
+    customPaging: (i) => <SlickSlide>{i + 1}</SlickSlide>,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          dots: true,
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          dots: true,
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          dots: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const handleSetProducts = (response) => {
@@ -113,12 +162,10 @@ const Home = () => {
           <BannerSlider />
         </Sliders>
       </div>
-      <div className="max-w-6xl m-auto mb-10 relative">
-        <NewProducts
-          products={products}
-          onClick={handleSetLimit}
-          isFull={isFull}
-        />
+      <div className="w-full max-w-container mx-auto mb-10 px-10">
+        <Sliders settings={categoriesSlidesettings} datas={categories}>
+          <CategoryCard />
+        </Sliders>
       </div>
 
       <div className="StyleImage m-auto mb-10 px-8">

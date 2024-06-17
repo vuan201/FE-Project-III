@@ -1,12 +1,12 @@
 
-.slick-thumb {
+.slick-thumb-image {
   position: absolute;
   bottom: 25px;
   width: 100%;
   list-style: none;
   text-align: center;
 }
-.slick-thumb li{
+.slick-thumb-image li{
   display: inline-block;
   width: 150px;
   height: auto;
@@ -16,7 +16,7 @@
   filter: brightness(.5);
   transition: all .5s;
 }
-.slick-thumb .slick-active {
+.slick-thumb-image .slick-active {
   width: 180px;
   filter: brightness(1);
 }
