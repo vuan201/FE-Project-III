@@ -1,29 +1,29 @@
 import axiosClient from "./axiosClient";
 import showError from "./axiosError";
 
-const baseUrl = "/styles";
+const baseUrl = "/brands";
 
-const stylesApi = {
+const brandsApi = {
   getAll(params ) {
     const url = baseUrl;
-    return axiosClient.get(url, { params})
+    return axiosClient.get(url, { params});
   },
   get(id) {
     const url = `${baseUrl}/${id}`;
-    return axiosClient.get(url)
+    return axiosClient.get(url);
   },
   add(data) {
     const url = `${baseUrl}/${data.id}`;
-    return axiosClient.post(url)
+    return axiosClient.post(url);
   },
   update(data) {
     const url = `${baseUrl}/${data.id}`;
-    return axiosClient.put(url)
+    return axiosClient.put(url);
   },
   remove(id) {
     const url = `${baseUrl}/${id}`;
-    return axiosClient.delete(url)
+    return axiosClient.delete(url);
   },
 };
 
-export default stylesApi;
+export default brandsApi;

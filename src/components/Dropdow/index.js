@@ -9,7 +9,7 @@ const Dropdow = (prop) => {
       <div >{children}</div>
       {listPage ? <div className="dropdowItem">
         {listPage.map(([pageName, url], index) => (
-          <NavLink className='block px-4 py-4 hover:text-orange-500' key={index} to={url}>{pageName}</NavLink>
+          <NavLink className='block px-4 py-4 hover:text-orange-500 bg-white border-1 border-line-border' key={index} to={url}>{pageName}</NavLink>
         ))}
       </div> : undefined}
     </div>

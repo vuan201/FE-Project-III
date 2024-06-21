@@ -26,14 +26,13 @@ body {
 
 .title {
   /* font-family: "Inter", sans-serif; */
-
-  color: #00163a;
-  font-size: 24px;
+  /* color: #00163a; */
+  font-size: 28px;
   font-weight: 900;
   text-transform: uppercase;
   font-style: italic;
   letter-spacing: 0;
-  line-height: 24px;
+  line-height: 28px;
 }
 
 #mainContent {

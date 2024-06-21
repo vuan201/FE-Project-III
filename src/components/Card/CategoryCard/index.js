@@ -13,7 +13,7 @@ const CategoryCard = ({ data }) => {
   const handleClick = (e) => {
     if (e.button === 0)
       if (!mouseMoved) {
-        navigate("/login");
+        navigate("/filter");
       }
   };
 

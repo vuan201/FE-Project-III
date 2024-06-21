@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosClient = axios.create({
   baseURL: 'http://localhost:4000/',
-  timeout: 1000,
+  timeout: 3000,
 })
 
 // Thêm một bộ đón chặn request
