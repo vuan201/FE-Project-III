@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import Image from "../../Image";
+import NextLink from "../../NextLink";
 import "./BannerWrap.css";
 
 import { RxArrowTopRight } from "react-icons/rx";
@@ -28,13 +29,7 @@ const BannerWrap = (prop) => {
           {description ? (
             <p className="description mb-5">{description}</p>
           ) : undefined}
-          <Link
-            to={url}
-            className="inline-flex items-center truncate font-bold bannerWrapUrl uppercase relative pb-1 hover:text-red-600"
-          >
-            <span>Bộ sưu tập</span>
-            <RxArrowTopRight />
-          </Link>
+          <NextLink light/>
         </div>
       </div>
     </div>

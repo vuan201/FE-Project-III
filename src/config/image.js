@@ -9,13 +9,15 @@ import BannerWrap2 from "../assets/images/bannerWrap/Rectangle_96_231cdeb1-78a2-
 import BannerWrap3 from "../assets/images/bannerWrap/Rectangle_116_e3f29c64-4c71-44cb-89bf-c257491618d5.webp";
 import BannerWrap4 from "../assets/images/bannerWrap/image_29.webp";
 
-import Frame from "../assets/images/Frame_103.webp";
+import Frame1 from "../assets/images/Style/Frame_103.webp";
+import Frame2 from "../assets/images/Style/Rectangle_177.webp";
+import Frame3 from "../assets/images/Style/Rectangle_178.webp";
 
 export const sliderImage = [
   {
     name: "banner 1",
     title: "phải có",
-    titleTrending: "giày mùa hè",
+    titleTrending: "summer shoes",
     image: banner1,
   },
   {
@@ -59,4 +61,8 @@ export const bannerWrap = [
   },
 ];
 
-export const frame = { name: "frame", image: Frame };
+export const frame = [
+  { name: "frame 1", image: Frame1 },
+  { name: "frame 2", image: Frame2 },
+  { name: "frame 3", image: Frame3 },
+];

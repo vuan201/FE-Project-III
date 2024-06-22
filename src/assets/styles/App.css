@@ -1,4 +1,4 @@
-:root{
+:root {
   --color-line-border: rgb(235 235 235);
   --color-foreground: rgb(84 84 84);
   --light-font-color: black;
@@ -8,6 +8,7 @@
   --color-border-item: #000;
   --color-button-text: 255 255 255;
   --light_skew-color: rgb(var(--color-button-text)/.25);
+  --color-overlay: 0 0 0;
 }
 
 * {
@@ -16,17 +17,14 @@
   text-decoration: none;
 }
 
+/* html{
+  font-size: 62.5%;
+} */
 body {
   text-align: center;
 }
 
-.App {
-  position: relative;
-}
-
 .title {
-  /* font-family: "Inter", sans-serif; */
-  /* color: #00163a; */
   font-size: 28px;
   font-weight: 900;
   text-transform: uppercase;
@@ -40,32 +38,5 @@ body {
 }
 
 header h1 {
-  font-size: 30px;
+  font-size: 3rem;
 }
-/* 
-.cardShadow {
-  transition: box-shadow 0.5s, ease-in-out transform 1s;
-}
-
-.cardShadow:hover {
-  box-shadow: -1rem -1rem 1rem -1rem #0000000d,
-    1rem 1rem 1rem -1rem #0000000d,
-    0 0 .5rem #fff0,
-    0 2rem 3.5rem -2rem #00000080;
-  transform: rotate(2deg) !important;
-}
-
-.button:hover,
-.shopNow:hover {
-  transition: transform 3s ease, box-shadow 1s ease !important;
-  transform: rotate(2deg) !important;
-  box-shadow: -1rem -1rem 1rem -1rem #0000000d,
-    1rem 1rem 1rem -1rem #0000000d,
-    0 0 .5rem #fff0,
-    0 2rem 3.5rem -2rem #00000080;
-}
-.button,
-.shopNow {
-  transition: transform 1s ease, box-shadow 1s ease !important;
-  transform-origin: center;
-} */
