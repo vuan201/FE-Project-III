@@ -3,9 +3,7 @@ import './Image.css'
 import clsx from "clsx";
 
 const Image = (prop) => {
-  
   const {animation} = prop
-
   const { image, name } = prop.data;
 
   const className = clsx("image w-full h-full", {

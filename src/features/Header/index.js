@@ -1,13 +1,10 @@
 import React from "react";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
-import Navbar from "./Navbar";
+import { Navbar } from "../../components";
 
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaRegHeart, FaShoppingCart } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
-import { FaRegHeart } from "react-icons/fa";
-import { FaShoppingCart } from "react-icons/fa";
-
 const Header = () => {
   const headerClassName = clsx(
     "w-full bg-white-50 text-black text-center mb-8 mx-2",

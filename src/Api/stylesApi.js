@@ -1,5 +1,4 @@
 import axiosClient from "./axiosClient";
-import showError from "./axiosError";
 
 const baseUrl = "/styles";
 

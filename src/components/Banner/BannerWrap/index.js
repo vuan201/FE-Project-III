@@ -1,11 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import clsx from "clsx";
 import Image from "../../Image";
 import NextLink from "../../NextLink";
 import "./BannerWrap.css";
-
-import { RxArrowTopRight } from "react-icons/rx";
 
 const BannerWrap = (prop) => {
   const { top, bottom } = prop;

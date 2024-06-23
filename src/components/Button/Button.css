@@ -10,7 +10,8 @@
   display: inline;
   font-size: 16px;
 }
-.button::after{
+
+.afterAnimation::after{
   position: absolute;
   background-image: linear-gradient(90deg, transparent, var(--light_skew-color, transparent), transparent);
   content: "";
@@ -19,10 +20,12 @@
   bottom: 0;
   transform: skew(-20deg);
   width: 200%;
-  transition: left 1s, opacity .1s;
-  opacity: 0;
 }
-.button:hover::after{
-  left: -200%;
-  opacity: 1;
+.afterAnimation:hover::after{
+  animation: shine .75s cubic-bezier(.01,.56,1,1);
+}
+@keyframes shine {
+  100%{
+    left: -200%;
+  }
 }

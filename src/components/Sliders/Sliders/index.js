@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './Sliders.css'
+
 const Sliders = ({ datas, children, settings }) => {
   return (
     <Slider {...settings} >

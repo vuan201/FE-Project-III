@@ -5,8 +5,11 @@ import "./Button.css";
 const Button = (prop) => {
   const { children, onClick, type } = prop;
 
+  const className = clsx("button", {
+    "afterAnimation overflow-hidden": prop.afterAnimation,
+  });
   return (
-    <button className={'button'} onClick={onClick} type={type}>
+    <button className={className} onClick={onClick} type={type}>
       {children}
     </button>
   );

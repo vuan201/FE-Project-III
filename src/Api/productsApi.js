@@ -1,9 +1,8 @@
 import axiosClient from "./axiosClient";
-import showError from "./axiosError";
 
 const baseUrl = '/Products'
 
-const productApi = {
+const productsApi = {
   getAll(params) {
     const url = baseUrl
     return axiosClient.get(url, {params})
@@ -26,4 +25,4 @@ const productApi = {
   }
 }
 
-export default productApi
+export default productsApi

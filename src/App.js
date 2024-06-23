@@ -1,12 +1,8 @@
 import { Routes, Route } from "react-router";
-import Register from "./pages/Form/Register";
 
 import "./assets/styles/App.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Login from "./pages/Form/Login";
-import Home from "./pages/Home/Home";
-import Filter from "./pages/Filter";
+import { Header, Footer } from "./features";
+import { Login, Home, Register, Filter } from "./pages";
 import ScrollToTop from "./utils/ScrollToTop";
 
 function App() {

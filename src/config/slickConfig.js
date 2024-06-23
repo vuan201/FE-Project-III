@@ -1,5 +1,4 @@
-import SlickSlide from "../components/Sliders/SlickSlide";
-import Image from "../components/Image";
+import { SlickSlide, Image } from "../components";
 import { sliderImage } from "./image";
 
 export const StylesSlidesettings = {
