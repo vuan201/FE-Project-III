@@ -8,7 +8,7 @@ const Navbar = () => {
     ["Home", "/"],
     ["Đăng ký", "/login"],
     ["Đaeng nhập", "/register"],
-    ["Bộ lọc", "/filter"],
+    ["Bộ sưu tập", "/collections"],
   ];
 
   return (

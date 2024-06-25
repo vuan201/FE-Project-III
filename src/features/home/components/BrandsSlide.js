@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { brandsSlidesettings } from "../../../config";
+import { brandsSlideSettings } from "../../../config";
 import {Sliders, Loading, Image} from "../../../components";
 
 import {
@@ -28,7 +28,7 @@ const BrandsSlide = () => {
   return (
     <div className="mx-auto mb-10 px-12">
       <div className="w-full m-auto max-w-container">
-        <Sliders settings={brandsSlidesettings} datas={brands}>
+        <Sliders settings={brandsSlideSettings} datas={brands}>
           <Image />
         </Sliders>
       </div>

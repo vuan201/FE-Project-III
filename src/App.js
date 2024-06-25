@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router";
 
 import "./assets/styles/App.css";
 import { Header, Footer } from "./features";
-import { Login, Home, Register, Filter } from "./pages";
+import { Login, Home, Register, Collections } from "./pages";
 import ScrollToTop from "./utils/ScrollToTop";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/filter" element={<Filter />} />
+          <Route path="/collections" element={<Collections />} />
         </Routes>
       </div>
       <Footer />

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { categoriesSlidesettings } from "../../../config";
+import { categoriesSlideSettings } from "../../../config";
 import { Loading, Sliders, CategoryCard } from "../../../components";
 
 import {
@@ -28,7 +28,7 @@ const CategoriesSlide = () => {
   return (
     <div className="mx-auto mb-10 px-12">
       <div className="w-full m-auto max-w-container">
-        <Sliders settings={categoriesSlidesettings} datas={categories}>
+        <Sliders settings={categoriesSlideSettings} datas={categories}>
           <CategoryCard />
         </Sliders>
       </div>

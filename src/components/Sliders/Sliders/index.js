@@ -13,7 +13,9 @@ const Sliders = ({ datas, children, settings }) => {
             React.cloneElement(child, { data })
           )}
         </div>
-      )): undefined}
+      )): children.map((chil, index)=> (
+        <div key={index}>{chil}</div>
+      ))}
     </Slider>
   );
 };

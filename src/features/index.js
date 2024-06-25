@@ -7,6 +7,7 @@ export {default as CategoriesSlide} from './home/components/CategoriesSlide'
 export {default as IntroSlide} from './home/components/IntroSlide'
 export {default as LibraryStyles} from './home/components/LibraryStyles'
 export {default as OutstandingContainer} from './home/components/OutstandingContainer'
+export {default as NewsletterSignupForm} from './home/components/NewsletterSignupForm'
 
 // Header Footer
 export {default as Header} from './Header'

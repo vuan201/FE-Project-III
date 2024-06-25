@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Sliders, StyleImageCard, Loading } from "../../../components";
-import { StylesSlidesettings } from "../../../config";
+import { StylesSlideSettings } from "../../../config";
 import {
   selectStylesItem,
   selectStylesStatus,
@@ -28,7 +28,7 @@ const LibraryStyles = () => {
       <div className="headerCard text-2xl mb-10">
         <span className="title">thư viện ảnh</span>
       </div>
-      <Sliders settings={StylesSlidesettings} datas={styles}>
+      <Sliders settings={StylesSlideSettings} datas={styles}>
         <StyleImageCard />
       </Sliders>
     </div>

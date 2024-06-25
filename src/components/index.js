@@ -13,6 +13,7 @@ export { default as Navbar } from "./Navbar";
 export { default as NextLink } from "./NextLink";
 export { default as Search } from "./Search";
 export { default as Sliders } from "./Sliders/Sliders";
+export { default as Overlay } from "./Overlay";
 
 export { default as NextArrow } from "./Sliders/DirectionButton/NextArrow";
 export { default as PrevArrow } from "./Sliders/DirectionButton/PrevArrow ";

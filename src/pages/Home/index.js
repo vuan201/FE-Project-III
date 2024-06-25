@@ -9,10 +9,12 @@ import {
   BigBanner,
   ByMeContainer,
   LibraryStyles,
+  NewsletterSignupForm,
 } from "../../features";
 
 // Banner Image
 import "./Home.css";
+import MarketingContainer from "../../features/home/components/MarketingContainer";
 
 const Home = () => {
   return (
@@ -24,17 +26,9 @@ const Home = () => {
       <OutstandingContainer />
       <BigBanner />
       <ByMeContainer />
+      <NewsletterSignupForm />
+      <MarketingContainer/>
       <LibraryStyles />
-      {/* 
-      <div className="StyleImage m-auto mb-10 px-8">
-        <div className="headerCard text-2xl mb-10">
-          <span className="title">thư viện ảnh</span>
-        </div>
-        <Sliders settings={StylesSlidesettings} datas={styles}>
-          <StyleImageCard />
-        </Sliders>
-      </div> 
-      */}
     </div>
   );
 };

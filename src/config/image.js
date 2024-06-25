@@ -13,6 +13,9 @@ import Frame1 from "../assets/images/Style/Frame_103.webp";
 import Frame2 from "../assets/images/Style/Rectangle_177.webp";
 import Frame3 from "../assets/images/Style/Rectangle_178.webp";
 
+import NewsletterSignupForm from "../assets/images/Rectangle_327.webp";
+import CollectionImage from "../assets/images/z4683181570507_46fb10fa21da971ae2af71e75431028c.webp";
+
 export const sliderImage = [
   {
     name: "banner 1",
@@ -66,3 +69,12 @@ export const frame = [
   { name: "frame 2", image: Frame2 },
   { name: "frame 3", image: Frame3 },
 ];
+
+export const newsletterSignupForm = {
+  name: "Newsletter Signup Form",
+  image: NewsletterSignupForm,
+};
+export const collectionImage = {
+  name: "collection image",
+  image: CollectionImage,
+};
