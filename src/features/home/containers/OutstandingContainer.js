@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { bannerWrap } from "../../../config";
-import { ProductCard, BannerWrap, Loading } from "../../../components";
-
+import { ProductCard, Loading } from "../../../components";
+import BannerWrap from "../components/BannerWrap";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectProductsItem,

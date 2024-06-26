@@ -1,5 +1,6 @@
 import React from "react";
-
+import { Image } from "../../../../components";
+import { collectionImage } from "../../../../config";
 const BannerCollections = () => {
   return (
     <div className="relative py-16">

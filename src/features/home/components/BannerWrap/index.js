@@ -1,7 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import Image from "../../Image";
-import NextLink from "../../NextLink";
+import {Image, NextLink} from "../../../../components";
 import "./BannerWrap.css";
 
 const BannerWrap = (prop) => {

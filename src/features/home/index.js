@@ -10,11 +10,11 @@ import {
   ByMeContainer,
   LibraryStyles,
   NewsletterSignupForm,
-} from "../../features";
+  MarketingContainer
+} from "..";
 
 // Banner Image
 import "./Home.css";
-import MarketingContainer from "../../features/home/components/MarketingContainer";
 
 const Home = () => {
   return (
@@ -27,7 +27,7 @@ const Home = () => {
       <BigBanner />
       <ByMeContainer />
       <NewsletterSignupForm />
-      <MarketingContainer/>
+      <MarketingContainer />
       <LibraryStyles />
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
-import Image from "../../Image";
-import Button from "../../Button";
+import Image from "../../../../components/Image";
+import Button from "../../../../components/Button";
 import { NavLink } from "react-router-dom";
 import "./BannerSlider.css";
 

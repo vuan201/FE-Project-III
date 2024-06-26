@@ -1,5 +1,3 @@
-export { default as BannerSlider } from "./Banner/BannerSlider";
-export { default as BannerWrap } from "./Banner/BannerWrap";
 export { default as Breadcrumbs } from "./Breadcrumbs";
 export { default as Button } from "./Button";
 export { default as CategoryCard } from "./Card/CategoryCard";

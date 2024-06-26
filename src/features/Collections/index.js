@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Breadcrumbs, Image, Overlay } from "../../components";
-import { collectionImage } from "../../config/index";
+import { Overlay } from "../../components";
+import Breadcrumbs from "./components/BannerCollections";
+
 const Collections = () => {
   const [overlay, setOverlay] = useState(false);
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { BannerWrap } from "../../../components";
+import BannerWrap from "../components/BannerWrap";
 import { bannerWrap } from "../../../config";
 
 const BannerWrapContainer = () => {

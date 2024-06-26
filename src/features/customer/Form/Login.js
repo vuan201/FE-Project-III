@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Button, Input } from "../../components";
+import { Button, Input } from "../../../components";
 
 const Login = () => {
   const [email, setEmail] = useState("");

@@ -1,17 +1,16 @@
 import { React, useRef } from "react";
 import { useReducer } from "react";
-import reducer, { initValue } from "../../Reducer/Reducer";
+import reducer, { initValue } from "../../../Reducer/Reducer";
 import {
   setName,
   setEmail,
   setPhone,
   setPassword,
   setPasswordComfirmation,
-} from "../../Reducer/Action";
+} from "../../../Reducer/Action";
 
 import "./Form.css";
-import Button from "../../components/Button";
-import Input from "../../components/Input";
+import { Input, Button } from "../../../components";
 import validator from "./Validate";
 
 const Register = () => {
