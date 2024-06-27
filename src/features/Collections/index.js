@@ -5,7 +5,7 @@ import Breadcrumbs from "./components/BannerCollections";
 import Sort from "./container/Sort";
 
 const Collections = () => {
-  const [overlay, setOverlay] = useState(true);
+  const [overlay, setOverlay] = useState(false);
 
   const handleSetOverlay = () => {
     setOverlay(!overlay);

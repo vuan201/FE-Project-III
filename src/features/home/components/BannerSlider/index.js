@@ -21,7 +21,7 @@ const BannerSlider = ({ data }) => {
             <h1>{titleTrending}</h1>
           </div>
           <div className="slideButton w-56 h-auto mb-12">
-            <NavLink to={"/filter"}>
+            <NavLink to={"/collections"}>
               <Button afterAnimation >Bộ sưu tập</Button>
             </NavLink>
           </div>

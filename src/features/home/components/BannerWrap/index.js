@@ -25,7 +25,7 @@ const BannerWrap = (prop) => {
           {description ? (
             <p className="description mb-5">{description}</p>
           ) : undefined}
-          <NextLink light/>
+          <NextLink light url="/collections"/>
         </div>
       </div>
     </div>
