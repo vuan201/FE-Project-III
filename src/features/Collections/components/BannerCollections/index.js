@@ -2,6 +2,7 @@ import React from "react";
 import { Image } from "../../../../components";
 import { collectionImage } from "../../../../config";
 const BannerCollections = () => {
+  
   return (
     <div className="relative py-16">
       <div className="flex flex-col gap-3 z-3 justify-center w-full px-10">
