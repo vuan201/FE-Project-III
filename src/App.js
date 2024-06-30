@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router";
-
 import "./assets/styles/App.css";
 import { Header, Footer } from "./features";
 import { Login, Home, Register, Collections } from "./features";
 import ScrollToTop from "./utils/ScrollToTop";
 
 function App() {
+
   return (
     <div className={"App bg-transparent "}>
       <Header />

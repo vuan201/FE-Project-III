@@ -15,21 +15,24 @@ export const sortSlice = createSlice({
       "Từ Z-A",
       "Giá thấp đến cao",
       "Giá cao đến thấp",
-      'Ngày mới đến cũ',
-      'Ngày cũ đến mới'
+      "Ngày mới đến cũ",
+      "Ngày cũ đến mới",
     ],
     presentValue: "Đặc sắc",
   },
   reducers: {
-    setPresentValue: (state, action) =>{
-      state.presentValue = action.payload
-    }
+    setPresentValue: (state, action) => {
+      state.presentValue = action.payload;
+    },
+    resetPresentValue: (state) => {
+      state.presentValue = "Đặc sắc";
+    },
   },
 });
 
 export const sortList = (state) => state.sort.sortList;
 export const presentValue = (state) => state.sort.presentValue;
 
-export const { setPresentValue } = sortSlice.actions
+export const { setPresentValue, resetPresentValue } = sortSlice.actions;
 
 export default sortSlice.reducer;

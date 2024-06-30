@@ -19,10 +19,8 @@ const OutstandingContainer = () => {
   const params = { _limit: 4 };
 
   useEffect(() => {
-    if (status === "idle") {
-      dispatch(fetchProducts(params));
-    }
-  }, [status, dispatch]);
+    dispatch(fetchProducts(params));
+  }, []);
 
   if (status === "loading") return <Loading />;
 

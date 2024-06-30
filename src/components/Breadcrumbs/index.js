@@ -3,8 +3,7 @@ import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { FaCaretRight } from "react-icons/fa";
 
-const Breadcrumbs = (prop) => {
-  // const { breadcrumbs } = prop;
+const Breadcrumbs = () => {
   const location = useLocation();
   const breadcrumbs = location.pathname.split("/").filter((x) => x);
 
@@ -16,7 +15,7 @@ const Breadcrumbs = (prop) => {
       {breadcrumbs.map((crumb, index) => {
         const path = `/${breadcrumbs.slice(0, index + 1).join("/")}`;
         return (
-          <>
+          <span key={index} className="flex">
             <span className="mx-1 my-auto">
               <FaCaretRight />
             </span>
@@ -25,7 +24,7 @@ const Breadcrumbs = (prop) => {
                 {crumb.charAt(0).toUpperCase() + crumb.slice(1)}
               </Link>
             </span>
-          </>
+          </span>
         );
       })}
     </nav>

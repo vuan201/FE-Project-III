@@ -22,7 +22,14 @@ export const productsSlice = createSlice({
     status: "idle",
     error: null,
   },
-  reducers: {},
+  reducers: {
+    resetProducts: (state) => {
+      console.log('jlasdkjflkjdsal');
+      state.error = null;
+      state.products = [];
+      state.status = "idle";
+    },
+  },
 
   // xử lý các action được tạo bởi createAsyncThunk
   // hoặc các action khác không được định nghĩa trong phần reducers của slice.
@@ -41,6 +48,8 @@ export const productsSlice = createSlice({
       });
   },
 });
+
+export const { resetProducts } = productsSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
 export const selectProductsItem = (state) => state.products.products;

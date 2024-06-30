@@ -23,12 +23,14 @@ export const bannerSliderSettings = {
   },
   dots: true,
   dotsClass: "slick-thumb slick-thumb-image hidden lg:block",
-  infinite: false,
+  infinite: true,
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
   speed: 500,
   autoplaySpeed: 5000,
+  prevArrow: null, // Tắt nút mũi tên Previous
+  nextArrow: null, // Tắt nút mũi tên Next
 };
 
 export const categoriesSlideSettings = {

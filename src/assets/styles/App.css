@@ -10,6 +10,7 @@
   --light_skew-color: rgb(var(--color-button-text)/.25);
   --color-overlay: 0 0 0;
   --color-overlay: 0 0 0;
+  --bg-color-sort-item-active: 242 242 242;
 }
 
 * {
@@ -26,7 +27,7 @@ body {
   font-size: 28px;
   font-weight: 900;
   text-transform: uppercase;
-  font-style: italic;
+  /* font-style: italic; */
   letter-spacing: 0;
   line-height: 28px;
 }

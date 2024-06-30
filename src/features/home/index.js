@@ -10,13 +10,14 @@ import {
   ByMeContainer,
   LibraryStyles,
   NewsletterSignupForm,
-  MarketingContainer
+  MarketingContainer,
 } from "..";
 
 // Banner Image
 import "./Home.css";
 
 const Home = () => {
+  
   return (
     <div className="m-auto">
       <IntroSlide />
