@@ -1,23 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
-import { Overlay, Breadcrumbs } from "../../components";
+import { Breadcrumbs } from "../../components";
 import BannerCollections from "./components/BannerCollections";
 import SortButton from "./container/SortButton";
 import ProductsList from "./container/ProductsList";
 import FilterButton from "./container/FilterButton";
-import { IoFilter } from "react-icons/io5";
 
-import { resetPresentValue, presentValue } from "../../app/reducers";
+import { resetPresentValue } from "../../app/reducers";
 const Collections = () => {
   const dispatch = useDispatch();
-  const [overlay, setOverlay] = useState(false);
-
-  const present = useSelector(presentValue);
-
-  const handleSetOverlay = () => {
-    setOverlay(!overlay);
-  };
 
   useEffect(() => {
     return () => {
@@ -36,7 +28,7 @@ const Collections = () => {
       <div className="px-8 mb-10">
         <div className="m-auto flex justify-between w-full max-w-container">
           <div>
-            <FilterButton/>
+            <FilterButton />
           </div>
           <div></div>
           <SortButton />
@@ -49,7 +41,6 @@ const Collections = () => {
           </div>
         </div>
       </div>
-      <Overlay isOverlay={overlay} onClick={handleSetOverlay} />
     </div>
   );
 };
