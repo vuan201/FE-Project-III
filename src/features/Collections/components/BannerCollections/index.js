@@ -4,7 +4,7 @@ import { collectionImage } from "../../../../config";
 
 const BannerCollections = () => {
   return (
-    <div className="relative py-16">
+    <div className="relative py-16 text-center">
       <div className="flex flex-col gap-3 z-3 justify-center w-full px-10">
         <div className="title">
           <h3>bộ sưu tập</h3>

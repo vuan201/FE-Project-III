@@ -1,10 +1,14 @@
-import React from 'react';
+import React from "react";
+import './FilterItem.css'
 
-const FilterItem = () => {
+const FilterItem = ({ onClick, value, isActive }) => {
   return (
-    <div>
-      
-    </div>
+    <button
+      className={isActive === true ? "filterItemActive" : "filterItem"}
+      onClick={() => onClick(value)}
+    >
+      {value}
+    </button>
   );
 };
 

@@ -10,17 +10,13 @@
   --light_skew-color: rgb(var(--color-button-text)/.25);
   --color-overlay: 0 0 0;
   --color-overlay: 0 0 0;
-  --bg-color-sort-item-active: 242 242 242;
+  --bg-color-filter-item-active: 242 242 242;
 }
 
 * {
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
   text-decoration: none;
-}
-
-body {
-  text-align: center;
 }
 
 .title {

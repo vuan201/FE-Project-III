@@ -3,14 +3,13 @@ import { Overlay } from "../../../../components";
 import clsx from "clsx";
 import { IoFilter } from "react-icons/io5";
 import { TfiClose } from "react-icons/tfi";
+import FiltersList from "../../components/FiltersList";
 
 const FilterContainer = ({ isOpenFilter, onClick }) => {
   const className = clsx(
     "fixed z-40 top-0 w-full h-full top-0 bottom-0 left-0 right-0",
     "transition-opacity duration-7000",
     {
-      // "hidden": !isOpenFilter,
-      // "block": isOpenFilter,
       "invisible opacity-0": !isOpenFilter,
       "visible opacity-100 ": isOpenFilter,
     }
@@ -67,6 +66,9 @@ const FilterContainer = ({ isOpenFilter, onClick }) => {
           >
             <TfiClose />
           </div>
+        </div>
+        <div className="p-4">
+          <FiltersList/>
         </div>
       </div>
     </div>

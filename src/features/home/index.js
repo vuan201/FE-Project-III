@@ -29,7 +29,7 @@ const Home = () => {
       <ByMeContainer />
       <NewsletterSignupForm />
       <MarketingContainer />
-      <LibraryStyles />
+      {/* <LibraryStyles /> */}
     </div>
   );
 };

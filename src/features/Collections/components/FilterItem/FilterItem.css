@@ -1,7 +1,7 @@
-.sortItem, .sortItemActive{
+.filterItem, .filterItemActive{
   transition: background-color .2s, border .2s;
 }
-.sortItem, .sortItemActive{
+.filterItem, .filterItemActive{
   font-size: 14px;
   display: flex;
   text-align: left;
@@ -13,10 +13,10 @@
   position: relative;
   background-color: white;
 }
-.sortItemActive, .sortItem:hover {
-  background-color: rgb(var(--bg-color-sort-item-active));
+.filterItemActive, .filterItem:hover {
+  background-color: rgb(var(--bg-color-filter-item-active));
 }
-.sortItemActive::before{
+.filterItemActive::before{
   left: 0;
   width: 3px;
   height: 100%;

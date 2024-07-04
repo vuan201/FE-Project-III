@@ -24,7 +24,6 @@ export const productsSlice = createSlice({
   },
   reducers: {
     resetProducts: (state) => {
-      console.log('jlasdkjflkjdsal');
       state.error = null;
       state.products = [];
       state.status = "idle";

@@ -1,58 +1,68 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { categoriesApi, brandsApi, colorsApi } from "../../Api";
+import { createSlice } from "@reduxjs/toolkit";
 
 // tên reducers
 const baseName = "filters";
-
-// Async thunks để gọi API
-export const fetchFilters = createAsyncThunk(
-  `${baseName}/fetchFilters`,
-  async () => {
-    const [categories, brands, colors] = await Promise.all(
-      categoriesApi.getAll({}),
-      brandsApi.getAll({}),
-      colorsApi.getAll({})
-    );
-    return {
-      categories: categories,
-      brands: brands,
-      colors: colors,
-    };
-  }
-);
 
 export const filtersSlice = createSlice({
   name: baseName,
 
   // các giá trị ban đầu
   initialState: {
-    ilters: {},
-    status: "idle",
-    error: null,
+    colors: [],
+    price: [],
+    sizes: [],
   },
-  reducers: {},
+  reducers: {
+    // thay thế cho cả add và remove
+    handleFilterColors: (state, action) => {
+      const result = state.colors.includes(action.payload);
 
-  // xử lý các action được tạo bởi createAsyncThunk
-  // hoặc các action khác không được định nghĩa trong phần reducers của slice.
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchFilters.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(fetchFilters.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.filters = action.payload;
-      })
-      .addCase(fetchFilters.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message;
-      });
+      // nếu không tồn tại màu đó trong bộ lọc, thì sẽ thêm vào
+      if (result) {
+        const newArray = state.colors.filter((item) => item !== action.payload);
+        state.colors = newArray;
+      }
+      // nếu đã tồn tại màu đó trong bộ lọc thì sẽ xóa bỏ nó đi
+      else {
+        state.colors.push(action.payload);
+      }
+    },
+
+    // addFilterPrice: (state, action) => {},
+    // removeFilterPrice: (state, action) => {},
+
+    handleFilterSizes: (state, action) => {
+      const result = state.sizes.find((element) => element === action.payload);
+
+      // nếu không tồn tại màu đó trong bộ lọc, thì sẽ thêm vào
+      if (result !== undefined) {
+        state.sizes = state.sizes.push(action.payload);
+      }
+      // nếu đã tồn tại màu đó trong bộ lọc thì sẽ xóa bỏ nó đi
+      else {
+        state.sizes = state.sizes.filter((item) => item !== action.payload);
+      }
+    },
+
+    resetItem: (state) => {
+      state.colors = [];
+      state.price = [];
+      state.sizes = [];
+    },
   },
 });
 
+export const {
+  resetItem,
+  handleFilterColors,
+  // addFilterPrice,
+  // removeFilterPrice,
+  handleFilterSizes,
+} = filtersSlice.actions;
+
 // đẩy các dữ liệu ra ngoài
-export const selectFiltersItem = (state) => state.filters.filters;
-export const selectFiltersStatus = (state) => state.filters.status;
-export const selectFiltersError = (state) => state.filters.error;
+export const selectFiltersColors = (state) => state.filters.colors;
+export const selectFiltersPrice = (state) => state.filters.price;
+export const selectFiltersSizes = (state) => state.filters.sizes;
 
 export default filtersSlice.reducer;

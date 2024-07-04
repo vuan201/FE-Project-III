@@ -2,18 +2,18 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { Breadcrumbs } from "../../components";
-import BannerCollections from "./components/BannerCollections";
-import SortButton from "./container/SortButton";
-import ProductsList from "./container/ProductsList";
-import FilterButton from "./container/FilterButton";
+import { BannerCollections } from "./components";
+import { SortButton, ProductsList, Filters } from "./container";
 
-import { resetPresentValue } from "../../app/reducers";
+import { resetPresentValue, resetItem } from "../../app/reducers";
+
 const Collections = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     return () => {
       dispatch(resetPresentValue());
+      dispatch(resetItem());
     };
   }, []);
 
@@ -28,7 +28,7 @@ const Collections = () => {
       <div className="px-8 mb-10">
         <div className="m-auto flex justify-between w-full max-w-container">
           <div>
-            <FilterButton />
+            <Filters />
           </div>
           <div></div>
           <SortButton />
