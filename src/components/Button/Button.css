@@ -2,13 +2,11 @@
 .button{
   position: relative;
   width: 100%;
-  border: none;
   padding: 8px;
   text-align: center;
-  color: white;
-  background: black;
   display: inline;
   font-size: 16px;
+  transition: all .2s;
 }
 
 .afterAnimation::after{

@@ -9,7 +9,7 @@ export const filtersSlice = createSlice({
   // các giá trị ban đầu
   initialState: {
     colors: [],
-    price: [],
+    price: [0, 5000000],
     sizes: [],
   },
   reducers: {
@@ -28,19 +28,21 @@ export const filtersSlice = createSlice({
       }
     },
 
-    // addFilterPrice: (state, action) => {},
-    // removeFilterPrice: (state, action) => {},
+    setFilterPrice: (state, action) => {
+      state.price = action.payload;
+    },
 
     handleFilterSizes: (state, action) => {
-      const result = state.sizes.find((element) => element === action.payload);
+      const result = state.sizes.includes(action.payload);
 
       // nếu không tồn tại màu đó trong bộ lọc, thì sẽ thêm vào
-      if (result !== undefined) {
-        state.sizes = state.sizes.push(action.payload);
+      if (result) {
+        const newArray = state.sizes.filter((item) => item !== action.payload);
+        state.sizes = newArray;
       }
       // nếu đã tồn tại màu đó trong bộ lọc thì sẽ xóa bỏ nó đi
       else {
-        state.sizes = state.sizes.filter((item) => item !== action.payload);
+        state.sizes.push(action.payload);
       }
     },
 
@@ -55,8 +57,7 @@ export const filtersSlice = createSlice({
 export const {
   resetItem,
   handleFilterColors,
-  // addFilterPrice,
-  // removeFilterPrice,
+  setFilterPrice,
   handleFilterSizes,
 } = filtersSlice.actions;
 

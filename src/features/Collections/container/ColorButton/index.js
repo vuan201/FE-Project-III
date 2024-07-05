@@ -18,10 +18,9 @@ const ColorButton = () => {
   const status = useSelector(selectColorsStatus);
   const error = useSelector(selectColorsError);
   const filtersColors = useSelector(selectFiltersColors)
-  // console.log(filtersColors.includes(1));
+
   useEffect(() => {
     dispatch(fetchColors());
-    return () => {};
   }, [dispatch]);
 
   const handleSetFilterColors = (color) => {
@@ -30,7 +29,7 @@ const ColorButton = () => {
 
   return (
     <Popover Icon={BiSolidColor} value={"Màu sắc"}>
-      <ul className="p-2">
+      <ul className="overflow-y-auto max-h-56 pt-2">
         {colors
           ? colors.map((color, index) => (
               <li key={index}>

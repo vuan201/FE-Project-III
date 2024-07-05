@@ -10,7 +10,7 @@ export const sortSlice = createSlice({
   initialState: {
     sortList: [
       "Đặc sắc",
-      "Bán chạy nhất",
+      // "Bán chạy nhất",
       "Từ A-Z",
       "Từ Z-A",
       "Giá thấp đến cao",

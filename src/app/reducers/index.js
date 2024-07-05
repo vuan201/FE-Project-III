@@ -5,6 +5,7 @@ export { default as stylesSlice } from "./stylesSlice";
 export { default as sortSlice } from "./sortSlice";
 export { default as filtersSlice } from "./filter";
 export { default as colorsSlice } from "./colorsSlice";
+export { default as sizesSlice } from "./sizesSlice";
 
 export * from "./categoriesSlice";
 export * from "./brandsSlice";
@@ -13,3 +14,4 @@ export * from "./stylesSlice";
 export * from "./sortSlice";
 export * from "./filter";
 export * from "./colorsSlice";
+export * from "./sizesSlice";

@@ -35,7 +35,7 @@ const ProductCard = ({ data }) => {
           </div>
           <Image data={{image:image, name:name}} />
           <div className="cardBtn">
-            <Button blueBtn>mua hàng</Button>
+            <Button black blueBtn>mua hàng</Button>
           </div>
         </div>
       </Link>

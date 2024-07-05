@@ -24,7 +24,7 @@ const LibraryStyles = () => {
   if (status === "loading") return <Loading />;
 
   return (
-    <div className="StyleImage m-auto mb-10 px-8">
+    <div className="StyleImage m-auto mb-10 px-8 text-center">
       <div className="headerCard text-2xl mb-10">
         <span className="title">thư viện ảnh</span>
       </div>
