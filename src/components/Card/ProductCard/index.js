@@ -7,7 +7,8 @@ import clsx from "clsx";
 import { Link, useNavigate } from "react-router-dom";
 
 const ProductCard = ({ data }) => {
-  const { category, name, image, colors, price, className, id } = data;
+  const {id, name,description,brand, price ,colors,categories, className } = data;
+
   const cardClassName = clsx(className, "card px-4");
   
   const [mouseMoved, setMouseMoved] = useState(false);
@@ -33,7 +34,7 @@ const ProductCard = ({ data }) => {
           <div className="sale">
             <span>-30%</span>
           </div>
-          <Image data={{image:image, name:name}} />
+          <Image data={{image:colors[0].imageUrls, name:name}} />
           <div className="cardBtn">
             <Button black blueBtn>mua hàng</Button>
           </div>

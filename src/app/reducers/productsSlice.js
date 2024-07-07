@@ -23,6 +23,9 @@ export const productsSlice = createSlice({
     error: null,
   },
   reducers: {
+    setProducts: (state, action) => {
+      state.products = action.payload;
+    },
     resetProducts: (state) => {
       state.error = null;
       state.products = [];
@@ -48,7 +51,7 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { resetProducts } = productsSlice.actions;
+export const { resetProducts, setProducts } = productsSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
 export const selectProductsItem = (state) => state.products.products;

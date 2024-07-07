@@ -1,6 +1,6 @@
 import axiosClient from "./axiosClient";
 
-const baseUrl = '/Products'
+const baseUrl = '/products'
 
 const productsApi = {
   getAll(params) {

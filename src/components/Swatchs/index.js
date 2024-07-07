@@ -3,6 +3,7 @@ import "./Swatchs.css";
 
 const Swatchs = (prop) => {
   const { swatchs, isLimit = true, limit = 4 } = prop;
+  
 
   // lưu trạng thái giới hạn có tồn tại trên component hay không
   const [stateLimit, setStateLimit] = useState(false);
@@ -53,7 +54,7 @@ const Swatchs = (prop) => {
                 style={{ backgroundColor: swatch.code }}
                 className="block w-full h-full rounded-full"
               ></span>
-              <div className="clearfix">
+              <div className="clearfix text-center">
                 <span className="titleSwatch">{swatch.color}</span>
               </div>
             </li>

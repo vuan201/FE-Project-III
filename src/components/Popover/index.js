@@ -3,9 +3,9 @@ import clsx from "clsx";
 import { FaAngleDown } from "react-icons/fa";
 
 const Popover = (props) => {
+
   // children sẽ chứa các dữ liệu khi được popover được mở
   const { children, Icon, value } = props;
-
   const [showPopover, setShowPopover] = useState(false);
 
   const ref = useRef();

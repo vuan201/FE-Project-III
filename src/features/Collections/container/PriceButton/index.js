@@ -22,8 +22,8 @@ const PriceButton = () => {
     <Popover Icon={FaMoneyBill} value={"Giá"}>
       <div className="bg-white absolute top-[110%] left-[-100%] w-[300%] z-10">
         <output className="text-center w-full block">
-          {values[0].toLocaleString("vi-VN")} VND -{" "}
-          {values[1].toLocaleString("vi-VN")} VND
+          {values[0] ? values[0].toLocaleString("vi-VN") : undefined} VND -{" "}
+          {values[1] ? values[1].toLocaleString("vi-VN") : undefined} VND
         </output>
         <Range
           values={values}

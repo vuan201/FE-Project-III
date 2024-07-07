@@ -9,23 +9,23 @@ export const sortSlice = createSlice({
   // các giá trị ban đầu
   initialState: {
     sortList: [
-      "Đặc sắc",
-      // "Bán chạy nhất",
-      "Từ A-Z",
-      "Từ Z-A",
-      "Giá thấp đến cao",
-      "Giá cao đến thấp",
-      "Ngày mới đến cũ",
-      "Ngày cũ đến mới",
+      { key: "FEATURED", value: "Đặc sắc" },
+      { key: "BEST_SELLING", value: "Bán chạy nhất" },
+      { key: "A_Z", value: "Từ A-Z" },
+      { key: "Z_A", value: "Từ Z-A" },
+      { key: "LOW_IN_HIGH", value: "Giá thấp đến cao" },
+      { key: "HIGH_IN_LOW", value: "Giá cao đến thấp" },
+      { key: "OLD_TO_NEW", value: "Ngày mới đến cũ" },
+      { key: "NEW_TO_OLD", value: "Ngày cũ đến mới" },
     ],
-    presentValue: "Đặc sắc",
+    presentValue: { key: "FEATURED", value: "Đặc sắc" },
   },
   reducers: {
     setPresentValue: (state, action) => {
       state.presentValue = action.payload;
     },
     resetPresentValue: (state) => {
-      state.presentValue = "Đặc sắc";
+      state.presentValue = { key: "FEATURED", value: "Đặc sắc" };
     },
   },
 });

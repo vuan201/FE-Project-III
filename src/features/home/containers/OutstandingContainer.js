@@ -17,6 +17,7 @@ const OutstandingContainer = () => {
   const error = useSelector(selectProductsError);
 
   const params = { _limit: 4 };
+  // const params = { size: 4 };
 
   useEffect(() => {
     dispatch(fetchProducts(params));

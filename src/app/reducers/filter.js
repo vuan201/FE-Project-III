@@ -13,6 +13,7 @@ export const filtersSlice = createSlice({
     sizes: [],
   },
   reducers: {
+
     // thay thế cho cả add và remove
     handleFilterColors: (state, action) => {
       const result = state.colors.includes(action.payload);
@@ -47,6 +48,7 @@ export const filtersSlice = createSlice({
     },
 
     resetItem: (state) => {
+      state.filtered = [];
       state.colors = [];
       state.price = [];
       state.sizes = [];

@@ -12,22 +12,22 @@ import "./SortButton.css";
 
 const SortButton = () => {
   const dispatch = useDispatch();
-  const value = useSelector(presentValue);
+  const present = useSelector(presentValue);
   const sorts = useSelector(sortList);
 
-  const handleSetPresentValue = (value) => {
-    dispatch(setPresentValue(value));
+  const handleSetPresentValue = (sort) => {
+    dispatch(setPresentValue(sort));
   };
 
   return (
-    <Popover value={value}>
+    <Popover value={present.value}>
       <ul className="py-2">
-        {sorts.map((sort, index) => (
+        {sorts.map(({key, value}, index) => (
           <li key={index}>
             <FilterItem
-              value={sort}
-              isActive={sort === value}
-              onClick={handleSetPresentValue}
+              value={value}
+              isActive={key === present.key}
+              onClick={() => handleSetPresentValue({key, value})}
             />
           </li>
         ))}
