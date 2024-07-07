@@ -4,6 +4,7 @@ import {
   IntroSlide,
   CategoriesSlide,
   BrandsSlide,
+  NewProducts,
   BannerWrapContainer,
   OutstandingContainer,
   BigBanner,
@@ -11,7 +12,8 @@ import {
   LibraryStyles,
   NewsletterSignupForm,
   MarketingContainer,
-} from "..";
+
+} from "./containers";
 
 // Banner Image
 import "./Home.css";
@@ -23,6 +25,7 @@ const Home = () => {
       <IntroSlide />
       <CategoriesSlide />
       <BrandsSlide />
+      <NewProducts/>
       <BannerWrapContainer />
       <OutstandingContainer />
       <BigBanner />

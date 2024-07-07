@@ -9,7 +9,7 @@ import {
   selectColorsError,
   fetchColors,
   handleFilterColors,
-  selectFiltersColors
+  selectFiltersColors,
 } from "../../../../app/reducers";
 
 const ColorButton = () => {
@@ -17,7 +17,7 @@ const ColorButton = () => {
   const colors = useSelector(selectColorsItem);
   const status = useSelector(selectColorsStatus);
   const error = useSelector(selectColorsError);
-  const filtersColors = useSelector(selectFiltersColors)
+  const filtersColors = useSelector(selectFiltersColors);
 
   useEffect(() => {
     dispatch(fetchColors());
@@ -29,19 +29,21 @@ const ColorButton = () => {
 
   return (
     <Popover Icon={BiSolidColor} value={"Màu sắc"}>
-      <ul className="overflow-y-auto max-h-56 pt-2">
-        {colors
-          ? colors.map((color, index) => (
-              <li key={index}>
-                <FilterItem
-                  value={color.color}
-                  isActive={filtersColors.includes(color.color)}
-                  onClick={handleSetFilterColors}
-                />
-              </li>
-            ))
-          : undefined}
-      </ul>
+      <div className="box_shadow">
+        <ul className="overflow-y-auto max-h-56 pt-2">
+          {colors
+            ? colors.map((color, index) => (
+                <li key={index}>
+                  <FilterItem
+                    value={color.color}
+                    isActive={filtersColors.includes(color.color)}
+                    onClick={handleSetFilterColors}
+                  />
+                </li>
+              ))
+            : undefined}
+        </ul>
+      </div>
     </Popover>
   );
 };

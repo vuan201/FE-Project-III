@@ -35,3 +35,7 @@
 header h1 {
   font-size: 3rem;
 }
+
+.box_shadow {
+  box-shadow: -6px 4px 19px 3px rgba(77,77,77,0.3);
+}

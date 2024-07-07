@@ -21,17 +21,19 @@ const SortButton = () => {
 
   return (
     <Popover value={present.value}>
-      <ul className="py-2">
-        {sorts.map(({key, value}, index) => (
-          <li key={index}>
-            <FilterItem
-              value={value}
-              isActive={key === present.key}
-              onClick={() => handleSetPresentValue({key, value})}
-            />
-          </li>
-        ))}
-      </ul>
+      <div className="box_shadow">
+        <ul className="py-2">
+          {sorts.map(({ key, value }, index) => (
+            <li key={index}>
+              <FilterItem
+                value={value}
+                isActive={key === present.key}
+                onClick={() => handleSetPresentValue({ key, value })}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     </Popover>
   );
 };

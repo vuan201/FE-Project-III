@@ -2,34 +2,33 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { productsApi } from "../../Api";
 
 // tên reducers
-const baseName = "products";
+const baseName = "newProducts";
 
 // Async thunks để gọi API
-export const fetchProducts = createAsyncThunk(
-  `${baseName}/fetchProducts`,
+export const fetchNewProducts = createAsyncThunk(
+  `${baseName}/fetchNewProducts`,
   async (params) => {
     const response = await productsApi.getAll(params);
     return response;
   }
 );
 
-export const productsSlice = createSlice({
+export const newProductsSlice = createSlice({
   name: baseName,
 
   // các giá trị ban đầu
   initialState: {
-    products: [],
     newProducts: [],
     status: "idle",
     error: null,
   },
   reducers: {
-    setProducts: (state, action) => {
-      state.products = action.payload;
+    setNewProducts: (state, action) => {
+      state.newProducts = action.payload;
     },
-    resetProducts: (state) => {
+    resetNewProducts: (state) => {
       state.error = null;
-      state.products = [];
+      state.newProducts = [];
       state.status = "idle";
     },
   },
@@ -38,25 +37,25 @@ export const productsSlice = createSlice({
   // hoặc các action khác không được định nghĩa trong phần reducers của slice.
   extraReducers: (builder) => {
     builder
-      .addCase(fetchProducts.pending, (state) => {
+      .addCase(fetchNewProducts.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchProducts.fulfilled, (state, action) => {
+      .addCase(fetchNewProducts.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.products = action.payload;
+        state.newProducts = action.payload;
       })
-      .addCase(fetchProducts.rejected, (state, action) => {
+      .addCase(fetchNewProducts.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
   },
 });
 
-export const { resetProducts, setProducts } = productsSlice.actions;
+export const { resetNewProducts, setNewProducts } = newProductsSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
-export const selectProductsItem = (state) => state.products.products;
-export const selectProductsStatus = (state) => state.products.status;
-export const selectProductsError = (state) => state.products.error;
+export const selectNewProductsItem = (state) => state.newProducts.newProducts;
+export const selectNewProductsStatus = (state) => state.newProducts.status;
+export const selectNewProductsError = (state) => state.newProducts.error;
 
-export default productsSlice.reducer;
+export default newProductsSlice.reducer;

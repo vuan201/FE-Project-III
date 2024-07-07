@@ -71,6 +71,52 @@ export const categoriesSlideSettings = {
     },
   ],
 };
+export const newPeoductsSlideSettings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  initialSlide: 0,
+  arrows: false,
+  appendDots: (dots) => (
+    <div
+      style={{
+        borderRadius: "10px",
+        padding: "10px",
+      }}
+    >
+      <ul style={{ margin: "0px" }}> {dots} </ul>
+    </div>
+  ),
+  customPaging: (i) => <SlickSlide>{i + 1}</SlickSlide>,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        dots: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        dots: true,
+        slidesToShow: 2,
+        slidesToScroll: 2,
+      },
+    },
+    {
+      breakpoint: 580,
+      settings: {
+        dots: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
 
 export const brandsSlideSettings = {
   // dots: true,

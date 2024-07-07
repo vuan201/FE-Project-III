@@ -20,19 +20,21 @@ const SizeButton = () => {
 
   return (
     <Popover Icon={IoIosResize} value={"Kích thước"}>
-      <ul className="overflow-y-auto max-h-56 pt-2 grid grid-cols-2 ">
-        {sizes
-          ? sizes.map((size, index) => (
-              <li key={index}>
-                <FilterItem
-                  value={size}
-                  isActive={filterSize.includes(size)}
-                  onClick={handleSetSize}
-                />
-              </li>
-            ))
-          : undefined}
-      </ul>
+      <div className="box_shadow">
+        <ul className="overflow-y-auto max-h-56 pt-2 grid grid-cols-2">
+          {sizes
+            ? sizes.map((size, index) => (
+                <li key={index}>
+                  <FilterItem
+                    value={size}
+                    isActive={filterSize.includes(size)}
+                    onClick={handleSetSize}
+                  />
+                </li>
+              ))
+            : undefined}
+        </ul>
+      </div>
     </Popover>
   );
 };

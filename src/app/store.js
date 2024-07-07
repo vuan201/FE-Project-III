@@ -8,6 +8,7 @@ import {
   filtersSlice,
   colorsSlice,
   sizesSlice,
+  newProductsSlice
 } from "./reducers";
 
 export default configureStore({
@@ -15,6 +16,7 @@ export default configureStore({
     categories: categoriesSlice,
     brands: brandsSlice,
     products: productsSlice,
+    newProducts: newProductsSlice,
     styles: stylesSlice,
     sort: sortSlice,
     filters: filtersSlice,
