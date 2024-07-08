@@ -1,4 +1,5 @@
 import { React } from "react";
+
 // Conponent
 import {
   IntroSlide,
@@ -14,9 +15,6 @@ import {
   MarketingContainer,
 
 } from "./containers";
-
-// Banner Image
-import "./Home.css";
 
 const Home = () => {
   
