@@ -7,8 +7,17 @@ import clsx from "clsx";
 import { Link, useNavigate } from "react-router-dom";
 
 const ProductCard = ({ data }) => {
-  const { id, name, description, brand, price, colors, categories, className } =
-    data;
+  const {
+    id,
+    name,
+    description,
+    brand,
+    price,
+    colors,
+    categories,
+    className,
+    slug,
+  } = data;
 
   const [image, setImage] = useState(colors[0].imageUrls);
 
@@ -21,7 +30,7 @@ const ProductCard = ({ data }) => {
   const handleClick = (e) => {
     if (e.button === 0)
       if (!mouseMoved) {
-        navigate("/login");
+        navigate(`/products/${slug}`);
       }
   };
 
@@ -34,9 +43,7 @@ const ProductCard = ({ data }) => {
         onMouseDown={() => setMouseMoved(false)}
       >
         <div className="cardInfomation1 cardShadow">
-          <div className="sale">
-            {/* <span>-30%</span> */}
-          </div>
+          <div className="sale">{/* <span>-30%</span> */}</div>
           <Image data={{ image: image, name: name }} />
           {/* <div className="cardBtn">
             <Button black blueBtn>mua hàng</Button>
@@ -45,9 +52,15 @@ const ProductCard = ({ data }) => {
       </Link>
       <div className="cardInfomation2">
         <div className="cardTitle">
-          <a className="productTitle" href="">
+          <Link
+            className="productTitle"
+            onClick={(e) => handleClick(e)}
+            onMouseUp={(e) => handleClick(e)}
+            onMouseMove={() => setMouseMoved(true)}
+            onMouseDown={() => setMouseMoved(false)}
+          >
             {name}
-          </a>
+          </Link>
         </div>
         <div className="cardPrice">
           <span>₫</span>
