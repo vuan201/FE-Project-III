@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProductSlideImage = () => {
+const SizeItem = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const ProductSlideImage = () => {
   );
 };
 
-export default ProductSlideImage;
+export default SizeItem;

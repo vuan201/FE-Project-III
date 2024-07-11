@@ -1,8 +1,6 @@
 import { React, memo, useState } from "react";
 import "./ProductCard.css";
-import Button from "../../Button";
-import Swatchs from "../../Swatchs";
-import Image from "../../Image";
+import { Button, Image, Swatchs } from "../../";
 import clsx from "clsx";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -13,13 +11,14 @@ const ProductCard = ({ data }) => {
     description,
     brand,
     price,
-    colors,
+    options,
+    images,
     categories,
     className,
     slug,
   } = data;
 
-  const [image, setImage] = useState(colors[0].imageUrls);
+  const [image, setImage] = useState(images[0].url);
 
   const cardClassName = clsx(className, "card px-4");
 
@@ -67,9 +66,7 @@ const ProductCard = ({ data }) => {
           <span>{price}</span>
         </div>
       </div>
-      <div className="cardColors">
-        <Swatchs swatchs={colors} />
-      </div>
+      <div className="cardColors">{/* <Swatchs swatchs={colors} /> */}</div>
     </div>
   );
 };
