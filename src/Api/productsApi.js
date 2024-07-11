@@ -7,8 +7,8 @@ const productsApi = {
     const url = baseUrl
     return axiosClient.get(url, {params})
   },
-  get(slug){
-    const url = `${baseUrl}/${slug}`
+  get(query){
+    const url = `${baseUrl}/${query}`
     return axiosClient.get(url)
   },
   add(data){

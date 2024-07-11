@@ -2,13 +2,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { productsApi } from "../../Api";
 
 // tên reducers
-const baseName = "product";
+const baseName = "productDetail";
 
 // Async thunks để gọi API
 export const fetchProduct = createAsyncThunk(
   `${baseName}/fetchProduct`,
-  async (slug) => {
-    const response = await productsApi.get(slug);
+  async (query) => {
+    const response = await productsApi.get(query);
     return response;
   }
 );
@@ -20,20 +20,31 @@ export const productDetailSlice = createSlice({
   initialState: {
     productDetail: {},
     selectorOption: {},
+    selectorColor: "",
+    selectorSize: "",
     status: "idle",
     error: null,
   },
   reducers: {
-    setProduct: (state, action) => {
-      state.productDetail = action.payload;
-    },
     setSelectorOption: (state, action) => {
       state.selectorOption = action.payload;
     },
+    handleSelectorColor: (state, action) => {
+      state.selectorColor !== action.payload
+        ? (state.selectorColor = action.payload)
+        : (state.selectorColor = "");
+    },
+    handleSelectorSize: (state, action) => {
+      state.selectorSize !== action.payload
+        ? (state.selectorSize = action.payload)
+        : (state.selectorSize = "");
+    },
     resetProduct: (state) => {
-      state.error = null;
       state.productDetail = {};
       state.selectorOption = {};
+      state.selectorColor = "";
+      state.selectorSize = "";
+      state.error = null;
       state.status = "idle";
     },
   },
@@ -47,7 +58,7 @@ export const productDetailSlice = createSlice({
       })
       .addCase(fetchProduct.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.productDetail = action.payload;
+        state.productDetail = action.payload[0];
       })
       .addCase(fetchProduct.rejected, (state, action) => {
         state.status = "failed";
@@ -56,11 +67,18 @@ export const productDetailSlice = createSlice({
   },
 });
 
-export const { resetProduct, setProduct, setSelectorOption } = productDetailSlice.actions;
+export const {
+  resetProduct,
+  setSelectorOption,
+  handleSelectorColor,
+  handleSelectorSize,
+} = productDetailSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
 export const selectProductItem = (state) => state.productDetail.productDetail;
 export const selectorOption = (state) => state.productDetail.selectorOption;
+export const selectorColor = (state) => state.productDetail.selectorColor;
+export const selectorSize = (state) => state.productDetail.selectorSize;
 export const selectProductStatus = (state) => state.productDetail.status;
 export const selectProductError = (state) => state.productDetail.error;
 

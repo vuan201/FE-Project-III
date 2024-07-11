@@ -1,11 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ImageItem, SizeItem } from "../../components";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  handleSelectorColor,
+  handleSelectorSize,
+  selectorColor,
+  selectorOption,
+  selectorSize,
+  setSelectorOption,
+} from "../../../../app/reducers";
 const ProductInfomation = ({ data }) => {
   const { name, description, price, brand, categories, options, images } = data;
 
-  const newImages = Object.groupBy(images, ({ color }) => color);
-  const [selectOption, setSelectOption] = useState(options[0]);
+  const dispatch = useDispatch();
+  const selectOption = useSelector(selectorOption);
 
+  const selectColor = useSelector(selectorColor);
+  const selectSize = useSelector(selectorSize);
+
+  const newImages = Object.groupBy(images, ({ color }) => color);
+  const optionsByColor = Object.groupBy(options, ({ color }) => color);
+  const optionsBySize = Object.groupBy(options, ({ size }) => size);
+
+  const handleOption = (option) => {
+    dispatch(setSelectorOption(option));
+  };
+
+  const handleSetSelectorColor = (color) => {
+    dispatch(handleSelectorColor(color));
+  };
+
+  const handleSetSelectorSize = (size) => {
+    dispatch(handleSelectorSize(size));
+  };
+
+  const isColorValid = (color) => {
+    return selectSize !== ""
+      ? optionsBySize[selectSize].some((option) => {
+          return option.color === color;
+        })
+      : true;
+  };
+  const isSizeValid = (size) => {
+    return selectColor !== ""
+      ? optionsByColor[selectColor].some((option) => {
+          return option.size === size;
+        })
+      : true;
+  };
   return (
     <div>
       <div className="mb-5 ">
@@ -27,14 +69,35 @@ const ProductInfomation = ({ data }) => {
         </span>
       </div>
       <div className="mb-5">
-        <span>color: </span>
+        <span>Màu sắc: </span>
         <span className="font-bold">{selectOption.color}</span>
       </div>
-      <div className="mb-5 flex">
+      <ul className="mb-5 flex">
         {Object.keys(newImages).map((key) => (
-          <ImageItem key={key} image={newImages[key][0]} isActive={key === selectOption.color}/>
+          <li key={key} className='mr-1'>
+            <ImageItem
+              image={newImages[key][0]}
+              // isValid={isColorValid(selectSize)}
+              isValid={isColorValid(key)}
+              isSelector={key === selectColor}
+              onClick={handleSetSelectorColor}
+            />
+          </li>
         ))}
-      </div>
+      </ul>
+      <ul className="mb-5 flex">
+        {Object.keys(optionsBySize).map((key) => (
+          <li key={key} className='mr-1'>
+            <SizeItem
+              size={key}
+              // isValid={isSizeValid(selectColor)}
+              isValid={isSizeValid(key)}
+              isSelector={key.toString() === selectSize}
+              onClick={handleSetSelectorSize}
+            />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

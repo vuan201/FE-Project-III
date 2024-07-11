@@ -1,4 +1,4 @@
-.imageItemActive::after {
+.imageItemSelector::after {
   content: "";
   position: absolute;
   bottom: -8px;
@@ -12,11 +12,11 @@
 @keyframes isActive {
   from {
     transform: scaleX(0);
-    transform-origin: right;
+    /* transform-origin: left; */
   }
 
   to {
     transform: scaleX(1);
-    transform-origin: left;
+    /* transform-origin: right; */
   }
 }

@@ -3,16 +3,23 @@ import { Image } from "../../../../components";
 import clsx from "clsx";
 import "./ImageItem.css";
 
-const ImageItem = ({ image, isActive }) => {
+const ImageItem = ({ image, isSelector, isValid, onClick }) => {
   const { color, url } = image;
 
-  const imageBoxClassName = clsx("imageItem w-20 h-28 p-2 relative", {
-    
-    imageItemActive: isActive,
-  });
+  const imageBoxClassName = clsx(
+    "imageItem w-20 h-28 relative transition hover:border hover:border-black",
+    {
+      imageItemSelector: isSelector,
+      "opacity-100 cursor-pointer": isValid,
+      "opacity-50 cursor-not-allowed brightness-50": !isValid,
+    }
+  );
   return (
-    <div className={imageBoxClassName}>
-      <div className="w-[70px] h-[70px]">
+    <div
+      className={imageBoxClassName}
+      onClick={isValid ? () => onClick(color) : undefined}
+    >
+      <div className="w-full h-[70px]">
         <Image data={{ name: color, image: url }} />
       </div>
       <span className="block text-center text-sm font-semibold">{color}</span>
