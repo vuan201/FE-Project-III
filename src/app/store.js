@@ -10,6 +10,7 @@ import {
   sizesSlice,
   newProductsSlice,
   productDetailSlice,
+  quantitySlice,
 } from "./reducers";
 
 export default configureStore({
@@ -24,5 +25,6 @@ export default configureStore({
     colors: colorsSlice,
     sizes: sizesSlice,
     productDetail: productDetailSlice,
+    quantity: quantitySlice,
   },
 });

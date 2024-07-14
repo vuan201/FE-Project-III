@@ -28,6 +28,11 @@
   line-height: 28px;
 }
 
+input:focus {
+  border: 0;
+  outline: none;
+}
+
 #mainContent {
   min-height: 1000px;
 }

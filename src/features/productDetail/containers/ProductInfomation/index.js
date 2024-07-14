@@ -9,6 +9,8 @@ import {
   selectorSize,
   setSelectorOption,
 } from "../../../../app/reducers";
+import { InputQuantity } from "../../../../components";
+
 const ProductInfomation = ({ data }) => {
   const { name, description, price, brand, categories, options, images } = data;
 
@@ -111,10 +113,7 @@ const ProductInfomation = ({ data }) => {
           </li>
         ))}
       </ul>
-      <div className="mb-5 flex">
-        <span>Màu sắc: </span>
-        <span className="font-bold">{selectOption.color}</span>
-      </div>
+        <InputQuantity/>
     </div>
   );
 };
