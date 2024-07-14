@@ -23,7 +23,7 @@ const NewsletterSignupForm = () => {
                     <Input />
                   </div>
                   <div className="basis-1/4">
-                    <Button black afterAnimation>
+                    <Button black afterAnimation isFull>
                       Đăng ký
                     </Button>
                   </div>

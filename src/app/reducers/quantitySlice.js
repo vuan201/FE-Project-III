@@ -10,6 +10,7 @@ export const quantitySlice = createSlice({
   initialState: {
     quantity: 1,
   },
+  
   reducers: {
     increase: (state) => {
       state.quantity += 1;

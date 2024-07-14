@@ -9,12 +9,15 @@ import {
   selectorSize,
   setSelectorOption,
 } from "../../../../app/reducers";
-import { InputQuantity } from "../../../../components";
+import { Button, InputQuantity } from "../../../../components";
+
+import { FaRegHeart } from "react-icons/fa";
+import { FaCartPlus } from "react-icons/fa";
 
 const ProductInfomation = ({ data }) => {
   const { name, description, price, brand, categories, options, images } = data;
 
-  const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
   const selectOption = useSelector(selectorOption);
@@ -85,7 +88,7 @@ const ProductInfomation = ({ data }) => {
       </div>
       <div className="mb-5">
         <span>Màu sắc: </span>
-        <span className="font-bold">{selectOption.color}</span>
+        <span className="font-bold">{selectColor}</span>
       </div>
       <ul className="mb-5 flex">
         {Object.keys(newImages).map((key) => (
@@ -100,6 +103,9 @@ const ProductInfomation = ({ data }) => {
           </li>
         ))}
       </ul>
+      <div className="mb-5">
+        <span>Kích thước: </span>
+      </div>
       <ul className="mb-5 flex">
         {Object.keys(optionsBySize).map((key) => (
           <li key={key} className="mr-1">
@@ -113,7 +119,29 @@ const ProductInfomation = ({ data }) => {
           </li>
         ))}
       </ul>
-        <InputQuantity/>
+      <div className="mb-5">
+        <span>Số lượng: </span>
+      </div>
+      <div className="mb-5 ">
+        <InputQuantity />
+      </div>
+      <div className="mb-5 flex gap-1 items-stretch">
+        <div className="basis-10/12">
+          <Button black afterAnimation isFull>
+            Mua ngay
+          </Button>
+        </div>
+        <div className="basis-1/12 flex justify-center items-center text-xl">
+          <Button white className={""}>
+            <FaRegHeart />
+          </Button>
+        </div>
+        <div className="basis-1/12 flex justify-center items-center text-xl">
+          <Button white>
+            <FaCartPlus />
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
