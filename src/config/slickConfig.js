@@ -29,8 +29,7 @@ export const bannerSliderSettings = {
   autoplay: true,
   speed: 500,
   autoplaySpeed: 5000,
-  prevArrow: null, // Tắt nút mũi tên Previous
-  nextArrow: null, // Tắt nút mũi tên Next
+  arrows: false,
 };
 
 export const categoriesSlideSettings = {
@@ -164,8 +163,6 @@ export const brandsSlideSettings = {
     },
   ],
 };
-
-
 
 export const marketingContainerSettings = {
   infinite: false,

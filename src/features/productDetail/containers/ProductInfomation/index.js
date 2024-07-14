@@ -12,6 +12,8 @@ import {
 const ProductInfomation = ({ data }) => {
   const { name, description, price, brand, categories, options, images } = data;
 
+  const [quantity, setQuantity] = useState(1)
+
   const dispatch = useDispatch();
   const selectOption = useSelector(selectorOption);
 
@@ -22,9 +24,16 @@ const ProductInfomation = ({ data }) => {
   const optionsByColor = Object.groupBy(options, ({ color }) => color);
   const optionsBySize = Object.groupBy(options, ({ size }) => size);
 
-  const handleOption = (option) => {
-    dispatch(setSelectorOption(option));
-  };
+  useEffect(() => {
+    if (selectColor !== "" && selectSize !== "") {
+      const newOptionSelector = options.find(
+        (option) => option.color === selectColor && option.size === selectSize
+      );
+      dispatch(setSelectorOption(newOptionSelector));
+    } else {
+      dispatch(setSelectorOption({}));
+    }
+  }, [selectColor, selectSize]);
 
   const handleSetSelectorColor = (color) => {
     dispatch(handleSelectorColor(color));
@@ -59,12 +68,16 @@ const ProductInfomation = ({ data }) => {
       <div className="mb-5">
         <span>Tình trạng : </span>
         <span className="font-medium">
-          {selectOption.quantity > 0 ? (
-            <span className="text-blue-700">
-              Còn hàng (${selectOption.quantity})
-            </span>
+          {selectColor !== "" && selectSize !== "" ? (
+            selectOption.quantity > 0 ? (
+              <span className="text-blue-700">
+                Còn hàng (${selectOption.quantity})
+              </span>
+            ) : (
+              <span className="text-red-500">Hết hàng</span>
+            )
           ) : (
-            <span className="text-red-500">Hết hàng</span>
+            <span className="text-blue-700">Còn hàng</span>
           )}
         </span>
       </div>
@@ -74,7 +87,7 @@ const ProductInfomation = ({ data }) => {
       </div>
       <ul className="mb-5 flex">
         {Object.keys(newImages).map((key) => (
-          <li key={key} className='mr-1'>
+          <li key={key} className="mr-1">
             <ImageItem
               image={newImages[key][0]}
               // isValid={isColorValid(selectSize)}
@@ -87,7 +100,7 @@ const ProductInfomation = ({ data }) => {
       </ul>
       <ul className="mb-5 flex">
         {Object.keys(optionsBySize).map((key) => (
-          <li key={key} className='mr-1'>
+          <li key={key} className="mr-1">
             <SizeItem
               size={key}
               // isValid={isSizeValid(selectColor)}
@@ -98,6 +111,10 @@ const ProductInfomation = ({ data }) => {
           </li>
         ))}
       </ul>
+      <div className="mb-5 flex">
+        <span>Màu sắc: </span>
+        <span className="font-bold">{selectOption.color}</span>
+      </div>
     </div>
   );
 };
