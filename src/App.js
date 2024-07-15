@@ -6,7 +6,7 @@ import ScrollToTop from "./utils/ScrollToTop";
 
 function App() {
   return (
-    <div className={"App bg-transparent "}>
+    <div className={"App bg-transparent"}>
       <Header />
       <div id="mainContent" className="w-full">
         <ScrollToTop />
