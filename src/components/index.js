@@ -14,6 +14,7 @@ export { default as Sliders } from "./Sliders/Sliders";
 export { default as Overlay } from "./Overlay";
 export { default as Popover } from "./Popover";
 export { default as InputQuantity } from "./InputQuantity";
+export { default as BannerHeadPage } from "./BannerHeadPage";
 
 
 export { default as NextArrow } from "./Sliders/DirectionButton/NextArrow";

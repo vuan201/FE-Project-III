@@ -29,7 +29,7 @@ const ProductDetail = () => {
     <>
       <div className="mx-auto mb-10 px-12">
         <div className="w-full m-auto max-w-container">
-          <Breadcrumbs />
+          <Breadcrumbs breadcrumbs={[{name:product.name}]}/>
           <div className={"grid grid-cols-1 md:grid-cols-2 gap-4"}>
             <div className="w-full h-full">
               <ProductSlideImage images={product.images} />

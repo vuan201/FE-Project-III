@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { Breadcrumbs } from "../../components";
-import { BannerCollections } from "./components";
+import { Breadcrumbs, BannerHeadPage } from "../../components";
 import { SortButton, ProductsList, Filters } from "./container";
 
 import { resetPresentValue, resetItem } from "../../app/reducers";
@@ -19,10 +18,10 @@ const Collections = () => {
 
   return (
     <div className="content w-full m-auto">
-      <BannerCollections />
+      <BannerHeadPage title={'Bộ sưu tập'}/>
       <div className="mx-auto mb-10 px-12 mt-4">
         <div className="w-full m-auto max-w-container">
-          <Breadcrumbs />
+          <Breadcrumbs breadcrumbs={[{url:'/collection', name:"Bộ sưu tập"}]}/>
         </div>
       </div>
       <div className="px-8 mb-10">
