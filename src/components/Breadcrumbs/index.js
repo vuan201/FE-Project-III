@@ -39,22 +39,6 @@ const Breadcrumbs = ({ breadcrumbs }) => {
           </>
         )}
       </span>
-
-      {/* {breadcrumbs.map((crumb, index) => {
-        const path = `/${breadcrumbs.slice(0, index + 1).join("/")}`;
-        return (
-          <span key={index} className="flex">
-            <span className="mx-1 my-auto">
-              <FaCaretRight />
-            </span>
-            <span key={path} className="mx-1 my-auto">
-              <Link to={path}>
-                {crumb.charAt(0).toUpperCase() + crumb.slice(1)}
-              </Link>
-            </span>
-          </span>
-        );
-      })} */}
     </nav>
   );
 };

@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import { Button, Input } from "../../../components";
-
+import { Link } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,12 +10,9 @@ const Login = () => {
   };
 
   return (
-    <div className="form bg-gradient-to-r from-indigo-100 to-white">
+    <div className="form ">
       <div className="formValue">
-        <form
-          className="grid justify-items-center bg-gradient-to-r from-indigo-50 to-indigo-100"
-          id="loginForm"
-        >
+        <form className="grid justify-items-center " id="loginForm">
           <h1>ĐĂNG NHẬP</h1>
 
           <Input
@@ -36,11 +33,28 @@ const Login = () => {
           </Input>
 
           <div className="w-3/4 mb-5 mt-1">
-            <Button blueBtn onClick={(e) => handleSubmit(e)}>
+            <Button
+              isFull
+              afterAnimation
+              black
+              onClick={(e) => handleSubmit(e)}
+            >
               Đăng nhập
             </Button>
           </div>
         </form>
+        <div className="flex justify-center gap-1 pb-4">
+          <span>nếu bạn chưa có tài khoản, hãy</span>
+          <Link to={'/register'} className="text-sky-700 underline decoration-1 hover:text-sky-600 transition">
+            Đăng ký
+          </Link>
+        </div>
+        <div className="flex justify-center gap-1 pb-4">
+          <span>nếu bạn quên mật khẩu, hãy</span>
+          <Link className="text-sky-700 underline decoration-1 hover:text-sky-600 transition">
+            Đặt lại mật khẩu
+          </Link>
+        </div>
       </div>
     </div>
   );
