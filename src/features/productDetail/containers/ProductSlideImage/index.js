@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import { selectorColor, styles } from "../../../../app/reducers";
 import { useSelector } from "react-redux";
 import { Image } from "../../../../components";
-
+import './ProductSlideImage.css'
 const ProductSlideImage = ({ images }) => {
   const newImages = Object.groupBy(images, ({ color }) => color);
 
@@ -72,10 +72,12 @@ const ProductSlideImage = ({ images }) => {
         {selectColor === ""
           ? images.length > 2
             ? images.map((image) => (
-                <Image
-                  key={image.color}
-                  data={{ image: image.url, name: image.color }}
-                />
+                <div className="product-slide-image-active">
+                  <Image
+                    key={image.color}
+                    data={{ image: image.url, name: image.color }}
+                  />
+                </div>
               ))
             : undefined
           : newImages[selectColor] > 2

@@ -20,7 +20,7 @@ const NewsletterSignupForm = () => {
               <form method="post" action="">
                 <div className="w-full flex flex-row items-center">
                   <div className="basis-3/4">
-                    <Input />
+                    <Input>Email</Input>
                   </div>
                   <div className="basis-1/4">
                     <Button black afterAnimation isFull>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Policy } from "../../components";
 import { policyImage } from "../../../../config/image";
+
 const ListPolicy = () => {
   const Policys = [
     { image: policyImage[0], name: "Cam kết chính hãng", title: "Cam kết chính hãng" },

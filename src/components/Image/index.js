@@ -12,7 +12,7 @@ const Image = (prop) => {
   return (
     <div className={className}>
       <img
-        className="block h-full w-full object-contain object-center object-cover max-w-full"
+        className="block h-full w-full object-contain object-center max-w-full"
         src={image}
         alt={name}
         draggable="false"
