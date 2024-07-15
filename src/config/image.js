@@ -16,6 +16,12 @@ import Frame3 from "../assets/images/Style/Rectangle_178.webp";
 import NewsletterSignupForm from "../assets/images/Rectangle_327.webp";
 import CollectionImage from "../assets/images/z4683181570507_46fb10fa21da971ae2af71e75431028c.webp";
 
+import policy1 from "../assets/images/policy/service_ic_1.webp";
+import policy2 from "../assets/images/policy/service_ic_2.webp";
+import policy3 from "../assets/images/policy/service_ic_3.webp";
+import policy4 from "../assets/images/policy/service_ic_4.webp";
+import policy5 from "../assets/images/policy/service_ic_5.webp";
+
 export const sliderImage = [
   {
     name: "banner 1",
@@ -78,3 +84,5 @@ export const collectionImage = {
   name: "collection image",
   image: CollectionImage,
 };
+
+export const policyImage = [policy1, policy2, policy3, policy4, policy5];

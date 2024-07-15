@@ -10,7 +10,6 @@ import {
   OutstandingContainer,
   BigBanner,
   ByMeContainer,
-  LibraryStyles,
   NewsletterSignupForm,
   MarketingContainer,
 
@@ -30,7 +29,6 @@ const Home = () => {
       <ByMeContainer />
       <NewsletterSignupForm />
       <MarketingContainer />
-      {/* <LibraryStyles /> */}
     </div>
   );
 };

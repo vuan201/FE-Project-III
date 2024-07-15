@@ -5,7 +5,6 @@ export { default as BrandsSlide } from "./BrandsSlide";
 export { default as ByMeContainer } from "./ByMeContainer";
 export { default as CategoriesSlide } from "./CategoriesSlide";
 export { default as IntroSlide } from "./IntroSlide";
-export { default as LibraryStyles } from "./LibraryStyles";
 export { default as OutstandingContainer } from "./OutstandingContainer";
 export { default as NewsletterSignupForm } from "./NewsletterSignupForm";
 export { default as MarketingContainer } from "./MarketingContainer";

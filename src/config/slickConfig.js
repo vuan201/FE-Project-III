@@ -2,14 +2,29 @@ import { SlickSlide, Image } from "../components";
 import { sliderImage } from "./image";
 
 export const StylesSlideSettings = {
-  slidesToScroll: 1,
-  speed: 500,
   dots: false,
-  infinite: true,
+  speed: 500,
   slidesToShow: 5,
+  slidesToScroll: 1,
+  infinite: true,
   autoplay: false,
   autoplaySpeed: 0,
   arrows: false,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 4,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        dots: true,
+        slidesToShow: 3,
+      },
+    },
+  ],
 };
 
 export const bannerSliderSettings = {

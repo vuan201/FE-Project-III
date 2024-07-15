@@ -13,6 +13,7 @@ import { Button, InputQuantity } from "../../../../components";
 
 import { FaRegHeart } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
+import { ListPolicy } from "../";
 
 const ProductInfomation = ({ data }) => {
   const { name, description, price, brand, categories, options, images } = data;
@@ -141,6 +142,9 @@ const ProductInfomation = ({ data }) => {
             <FaCartPlus />
           </Button>
         </div>
+      </div>
+      <div className="mb-5">
+        <ListPolicy />
       </div>
     </div>
   );
