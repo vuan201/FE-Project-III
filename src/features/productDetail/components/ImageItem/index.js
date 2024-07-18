@@ -11,13 +11,13 @@ const ImageItem = ({ image, isSelector, isValid, onClick }) => {
     {
       imageItemSelector: isSelector,
       "opacity-100 cursor-pointer": isValid,
-      "opacity-50 cursor-not-allowed brightness-50": !isValid,
+      "opacity-50 brightness-50": !isValid,
     }
   );
   return (
     <div
       className={imageBoxClassName}
-      onClick={isValid ? () => onClick(color) : undefined}
+      onClick={() => onClick(color) }
     >
       <div className="w-full h-[70px]">
         <Image data={{ name: color, image: url }} />

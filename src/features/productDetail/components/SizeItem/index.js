@@ -8,13 +8,13 @@ const SizeItem = ({ size, isValid, isSelector, onClick }) => {
       "bg-white text-black": !isSelector,
       "bg-black text-white": isSelector,
       "opacity-100 cursor-pointer": isValid,
-      "opacity-50 cursor-not-allowed bg-slate-300": !isValid,
+      "opacity-50 bg-slate-300": !isValid,
     }
   );
   return (
     <div
       className={sizeItemClassName}
-      onClick={isValid ? () => onClick(size) : undefined}
+      onClick={() => onClick(size)}
     >
       <span>{size}</span>
     </div>

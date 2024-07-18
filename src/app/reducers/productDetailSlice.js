@@ -29,15 +29,11 @@ export const productDetailSlice = createSlice({
     setSelectorOption: (state, action) => {
       state.selectorOption = action.payload;
     },
-    handleSelectorColor: (state, action) => {
-      state.selectorColor !== action.payload
-        ? (state.selectorColor = action.payload)
-        : (state.selectorColor = "");
+    setSelectorColor: (state, action) => {
+      state.selectorColor = action.payload;
     },
-    handleSelectorSize: (state, action) => {
-      state.selectorSize !== action.payload
-        ? (state.selectorSize = action.payload)
-        : (state.selectorSize = "");
+    setSelectorSize: (state, action) => {
+      state.selectorSize = action.payload;
     },
     resetProduct: (state) => {
       state.productDetail = {};
@@ -58,7 +54,7 @@ export const productDetailSlice = createSlice({
       })
       .addCase(fetchProduct.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.productDetail = action.payload[0];
+        state.productDetail = action.payload;
       })
       .addCase(fetchProduct.rejected, (state, action) => {
         state.status = "failed";
@@ -70,8 +66,8 @@ export const productDetailSlice = createSlice({
 export const {
   resetProduct,
   setSelectorOption,
-  handleSelectorColor,
-  handleSelectorSize,
+  setSelectorColor,
+  setSelectorSize,
 } = productDetailSlice.actions;
 
 // đẩy các dữ liệu ra ngoài

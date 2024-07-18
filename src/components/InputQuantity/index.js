@@ -12,7 +12,7 @@ import { BsPlusLg } from "react-icons/bs";
 import { FiMinus } from "react-icons/fi";
 import clsx from "clsx";
 
-const InputQuantity = () => {
+const InputQuantity = ({limit}) => {
   const dispatch = useDispatch()
   const quantity = useSelector(selectQuantity)
 
@@ -24,7 +24,7 @@ const InputQuantity = () => {
       <input
       className='w-auto max-w-16 border text-center px-2 focus:outline-none'
         value={quantity}
-        onChange={(e) => dispatch(setQuantity(e.target.value))}
+        onChange={(e) => dispatch(setQuantity({value:e.target.value, limit}))}
       />
       <span className={spanClassName} onClick={() => dispatch(increase())}><BsPlusLg/></span>
     </form>

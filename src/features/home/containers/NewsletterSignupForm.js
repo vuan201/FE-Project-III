@@ -4,7 +4,7 @@ import { Button, Image, Input } from "../../../components";
 const NewsletterSignupForm = () => {
   return (
     <div className="relative overflow-hidden bg-white w-full h-full pb-[130px] pt-[104px] text-center">
-      <div className="absolute top-0 left-0 right-0 bottom-0 z-2">
+      <div className="absolute top-0 left-0 right-0 bottom-0 z-2 bg-cover bg-center" style={{backgroundImage:newsletterSignupForm}}>
         <Image data={newsletterSignupForm} />
       </div>
       <div className="relative flex">

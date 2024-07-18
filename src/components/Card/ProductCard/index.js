@@ -1,4 +1,4 @@
-import { React, memo, useState } from "react";
+import { React, memo, useEffect, useState } from "react";
 import "./ProductCard.css";
 import { Button, Image, Swatchs } from "../../";
 import clsx from "clsx";
@@ -17,9 +17,11 @@ const ProductCard = ({ data }) => {
     className,
     slug,
   } = data;
+  const [image, setImage] = useState("");
 
-  const [image, setImage] = useState(images[0].url);
-
+  useEffect(() => {
+    if (images[0] && images[0].url) setImage(images[0].url);
+  }, []);
   const cardClassName = clsx(className, "card px-4");
 
   const [mouseMoved, setMouseMoved] = useState(false);

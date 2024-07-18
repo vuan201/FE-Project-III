@@ -6,13 +6,13 @@ const Image = (prop) => {
   const {animation} = prop
   const { image, name } = prop.data;
 
-  const className = clsx("image w-full h-full", {
+  const className = clsx("image w-full h-full overflow-hidden", {
     "imageAnimation": animation
   })
   return (
     <div className={className}>
       <img
-        className="block h-full w-full object-contain object-center max-w-full"
+        className="block h-full w-full object-cover object-center max-w-full"
         src={image}
         alt={name}
         draggable="false"

@@ -8,7 +8,7 @@ const CategoryCard = ({ data }) => {
   const navigate = useNavigate();
 
   const [mouseMoved, setMouseMoved] = useState(false);
-  const { id, name, image } = data;
+  const { id, name, imgUrl } = data;
 
   const handleClick = (e) => {
     if (e.button === 0)
@@ -26,7 +26,7 @@ const CategoryCard = ({ data }) => {
         onMouseDown={() => setMouseMoved(false)}
       >
         <div className="w-auto cardShadow h-full mb-8">
-          <img className="image" src={image} />
+          <img className="image" src={imgUrl} />
         </div>
         <div className="categoryDetail flex place-items-center absolute bottom-[10%] h-auto w-max p-2">
           <h2 className="px-2">{name}</h2>

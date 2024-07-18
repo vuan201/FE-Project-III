@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { ImageItem, SizeItem } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  handleSelectorColor,
-  handleSelectorSize,
+  setSelectorColor,
+  setSelectorSize,
   selectorColor,
   selectorOption,
   selectorSize,
@@ -31,22 +31,44 @@ const ProductInfomation = ({ data }) => {
   const optionsBySize = Object.groupBy(options, ({ size }) => size);
 
   useEffect(() => {
-    if (selectColor !== "" && selectSize !== "") {
-      const newOptionSelector = options.find(
-        (option) => option.color === selectColor && option.size === selectSize
-      );
-      dispatch(setSelectorOption(newOptionSelector));
-    } else {
-      dispatch(setSelectorOption({}));
+    if (selectColor === "" && selectSize === "" && options[0]) {
+      dispatch(setSelectorColor(options[0].color));
+      dispatch(setSelectorSize(options[0].size));
     }
   }, [selectColor, selectSize]);
 
   const handleSetSelectorColor = (color) => {
-    dispatch(handleSelectorColor(color));
+    dispatch(setSelectorColor(color));
+    if (selectColor !== "" && selectSize !== "") {
+      const newOptionSelector = options.find(
+        (option) => option.color === color && option.size === selectSize
+      );
+      if (newOptionSelector) dispatch(setSelectorOption(newOptionSelector));
+      else {
+        const newOptionSelector = options.find(
+          (option) => option.color === color
+        );
+        dispatch(setSelectorOption(newOptionSelector));
+        dispatch(setSelectorSize(newOptionSelector.size));
+      }
+    }
   };
 
   const handleSetSelectorSize = (size) => {
-    dispatch(handleSelectorSize(size));
+    dispatch(setSelectorSize(size));
+    if (selectColor !== "" && selectSize !== "") {
+      const newOptionSelector = options.find(
+        (option) => option.color === selectColor && option.size === size
+      );
+      if (newOptionSelector) dispatch(setSelectorOption(newOptionSelector));
+      else {
+        const newOptionSelector = options.find(
+          (option) => option.size === size
+        );
+        dispatch(setSelectorOption(newOptionSelector));
+        dispatch(setSelectorColor(newOptionSelector.color));
+      }
+    }
   };
 
   const isColorValid = (color) => {
@@ -77,7 +99,7 @@ const ProductInfomation = ({ data }) => {
           {selectColor !== "" && selectSize !== "" ? (
             selectOption.quantity > 0 ? (
               <span className="text-blue-700">
-                Còn hàng (${selectOption.quantity})
+                Còn hàng ({selectOption.quantity})
               </span>
             ) : (
               <span className="text-red-500">Hết hàng</span>
@@ -112,7 +134,6 @@ const ProductInfomation = ({ data }) => {
           <li key={key} className="mr-1">
             <SizeItem
               size={key}
-              // isValid={isSizeValid(selectColor)}
               isValid={isSizeValid(key)}
               isSelector={key.toString() === selectSize}
               onClick={handleSetSelectorSize}
@@ -124,7 +145,7 @@ const ProductInfomation = ({ data }) => {
         <span>Số lượng: </span>
       </div>
       <div className="mb-5 ">
-        <InputQuantity />
+        <InputQuantity limit={selectOption.quantity}/>
       </div>
       <div className="mb-5 flex gap-1 items-stretch">
         <div className="basis-10/12">

@@ -9,7 +9,7 @@ export const login = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await authApi.login(credentials);
-      return response.data;
+      return response;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -20,14 +20,14 @@ const authSlice = createSlice({
   name: baseame,
   initialState: {
     token: null,
-    user: null,
+    // user: null,
     status: "idle",
     error: null,
   },
   reducers: {
     logout: (state) => {
       state.token = null;
-      state.user = null;
+      // state.user = null;
     },
   },
   extraReducers: (builder) => {
@@ -39,7 +39,7 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.token = action.payload.token;
-        state.user = action.payload.user;
+        // state.user = action.payload.user;
       })
       .addCase(login.rejected, (state, action) => {
         state.status = "failed";

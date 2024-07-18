@@ -7,8 +7,11 @@ import {
   ProductInfomation,
   ProductSlideImage,
 } from "./containers";
+
 import {
   fetchProduct,
+  resetProduct,
+  selectProductError,
   selectProductItem,
   selectProductStatus,
 } from "../../app/reducers";
@@ -18,33 +21,38 @@ const ProductDetail = () => {
   const dispatch = useDispatch();
   const product = useSelector(selectProductItem);
   const status = useSelector(selectProductStatus);
+  const error = useSelector(selectProductError);
 
   useEffect(() => {
-    dispatch(fetchProduct(`?slug=${slug}`));
+    dispatch(fetchProduct(`${slug}`));
+    return () =>{
+      dispatch(resetProduct())
+    }
   }, [dispatch, slug]);
 
-  if (status !== "succeeded") return <Loading />;
-
-  return (
-    <>
-      <div className="mx-auto mb-10 px-12">
-        <div className="w-full m-auto max-w-container">
-          <Breadcrumbs breadcrumbs={[{name:product.name}]}/>
-          <div className={"grid grid-cols-1 md:grid-cols-2 gap-4"}>
-            <div className="w-full h-full">
-              <ProductSlideImage images={product.images} />
-            </div>
-            <div className="w-full h-full">
-              <ProductInfomation data={product} />
+  if (status === "loading") return <Loading />;
+  else if (status === "failed") return <div>{error}</div>;
+  else if (status === "succeeded")
+    return (
+      <>
+        <div className="mx-auto mb-10 px-12">
+          <div className="w-full m-auto max-w-container">
+            <Breadcrumbs breadcrumbs={[{ name: product.name }]} />
+            <div className={"grid grid-cols-1 md:grid-cols-2 gap-4"}>
+              <div className="w-full h-full">
+                <ProductSlideImage images={product.images} />
+              </div>
+              <div className="w-full h-full">
+                <ProductInfomation data={product} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="w-full my-5">
-        <LibraryStyles />
-      </div>
-    </>
-  );
+        <div className="w-full my-5">
+          <LibraryStyles />
+        </div>
+      </>
+    );
 };
 
 export default ProductDetail;

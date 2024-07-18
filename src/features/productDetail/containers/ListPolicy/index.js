@@ -14,7 +14,7 @@ const ListPolicy = () => {
   return (
     <div>
       {Policys.map((policy) => (
-        <Policy name={policy.name} image={policy.image}>
+        <Policy key={policy.name} name={policy.name} image={policy.image}>
           {policy.title}
         </Policy>
       ))}
