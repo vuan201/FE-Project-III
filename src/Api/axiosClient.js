@@ -11,7 +11,6 @@ axiosClient.interceptors.request.use(
   function (config) {
     // Làm gì đó trước khi request dược gửi đi
     const token = Cookies.remove("token");
-    // console.log(token);
     if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
   },

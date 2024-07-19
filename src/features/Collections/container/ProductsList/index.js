@@ -27,10 +27,15 @@ const ProductsList = () => {
   const sortType = useSelector(presentValue);
 
   useEffect(() => {
-    const params = {}
+    const params = {
+      minPrice: filterPrice[0],
+      maxPrice: filterPrice[1],
+    };
+    if (filterColors.length > 0) params.color = filterColors.join(",");
+    if (filterSizes.length > 0) params.size = filterSizes.join(",");
 
-    dispatch(fetchProducts(params))
-  }, [])
+    dispatch(fetchProducts(params));
+  }, [filterColors, filterSizes, filterPrice]);
 
   const filteredProducts = () => {
     let filter = products.filter((product) => {

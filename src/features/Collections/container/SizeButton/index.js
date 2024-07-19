@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IoIosResize } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  fetchSizes,
   handleFilterSizes,
   selectFiltersSizes,
   selectSizes,
@@ -14,8 +15,12 @@ const SizeButton = () => {
   const sizes = useSelector(selectSizes);
   const filterSize = useSelector(selectFiltersSizes);
 
-  const handleSetSize = (size) => {
-    dispatch(handleFilterSizes(size));
+  useEffect(() => {
+    dispatch(fetchSizes());
+  }, [dispatch]);
+
+  const handleSetSize = (sizeId) => {
+    dispatch(handleFilterSizes(sizeId));
   };
 
   return (
@@ -23,12 +28,12 @@ const SizeButton = () => {
       <div className="box_shadow">
         <ul className="overflow-y-auto max-h-56 pt-2 grid grid-cols-2">
           {sizes
-            ? sizes.map((size, index) => (
-                <li key={index}>
+            ? sizes.map((size) => (
+                <li key={size.id}>
                   <FilterItem
-                    value={size}
-                    isActive={filterSize.includes(size)}
-                    onClick={handleSetSize}
+                    value={size.size}
+                    isActive={filterSize.includes(size.id)}
+                    onClick={() => handleSetSize(size.id)}
                   />
                 </li>
               ))

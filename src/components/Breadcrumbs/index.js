@@ -6,7 +6,7 @@ const Breadcrumbs = ({ breadcrumbs }) => {
   return (
     <nav className="flex">
       <span className="mx-1 my-auto">
-        <Link to="/">Home</Link>
+        <Link to="/">Trang chủ</Link>
       </span>
       <span className="flex">
         {breadcrumbs.length > 1 ? (

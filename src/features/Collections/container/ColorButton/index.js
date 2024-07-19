@@ -23,8 +23,8 @@ const ColorButton = () => {
     dispatch(fetchColors());
   }, [dispatch]);
 
-  const handleSetFilterColors = (color) => {
-    dispatch(handleFilterColors(color));
+  const handleSetFilterColors = (colorId) => {
+    dispatch(handleFilterColors(colorId));
   };
 
   return (
@@ -35,9 +35,9 @@ const ColorButton = () => {
             ? colors.map((color, index) => (
                 <li key={index}>
                   <FilterItem
-                    value={color.color}
-                    isActive={filtersColors.includes(color.color)}
-                    onClick={handleSetFilterColors}
+                    value={color.name}
+                    isActive={filtersColors.includes(color.id)}
+                    onClick={() => handleSetFilterColors(color.id)}
                   />
                 </li>
               ))

@@ -21,7 +21,6 @@ const authSlice = createSlice({
   name: baseame,
   initialState: {
     token: Cookies.get("token") ?? null,
-    // user: null,
     status: "idle",
     error: null,
   },
