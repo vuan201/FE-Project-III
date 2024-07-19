@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { authApi } from "../../Api";
-
+import Cookies from "js-cookie";
+import { getTimeByToken } from "../../utils/getTimeByToken";
 // tên reducers
 const baseame = "auth";
 
@@ -19,7 +20,7 @@ export const login = createAsyncThunk(
 const authSlice = createSlice({
   name: baseame,
   initialState: {
-    token: null,
+    token: Cookies.get("token") ?? null,
     // user: null,
     status: "idle",
     error: null,
@@ -27,7 +28,9 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.token = null;
-      // state.user = null;
+      state.error = null;
+      state.status = "idle";
+      Cookies.remove("token");
     },
   },
   extraReducers: (builder) => {
@@ -39,7 +42,11 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.token = action.payload.token;
-        // state.user = action.payload.user;
+        Cookies.set(
+          "token",
+          action.payload.token,
+          getTimeByToken(action.payload.token)
+        );
       })
       .addCase(login.rejected, (state, action) => {
         state.status = "failed";
@@ -47,6 +54,8 @@ const authSlice = createSlice({
       });
   },
 });
+
+export const { logout } = authSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
 export const selectAuthToken = (state) => state.auth.token;

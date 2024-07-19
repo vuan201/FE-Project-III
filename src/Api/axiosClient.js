@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 const axiosClient = axios.create({
   // baseURL: 'http://localhost:4000',
   baseURL: "http://localhost:8080/api/v1",
@@ -9,6 +10,9 @@ const axiosClient = axios.create({
 axiosClient.interceptors.request.use(
   function (config) {
     // Làm gì đó trước khi request dược gửi đi
+    const token = Cookies.remove("token");
+    // console.log(token);
+    if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
   function (error) {
