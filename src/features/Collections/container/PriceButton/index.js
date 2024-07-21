@@ -92,7 +92,7 @@ const PriceButton = () => {
               </div>
             )}
           />
-          <Button sky afterAnimation onClick={handleSetPrice}>
+          <Button isFull sky afterAnimation onClick={handleSetPrice}>
             Tìm khoảng giá
           </Button>
         </div>

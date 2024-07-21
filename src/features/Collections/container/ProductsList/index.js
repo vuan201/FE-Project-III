@@ -30,49 +30,15 @@ const ProductsList = () => {
     const params = {
       minPrice: filterPrice[0],
       maxPrice: filterPrice[1],
+      sort: sortType.sort,
+      order: sortType.order,
     };
+
     if (filterColors.length > 0) params.color = filterColors.join(",");
     if (filterSizes.length > 0) params.size = filterSizes.join(",");
 
     dispatch(fetchProducts(params));
-  }, [filterColors, filterSizes, filterPrice]);
-
-  const filteredProducts = () => {
-    let filter = products.filter((product) => {
-      // Lọc theo màu
-      if (
-        filterColors.length > 0 &&
-        !product.colors.some((color) => {
-          filterColors.includes(color.color);
-        })
-      ) {
-        return false;
-      }
-
-      // // Lọc theo size
-      // if (filterSizes.length > 0) {
-      //   product.colors.forEach((color) => { // Sử dụng forEach thay vì map
-      //     const availableSizes = color.sizeAndQuantity.map((sq) => sq.size);
-
-      //     if (!filterSizes.some((size) => availableSizes.includes(size))) {
-      //       return false;
-      //     }
-      //   });
-      // }
-
-      // Lọc theo giá
-      if (product.price < filterPrice[0] || product.price > filterPrice[1]) {
-        return false;
-      }
-
-      return true;
-    });
-
-    // Sắp xếp danh sách sản phẩm
-    filter = sort(filter, sortType);
-
-    return filter;
-  };
+  }, [filterColors, filterSizes, filterPrice, sortType]);
 
   if (status === "loading") return <Loading />;
   return (
