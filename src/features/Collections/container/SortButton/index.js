@@ -23,12 +23,14 @@ const SortButton = () => {
     <Popover value={present.value}>
       <div className="box_shadow">
         <ul className="py-2">
-          {sorts.map(({ key, value }, index) => (
+          {sorts.map(({ key, value, sort, order }, index) => (
             <li key={index}>
               <FilterItem
                 value={value}
                 isActive={key === present.key}
-                onClick={() => handleSetPresentValue({ key, value })}
+                onClick={() =>
+                  handleSetPresentValue({ key, value, sort, order })
+                }
               />
             </li>
           ))}

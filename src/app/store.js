@@ -4,7 +4,7 @@ import { configureStore } from "@reduxjs/toolkit";
 // import productsSlice from "./reducers/productsSlice";
 // import stylesSlice from "./reducers/stylesSlice";
 // import sortSlice from "./reducers/sortSlice";
-// import filtersSlice from "./reducers/filtersSlice";
+// import paramsSlice from "./reducers/paramsSlice";
 // import sizesSlice from "./reducers/sizesSlice";
 // import colorsSlice from "./reducers/colorsSlice";
 // import newProductsSlice from "./reducers/newProductsSlice";
@@ -17,14 +17,13 @@ import {
   brandsSlice,
   productsSlice,
   stylesSlice,
-  sortSlice,
   colorsSlice,
   sizesSlice,
   newProductsSlice,
   productDetailSlice,
   quantitySlice,
   authSlice,
-  filtersSlice,
+  paramsSlice,
 } from "./reducers";
 
 export default configureStore({
@@ -34,8 +33,7 @@ export default configureStore({
     products: productsSlice,
     newProducts: newProductsSlice,
     styles: stylesSlice,
-    sort: sortSlice,
-    filters: filtersSlice,
+    params: paramsSlice,
     colors: colorsSlice,
     sizes: sizesSlice,
     productDetail: productDetailSlice,

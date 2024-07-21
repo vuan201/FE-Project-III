@@ -4,14 +4,13 @@ import { useDispatch } from "react-redux";
 import { Breadcrumbs, BannerHeadPage } from "../../components";
 import { SortButton, ProductsList, Filters } from "./container";
 
-import { resetPresentValue, resetItem } from "../../app/reducers";
+import { resetItem } from "../../app/reducers";
 
 const Collections = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     return () => {
-      dispatch(resetPresentValue());
       dispatch(resetItem());
     };
   }, []);

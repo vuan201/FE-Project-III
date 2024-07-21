@@ -23,10 +23,10 @@ const ProductsList = () => {
   const filterColors = useSelector(selectFiltersColors);
   const filterSizes = useSelector(selectFiltersSizes);
   const filterPrice = useSelector(selectFiltersPrice);
-
   const sortType = useSelector(presentValue);
 
   useEffect(() => {
+    console.log(sortType);
     const params = {
       minPrice: filterPrice[0],
       maxPrice: filterPrice[1],
