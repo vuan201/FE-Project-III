@@ -32,6 +32,7 @@ const ProductInfomation = ({ data }) => {
 
   useEffect(() => {
     if (selectColor === "" && selectSize === "" && options[0]) {
+      dispatch(setSelectorOption(options[0]));
       dispatch(setSelectorColor(options[0].color));
       dispatch(setSelectorSize(options[0].size));
     }
@@ -145,7 +146,7 @@ const ProductInfomation = ({ data }) => {
         <span>Số lượng: </span>
       </div>
       <div className="mb-5 ">
-        <InputQuantity limit={selectOption.quantity}/>
+        <InputQuantity limit={selectOption.quantity} />
       </div>
       <div className="mb-5 flex gap-1 items-stretch">
         <div className="basis-10/12">

@@ -8,11 +8,11 @@ export const paramsSlice = createSlice({
 
   // các giá trị ban đầu
   initialState: {
-    params: {},
+    category: {},
     colors: [],
     sizes: [],
     price: [0, 5000000],
-
+    page: 1,
     // sort
     sortList: [
       // { key: "FEATURED", value: "Đặc sắc" },
@@ -47,6 +47,12 @@ export const paramsSlice = createSlice({
     presentValue: { key: "A_Z", value: "Từ A-Z", sort: "name", order: "ASC" },
   },
   reducers: {
+    setParamsCategory: (state, action) => {
+      state.category = action.payload;
+    },
+    resetParamsCategory: (state) => {
+      state.category = {};
+    },
     // thay thế cho cả add và remove
     handleFilterColors: (state, action) => {
       const result = state.colors.includes(action.payload);
@@ -83,24 +89,39 @@ export const paramsSlice = createSlice({
       state.presentValue = action.payload;
     },
 
-    resetItem: (state) => {
+    increasePage: (state) => {
+      state.page += 1;
+    },
+    decrementPage: (state) => {
+      if (state.page > 1) state.page -= 1;
+    },
+
+    resetParams: (state) => {
       state.colors = [];
-      state.price = [];
+      // state.category = null;
+      state.price = [0, 5000000];
       state.sizes = [];
+      state.page = 1;
       state.presentValue = state.sortList[0];
     },
   },
 });
 
 export const {
-  resetItem,
+  setParamsCategory,
+  resetParamsCategory,
+  resetParams,
   handleFilterColors,
   setFilterPrice,
   setPresentValue,
   handleFilterSizes,
+  increasePage,
+  decrementPage,
 } = paramsSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
+export const selectCategory = (state) => state.params.category;
+
 export const selectFiltersColors = (state) => state.params.colors;
 export const selectFiltersPrice = (state) => state.params.price;
 export const selectFiltersSizes = (state) => state.params.sizes;

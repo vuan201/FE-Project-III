@@ -1,7 +1,3 @@
-/* .card {
-  min-height: 480px;
-} */
-
 .cardInfomation2,
 .cardColors {
   margin: 20px 0;
@@ -12,7 +8,7 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  height: 60%;
+  aspect-ratio: 1 / 1;
 }
 
 .cardInfomation1 .sale {
@@ -37,36 +33,6 @@
   visibility: visible;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 }
-/* 
-.listColor .item {
-  position: relative;
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  margin: 5px;
-  border: 1px solid #000;
-  cursor: pointer;
-}
-
-.listColor .item .clearfix {
-  display: block;
-  border-radius: 50px;
-  position: absolute;
-  min-width: 60px;
-  background-color: #000;
-  color: white;
-  top: -35px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0;
-}
-
-.listColor .item:hover .clearfix {
-  font-size: 15px;
-  opacity: 1;
-  visibility: visible;
-} */
 
 .cardPrice span {
   color: red;
@@ -83,7 +49,6 @@
   display: -webkit-box;
   min-height: 60px;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
   overflow: hidden;
 }
 
@@ -91,9 +56,3 @@
   text-decoration: underline;
   color: darkblue;
 }
-
-/* .clearfix {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s, visibility 0.5s;
-} */

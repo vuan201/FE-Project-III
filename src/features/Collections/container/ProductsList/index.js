@@ -11,6 +11,7 @@ import {
   selectFiltersPrice,
   presentValue,
   setProducts,
+  selectCategory,
 } from "../../../../app/reducers";
 import { Loading, ProductCard } from "../../../../components";
 
@@ -20,24 +21,31 @@ const ProductsList = () => {
   const status = useSelector(selectProductsStatus);
 
   // filter
+  const category = useSelector(selectCategory);
   const filterColors = useSelector(selectFiltersColors);
   const filterSizes = useSelector(selectFiltersSizes);
   const filterPrice = useSelector(selectFiltersPrice);
   const sortType = useSelector(presentValue);
 
+  // console.log(category);
+
   useEffect(() => {
-    console.log(sortType);
     const params = {
+      category: category.id ?? null,
       minPrice: filterPrice[0],
       maxPrice: filterPrice[1],
       sort: sortType.sort,
       order: sortType.order,
     };
-
-    if (filterColors.length > 0) params.color = filterColors.join(",");
-    if (filterSizes.length > 0) params.size = filterSizes.join(",");
+    filterColors.length > 0
+      ? (params.color = filterColors.join(","))
+      : (params.color = null);
+    filterSizes.length > 0
+      ? (params.size = filterSizes.join(","))
+      : (params.size = null);
 
     dispatch(fetchProducts(params));
+
   }, [filterColors, filterSizes, filterPrice, sortType]);
 
   if (status === "loading") return <Loading />;

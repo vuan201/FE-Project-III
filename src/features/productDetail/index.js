@@ -16,6 +16,7 @@ import {
   selectProductStatus,
 } from "../../app/reducers";
 const ProductDetail = () => {
+  
   const { slug } = useParams();
 
   const dispatch = useDispatch();

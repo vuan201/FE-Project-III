@@ -5,24 +5,12 @@ import clsx from "clsx";
 import { Link, useNavigate } from "react-router-dom";
 
 const ProductCard = ({ data }) => {
-  const {
-    id,
-    name,
-    description,
-    brand,
-    price,
-    options,
-    images,
-    categories,
-    className,
-    slug,
-  } = data;
+  const { name, price, images, slug } = data;
   const [image, setImage] = useState("");
 
   useEffect(() => {
     if (images[0] && images[0].url) setImage(images[0].url);
   }, []);
-  const cardClassName = clsx(className, "card px-4");
 
   const [mouseMoved, setMouseMoved] = useState(false);
 
@@ -36,7 +24,7 @@ const ProductCard = ({ data }) => {
   };
 
   return (
-    <div className={cardClassName}>
+    <div className={"card px-4"}>
       <Link
         onClick={(e) => handleClick(e)}
         onMouseUp={(e) => handleClick(e)}

@@ -70,7 +70,6 @@ export const categoriesSlideSettings = {
     {
       breakpoint: 1024,
       settings: {
-        dots: true,
         slidesToShow: 2,
         slidesToScroll: 2,
       },
@@ -78,7 +77,6 @@ export const categoriesSlideSettings = {
     {
       breakpoint: 768,
       settings: {
-        dots: true,
         slidesToShow: 1,
         slidesToScroll: 1,
       },
@@ -155,7 +153,6 @@ export const brandsSlideSettings = {
     {
       breakpoint: 1024,
       settings: {
-        dots: true,
         slidesToShow: 3,
         slidesToScroll: 3,
       },
@@ -163,7 +160,6 @@ export const brandsSlideSettings = {
     {
       breakpoint: 768,
       settings: {
-        dots: true,
         slidesToShow: 2,
         slidesToScroll: 2,
       },
@@ -171,7 +167,6 @@ export const brandsSlideSettings = {
     {
       breakpoint: 640,
       settings: {
-        dots: true,
         slidesToShow: 1,
         slidesToScroll: 1,
       },
