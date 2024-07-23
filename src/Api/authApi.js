@@ -11,6 +11,7 @@ const authApi = {
     const url = `${baseUrl}/register`;
     return axiosClient.post(url, infomation)
   }
+  
 };
 
 export default authApi

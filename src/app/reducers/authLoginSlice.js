@@ -3,7 +3,7 @@ import { authApi } from "../../Api";
 import Cookies from "js-cookie";
 import { getTimeByToken } from "../../utils/getTimeByToken";
 // tên reducers
-const baseame = "auth";
+const baseame = "authLogin";
 
 export const login = createAsyncThunk(
   `${baseame}/login`,
@@ -17,7 +17,7 @@ export const login = createAsyncThunk(
   }
 );
 
-const authSlice = createSlice({
+const authLoginSlice = createSlice({
   name: baseame,
   initialState: {
     token: Cookies.get("token") ?? null,
@@ -54,11 +54,11 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout } = authLoginSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
-export const selectAuthToken = (state) => state.auth.token;
-export const selectAuthStatus = (state) => state.auth.status;
-export const selectAuthError = (state) => state.auth.error;
+export const selectAuthToken = (state) => state.authLogin.token;
+export const selectAuthStatus = (state) => state.authLogin.status;
+export const selectAuthLoginError = (state) => state.authLogin.error;
 
-export default authSlice.reducer;
+export default authLoginSlice.reducer;

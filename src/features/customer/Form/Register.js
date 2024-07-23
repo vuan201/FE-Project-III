@@ -1,22 +1,21 @@
 import { React, useRef } from "react";
-import { useReducer } from "react";
-import reducer, { initValue } from "../../../Reducer/Reducer";
+import "./Form.css";
+import { Input, Button } from "../../../components";
+import validator from "./Validate";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
+  selectAuthRegisterInfomation,
   setName,
   setEmail,
   setPhone,
   setPassword,
   setPasswordComfirmation,
-} from "../../../Reducer/Action";
-
-import "./Form.css";
-import { Input, Button, BannerHeadPage } from "../../../components";
-import validator from "./Validate";
-import { Link } from "react-router-dom";
+} from "../../../app/reducers/";
 
 const Register = () => {
-  const [state, dispatch] = useReducer(reducer, initValue);
-  const { name, email, phone, password, passwordComfirmation } = state;
+  const dispatch = useDispatch();
+  const infomation = useSelector(selectAuthRegisterInfomation);
 
   const baseOptions = {
     form: "#registerForm",
@@ -37,8 +36,8 @@ const Register = () => {
     handleValidator({
       ...baseOptions,
       rules: [
-        validator.isRequired(`#name`, name),
-        validator.isName("#name", name),
+        validator.isRequired(`#name`, infomation.name),
+        validator.isName("#name", infomation.name),
       ],
     });
   };
@@ -47,8 +46,8 @@ const Register = () => {
     handleValidator({
       ...baseOptions,
       rules: [
-        validator.isRequired("#email", email),
-        validator.isEmail("#email", email),
+        validator.isRequired("#email", infomation.email),
+        validator.isEmail("#email", infomation.email),
       ],
     });
   };
@@ -56,8 +55,8 @@ const Register = () => {
     handleValidator({
       ...baseOptions,
       rules: [
-        validator.isRequired("#phone", phone),
-        validator.isPhone("#phone", phone),
+        validator.isRequired("#phone", infomation.phone),
+        validator.isPhone("#phone", infomation.phone),
       ],
     });
   };
@@ -66,8 +65,8 @@ const Register = () => {
     handleValidator({
       ...baseOptions,
       rules: [
-        validator.isRequired("#password", password),
-        validator.isPassword("#password", password),
+        validator.isRequired("#password", infomation.password),
+        validator.isPassword("#password", infomation.password),
       ],
     });
   };
@@ -76,11 +75,14 @@ const Register = () => {
     handleValidator({
       ...baseOptions,
       rules: [
-        validator.isRequired("#passwordComfirmation", passwordComfirmation),
+        validator.isRequired(
+          "#passwordComfirmation",
+          infomation.passwordComfirmation
+        ),
         validator.isComfirmed(
           "#passwordComfirmation",
-          passwordComfirmation,
-          password
+          infomation.passwordComfirmation,
+          infomation.password
         ),
       ],
     });
@@ -100,7 +102,7 @@ const Register = () => {
             <Input
               id="name"
               type="text"
-              value={name}
+              value={infomation.name}
               onChange={(e) => dispatch(setName(e.target.value))}
               Validator={handleNameValidator}
             >
@@ -110,7 +112,7 @@ const Register = () => {
             <Input
               id="email"
               type="email"
-              value={email}
+              value={infomation.email}
               onChange={(e) => dispatch(setEmail(e.target.value))}
               Validator={handleEmailValidator}
             >
@@ -120,7 +122,7 @@ const Register = () => {
             <Input
               id="phone"
               type="text"
-              value={phone}
+              value={infomation.phone}
               onChange={(e) => dispatch(setPhone(e.target.value))}
               Validator={handlePhoneValidator}
             >
@@ -130,7 +132,7 @@ const Register = () => {
             <Input
               id="password"
               type="password"
-              value={password}
+              value={infomation.password}
               onChange={(e) => dispatch(setPassword(e.target.value))}
               Validator={handlePasswordValidator}
             >
@@ -140,7 +142,7 @@ const Register = () => {
             <Input
               id="passwordComfirmation"
               type="password"
-              value={passwordComfirmation}
+              value={infomation.passwordComfirmation}
               onChange={(e) =>
                 dispatch(setPasswordComfirmation(e.target.value))
               }
@@ -161,7 +163,10 @@ const Register = () => {
           </form>
           <div className="flex justify-center gap-1 pb-4">
             <span>nếu bạn đã có tài khoản, hãy</span>
-            <Link to={'/login'} className="text-sky-700 underline decoration-1 hover:text-sky-600 transition">
+            <Link
+              to={"/login"}
+              className="text-sky-700 underline decoration-1 hover:text-sky-600 transition"
+            >
               Đăng nhập
             </Link>
           </div>

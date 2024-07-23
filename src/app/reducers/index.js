@@ -6,8 +6,10 @@ export { default as colorsSlice } from "./colorsSlice";
 export { default as sizesSlice } from "./sizesSlice";
 export { default as productDetailSlice } from "./productDetailSlice";
 export { default as quantitySlice } from "./quantitySlice";
-export { default as authSlice } from "./authSlice";
+export { default as authLoginSlice } from "./authLoginSlice";
 export { default as paramsSlice } from "./paramsSlice";
+export { default as authRegisterSlice } from "./authRegisterSlice";
+
 
 export * from "./categoriesSlice";
 export * from "./brandsSlice";
@@ -18,4 +20,5 @@ export * from "./colorsSlice";
 export * from "./sizesSlice";
 export * from "./productDetailSlice";
 export * from "./quantitySlice";
-export * from "./authSlice";
+export * from "./authLoginSlice";
+export * from "./authRegisterSlice";

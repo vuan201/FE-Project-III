@@ -21,8 +21,9 @@ import {
   newProductsSlice,
   productDetailSlice,
   quantitySlice,
-  authSlice,
+  authLoginSlice,
   paramsSlice,
+  authRegisterSlice,
 } from "./reducers";
 
 export default configureStore({
@@ -36,6 +37,7 @@ export default configureStore({
     sizes: sizesSlice,
     productDetail: productDetailSlice,
     quantity: quantitySlice,
-    auth: authSlice,
+    authLogin: authLoginSlice,
+    authRegister: authRegisterSlice,  
   },
 });
