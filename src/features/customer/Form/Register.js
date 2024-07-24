@@ -2,20 +2,24 @@ import { React, useRef } from "react";
 import "./Form.css";
 import { Input, Button } from "../../../components";
 import validator from "./Validate";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectAuthRegisterInfomation,
+  selectAuthRegister,
   setName,
   setEmail,
   setPhone,
   setPassword,
   setPasswordComfirmation,
+  register,
+  selectAuthError,
 } from "../../../app/reducers/";
 
 const Register = () => {
   const dispatch = useDispatch();
-  const infomation = useSelector(selectAuthRegisterInfomation);
+  const navigate = useNavigate();
+  const infomation = useSelector(selectAuthRegister);
+  const error = useSelector(selectAuthError);
 
   const baseOptions = {
     form: "#registerForm",
@@ -25,15 +29,27 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleNameValidator();
-    handleEmailValidator();
-    handlePhoneValidator();
-    handlePasswordValidator();
-    handlePasswordComfirmationValidator();
+
+    const isName = handleNameValidator();
+    const isEmail = handleEmailValidator();
+    const isPhone = handlePhoneValidator();
+    const isPassword = handlePasswordValidator();
+    const isPasswordComfirmation = handlePasswordComfirmationValidator();
+
+    // console.log(isName, isEmail, isPhone, isPassword, isPasswordComfirmation);
+
+    if (isName && isEmail && isPhone && isPassword && isPasswordComfirmation) {
+      dispatch(register(infomation));
+      if (error) {
+        console.log(error);
+      } else {
+        navigate("/");
+      }
+    }
   };
 
   const handleNameValidator = () => {
-    handleValidator({
+    return handleValidator({
       ...baseOptions,
       rules: [
         validator.isRequired(`#name`, infomation.name),
@@ -43,7 +59,7 @@ const Register = () => {
   };
 
   const handleEmailValidator = () => {
-    handleValidator({
+    return handleValidator({
       ...baseOptions,
       rules: [
         validator.isRequired("#email", infomation.email),
@@ -52,7 +68,7 @@ const Register = () => {
     });
   };
   const handlePhoneValidator = () => {
-    handleValidator({
+    return handleValidator({
       ...baseOptions,
       rules: [
         validator.isRequired("#phone", infomation.phone),
@@ -62,7 +78,7 @@ const Register = () => {
   };
 
   const handlePasswordValidator = () => {
-    handleValidator({
+    return handleValidator({
       ...baseOptions,
       rules: [
         validator.isRequired("#password", infomation.password),
@@ -72,7 +88,7 @@ const Register = () => {
   };
 
   const handlePasswordComfirmationValidator = () => {
-    handleValidator({
+    return handleValidator({
       ...baseOptions,
       rules: [
         validator.isRequired(
@@ -87,9 +103,7 @@ const Register = () => {
       ],
     });
   };
-  const handleValidator = (options) => {
-    validator(options);
-  };
+  const handleValidator = (options) => validator(options);
 
   return (
     <>

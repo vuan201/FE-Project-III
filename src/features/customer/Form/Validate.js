@@ -2,6 +2,8 @@ const validator = (options) => {
   // tạo một object rỗng để chứa tất cả các rule
   const selectorRules = {};
 
+  let isValid;
+
   // lấy ra formGrout Element để dễ sử dụng
 
   const getParent = (element, selector) => {
@@ -37,8 +39,10 @@ const validator = (options) => {
       getParent(inputElement, options.formGroupSelector).classList.add(
         "invalid"
       );
+      return false;
     } else {
       removeError(inputElement, errorElement);
+      return true;
     }
   };
 
@@ -63,17 +67,20 @@ const validator = (options) => {
 
     if (inputElement) {
       // kiểm tra lỗi
-      validate(inputElement, rule);
+      isValid = validate(inputElement, rule);
 
       // khi người dùng bắt đầu nhập sẽ xóa bỏ thông báo lỗi
       inputElement.oninput = () => {
-        removeError(inputElement, getParent(
-        inputElement,
-        options.formGroupSelector
-      ).querySelector(options.errorSelector));
+        removeError(
+          inputElement,
+          getParent(inputElement, options.formGroupSelector).querySelector(
+            options.errorSelector
+          )
+        );
       };
     }
   });
+  return isValid;
 };
 
 validator.isRequired = function (selector, value, customMesage) {

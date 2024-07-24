@@ -3,7 +3,7 @@ import { Button, Input, Loading } from "../../../components";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectAuthLoginError,
+  selectAuthError,
   selectAuthStatus,
   selectAuthToken,
   login,
@@ -17,7 +17,7 @@ const Login = () => {
 
   const token = useSelector(selectAuthToken);
   const status = useSelector(selectAuthStatus);
-  const error = useSelector(selectAuthLoginError);
+  const error = useSelector(selectAuthError);
 
   useEffect(() => {
     if (status === "succeeded") navigate("/");
