@@ -2,8 +2,7 @@ import clsx from "clsx";
 import React from "react";
 import "./Overlay.css";
 
-const Overlay = ({ isOverlay, onClick }) => {
-
+const Overlay = ({ isOverlay, onClick, children }) => {
   const className = clsx(
     "overlay w-full h-full",
     "fixed top-0 bottom-0 left-0 right-0",
@@ -12,7 +11,14 @@ const Overlay = ({ isOverlay, onClick }) => {
       "z-10 visible opacity-100": isOverlay,
     }
   );
-  return <div className={className} onClick={() => onClick()}></div>;
+  return (
+    <div
+      className={className}
+      onClick={onClick ? onClick : undefined}
+    >
+      {children}
+    </div>
+  );
 };
 
 export default Overlay;

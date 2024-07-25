@@ -4,6 +4,7 @@ import { Input, Button } from "../../../components";
 import validator from "./Validate";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Alert from "@mui/material/Alert";
 import {
   selectAuthRegister,
   setName,
@@ -109,6 +110,18 @@ const Register = () => {
     <>
       {/* <BannerHeadPage title={"Đăng ký"} /> */}
       <div className="form ">
+        {/* <Alert variant="outlined" severity="success">
+          This is an outlined success Alert.
+        </Alert>
+        <Alert variant="outlined" severity="info">
+          This is an outlined info Alert.
+        </Alert>
+        <Alert variant="outlined" severity="warning">
+          This is an outlined warning Alert.
+        </Alert>
+        <Alert variant="outlined" severity="error">
+          This is an outlined error Alert.
+        </Alert> */}
         <div className="formValue">
           <form className="grid justify-items-center " id="registerForm">
             <h1>ĐĂNG KÝ</h1>
