@@ -44,6 +44,17 @@ const authSlice = createSlice({
     error: null,
   },
   reducers: {
+    resetAuthState: (state) => {
+      state.register = {
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
+        passwordComfirmation: "",
+      };
+      state.status = "idle";
+      state.error = null;
+    },
     logout: (state) => {
       state.token = null;
       state.error = null;
@@ -86,7 +97,7 @@ const authSlice = createSlice({
         state.status = "failed";
         state.error = action.payload;
       })
-      
+
       .addCase(register.pending, (state) => {
         state.status = "loading";
         state.error = null;
@@ -115,6 +126,7 @@ export const {
   setPhone,
   setPassword,
   setPasswordComfirmation,
+  resetAuthState,
 } = authSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
