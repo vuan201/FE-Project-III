@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { ImageItem, SizeItem } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setSelectorColor,
@@ -9,11 +8,11 @@ import {
   selectorSize,
   setSelectorOption,
 } from "../../../../app/reducers";
+import { ImageItem, SizeItem, ListPolicy } from "../../components";
 import { Button, InputQuantity } from "../../../../components";
 
 import { FaRegHeart } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
-import { ListPolicy } from "../";
 
 const ProductInfomation = ({ data }) => {
   const { name, description, price, brand, categories, options, images } = data;
