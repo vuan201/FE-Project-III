@@ -7,6 +7,10 @@ import {
   selectorOption,
   selectorSize,
   setSelectorOption,
+  selectAuthToken,
+  selectCartsItem,
+  addItemToCart,
+  updateItemCarts,
 } from "../../../../app/reducers";
 import { ImageItem, SizeItem, ListPolicy } from "../../components";
 import { Button, InputQuantity } from "../../../../components";
@@ -19,6 +23,10 @@ const ProductInfomation = ({ data }) => {
   const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
+
+  const token = useSelector(selectAuthToken);
+  const cartItems = useSelector(selectCartsItem);
+
   const selectOption = useSelector(selectorOption);
 
   const selectColor = useSelector(selectorColor);
@@ -36,6 +44,21 @@ const ProductInfomation = ({ data }) => {
     }
     if (quantity > selectOption.quantity) setQuantity(selectOption.quantity);
   }, [selectColor, selectSize]);
+
+  const isColorValid = (color) => {
+    return selectSize !== ""
+      ? optionsBySize[selectSize].some((option) => {
+          return option.color === color;
+        })
+      : true;
+  };
+  const isSizeValid = (size) => {
+    return selectColor !== ""
+      ? optionsByColor[selectColor].some((option) => {
+          return option.size === size;
+        })
+      : true;
+  };
 
   const handleSetSelectorColor = (color) => {
     dispatch(setSelectorColor(color));
@@ -71,20 +94,11 @@ const ProductInfomation = ({ data }) => {
     }
   };
 
-  const isColorValid = (color) => {
-    return selectSize !== ""
-      ? optionsBySize[selectSize].some((option) => {
-          return option.color === color;
-        })
-      : true;
+  const handleAddToCart = () => {
+    dispatch(addItemToCart({ sku: selectOption.sku, quantity: quantity }));
+    if (token) dispatch(updateItemCarts(cartItems));
   };
-  const isSizeValid = (size) => {
-    return selectColor !== ""
-      ? optionsByColor[selectColor].some((option) => {
-          return option.size === size;
-        })
-      : true;
-  };
+
   return (
     <div>
       <div className="mb-5 ">
@@ -118,7 +132,6 @@ const ProductInfomation = ({ data }) => {
           <li key={key} className="mr-1">
             <ImageItem
               image={newImages[key][0]}
-              // isValid={isColorValid(selectSize)}
               isValid={isColorValid(key)}
               isSelector={key === selectColor}
               onClick={handleSetSelectorColor}
@@ -158,11 +171,14 @@ const ProductInfomation = ({ data }) => {
           </Button>
         </div>
         <div className="basis-1/12 flex justify-center items-center text-xl">
-          <Button white className={""}>
+          <Button white>
             <FaRegHeart />
           </Button>
         </div>
-        <div className="basis-1/12 flex justify-center items-center text-xl">
+        <div
+          className="basis-1/12 flex justify-center items-center text-xl"
+          onClick={() => handleAddToCart()}
+        >
           <Button white>
             <FaCartPlus />
           </Button>

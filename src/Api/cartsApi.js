@@ -3,9 +3,9 @@ import axiosClient from "./axiosClient";
 const baseUrl = "/carts";
 
 const cartsApi = {
-  getAll(params ) {
+  getAll(params) {
     const url = baseUrl;
-    return axiosClient.get(url, { params});
+    return axiosClient.get(url, { params });
   },
   get(id) {
     const url = `${baseUrl}/${id}`;
@@ -15,9 +15,9 @@ const cartsApi = {
     const url = `${baseUrl}/${data.id}`;
     return axiosClient.post(url);
   },
-  update(data) {
-    const url = `${baseUrl}/${data.id}`;
-    return axiosClient.put(url);
+  update(cartItems) {
+    const url = `${baseUrl}`;
+    return axiosClient.put(url, cartItems);
   },
   remove(id) {
     const url = `${baseUrl}/${id}`;
