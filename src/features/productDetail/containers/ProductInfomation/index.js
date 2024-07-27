@@ -10,7 +10,6 @@ import {
 } from "../../../../app/reducers";
 import { ImageItem, SizeItem, ListPolicy } from "../../components";
 import { Button, InputQuantity } from "../../../../components";
-
 import { FaRegHeart } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
 
@@ -35,6 +34,7 @@ const ProductInfomation = ({ data }) => {
       dispatch(setSelectorColor(options[0].color));
       dispatch(setSelectorSize(options[0].size));
     }
+    if (quantity > selectOption.quantity) setQuantity(selectOption.quantity);
   }, [selectColor, selectSize]);
 
   const handleSetSelectorColor = (color) => {
@@ -145,7 +145,11 @@ const ProductInfomation = ({ data }) => {
         <span>Số lượng: </span>
       </div>
       <div className="mb-5 ">
-        <InputQuantity limit={selectOption.quantity} />
+        <InputQuantity
+          limit={selectOption.quantity}
+          value={quantity}
+          setValue={setQuantity}
+        />
       </div>
       <div className="mb-5 flex gap-1 items-stretch">
         <div className="basis-10/12">

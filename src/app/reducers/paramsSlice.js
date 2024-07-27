@@ -57,12 +57,12 @@ export const paramsSlice = createSlice({
     handleFilterColors: (state, action) => {
       const result = state.colors.includes(action.payload);
 
-      // nếu không tồn tại màu đó trong bộ lọc, thì sẽ thêm vào
+      // nếu đã tồn tại màu đó trong bộ lọc thì sẽ xóa bỏ nó đi
       if (result) {
         const newArray = state.colors.filter((item) => item !== action.payload);
         state.colors = newArray;
       }
-      // nếu đã tồn tại màu đó trong bộ lọc thì sẽ xóa bỏ nó đi
+      // nếu không tồn tại màu đó trong bộ lọc, thì sẽ thêm vào
       else {
         state.colors.push(action.payload);
       }
@@ -75,12 +75,12 @@ export const paramsSlice = createSlice({
     handleFilterSizes: (state, action) => {
       const result = state.sizes.includes(action.payload);
 
-      // nếu không tồn tại màu đó trong bộ lọc, thì sẽ thêm vào
+      // nếu đã tồn tại màu đó trong bộ lọc thì sẽ xóa bỏ nó đi
       if (result) {
         const newArray = state.sizes.filter((item) => item !== action.payload);
         state.sizes = newArray;
       }
-      // nếu đã tồn tại màu đó trong bộ lọc thì sẽ xóa bỏ nó đi
+      // nếu không tồn tại màu đó trong bộ lọc, thì sẽ thêm vào
       else {
         state.sizes.push(action.payload);
       }

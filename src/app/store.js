@@ -35,7 +35,6 @@ export default configureStore({
     colors: colorsSlice,
     sizes: sizesSlice,
     productDetail: productDetailSlice,
-    quantity: quantitySlice,
     auth:authSlice
   },
 });
