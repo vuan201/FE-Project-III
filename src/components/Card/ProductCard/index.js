@@ -1,14 +1,18 @@
 import { React, memo, useEffect, useState } from "react";
-import "./ProductCard.css";
-import { Button, Image, Swatchs } from "../../";
 import { Link, useNavigate } from "react-router-dom";
+
+import { Button, Image, Swatchs } from "../../";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { priceConvert } from "../../../utils/priceConvert";
+import "./ProductCard.css";
+
 const ProductCard = ({ data }) => {
   const { name, images, slug, options, discount } = data;
 
   const [imageSelector, setImageSelector] = useState({});
 
   const [mouseMoved, setMouseMoved] = useState(false);
+  const [inProp, setInProp] = useState(true);
 
   const navigate = useNavigate();
 
@@ -55,8 +59,9 @@ const ProductCard = ({ data }) => {
   };
 
   const handleOnMouseOut = () => {
-    if (imageSelector.url !== groupedItems[imageSelector.color][0].url)
+    if (imageSelector.url !== groupedItems[imageSelector.color][0].url) {
       setImageSelector(groupedItems[imageSelector.color][0]);
+    }
   };
 
   return (
@@ -75,7 +80,15 @@ const ProductCard = ({ data }) => {
               {/* <span>-30%</span> */}
             </div>
           )}
-          <Image data={{ image: imageSelector.url, name: name }} />
+          <TransitionGroup>
+            <CSSTransition
+              key={imageSelector.url}
+              timeout={300}
+              classNames="fade"
+            >
+              <Image data={{ image: imageSelector.url, name: name }} />
+            </CSSTransition>
+          </TransitionGroup>
         </div>
       </Link>
       <div className="my-5">
