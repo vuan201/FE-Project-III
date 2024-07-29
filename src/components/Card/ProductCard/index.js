@@ -77,6 +77,7 @@ const ProductCard = ({ data }) => {
           imageSelector={image}
           setImageSelector={setImage}
           isLimit={false}
+          // limit={3}
         />
       </div>
     </div>

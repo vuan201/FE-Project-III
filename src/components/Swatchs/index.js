@@ -25,7 +25,7 @@ const Swatchs = (prop) => {
   const [newSwatchs, setNewSwatchs] = useState([]);
 
   useEffect(() => {
-    if (isLimit && swatchs.length >= limit) {
+    if (isLimit && swatchs.length > limit) {
       setStateLimit(true);
 
       const visibleSwatchs = showRest ? swatchs.slice(0, limit) : swatchs;
