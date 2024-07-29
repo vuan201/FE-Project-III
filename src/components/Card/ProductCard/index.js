@@ -1,16 +1,30 @@
 import { React, memo, useEffect, useState } from "react";
 import "./ProductCard.css";
 import { Button, Image, Swatchs } from "../../";
-import clsx from "clsx";
 import { Link, useNavigate } from "react-router-dom";
-
+import { priceConvert } from "../../../utils/priceConvert";
 const ProductCard = ({ data }) => {
-  const { name, price, images, slug } = data;
+  const { name, images, slug, options, discount } = data;
+
   const [image, setImage] = useState("");
 
   useEffect(() => {
     if (images[0] && images[0].url) setImage(images[0].url);
   }, []);
+
+  // Nhóm các đối tượng theo category
+  const groupedItems = images.reduce((group, item) => {
+    const { color } = item;
+    group[color] = group[color] ?? [];
+    group[color].push(item);
+    return group;
+  }, {});
+  // Lấy phần tử đầu tiên của mỗi nhóm
+  const firstItems = Object.entries(groupedItems).map(
+    ([category, items]) => items[0]
+  );
+
+  console.log(firstItems);
 
   const [mouseMoved, setMouseMoved] = useState(false);
 
@@ -31,18 +45,19 @@ const ProductCard = ({ data }) => {
         onMouseMove={() => setMouseMoved(true)}
         onMouseDown={() => setMouseMoved(false)}
       >
-        <div className="cardInfomation1 cardShadow">
-          <div className="sale">{/* <span>-30%</span> */}</div>
+        <div className="block relative z-1 w-full aspect-square cardShadow">
+          {discount ?? (
+            <div className="absolute top-1 right-1 bg-red-600 text-white">
+              {/* <span>-30%</span> */}
+            </div>
+          )}
           <Image data={{ image: image, name: name }} />
-          {/* <div className="cardBtn">
-            <Button black blueBtn>mua hàng</Button>
-          </div> */}
         </div>
       </Link>
-      <div className="cardInfomation2">
-        <div className="cardTitle">
+      <div className="my-5">
+        <div className="text-xl productTitle">
           <Link
-            className="productTitle"
+            className="text-black hover:underline hover:text-blue-800 transition-all"
             onClick={(e) => handleClick(e)}
             onMouseUp={(e) => handleClick(e)}
             onMouseMove={() => setMouseMoved(true)}
@@ -51,12 +66,19 @@ const ProductCard = ({ data }) => {
             {name}
           </Link>
         </div>
-        <div className="cardPrice">
+        <div className="flex gap-1 items-center text-red-600 text-xl">
+          <span>{priceConvert(options[0].price)}</span>
           <span>₫</span>
-          <span>{price}</span>
         </div>
       </div>
-      <div className="cardColors">{/* <Swatchs swatchs={colors} /> */}</div>
+      <div className="my-5">
+        <Swatchs
+          swatchs={firstItems}
+          imageSelector={image}
+          setImageSelector={setImage}
+          isLimit={false}
+        />
+      </div>
     </div>
   );
 };

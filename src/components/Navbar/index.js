@@ -9,6 +9,7 @@ const Navbar = () => {
     { pageName: "Đaeng nhập", url: "/login" },
     { pageName: "Đăng ký", url: "/register" },
     { pageName: "Bộ sưu tập", url: "/collections" },
+    { pageName: "Giỏ hàng", url: "/carts" },
   ];
 
   return (

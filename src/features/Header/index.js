@@ -70,9 +70,12 @@ const Header = () => {
           <div className="mr-4 navItem rounded-lg px-4 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900">
             <FaSearch />
           </div>
-          <div className="mr-4 navItem rounded-lg px-4 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900">
+          <Link
+            className="mr-4 navItem rounded-lg px-4 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900"
+            to={"/carts"}
+          >
             <FaShoppingCart />
-          </div>
+          </Link>
           <div className="mr-4 navItem rounded-lg px-4 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900">
             <FaRegHeart />
           </div>

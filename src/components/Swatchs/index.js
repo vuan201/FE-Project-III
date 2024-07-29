@@ -1,9 +1,15 @@
 import React, { memo, useEffect, useState } from "react";
+import { Image } from "../";
 import "./Swatchs.css";
 
 const Swatchs = (prop) => {
-  const { swatchs, isLimit = true, limit = 4 } = prop;
-  
+  const {
+    swatchs,
+    isLimit = true,
+    limit = 4,
+    imageSelector,
+    setImageSelector,
+  } = prop;
 
   // lưu trạng thái giới hạn có tồn tại trên component hay không
   const [stateLimit, setStateLimit] = useState(false);
@@ -17,8 +23,6 @@ const Swatchs = (prop) => {
 
   // chuyển hóa nếu có giới hạn
   const [newSwatchs, setNewSwatchs] = useState([]);
-
-  const [selected, setSelected] = useState(0);
 
   useEffect(() => {
     if (isLimit && swatchs.length >= limit) {
@@ -42,20 +46,15 @@ const Swatchs = (prop) => {
   return (
     <ul className="swatchs flex justify-center items-center">
       {newSwatchs
-        ? newSwatchs.map((swatch, index) => (
+        ? newSwatchs.map(({ url, color }, index) => (
             <li
               key={index}
-              className={
-                selected === swatch.id ? "item active my-auto" : "item my-auto"
-              }
-              onClick={() => setSelected(swatch.id)}
+              className={imageSelector === url ? "item active" : "item"}
+              onClick={() => setImageSelector(url)}
             >
-              <span
-                style={{ backgroundColor: swatch.code }}
-                className="block w-full h-full rounded-full"
-              ></span>
+              <Image data={{ image: url, name: color }} />
               <div className="clearfix text-center">
-                <span className="titleSwatch">{swatch.color}</span>
+                <span className="titleSwatch">{color}</span>
               </div>
             </li>
           ))
