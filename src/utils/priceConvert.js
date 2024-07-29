@@ -1,3 +1,3 @@
 export const priceConvert = (price) => {
-  return price.toLocaleString("vi-VN");
+  if (typeof price === "number") return price.toLocaleString("vi-VN");
 };

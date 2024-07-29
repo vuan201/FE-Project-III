@@ -13,10 +13,11 @@
 }
 
 .swatchs .item .clearfix {
-  display: inline-block;
-  white-space: nowrap;
+  display: block;
   position: absolute;
+  white-space: nowrap;
   width: fit-content;
+  padding: 2px 8px;
   background-color: #000;
   color: white;
   top: -35px;
@@ -26,7 +27,7 @@
 }
 
 .swatchs .item:hover .clearfix {
-  font-size: 15px;
+  font-size: 14px;
   opacity: 1;
   visibility: visible;
 }
@@ -34,7 +35,7 @@
 .clearfix {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.5s, visibility 0.5s;
+  transition: all .1s;
 }
 
 .titleSwatch::before{

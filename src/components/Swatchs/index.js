@@ -46,15 +46,15 @@ const Swatchs = (prop) => {
   return (
     <ul className="swatchs flex justify-center items-center">
       {newSwatchs
-        ? newSwatchs.map(({ url, color }, index) => (
+        ? newSwatchs.map((swatch, index) => (
             <li
               key={index}
-              className={imageSelector === url ? "item active" : "item"}
-              onClick={() => setImageSelector(url)}
+              className={imageSelector.color === swatch.color ? "item active" : "item"}
+              onClick={() => setImageSelector(swatch)}
             >
-              <Image data={{ image: url, name: color }} />
+              <Image data={{ image: swatch.url, name: swatch.color }} />
               <div className="clearfix text-center">
-                <span className="titleSwatch">{color}</span>
+                <span className="titleSwatch">{swatch.color}</span>
               </div>
             </li>
           ))

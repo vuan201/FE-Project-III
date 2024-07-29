@@ -29,10 +29,26 @@
   z-index: 3;
   opacity: .1;
 }
-.imageAnimation:hover::before{
+
+.imageAnimation:hover::before {
   top: 0%;
 }
-.imageAnimation:hover::after{
+
+.imageAnimation:hover::after {
   bottom: 0%;
   transition-delay: .25s;
+}
+
+.imgLoading {
+  animation: Loading .2s;
+  transition: all 1s;
+}
+
+@keyframes Loading {
+  from {
+    opacity: .5;
+  }
+  to {
+    opacity: 1;
+  }
 }

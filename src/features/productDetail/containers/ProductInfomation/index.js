@@ -16,9 +16,10 @@ import { ImageItem, SizeItem, ListPolicy } from "../../components";
 import { Button, InputQuantity } from "../../../../components";
 import { FaRegHeart } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
+import { priceConvert } from "../../../../utils/priceConvert";
 
 const ProductInfomation = ({ data }) => {
-  const { name, description, price, brand, categories, options, images } = data;
+  const { name, description, brand, categories, options, images } = data;
 
   const [quantity, setQuantity] = useState(1);
 
@@ -99,13 +100,16 @@ const ProductInfomation = ({ data }) => {
     if (token) dispatch(updateItemCarts(cartItems));
   };
 
+
   return (
     <div>
       <div className="mb-5 ">
         <h2 className="font-normal text-3xl">{name}</h2>
       </div>
       <div className="mb-5">
-        <span className="text-red-600 text-3xl">{price}</span>
+        <span className="text-red-600 text-3xl">
+          {priceConvert(selectOption.price)}
+        </span>
       </div>
       <div className="mb-5">
         <span>Tình trạng : </span>

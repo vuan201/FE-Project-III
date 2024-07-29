@@ -98,7 +98,7 @@ export const paramsSlice = createSlice({
 
     resetParams: (state) => {
       state.colors = [];
-      // state.category = null;
+      state.category = {};
       state.price = [0, 5000000];
       state.sizes = [];
       state.page = 1;

@@ -6,10 +6,14 @@ import { priceConvert } from "../../../utils/priceConvert";
 const ProductCard = ({ data }) => {
   const { name, images, slug, options, discount } = data;
 
-  const [image, setImage] = useState("");
+  const [imageSelector, setImageSelector] = useState({});
+
+  const [mouseMoved, setMouseMoved] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (images[0] && images[0].url) setImage(images[0].url);
+    if (images[0]) setImageSelector(images[0]);
   }, []);
 
   // Nhóm các đối tượng theo category
@@ -19,22 +23,40 @@ const ProductCard = ({ data }) => {
     group[color].push(item);
     return group;
   }, {});
+
   // Lấy phần tử đầu tiên của mỗi nhóm
-  const firstItems = Object.entries(groupedItems).map(
-    ([category, items]) => items[0]
-  );
+  const firstItems = Object.entries(groupedItems).map(([color, url]) => url[0]);
 
-  console.log(firstItems);
+  // Tổng số màu và số Size trong sản phẩm
+  const totalColors = Object.keys(
+    Object.groupBy(options, ({ color }) => color)
+  ).length;
+  const totalSizes = Object.keys(
+    Object.groupBy(options, ({ size }) => size)
+  ).length;
 
-  const [mouseMoved, setMouseMoved] = useState(false);
-
-  const navigate = useNavigate();
-
+  // Xử lý khi người dùng click (fix lỗi khi sử dụng slide của react-Slick)
   const handleClick = (e) => {
     if (e.button === 0)
       if (!mouseMoved) {
         navigate(`/products/${slug}`);
       }
+  };
+
+  const handleOnMouseOver = () => {
+    if (
+      groupedItems &&
+      groupedItems[imageSelector.color] &&
+      groupedItems[imageSelector.color][1] &&
+      groupedItems[imageSelector.color][1].url
+    ) {
+      setImageSelector(groupedItems[imageSelector.color][1]);
+    }
+  };
+
+  const handleOnMouseOut = () => {
+    if (imageSelector.url !== groupedItems[imageSelector.color][0].url)
+      setImageSelector(groupedItems[imageSelector.color][0]);
   };
 
   return (
@@ -44,6 +66,8 @@ const ProductCard = ({ data }) => {
         onMouseUp={(e) => handleClick(e)}
         onMouseMove={() => setMouseMoved(true)}
         onMouseDown={() => setMouseMoved(false)}
+        onMouseOver={() => handleOnMouseOver()}
+        onMouseOut={() => handleOnMouseOut()}
       >
         <div className="block relative z-1 w-full aspect-square cardShadow">
           {discount ?? (
@@ -51,10 +75,20 @@ const ProductCard = ({ data }) => {
               {/* <span>-30%</span> */}
             </div>
           )}
-          <Image data={{ image: image, name: name }} />
+          <Image data={{ image: imageSelector.url, name: name }} />
         </div>
       </Link>
       <div className="my-5">
+        <div className="flex justify-between gap-1 my-2 ">
+          <div className="flex gap-1">
+            <span>{totalColors}</span>
+            <span>Màu</span>
+          </div>
+          <div className="flex gap-1">
+            <span>{totalSizes}</span>
+            <span>Kích thước</span>
+          </div>
+        </div>
         <div className="text-xl productTitle">
           <Link
             className="text-black hover:underline hover:text-blue-800 transition-all"
@@ -74,8 +108,8 @@ const ProductCard = ({ data }) => {
       <div className="my-5">
         <Swatchs
           swatchs={firstItems}
-          imageSelector={image}
-          setImageSelector={setImage}
+          imageSelector={imageSelector}
+          setImageSelector={setImageSelector}
           isLimit={false}
           // limit={3}
         />

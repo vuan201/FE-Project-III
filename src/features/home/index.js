@@ -20,8 +20,8 @@ const Home = () => {
   return (
     <div className="m-auto">
       <IntroSlide />
-      <CategoriesSlide />
-      <BrandsSlide />
+      {/* <CategoriesSlide /> */}
+      {/* <BrandsSlide /> */}
       <NewProducts/>
       <BannerWrapContainer />
       <OutstandingContainer />
