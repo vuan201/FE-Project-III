@@ -100,7 +100,6 @@ const ProductInfomation = ({ data }) => {
     if (token) dispatch(updateItemCarts(cartItems));
   };
 
-
   return (
     <div>
       <div className="mb-5 ">
@@ -108,7 +107,7 @@ const ProductInfomation = ({ data }) => {
       </div>
       <div className="mb-5">
         <span className="text-red-600 text-3xl">
-          {priceConvert(selectOption.price)}
+          {priceConvert(selectOption.price)} VND
         </span>
       </div>
       <div className="mb-5">
@@ -169,7 +168,7 @@ const ProductInfomation = ({ data }) => {
         />
       </div>
       <div className="mb-5 flex gap-1 items-stretch">
-        <div className="basis-10/12">
+        <div className="basis-11/12" onClick={() => handleAddToCart()}>
           <Button black afterAnimation isFull>
             Mua ngay
           </Button>
@@ -179,14 +178,14 @@ const ProductInfomation = ({ data }) => {
             <FaRegHeart />
           </Button>
         </div>
-        <div
+        {/* <div
           className="basis-1/12 flex justify-center items-center text-xl"
           onClick={() => handleAddToCart()}
         >
           <Button white>
             <FaCartPlus />
           </Button>
-        </div>
+        </div> */}
       </div>
       <div className="mb-5">
         <ListPolicy />

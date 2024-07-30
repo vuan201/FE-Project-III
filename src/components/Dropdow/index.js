@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../Button";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Dropdow.css";
 import clsx from "clsx";
 const Dropdow = (prop) => {
@@ -16,18 +16,27 @@ const Dropdow = (prop) => {
   return (
     <div className={"dropdown inline-block h-full w-full"}>
       <div>{children}</div>
-      {listPage ? (
+      {listPage && Array.isArray(listPage) && listPage.length > 0 ? (
         <div className={dropdownClassName}>
-          {listPage.map(({ pageName, url, onClick }, index) => (
-            <NavLink
-              className="block px-4 py-4 hover:text-orange-500 bg-white border-1 border-line-border"
-              key={index}
-              to={url}
-              onClick={onClick ? () => onClick() : undefined}
-            >
-              {pageName}
-            </NavLink>
-          ))}
+          {listPage.map((page, index) => {
+            return page.url ? (
+              <NavLink
+                className="block px-4 py-4 hover:text-orange-500 bg-white border-1 border-line-border"
+                key={index}
+                to={page.url}
+              >
+                {page.pageName ?? undefined}
+              </NavLink>
+            ) : (
+              <Link
+                className="block px-4 py-4 hover:text-orange-500 bg-white border-1 border-line-border"
+                key={index}
+                onClick={page.onClick ?? undefined}
+              >
+                {page.pageName ?? undefined}
+              </Link>
+            );
+          })}
         </div>
       ) : undefined}
     </div>

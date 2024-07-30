@@ -12,21 +12,27 @@ import {
   presentValue,
   setProducts,
   selectCategory,
+  selectLimitDefoult,
+  selectPage,
+  addProducts,
+  selectAllProducts,
 } from "../../../../app/reducers";
 import { Loading, ProductCard } from "../../../../components";
 
 const ProductsList = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectProductsItem);
+  const allProducts = useSelector(selectAllProducts);
   const status = useSelector(selectProductsStatus);
 
-  // filter
+  // params
   const category = useSelector(selectCategory);
   const filterColors = useSelector(selectFiltersColors);
   const filterSizes = useSelector(selectFiltersSizes);
   const filterPrice = useSelector(selectFiltersPrice);
   const sortType = useSelector(presentValue);
-
+  const limit = useSelector(selectLimitDefoult);
+  const page = useSelector(selectPage);
   // console.log(category);
 
   useEffect(() => {
@@ -36,6 +42,8 @@ const ProductsList = () => {
       maxPrice: filterPrice[1],
       sort: sortType.sort,
       order: sortType.order,
+      limit: limit,
+      page: page,
     };
     filterColors.length > 0
       ? (params.color = filterColors.join(","))
@@ -45,10 +53,13 @@ const ProductsList = () => {
       : (params.size = null);
 
     dispatch(fetchProducts(params));
-
-  }, [filterColors, filterSizes, filterPrice, sortType]);
+    if (status === "succeeded") {
+      dispatch(addProducts(products));
+    }
+  }, [filterColors, filterSizes, filterPrice, sortType, category, page]);
 
   if (status === "loading") return <Loading />;
+
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
       {products.length > 0

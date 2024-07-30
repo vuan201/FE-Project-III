@@ -14,10 +14,6 @@ const Header = () => {
 
   const [receive, setReceive] = useState(false);
 
-  const receiveLogout = () => {
-    setReceive(true);
-  };
-
   const handleLogout = () => {
     dispatch(logout());
   };
@@ -28,7 +24,7 @@ const Header = () => {
   ];
   const authenLisPageIsLogin = [
     { pageName: "Quản lý tài khoản", url: "/" },
-    { pageName: "Đăng xuất", onClick: receiveLogout },
+    { pageName: "Đăng xuất", onClick: () => setReceive(true) },
   ];
 
   return (

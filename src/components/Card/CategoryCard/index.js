@@ -11,13 +11,13 @@ const CategoryCard = ({ data }) => {
   const navigate = useNavigate();
 
   const [mouseMoved, setMouseMoved] = useState(false);
-  const { id, name, imgUrl } = data;
+  const { id, name, imgUrl, slug } = data;
 
   const handleClick = (e) => {
     if (e.button === 0)
       if (!mouseMoved) {
         dispatch(setParamsCategory({ id, name }));
-        navigate(`/collections/${name}`);
+        navigate(`/collections/${slug}`);
       }
   };
 
