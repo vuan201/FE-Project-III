@@ -161,7 +161,10 @@ const Register = () => {
           </form>
           <div className="flex justify-center gap-1 pb-4">
             <span>nếu bạn đã có tài khoản, hãy</span>
-            <Link to={'/login'} className="text-sky-700 underline decoration-1 hover:text-sky-600 transition">
+            <Link
+              to={"/login"}
+              className="text-sky-700 underline decoration-1 hover:text-sky-600 transition"
+            >
               Đăng nhập
             </Link>
           </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import './StyleImageCard.css'
+import "./StyleImageCard.css";
 
 const StyleImageCard = ({ data }) => {
   const { id, image } = data;

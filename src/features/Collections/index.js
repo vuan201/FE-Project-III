@@ -17,10 +17,12 @@ const Collections = () => {
 
   return (
     <div className="content w-full m-auto">
-      <BannerHeadPage title={'Bộ sưu tập'}/>
+      <BannerHeadPage title={"Bộ sưu tập"} />
       <div className="mx-auto mb-10 px-12 mt-4">
         <div className="w-full m-auto max-w-container">
-          <Breadcrumbs breadcrumbs={[{url:'/collections', name:"Bộ sưu tập"}]}/>
+          <Breadcrumbs
+            breadcrumbs={[{ url: "/collections", name: "Bộ sưu tập" }]}
+          />
         </div>
       </div>
       <div className="px-8 mb-10">

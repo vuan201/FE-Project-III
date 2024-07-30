@@ -1,14 +1,14 @@
 import React from "react";
-import './Image.css'
+import "./Image.css";
 import clsx from "clsx";
 
 const Image = (prop) => {
-  const {animation} = prop
+  const { animation } = prop;
   const { image, name } = prop.data;
 
   const className = clsx("image w-full h-full overflow-hidden", {
-    "imageAnimation": animation
-  })
+    imageAnimation: animation,
+  });
   return (
     <div className={className}>
       <img

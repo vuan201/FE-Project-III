@@ -3,25 +3,25 @@ import axiosClient from "./axiosClient";
 const baseUrl = "/styles";
 
 const stylesApi = {
-  getAll(params ) {
+  getAll(params) {
     const url = baseUrl;
-    return axiosClient.get(url, { params})
+    return axiosClient.get(url, { params });
   },
   get(id) {
     const url = `${baseUrl}/${id}`;
-    return axiosClient.get(url)
+    return axiosClient.get(url);
   },
   add(data) {
     const url = `${baseUrl}/${data.id}`;
-    return axiosClient.post(url)
+    return axiosClient.post(url);
   },
   update(data) {
     const url = `${baseUrl}/${data.id}`;
-    return axiosClient.put(url)
+    return axiosClient.put(url);
   },
   remove(id) {
     const url = `${baseUrl}/${id}`;
-    return axiosClient.delete(url)
+    return axiosClient.delete(url);
   },
 };
 

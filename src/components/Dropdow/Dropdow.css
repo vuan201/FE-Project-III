@@ -1,4 +1,4 @@
-.dropdowItem{
+.dropdowItem {
   position: absolute;
   background-color: var(--color-background);
   min-width: 208px;
@@ -13,12 +13,12 @@
   opacity: 1;
   visibility: visible;
 }
-.itemCenter{
+.itemCenter {
   left: -50%;
 }
-.itemLeft{
+.itemLeft {
   left: 0;
 }
-.itemRight{
+.itemRight {
   right: 0;
 }

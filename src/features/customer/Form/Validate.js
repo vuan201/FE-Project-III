@@ -67,10 +67,12 @@ const validator = (options) => {
 
       // khi người dùng bắt đầu nhập sẽ xóa bỏ thông báo lỗi
       inputElement.oninput = () => {
-        removeError(inputElement, getParent(
-        inputElement,
-        options.formGroupSelector
-      ).querySelector(options.errorSelector));
+        removeError(
+          inputElement,
+          getParent(inputElement, options.formGroupSelector).querySelector(
+            options.errorSelector
+          )
+        );
       };
     }
   });

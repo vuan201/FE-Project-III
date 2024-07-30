@@ -24,10 +24,12 @@
 ## danh mục
 
 ### trang danh sách danh mục
+
 - hiển thị danh sách danh mục (theo index, thên)
 - có nút thêm danh mục
 
 # các link tham khảo
+
 [nhiều mẫu](https://monsterone.com/html-templates/admin-templates/)
 [mẫu tham khảo 1](https://www.figma.com/community/file/1331030274995182812)
 [mẫu tham khảo 2](https://codervent.com/gum/velmax/demo/ltr/index.html)

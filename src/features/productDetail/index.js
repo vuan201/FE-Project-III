@@ -25,9 +25,9 @@ const ProductDetail = () => {
 
   useEffect(() => {
     dispatch(fetchProduct(`${slug}`));
-    return () =>{
-      dispatch(resetProduct())
-    }
+    return () => {
+      dispatch(resetProduct());
+    };
   }, [dispatch, slug]);
 
   if (status === "loading") return <Loading />;

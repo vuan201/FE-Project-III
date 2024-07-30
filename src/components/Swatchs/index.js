@@ -3,7 +3,6 @@ import "./Swatchs.css";
 
 const Swatchs = (prop) => {
   const { swatchs, isLimit = true, limit = 4 } = prop;
-  
 
   // lưu trạng thái giới hạn có tồn tại trên component hay không
   const [stateLimit, setStateLimit] = useState(false);

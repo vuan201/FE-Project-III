@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import {Image, NextLink} from "../../../../components";
+import { Image, NextLink } from "../../../../components";
 import "./BannerWrap.css";
 
 const BannerWrap = (prop) => {
@@ -25,7 +25,7 @@ const BannerWrap = (prop) => {
           {description ? (
             <p className="description mb-5">{description}</p>
           ) : undefined}
-          <NextLink light url="/collections"/>
+          <NextLink light url="/collections" />
         </div>
       </div>
     </div>

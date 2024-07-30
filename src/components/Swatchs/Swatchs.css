@@ -9,7 +9,7 @@
   border: 1px solid #cbcbcb;
   cursor: pointer;
 }
-.swatchs .active{
+.swatchs .active {
   border-color: #000;
 }
 
@@ -37,7 +37,7 @@
   transition: opacity 0.5s, visibility 0.5s;
 }
 
-.titleSwatch::before{
+.titleSwatch::before {
   content: "";
   position: absolute;
   bottom: -7px;

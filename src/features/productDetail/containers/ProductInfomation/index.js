@@ -145,7 +145,7 @@ const ProductInfomation = ({ data }) => {
         <span>Số lượng: </span>
       </div>
       <div className="mb-5 ">
-        <InputQuantity limit={selectOption.quantity}/>
+        <InputQuantity limit={selectOption.quantity} />
       </div>
       <div className="mb-5 flex gap-1 items-stretch">
         <div className="basis-10/12">

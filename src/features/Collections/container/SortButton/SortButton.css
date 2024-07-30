@@ -1,7 +1,9 @@
-.sortItem, .sortItemActive{
-  transition: background-color .2s, border .2s;
+.sortItem,
+.sortItemActive {
+  transition: background-color 0.2s, border 0.2s;
 }
-.sortItem, .sortItemActive{
+.sortItem,
+.sortItemActive {
   font-size: 14px;
   display: flex;
   text-align: left;
@@ -13,10 +15,11 @@
   position: relative;
   background-color: white;
 }
-.sortItemActive, .sortItem:hover {
+.sortItemActive,
+.sortItem:hover {
   background-color: rgb(var(--bg-color-sort-item-active));
 }
-.sortItemActive::before{
+.sortItemActive::before {
   left: 0;
   width: 3px;
   height: 100%;

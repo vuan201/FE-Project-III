@@ -3,7 +3,7 @@ import { IoFilter } from "react-icons/io5";
 import "./Filters.css";
 import clsx from "clsx";
 import { FilterButton } from "../../components";
-import {ColorButton, SizeButton, PriceButton} from '../'
+import { ColorButton, SizeButton, PriceButton } from "../";
 const Filters = () => {
   const [isOpenFilter, setIsOpenFilter] = useState(false);
 
@@ -18,9 +18,9 @@ const Filters = () => {
           <IoFilter />
         </div>
       </FilterButton>
-      <ColorButton/>
-      <SizeButton/>
-      <PriceButton/>
+      <ColorButton />
+      <SizeButton />
+      <PriceButton />
     </div>
   );
 };

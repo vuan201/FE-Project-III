@@ -7,10 +7,10 @@ const authApi = {
     const url = `${baseUrl}/login`;
     return axiosClient.post(url, credentials);
   },
-  register(infomation){
+  register(infomation) {
     const url = `${baseUrl}/register`;
-    return axiosClient.post(url, infomation)
-  }
+    return axiosClient.post(url, infomation);
+  },
 };
 
-export default authApi
+export default authApi;

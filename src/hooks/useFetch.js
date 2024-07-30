@@ -1,7 +1,6 @@
 import { useCallback, useState } from "react";
 
 export const useFetch = (url, method = "GET", body = null) => {
-  
   const [data, setData] = useState([]);
   const [isSuccess, setIsSucess] = useState(false);
   const [isLoading, setIsloading] = useState(false);

@@ -5,8 +5,8 @@ import { GrNext } from "react-icons/gr";
 const NextArrow = (props) => {
   const { style, onClick } = props;
   return (
-    <div className={'nextBtn'} style={{ ...style }} onClick={onClick}>
-      <GrNext/>
+    <div className={"nextBtn"} style={{ ...style }} onClick={onClick}>
+      <GrNext />
     </div>
   );
 };

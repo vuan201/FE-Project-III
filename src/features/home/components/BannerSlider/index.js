@@ -22,7 +22,9 @@ const BannerSlider = ({ data }) => {
           </div>
           <div className="slideButton w-56 h-auto mb-12">
             <NavLink to={"/collections"}>
-              <Button afterAnimation black isFull>Bộ sưu tập</Button>
+              <Button afterAnimation black isFull>
+                Bộ sưu tập
+              </Button>
             </NavLink>
           </div>
         </div>

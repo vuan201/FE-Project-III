@@ -10,10 +10,7 @@ import {
   resetItem,
 } from "../../../../app/reducers";
 const FiltersList = () => {
-
-  useEffect(() =>{
-    
-  } , [])
+  useEffect(() => {}, []);
 
   return (
     <div>

@@ -3,7 +3,6 @@ import React from "react";
 import "./Overlay.css";
 
 const Overlay = ({ isOverlay, onClick }) => {
-
   const className = clsx(
     "overlay w-full h-full",
     "fixed top-0 bottom-0 left-0 right-0",

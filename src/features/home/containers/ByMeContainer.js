@@ -1,5 +1,5 @@
 import React from "react";
-import {NextLink, Image} from "../../../components";
+import { NextLink, Image } from "../../../components";
 import { frame } from "../../../config";
 
 const ByMeContainer = () => {

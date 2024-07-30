@@ -12,17 +12,15 @@ import {
   ByMeContainer,
   NewsletterSignupForm,
   MarketingContainer,
-
 } from "./containers";
 
 const Home = () => {
-  
   return (
     <div className="m-auto">
       <IntroSlide />
       <CategoriesSlide />
       <BrandsSlide />
-      <NewProducts/>
+      <NewProducts />
       <BannerWrapContainer />
       <OutstandingContainer />
       <BigBanner />

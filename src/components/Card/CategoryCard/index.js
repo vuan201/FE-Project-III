@@ -31,7 +31,7 @@ const CategoryCard = ({ data }) => {
         <div className="categoryDetail flex place-items-center absolute bottom-[10%] h-auto w-max p-2">
           <h2 className="px-2">{name}</h2>
           <div className="arrow">
-            <FaArrowRight/>
+            <FaArrowRight />
           </div>
         </div>
       </Link>

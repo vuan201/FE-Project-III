@@ -1,5 +1,5 @@
 .overlay {
-  background-color: rgb(var(--color-overlay, 0 0 0) / .5);
+  background-color: rgb(var(--color-overlay, 0 0 0) / 0.5);
   cursor: zoom-out;
-  transition: opacity .1s, visibility .1s, z-index .2s ease-out;
+  transition: opacity 0.1s, visibility 0.1s, z-index 0.2s ease-out;
 }

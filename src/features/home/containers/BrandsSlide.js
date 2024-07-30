@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { brandsSlideSettings } from "../../../config";
-import {Sliders, Loading, Image} from "../../../components";
+import { Sliders, Loading, Image } from "../../../components";
 
 import {
   selectBrandsItem,

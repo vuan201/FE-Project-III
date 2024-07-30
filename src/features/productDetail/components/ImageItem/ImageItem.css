@@ -6,7 +6,7 @@
   width: 100%;
   height: 3px;
   background: currentColor;
-  animation: isActive .5s;
+  animation: isActive 0.5s;
 }
 
 @keyframes isActive {

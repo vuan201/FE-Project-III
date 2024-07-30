@@ -2,11 +2,11 @@
   list-style-type: none;
   padding: 0;
 }
-.navItem{
-  position:relative;
+.navItem {
+  position: relative;
 }
 
-.navItem::after{
+.navItem::after {
   content: "";
   position: absolute;
   bottom: -4px;
@@ -16,9 +16,9 @@
   background: currentColor;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform .3s;
+  transition: transform 0.3s;
 }
-.navItem:hover::after{
+.navItem:hover::after {
   transform: scaleX(1);
   transform-origin: left;
 }
