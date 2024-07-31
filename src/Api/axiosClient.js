@@ -1,5 +1,9 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+
+// Cancel token để hủy các request cũ
+let cancelTokenSource;
+
 const axiosClient = axios.create({
   // baseURL: 'http://localhost:4000',
   // baseURL: "http://localhost:8080/api/v1",
@@ -10,9 +14,19 @@ const axiosClient = axios.create({
 // Thêm một bộ đón chặn request
 axiosClient.interceptors.request.use(
   function (config) {
+    // // Hủy request cũ nếu có
+    // if (cancelTokenSource) {
+    //   cancelTokenSource.cancel("Operation canceled due to new request.");
+    // }
+
+    // // Tạo một cancel token mới cho request mới
+    // cancelTokenSource = axios.CancelToken.source();
+    // config.cancelToken = cancelTokenSource.token;
+
     // Làm gì đó trước khi request dược gửi đi
     const token = Cookies.remove("token");
     if (token) config.headers.Authorization = `Bearer ${token}`;
+
     return config;
   },
   function (error) {
@@ -29,9 +43,14 @@ axiosClient.interceptors.response.use(
     return response.data;
   },
   function (error) {
-    // Bất kì mã trạng thái nào lọt ra ngoài tầm 2xx đều khiến hàm này được trigger\
-    // Làm gì đó với lỗi response
-    return Promise.reject(error);
+    if (axios.isCancel(error)) {
+      console.log("Request canceled:", error.message);
+    } else {
+      // Xử lý lỗi
+      // Bất kì mã trạng thái nào lọt ra ngoài tầm 2xx đều khiến hàm này được trigger\
+      // Làm gì đó với lỗi response
+      return Promise.reject(error);
+    }
   }
 );
 

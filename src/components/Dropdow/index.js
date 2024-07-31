@@ -28,13 +28,13 @@ const Dropdow = (prop) => {
                 {page.pageName ?? undefined}
               </NavLink>
             ) : (
-              <Link
+              <div
                 className="block px-4 py-4 hover:text-orange-500 bg-white border-1 border-line-border"
                 key={index}
                 onClick={page.onClick ?? undefined}
               >
                 {page.pageName ?? undefined}
-              </Link>
+              </div>
             );
           })}
         </div>

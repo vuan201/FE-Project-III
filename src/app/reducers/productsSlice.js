@@ -37,6 +37,9 @@ export const productsSlice = createSlice({
       const newAllProducts = [...state.allProducts, ...action.payload];
       state.allProducts = newAllProducts;
     },
+    resetAllProducts: (state) => {
+      state.allProducts = [];
+    },
   },
 
   // xử lý các action được tạo bởi createAsyncThunk
@@ -57,7 +60,7 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { resetProducts, setProducts, addProducts } =
+export const { resetProducts, setProducts, addProducts, resetAllProducts } =
   productsSlice.actions;
 
 // đẩy các dữ liệu ra ngoài

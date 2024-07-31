@@ -90,12 +90,16 @@ export const paramsSlice = createSlice({
       state.presentValue = action.payload;
     },
 
-    increasePage: (state) => {
+    setPage: (state) => {
       state.page += 1;
     },
-    decrementPage: (state) => {
-      if (state.page > 1) state.page -= 1;
-    },
+
+    // increasePage: (state) => {
+    //   state.page += 1;
+    // },
+    // decrementPage: (state) => {
+    //   if (state.page > 1) state.page -= 1;
+    // },
 
     resetParams: (state) => {
       state.colors = [];
@@ -116,8 +120,9 @@ export const {
   setFilterPrice,
   setPresentValue,
   handleFilterSizes,
-  increasePage,
-  decrementPage,
+  // increasePage,
+  // decrementPage,
+  setPage,
 } = paramsSlice.actions;
 
 // đẩy các dữ liệu ra ngoài

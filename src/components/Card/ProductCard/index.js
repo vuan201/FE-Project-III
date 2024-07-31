@@ -4,6 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button, Image, Swatchs } from "../../";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { priceConvert } from "../../../utils/priceConvert";
+import { MdAddShoppingCart } from "react-icons/md";
+import { FaHeartCirclePlus, FaHeartCircleXmark } from "react-icons/fa6";
+import { LuEye } from "react-icons/lu";
+
 import "./ProductCard.css";
 
 const ProductCard = ({ data }) => {
@@ -66,20 +70,20 @@ const ProductCard = ({ data }) => {
 
   return (
     <div className={"card px-4"}>
-      <Link
-        onClick={(e) => handleClick(e)}
-        onMouseUp={(e) => handleClick(e)}
-        onMouseMove={() => setMouseMoved(true)}
-        onMouseDown={() => setMouseMoved(false)}
-        onMouseOver={() => handleOnMouseOver()}
-        onMouseOut={() => handleOnMouseOut()}
-      >
-        <div className="block relative z-1 w-full aspect-square cardShadow">
-          {discount ?? (
-            <div className="absolute top-1 right-1 bg-red-600 text-white">
-              {/* <span>-30%</span> */}
-            </div>
-          )}
+      <div className="cardImage block relative z-1 w-full aspect-square cardShadow ">
+        {discount ?? (
+          <div className="absolute top-1 right-1 bg-red-600 text-white">
+            {/* <span>-30%</span> */}
+          </div>
+        )}
+        <Link
+          onClick={(e) => handleClick(e)}
+          onMouseUp={(e) => handleClick(e)}
+          onMouseMove={() => setMouseMoved(true)}
+          onMouseDown={() => setMouseMoved(false)}
+          onMouseOver={() => handleOnMouseOver()}
+          onMouseOut={() => handleOnMouseOut()}
+        >
           <TransitionGroup>
             <CSSTransition
               key={imageSelector.url}
@@ -89,8 +93,27 @@ const ProductCard = ({ data }) => {
               <Image data={{ image: imageSelector.url, name: name }} />
             </CSSTransition>
           </TransitionGroup>
+        </Link>
+        <div className="mx-3 my-2 absolute bottom-0 w-full">
+          <div className="flex justify-center gap-4">
+            <div className="cardIcon cardIcon-1 shadow-md">
+              <Button white>
+                <MdAddShoppingCart />
+              </Button>
+            </div>
+            <div className="cardIcon cardIcon-2 shadow-md">
+              <Button white>
+                <FaHeartCirclePlus />
+              </Button>
+            </div>
+            <div className="cardIcon cardIcon-3 shadow-md">
+              <Button white>
+                <LuEye />
+              </Button>
+            </div>
+          </div>
         </div>
-      </Link>
+      </div>
       <div className="my-5">
         <div className="flex justify-between gap-1 my-2 ">
           <div className="flex gap-1">
