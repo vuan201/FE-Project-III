@@ -94,7 +94,7 @@ const Navbar = () => {
     { pageName: "Đăng nhập", url: "/login" },
     { pageName: "Đăng ký", url: "/register" },
     { pageName: "Bộ sưu tập", url: "/collections" },
-    { pageName: "Giỏ hàng", url: "/cart" },
+    { pageName: "Giỏ hàng", url: "/carts" },
   ];
 
   const navItem = clsx(
