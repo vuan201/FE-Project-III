@@ -1,9 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sort } from "../../../../utils/sort";
 import {
   fetchProducts,
-  selectProductsError,
   selectProductsItem,
   selectProductsStatus,
   selectFiltersColors,
@@ -17,6 +15,7 @@ import {
   selectAllProducts,
   resetAllProducts,
   setPage,
+  resetParamsPage,
 } from "../../../../app/reducers";
 import { Loading, ProductCard } from "../../../../components";
 
@@ -65,6 +64,7 @@ const ProductsList = () => {
   // reset danh sách sản phẩm khi các phần tử của bộ lọc thay đổi
   useEffect(() => {
     dispatch(resetAllProducts());
+    dispatch(resetParamsPage())
   }, [filterColors, filterSizes, filterPrice, sortType, category]);
 
   useEffect(() => {
@@ -95,8 +95,6 @@ const ProductsList = () => {
     // cleanup function
     return () => window.removeEventListener("scroll", handleScroll);
   }, [status]);
-
-  // if (status === "loading") return <Loading />;
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

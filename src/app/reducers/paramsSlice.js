@@ -109,6 +109,9 @@ export const paramsSlice = createSlice({
       state.page = 1;
       state.presentValue = state.sortList[0];
     },
+    resetParamsPage: (state) => {
+      state.page = 1;
+    },
   },
 });
 
@@ -123,6 +126,7 @@ export const {
   // increasePage,
   // decrementPage,
   setPage,
+  resetParamsPage,
 } = paramsSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
