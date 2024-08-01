@@ -28,6 +28,10 @@ import style3 from "../assets/images/styles/shoe-3_754f417a-8a49-40d6-a97e-0f49e
 import style4 from "../assets/images/styles/shoe-4_8571aa58-425b-41cb-863f-61e557328078.webp";
 import style5 from "../assets/images/styles/shoe-5_4396909a-74bd-46c3-8252-6d565acac45c.jpg";
 
+import logo from "../assets/images/logo/message.png";
+
+export const logoApp = { url: logo, name: "logo QM Store" };
+
 export const sliderImage = [
   {
     name: "banner 1",

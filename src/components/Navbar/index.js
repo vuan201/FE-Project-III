@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Dropdow from "../Dropdow";
 import "./Navbar.css";
@@ -29,8 +29,8 @@ const Navbar = () => {
   const brandsStatus = useSelector(selectBrandsStatus);
   const brandsError = useSelector(selectBrandsError);
 
-  let listCategory = [];
-  let listBrands = [];
+  const [listBrands, setListBrands] = useState([]);
+  const [listCategories, setListCategories] = useState([]);
 
   useEffect(() => {
     const params = {};
@@ -44,39 +44,51 @@ const Navbar = () => {
     navigate(`/collections/${slug}`);
   };
 
-  // if (categoriesStatus === "succeeded") {
-  //   listCategory = categories.map((category) => {
-  //     return {
-  //       pageName: category.name,
-  //       url: `/collections/${category.slug}`,
-  //       onClick: () =>
-  //         handleGoToCollections(category.id, category.name, category.slug),
-  //     };
-  //   });
-  // }
+  useEffect(() => {
+    if (brandsStatus === "succeeded" && categoriesStatus === "succeeded") {
+      // console.log(111111);
+      const newListBrands = brands.reduce((acc, brand) => {
+        const categoryBrand = categories.find(
+          (category) => category.name === brand.name
+        );
 
-  if (brandsStatus === "succeeded") {
-    listBrands = brands.reduce((acc, brand) => {
-      const categoryBrand = categories.find(
-        (category) => category.name === brand.name
-      );
+        if (categoryBrand) {
+          acc.push({
+            pageName: categoryBrand.name,
+            // url: `/collections/${categoryBrand.name}`,
+            onClick: () =>
+              handleGoToCollections(
+                categoryBrand.id,
+                categoryBrand.name,
+                categoryBrand.slug
+              ),
+          });
+        }
 
-      if (categoryBrand) {
-        acc.push({
-          pageName: categoryBrand.name,
-          // url: `/collections/${categoryBrand.name}`,
-          onClick: () =>
-            handleGoToCollections(
-              categoryBrand.id,
-              categoryBrand.name,
-              categoryBrand.slug
-            ),
-        });
-      }
+        return acc;
+      }, []);
 
-      return acc;
-    }, []);
-  }
+      const newListCategories = categories.reduce((acc, category) => {
+        const brandCategory = brands.find(
+          (brand) => brand.name === category.name
+        );
+
+        if (!brandCategory) {
+          acc.push({
+            pageName: category.name,
+            onClick: () =>
+              handleGoToCollections(category.id, category.name, category.slug),
+          });
+        }
+
+        return acc;
+      }, []);
+
+      setListBrands(newListBrands);
+      setListCategories(newListCategories);
+    }
+  }, [brandsStatus, categoriesStatus]);
+
   const listPage = [
     { pageName: "Home", url: "/" },
     { pageName: "Đăng nhập", url: "/login" },
@@ -86,14 +98,14 @@ const Navbar = () => {
   ];
 
   const navItem = clsx(
-    "navItem rounded-lg px-4 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900 z-10"
+    "navItem rounded-lg px-4 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900 z-10 cursor-pointer"
   );
 
   return (
     <nav className="navbar flex justify-left space-x-4 ">
-      <div className={navItem}>
+      {/* <div className={navItem}>
         <NavLink to={"/"}>Trang chủ</NavLink>
-      </div>
+      </div> */}
       <div className={navItem}>
         <Dropdow listPage={listPage} itemLeft>
           Trang
@@ -104,11 +116,12 @@ const Navbar = () => {
           Hãng
         </Dropdow>
       </div>
-      {/* <div className={navItem}>
-        <Dropdow listPage={listCategory} itemLeft>
+      {/* ) : undefined} */}
+      <div className={navItem}>
+        <Dropdow listPage={listCategories} itemLeft>
           Danh mục
         </Dropdow>
-      </div> */}
+      </div>
     </nav>
   );
 };

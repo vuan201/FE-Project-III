@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../Button";
 import { Link, NavLink } from "react-router-dom";
 import "./Dropdow.css";
 import clsx from "clsx";
@@ -7,14 +6,17 @@ const Dropdow = (prop) => {
   const { listPage, children } = prop;
   const { itemCenter, itemRight, itemLeft } = prop;
 
-  const dropdownClassName = clsx(" dropdowItem inline-block h-full w-full", {
-    "left-[-100px]": itemCenter,
-    "right-0": itemRight,
-    "left-0": itemLeft,
-  });
+  const dropdownClassName = clsx(
+    "dropdowItem cursor-pointer ",
+    {
+      "left-0 -translate-x-2/4": itemCenter,
+      "right-0": itemRight,
+      "left-0": itemLeft,
+    }
+  );
 
   return (
-    <div className={"dropdown inline-block h-full w-full"}>
+    <div className={"dropdown inline-block h-full w-full "}>
       <div>{children}</div>
       {listPage && Array.isArray(listPage) && listPage.length > 0 ? (
         <div className={dropdownClassName}>
