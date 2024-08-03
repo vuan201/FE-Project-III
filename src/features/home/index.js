@@ -18,9 +18,9 @@ const Home = () => {
   return (
     <div className="m-auto">
       <IntroSlide />
-      <CategoriesSlide />
-      <BrandsSlide />
-      <NewProducts />
+      {/* <CategoriesSlide /> */}
+      {/* <BrandsSlide /> */}
+      <NewProducts/>
       <BannerWrapContainer />
       <OutstandingContainer />
       <BigBanner />

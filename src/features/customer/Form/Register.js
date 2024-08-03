@@ -1,22 +1,36 @@
-import { React, useRef } from "react";
-import { useReducer } from "react";
-import reducer, { initValue } from "../../../Reducer/Reducer";
+import { React, useEffect } from "react";
+import "./Form.css";
+import { Input, Button, AlertMessage } from "../../../components";
+import validator from "./Validate";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
+  selectAuthRegister,
   setName,
   setEmail,
   setPhone,
   setPassword,
   setPasswordComfirmation,
-} from "../../../Reducer/Action";
-
-import "./Form.css";
-import { Input, Button, BannerHeadPage } from "../../../components";
-import validator from "./Validate";
-import { Link } from "react-router-dom";
+  register,
+  selectAuthError,
+  selectAuthToken,
+  selectAuthStatus,
+  resetAuthState,
+} from "../../../app/reducers/";
 
 const Register = () => {
-  const [state, dispatch] = useReducer(reducer, initValue);
-  const { name, email, phone, password, passwordComfirmation } = state;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const infomation = useSelector(selectAuthRegister);
+  const token = useSelector(selectAuthToken);
+  const status = useSelector(selectAuthStatus);
+  const error = useSelector(selectAuthError);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetAuthState());
+    };
+  }, []);
 
   const baseOptions = {
     form: "#registerForm",
@@ -26,81 +40,90 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleNameValidator();
-    handleEmailValidator();
-    handlePhoneValidator();
-    handlePasswordValidator();
-    handlePasswordComfirmationValidator();
+
+    const isName = handleNameValidator();
+    const isEmail = handleEmailValidator();
+    const isPhone = handlePhoneValidator();
+    const isPassword = handlePasswordValidator();
+    const isPasswordComfirmation = handlePasswordComfirmationValidator();
+
+    if (isName && isEmail && isPhone && isPassword && isPasswordComfirmation) {
+      dispatch(register(infomation));
+      if (token) navigate("/");
+    }
   };
 
   const handleNameValidator = () => {
-    handleValidator({
+    return handleValidator({
       ...baseOptions,
       rules: [
-        validator.isRequired(`#name`, name),
-        validator.isName("#name", name),
+        validator.isRequired(`#name`, infomation.name),
+        validator.isName("#name", infomation.name),
       ],
     });
   };
 
   const handleEmailValidator = () => {
-    handleValidator({
+    return handleValidator({
       ...baseOptions,
       rules: [
-        validator.isRequired("#email", email),
-        validator.isEmail("#email", email),
+        validator.isRequired("#email", infomation.email),
+        validator.isEmail("#email", infomation.email),
       ],
     });
   };
   const handlePhoneValidator = () => {
-    handleValidator({
+    return handleValidator({
       ...baseOptions,
       rules: [
-        validator.isRequired("#phone", phone),
-        validator.isPhone("#phone", phone),
+        validator.isRequired("#phone", infomation.phone),
+        validator.isPhone("#phone", infomation.phone),
       ],
     });
   };
 
   const handlePasswordValidator = () => {
-    handleValidator({
+    return handleValidator({
       ...baseOptions,
       rules: [
-        validator.isRequired("#password", password),
-        validator.isPassword("#password", password),
+        validator.isRequired("#password", infomation.password),
+        validator.isPassword("#password", infomation.password),
       ],
     });
   };
 
   const handlePasswordComfirmationValidator = () => {
-    handleValidator({
+    return handleValidator({
       ...baseOptions,
       rules: [
-        validator.isRequired("#passwordComfirmation", passwordComfirmation),
+        validator.isRequired(
+          "#passwordComfirmation",
+          infomation.passwordComfirmation
+        ),
         validator.isComfirmed(
           "#passwordComfirmation",
-          passwordComfirmation,
-          password
+          infomation.passwordComfirmation,
+          infomation.password
         ),
       ],
     });
   };
-  const handleValidator = (options) => {
-    validator(options);
-  };
+  const handleValidator = (options) => validator(options);
 
   return (
     <>
       {/* <BannerHeadPage title={"Đăng ký"} /> */}
       <div className="form ">
+        {status === "failed" ? (
+          <AlertMessage type={"error"}>Tài khoản đã tồn tại</AlertMessage>
+        ) : undefined}
         <div className="formValue">
           <form className="grid justify-items-center " id="registerForm">
             <h1>ĐĂNG KÝ</h1>
-
             <Input
               id="name"
               type="text"
-              value={name}
+              value={infomation.name}
               onChange={(e) => dispatch(setName(e.target.value))}
               Validator={handleNameValidator}
             >
@@ -110,7 +133,7 @@ const Register = () => {
             <Input
               id="email"
               type="email"
-              value={email}
+              value={infomation.email}
               onChange={(e) => dispatch(setEmail(e.target.value))}
               Validator={handleEmailValidator}
             >
@@ -120,7 +143,7 @@ const Register = () => {
             <Input
               id="phone"
               type="text"
-              value={phone}
+              value={infomation.phone}
               onChange={(e) => dispatch(setPhone(e.target.value))}
               Validator={handlePhoneValidator}
             >
@@ -130,7 +153,7 @@ const Register = () => {
             <Input
               id="password"
               type="password"
-              value={password}
+              value={infomation.password}
               onChange={(e) => dispatch(setPassword(e.target.value))}
               Validator={handlePasswordValidator}
             >
@@ -140,7 +163,7 @@ const Register = () => {
             <Input
               id="passwordComfirmation"
               type="password"
-              value={passwordComfirmation}
+              value={infomation.passwordComfirmation}
               onChange={(e) =>
                 dispatch(setPasswordComfirmation(e.target.value))
               }

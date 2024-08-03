@@ -3,6 +3,7 @@ import "./assets/styles/App.css";
 import { Header, Footer } from "./features";
 import { Login, Home, Register, Collections, ProductDetail } from "./features";
 import ScrollToTop from "./utils/ScrollToTop";
+import Carts from "./features/Carts";
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/collections" element={<Collections />} />
+          <Route path="/collections/:category" element={<Collections />} />
           <Route path="/products/:slug" element={<ProductDetail />} />
+          <Route path="/cart" element={<Carts />} />
         </Routes>
       </div>
       <Footer />

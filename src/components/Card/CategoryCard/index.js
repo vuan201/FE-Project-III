@@ -1,19 +1,23 @@
 import { React, useState, memo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { setParamsCategory } from "../../../app/reducers";
 
 import "./CategoryCard.css";
 
 const CategoryCard = ({ data }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [mouseMoved, setMouseMoved] = useState(false);
-  const { id, name, imgUrl } = data;
+  const { id, name, imgUrl, slug } = data;
 
   const handleClick = (e) => {
     if (e.button === 0)
       if (!mouseMoved) {
-        navigate("/collections");
+        dispatch(setParamsCategory({ id, name }));
+        navigate(`/collections/${slug}`);
       }
   };
 

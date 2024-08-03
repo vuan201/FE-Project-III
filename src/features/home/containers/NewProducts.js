@@ -14,7 +14,8 @@ const NewProducts = () => {
   const state = useSelector(selectNewProductsStatus);
 
   useEffect(() => {
-    dispatch(fetchNewProducts());
+    const params = { sort: "created_at", order: "ASC" };
+    dispatch(fetchNewProducts(params));
   }, [dispatch]);
 
   return (

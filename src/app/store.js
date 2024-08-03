@@ -16,14 +16,13 @@ import {
   categoriesSlice,
   brandsSlice,
   productsSlice,
-  stylesSlice,
   colorsSlice,
   sizesSlice,
   newProductsSlice,
   productDetailSlice,
-  quantitySlice,
-  authSlice,
   paramsSlice,
+  authSlice,
+  cartsSlice,
 } from "./reducers";
 
 export default configureStore({
@@ -32,12 +31,11 @@ export default configureStore({
     brands: brandsSlice,
     products: productsSlice,
     newProducts: newProductsSlice,
-    styles: stylesSlice,
     params: paramsSlice,
     colors: colorsSlice,
     sizes: sizesSlice,
     productDetail: productDetailSlice,
-    quantity: quantitySlice,
     auth: authSlice,
+    carts: cartsSlice,
   },
 });

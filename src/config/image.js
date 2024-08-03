@@ -22,6 +22,16 @@ import policy3 from "../assets/images/policy/service_ic_3.webp";
 import policy4 from "../assets/images/policy/service_ic_4.webp";
 import policy5 from "../assets/images/policy/service_ic_5.webp";
 
+import style1 from "../assets/images/styles/shoe-1_3546c7e6-3e33-424d-9f42-941c1b7734b2.webp";
+import style2 from "../assets/images/styles/shoe-2_becdb745-47ac-40ca-903f-25f6be7e0e0e.webp";
+import style3 from "../assets/images/styles/shoe-3_754f417a-8a49-40d6-a97e-0f49e73363ac.webp";
+import style4 from "../assets/images/styles/shoe-4_8571aa58-425b-41cb-863f-61e557328078.webp";
+import style5 from "../assets/images/styles/shoe-5_4396909a-74bd-46c3-8252-6d565acac45c.jpg";
+
+import logo from "../assets/images/logo/message.png";
+
+export const logoApp = { url: logo, name: "logo QM Store" };
+
 export const sliderImage = [
   {
     name: "banner 1",
@@ -86,3 +96,11 @@ export const collectionImage = {
 };
 
 export const policyImage = [policy1, policy2, policy3, policy4, policy5];
+
+export const styles = [
+  { image: style1 },
+  { image: style2 },
+  { image: style3 },
+  { image: style4 },
+  { image: style5 },
+];

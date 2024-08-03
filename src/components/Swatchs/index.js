@@ -1,8 +1,15 @@
 import React, { memo, useEffect, useState } from "react";
+import { Image } from "../";
 import "./Swatchs.css";
 
 const Swatchs = (prop) => {
-  const { swatchs, isLimit = true, limit = 4 } = prop;
+  const {
+    swatchs,
+    isLimit = true,
+    limit = 4,
+    imageSelector,
+    setImageSelector,
+  } = prop;
 
   // lưu trạng thái giới hạn có tồn tại trên component hay không
   const [stateLimit, setStateLimit] = useState(false);
@@ -17,10 +24,8 @@ const Swatchs = (prop) => {
   // chuyển hóa nếu có giới hạn
   const [newSwatchs, setNewSwatchs] = useState([]);
 
-  const [selected, setSelected] = useState(0);
-
   useEffect(() => {
-    if (isLimit && swatchs.length >= limit) {
+    if (isLimit && swatchs.length > limit) {
       setStateLimit(true);
 
       const visibleSwatchs = showRest ? swatchs.slice(0, limit) : swatchs;
@@ -44,15 +49,10 @@ const Swatchs = (prop) => {
         ? newSwatchs.map((swatch, index) => (
             <li
               key={index}
-              className={
-                selected === swatch.id ? "item active my-auto" : "item my-auto"
-              }
-              onClick={() => setSelected(swatch.id)}
+              className={imageSelector.color === swatch.color ? "item active" : "item"}
+              onClick={() => setImageSelector(swatch)}
             >
-              <span
-                style={{ backgroundColor: swatch.code }}
-                className="block w-full h-full rounded-full"
-              ></span>
+              <Image data={{ image: swatch.url, name: swatch.color }} />
               <div className="clearfix text-center">
                 <span className="titleSwatch">{swatch.color}</span>
               </div>

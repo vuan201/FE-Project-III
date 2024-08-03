@@ -17,25 +17,70 @@ export const login = createAsyncThunk(
   }
 );
 
+export const register = createAsyncThunk(
+  `${baseame}/register`,
+  async (infomation, { rejectWithValue }) => {
+    try {
+      const response = await authApi.register(infomation);
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: baseame,
   initialState: {
     token: Cookies.get("token") ?? null,
+    register: {
+      name: "",
+      email: "",
+      phone: "",
+      password: "",
+      passwordComfirmation: "",
+    },
     status: "idle",
     error: null,
   },
   reducers: {
+    resetAuthState: (state) => {
+      state.register = {
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
+        passwordComfirmation: "",
+      };
+      state.status = "idle";
+      state.error = null;
+    },
     logout: (state) => {
       state.token = null;
       state.error = null;
       state.status = "idle";
       Cookies.remove("token");
     },
+    setName: (state, action) => {
+      state.register.name = action.payload;
+    },
+    setEmail: (state, action) => {
+      state.register.email = action.payload;
+    },
+    setPhone: (state, action) => {
+      state.register.phone = action.payload;
+    },
+    setPassword: (state, action) => {
+      state.register.password = action.payload;
+    },
+    setPasswordComfirmation: (state, action) => {
+      state.register.passwordComfirmation = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
-        state.status = true;
+        state.status = "loading";
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
@@ -46,17 +91,46 @@ const authSlice = createSlice({
           action.payload.token,
           getTimeByToken(action.payload.token)
         );
+        state.error = null;
       })
       .addCase(login.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+      })
+
+      .addCase(register.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.token = action.payload.token;
+        Cookies.set(
+          "token",
+          action.payload.token,
+          getTimeByToken(action.payload.token)
+        );
+        state.error = null;
+      })
+      .addCase(register.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       });
   },
 });
 
-export const { logout } = authSlice.actions;
+export const {
+  logout,
+  setName,
+  setEmail,
+  setPhone,
+  setPassword,
+  setPasswordComfirmation,
+  resetAuthState,
+} = authSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
+export const selectAuthRegister = (state) => state.auth.register;
 export const selectAuthToken = (state) => state.auth.token;
 export const selectAuthStatus = (state) => state.auth.status;
 export const selectAuthError = (state) => state.auth.error;

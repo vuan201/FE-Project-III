@@ -1,27 +1,36 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Breadcrumbs, BannerHeadPage } from "../../components";
 import { SortButton, ProductsList, Filters } from "./container";
 
-import { resetItem } from "../../app/reducers";
+import { resetParams, selectCategory } from "../../app/reducers";
 
 const Collections = () => {
   const dispatch = useDispatch();
 
+  const category = useSelector(selectCategory);
+
   useEffect(() => {
     return () => {
-      dispatch(resetItem());
+      dispatch(resetParams());
     };
   }, []);
 
   return (
     <div className="content w-full m-auto">
-      <BannerHeadPage title={"Bộ sưu tập"} />
+      <BannerHeadPage title={category.name ?? "Bộ sưu tập"} />
       <div className="mx-auto mb-10 px-12 mt-4">
         <div className="w-full m-auto max-w-container">
           <Breadcrumbs
-            breadcrumbs={[{ url: "/collections", name: "Bộ sưu tập" }]}
+            breadcrumbs={[
+              {
+                url: category.name
+                  ? `/collections/${category.name}`
+                  : "/collections",
+                name: category.name ?? "Bộ sưu tập",
+              },
+            ]}
           />
         </div>
       </div>

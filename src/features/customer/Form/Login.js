@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { Button, Input, Loading } from "../../../components";
+import { AlertMessage, Button, Input, Loading } from "../../../components";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -7,11 +7,13 @@ import {
   selectAuthStatus,
   selectAuthToken,
   login,
+  resetAuthState,
 } from "../../../app/reducers";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,20 +22,23 @@ const Login = () => {
   const error = useSelector(selectAuthError);
 
   useEffect(() => {
-    if (status === "succeeded") navigate("/");
-  }, [status]);
+    return () => {
+      dispatch(resetAuthState());
+    };
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ email: email, password: password }));
+    if (status === "succeeded") navigate("/");
   };
-
-  if (status === "loading") return <Loading />;
-
-  if (error) return <div>{error}</div>;
-
   return (
     <div className="form ">
+      {status === "failed" ? (
+        <AlertMessage type={"error"}>
+          Tài khoản hoặc mật khẩu không đúng
+        </AlertMessage>
+      ) : undefined}
       <div className="formValue">
         <form className="grid justify-items-center " id="loginForm">
           <h1>ĐĂNG NHẬP</h1>

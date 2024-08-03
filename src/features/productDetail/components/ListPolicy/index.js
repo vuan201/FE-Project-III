@@ -1,5 +1,5 @@
 import React from "react";
-import { Policy } from "../../components";
+import { Policy } from "../";
 import { policyImage } from "../../../../config/image";
 
 const ListPolicy = () => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { selectorColor } from "../../../../app/reducers";
 import { useSelector } from "react-redux";
 import { Image } from "../../../../components";
@@ -14,19 +14,26 @@ const ProductSlideImage = ({ images }) => {
           newImages[selectColor].map((image, index) => {
             if (index === 0)
               return (
-                <div key={index} className="col-span-2">
+                <div key={index} className="col-span-2 aspect-square">
                   <Image data={{ image: image.url, name: image.color }} />
                 </div>
               );
             else
               return (
-                <div key={index}>
+                <div key={index} className="aspect-square">
                   <Image data={{ image: image.url, name: image.color }} />
                 </div>
               );
           })
         ) : (
-          <div className="col-span-2">{newImages[selectColor][0].url}</div>
+          <div className="col-span-2 aspect-square">
+            <Image
+              data={{
+                image: newImages[selectColor][0].url,
+                name: newImages[selectColor][0].color,
+              }}
+            />
+          </div>
         )
       ) : undefined}
     </div>
