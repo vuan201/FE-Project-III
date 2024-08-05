@@ -11,8 +11,9 @@ import {
   BigBanner,
   ByMeContainer,
   NewsletterSignupForm,
-  MarketingContainer,
+  // MarketingContainer,
 } from "./containers";
+import NewMarketingContainer from "./containers/NewMarketingContainer";
 
 const Home = () => {
   return (
@@ -20,13 +21,13 @@ const Home = () => {
       <IntroSlide />
       {/* <CategoriesSlide /> */}
       {/* <BrandsSlide /> */}
-      <NewProducts/>
+      <NewProducts />
       <BannerWrapContainer />
       <OutstandingContainer />
       <BigBanner />
       <ByMeContainer />
       <NewsletterSignupForm />
-      <MarketingContainer />
+      <NewMarketingContainer />
     </div>
   );
 };
