@@ -6,13 +6,14 @@ const Dropdow = (prop) => {
   const { listPage, children } = prop;
   const { itemCenter, itemRight, itemLeft } = prop;
 
-  const dropdownClassName = clsx(
-    "dropdowItem cursor-pointer ",
-    {
-      "left-0 -translate-x-2/4": itemCenter,
-      "right-0": itemRight,
-      "left-0": itemLeft,
-    }
+  const dropdownClassName = clsx("dropdowItem cursor-pointer ", {
+    "left-0 -translate-x-2/4": itemCenter,
+    "right-0": itemRight,
+    "left-0": itemLeft,
+  });
+
+  const dropdownItem = clsx(
+    "block px-4 py-4 hover:text-orange-500 bg-white border-1 border-line-border transition"
   );
 
   return (
@@ -22,16 +23,12 @@ const Dropdow = (prop) => {
         <div className={dropdownClassName}>
           {listPage.map((page, index) => {
             return page.url ? (
-              <NavLink
-                className="block px-4 py-4 hover:text-orange-500 bg-white border-1 border-line-border"
-                key={index}
-                to={page.url}
-              >
+              <NavLink className={dropdownItem} key={index} to={page.url}>
                 {page.pageName ?? undefined}
               </NavLink>
             ) : (
               <div
-                className="block px-4 py-4 hover:text-orange-500 bg-white border-1 border-line-border"
+                className={dropdownItem}
                 key={index}
                 onClick={page.onClick ?? undefined}
               >

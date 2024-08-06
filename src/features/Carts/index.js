@@ -13,6 +13,7 @@ import {
 import { priceConvert } from "../../utils/priceConvert";
 import { Link } from "react-router-dom";
 import CartItem from "./container/CartItem";
+import CartPayment from "./container/CartPayment";
 
 const Carts = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,9 @@ const Carts = () => {
                   ))
                 : undefined}
             </ul>
-            <div className="col-span-4 md:col-span-1">khung thanh toán</div>
+            <div className="col-span-4 md:col-span-1">
+              <CartPayment/>
+            </div>
           </div>
         </div>
       </div>

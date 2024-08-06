@@ -14,7 +14,7 @@ const SizeItem = ({ size, isValid, isSelector, onClick }) => {
   return (
     <div
       className={sizeItemClassName}
-      onClick={() => onClick(size)}
+      onClick={onClick}
     >
       <span>{size}</span>
     </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Image, InputQuantity } from "../../../../components";
-import { priceConvert } from "../../../../utils/priceConvert";
 import { useDispatch, useSelector } from "react-redux";
 import {
   removeItemToCart,
@@ -9,28 +8,29 @@ import {
   setQuantity,
   updateCartItems,
 } from "../../../../app/reducers";
-import { TfiClose } from "react-icons/tfi";
+import CartItemPrice from "../../components/CartItemPrice";
+import CartItemInfomation from "../../components/CartItemInfomation";
+import CartRemoveIcon from "../../components/CartRemoveIcon";
 const CartItem = ({ cart }) => {
   const dispatch = useDispatch();
   const token = useSelector(selectAuthToken);
+
   const { name, imageUrl, slug, sku, price, quantity, color, size } = cart;
 
   const handleSetQuantity = (newQuantity) => {
     if (token) {
-      dispatch(
-        updateCartItems([
-          {
-            name,
-            imageUrl,
-            slug,
-            sku,
-            price,
-            quantity: newQuantity,
-            color,
-            size,
-          },
-        ])
-      );
+      const item = {
+        name,
+        imageUrl,
+        slug,
+        sku,
+        price,
+        quantity: newQuantity,
+        color,
+        size,
+      };
+
+      dispatch(updateCartItems([item]));
       return;
     }
     if (newQuantity === 0) {
@@ -53,16 +53,15 @@ const CartItem = ({ cart }) => {
             className="text-black hover:underline hover:text-blue-800 transition"
             to={`/products/${slug}`}
           >
-            {name}
+            <CartItemInfomation>{name}</CartItemInfomation>
           </Link>
-          <div>{color}</div>
-          <div>{size}</div>
+          <CartItemInfomation>{color}</CartItemInfomation>
+          <CartItemInfomation>{size}</CartItemInfomation>
         </div>
       </div>
 
       <div className="col-span-1">
-        <span>{priceConvert(price)}</span>
-        <span>₫</span>
+        <CartItemPrice price={price} />
       </div>
 
       <div className="col-span-2">
@@ -74,16 +73,10 @@ const CartItem = ({ cart }) => {
       </div>
 
       <div className="col-span-1">
-        <span>{priceConvert(price * quantity)}</span>
-        <span>₫</span>
+        <CartItemPrice price={price * quantity} />
       </div>
 
-      <div
-        onClick={() => handleSetQuantity(0)}
-        className="col-span-1 cursor-pointer hover:text-red-700 hover:bg-slate-200 transition p-2 border rounded-full hover:border-black"
-      >
-        <TfiClose />
-      </div>
+      <CartRemoveIcon onClick={() => handleSetQuantity(0)} />
     </div>
   );
 };

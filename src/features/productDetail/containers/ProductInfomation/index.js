@@ -12,11 +12,16 @@ import {
   addItemToCart,
   updateCartItems,
 } from "../../../../app/reducers";
-import { ImageItem, SizeItem, ListPolicy } from "../../components";
+import {
+  ImageItem,
+  SizeItem,
+  ListPolicy,
+  ProductPrice,
+  ProductStatus,
+  ProductColorName,
+} from "../../components";
 import { Button, InputQuantity } from "../../../../components";
 import { FaRegHeart } from "react-icons/fa";
-import { FaCartPlus } from "react-icons/fa";
-import { priceConvert } from "../../../../utils/priceConvert";
 
 const ProductInfomation = ({ data }) => {
   const { name, description, brand, categories, options, images, slug } = data;
@@ -107,6 +112,19 @@ const ProductInfomation = ({ data }) => {
 
   // Thêm sản phẩm vào giỏ hàng
   const handleAddToCart = () => {
+    if (token) {
+      const log = dispatch(
+        updateCartItems([
+          {
+            sku: selectOption.sku,
+            quantity: quantity,
+          },
+        ])
+      );
+      console.log(log);
+      
+      return
+    }
     dispatch(
       addItemToCart({
         slug: slug,
@@ -128,31 +146,19 @@ const ProductInfomation = ({ data }) => {
       </div>
 
       <div className="mb-5">
-        <span className="text-red-600 text-3xl">
-          {priceConvert(selectOption.price)} VND
-        </span>
+        <ProductPrice price={selectOption.price} />
       </div>
 
       <div className="mb-5">
-        <span>Tình trạng : </span>
-        <span className="font-medium">
-          {selectColor !== "" && selectSize !== "" ? (
-            selectOption.quantity > 0 ? (
-              <span className="text-blue-700">
-                Còn hàng ({selectOption.quantity})
-              </span>
-            ) : (
-              <span className="text-red-500">Hết hàng</span>
-            )
-          ) : (
-            <span className="text-blue-700">Còn hàng</span>
-          )}
-        </span>
+        <ProductStatus
+          selectColor={selectColor}
+          selectorSize={selectSize}
+          quantity={selectOption.quantity ?? null}
+        />
       </div>
 
       <div className="mb-5">
-        <span>Màu sắc: </span>
-        <span className="font-bold">{selectColor}</span>
+        <ProductColorName color={selectColor} />
       </div>
 
       <ul className="mb-5 flex">
@@ -162,7 +168,7 @@ const ProductInfomation = ({ data }) => {
               image={newImages[key][0]}
               isValid={isColorValid(key)}
               isSelector={key === selectColor}
-              onClick={handleSetSelectorColor}
+              onClick={() => handleSetSelectorColor(newImages[key][0].color)}
             />
           </li>
         ))}
@@ -179,7 +185,7 @@ const ProductInfomation = ({ data }) => {
               size={key}
               isValid={isSizeValid(key)}
               isSelector={key.toString() === selectSize}
-              onClick={handleSetSelectorSize}
+              onClick={() => handleSetSelectorSize(key)}
             />
           </li>
         ))}

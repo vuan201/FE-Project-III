@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import Dropdow from "../Dropdow";
+import Dropdow from "../../components/Dropdow";
 import "./Navbar.css";
 import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +14,7 @@ import {
   selectCategoriesItem,
   selectCategoriesStatus,
   setParamsCategory,
-} from "../../app/reducers";
+} from "../../../../app/reducers";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -102,15 +102,15 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="navbar flex justify-left space-x-4 ">
+    <nav className="navbar flex justify-left">
       {/* <div className={navItem}>
         <NavLink to={"/"}>Trang chủ</NavLink>
       </div> */}
-      <div className={navItem}>
+      {/* <div className={navItem}>
         <Dropdow listPage={listPage} itemLeft>
           Trang
         </Dropdow>
-      </div>
+      </div> */}
       <div className={navItem}>
         <Dropdow listPage={listBrands} itemLeft>
           Hãng
