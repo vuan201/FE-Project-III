@@ -24,8 +24,12 @@ axiosClient.interceptors.request.use(
     // config.cancelToken = cancelTokenSource.token;
 
     // Làm gì đó trước khi request dược gửi đi
-    const token = Cookies.remove("token");
-    if (token) config.headers.Authorization = `Bearer ${token}`;
+
+    const token = Cookies.get("token");
+    if (token) {
+      // console.log(token);
+      config.headers.Authorization = `Bearer ${token}`;
+    }
 
     return config;
   },

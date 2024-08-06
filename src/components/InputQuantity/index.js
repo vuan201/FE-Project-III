@@ -13,7 +13,7 @@ const InputQuantity = (prop) => {
     setValue(value + 1);
   };
   const handleDecrement = () => {
-    if (value > 1) setValue(value - 1);
+    if (value > 0) setValue(value - 1);
   };
   const handleSetQuantity = (newValue) => {
     if (newValue > 1 && newValue < limit) setValue(newValue);
@@ -27,7 +27,7 @@ const InputQuantity = (prop) => {
         <FiMinus />
       </span>
       <input
-        className="w-auto max-w-16 border text-center px-2 focus:outline-none"
+        className="w-auto max-w-11 border text-center px-2 focus:outline-none"
         value={value}
         onChange={(e) => handleSetQuantity(e.target.value)}
       />

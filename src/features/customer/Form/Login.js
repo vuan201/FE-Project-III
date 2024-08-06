@@ -30,7 +30,9 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ email: email, password: password }));
-    if (status === "succeeded") navigate("/");
+    if (status === "succeeded") {
+      navigate("/");
+    }
   };
   return (
     <div className="form ">

@@ -33,7 +33,7 @@ const Header = () => {
   return (
     <header
       className={
-        "w-full bg-white-50 text-black text-center my-4 mx-2 border-b-1 border-line-border relative "
+        "w-full bg-white-50 text-black text-center mt-4 mx-2 pb-4 border-b-1 border-line-border relative px-4"
       }
     >
       <Overlay isOverlay={receive} onClick={() => setReceive(false)}>
@@ -61,7 +61,7 @@ const Header = () => {
       <div className={"flex items-center gap-2 bg-transparent max-h-14"}>
         <div className="flex basis-1/2 self-center max-h-14">
 
-          <Link className="basis-1/6 self-center cursor-pointer ml-4" to={"/"}>
+          <Link className="basis-1/6 self-center cursor-pointer" to={"/"}>
             <Image data={{ image: logoApp.url, name: logoApp.name }} />
           </Link>
 
@@ -70,20 +70,20 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="basis-1/2 flex justify-end pr-8">
-          <div className="mr-4 navItem rounded-lg px-4 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900 cursor-pointer">
+        <div className="basis-1/2 flex justify-end items-center">
+          <div className=" navItem rounded-lg px-4 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900 cursor-pointer">
             <FaSearch />
           </div>
           <Link
-            className="mr-4 navItem rounded-lg px-4 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900 cursor-pointer"
+            className=" navItem rounded-lg px-4 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900 cursor-pointer"
             to={"/carts"}
           >
             <FaShoppingCart />
           </Link>
-          <div className="mr-4 navItem rounded-lg px-4 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900 cursor-pointer">
+          <div className=" navItem rounded-lg px-4 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900 cursor-pointer">
             <FaRegHeart />
           </div>
-          <div className="mr-4 navItem rounded-lg px-4 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900 cursor-pointer">
+          <div className=" navItem rounded-lg px-4 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900 cursor-pointer">
             {token === null ? (
               <Dropdow listPage={authenLisPage} itemRight>
                 <FiUser />

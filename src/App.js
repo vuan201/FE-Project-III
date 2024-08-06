@@ -1,9 +1,15 @@
 import { Routes, Route } from "react-router";
 import "./assets/styles/App.css";
 import { Header, Footer } from "./features";
-import { Login, Home, Register, Collections, ProductDetail } from "./features";
+import {
+  Login,
+  Home,
+  Register,
+  Collections,
+  ProductDetail,
+  Carts,
+} from "./features";
 import ScrollToTop from "./utils/ScrollToTop";
-import Carts from "./features/Carts";
 
 function App() {
   return (
@@ -12,7 +18,7 @@ function App() {
       <div id="mainContent" className="w-full">
         <ScrollToTop />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/collections" element={<Collections />} />

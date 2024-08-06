@@ -5,7 +5,7 @@ const baseUrl = "/carts";
 const cartsApi = {
   getAll(params) {
     const url = baseUrl;
-    return axiosClient.get(url, { params });
+    return axiosClient.get(url);
   },
   get(id) {
     const url = `${baseUrl}/${id}`;
@@ -15,9 +15,9 @@ const cartsApi = {
     const url = `${baseUrl}/${data.id}`;
     return axiosClient.post(url);
   },
-  update(cartItems) {
+  update(carts, headers) {
     const url = `${baseUrl}`;
-    return axiosClient.put(url, cartItems);
+    return axiosClient.put(url, carts);
   },
   remove(id) {
     const url = `${baseUrl}/${id}`;

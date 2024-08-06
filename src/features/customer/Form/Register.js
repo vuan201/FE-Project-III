@@ -87,7 +87,7 @@ const Register = () => {
       ...baseOptions,
       rules: [
         validator.isRequired("#password", infomation.password),
-        validator.isPassword("#password", infomation.password),
+        // validator.isPassword("#password", infomation.password),
       ],
     });
   };

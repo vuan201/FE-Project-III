@@ -9,3 +9,4 @@ export { default as Register } from ".//customer/Form/Register";
 export { default as Collections } from "./Collections";
 export { default as Home } from "./home";
 export { default as ProductDetail } from "./productDetail";
+export { default as Carts } from "./Carts";

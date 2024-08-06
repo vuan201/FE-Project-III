@@ -13,10 +13,24 @@ export const fetchCarts = createAsyncThunk(
   }
 );
 
-export const updateItemCarts = createAsyncThunk(
-  `${baseName}/updateItemCarts`,
+export const updateCartItems = createAsyncThunk(
+  `${baseName}/updateCartItems`,
+
   async (cartItems) => {
-    const response = await cartsApi.put(cartItems);
+    let newCartItems = [];
+    let response;
+
+    if (Array.isArray(cartItems) && cartItems.length > 0)
+      newCartItems = cartItems.map(({ sku, quantity }) => {
+        return { sku: sku, quantity: quantity };
+      });
+
+    try {
+      response = await cartsApi.update(newCartItems);
+    } catch (error) {
+      console.log(error);
+    }
+
     return response;
   }
 );
@@ -26,39 +40,56 @@ export const cartsSlice = createSlice({
 
   // các giá trị ban đầu
   initialState: {
+    // carts: [],
     carts: JSON.parse(localStorage.getItem("carts")) ?? [],
     // carts: localStorage.removeItem("carts") ?? [],
     status: "idle",
     error: null,
   },
+
   reducers: {
+    setCarts: (state, action) => {
+      state.carts = action.payload;
+    },
     addItemToCart: (state, action) => {
       if (state.carts.some((cart) => cart.sku === action.payload.sku)) {
-        let newCarts;
-
-        if (state.carts.length > 1) {
-          const newCarts = state.carts.nap((cart) => {
-            if (cart.sky === action.payload.sky) {
-              cart.quantity = action.payload.quantity;
-            }
+        if (Array.isArray(state.carts) && state.carts.length > 1) {
+          const newCarts = state.carts.map((cart) => {
+            if (cart.sku === action.payload.sku)
+              cart.quantity += action.payload.quantity;
+            return cart;
           });
           state.carts = newCarts;
         } else {
-          if (state.carts[0].sky === action.payload.sky) {
-            state.carts[0].quantity = action.payload.quantity;
+          if (state.carts[0].sku === action.payload.sku) {
+            state.carts[0].quantity += action.payload.quantity;
           }
         }
       } else {
         state.carts.push(action.payload);
       }
-      localStorage.setItem("carts", JSON.stringify(state.carts));
+
+      localStorage.setItem("carts", JSON.stringify(state.carts ?? []));
     },
     removeItemToCart: (state, action) => {
-      if (state.carts.some((cart) => cart === action.payload)) {
-        state.carts = state.carts.filter(
-          (cart) => cart.sku !== action.payload.sku
-        );
-        localStorage.setItem("carts", state.carts);
+      if (state.carts.some((cart) => cart.sku === action.payload)) {
+        state.carts = state.carts.filter((cart) => cart.sku !== action.payload);
+        localStorage.setItem("carts", JSON.stringify(state.carts ?? []));
+      }
+    },
+    setQuantity: (state, action) => {
+      if (state.carts.some((cart) => cart.sku === action.payload.sku)) {
+        if (state.carts.length > 1) {
+          state.carts.map((cart) => {
+            if (cart.sku === action.payload.sku)
+              cart.quantity = action.payload.quantity;
+            return cart;
+          });
+        } else {
+          if (state.carts[0].sku === action.payload.sku)
+            state.carts[0].quantity = action.payload.quantity;
+        }
+        localStorage.setItem("carts", JSON.stringify(state.carts ?? []));
       }
     },
   },
@@ -72,27 +103,30 @@ export const cartsSlice = createSlice({
       })
       .addCase(fetchCarts.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.carts = action.payload;
+        state.carts = action.payload.items;
+        localStorage.setItem("carts", JSON.stringify(state.carts ?? []));
       })
       .addCase(fetchCarts.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       })
-      .addCase(updateItemCarts.pending, (state) => {
+      .addCase(updateCartItems.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(updateItemCarts.fulfilled, (state, action) => {
+      .addCase(updateCartItems.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.carts = action.payload;
+        state.carts = action.payload.items;
+        localStorage.setItem("carts", JSON.stringify(state.carts ?? []));
       })
-      .addCase(updateItemCarts.rejected, (state, action) => {
+      .addCase(updateCartItems.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
   },
 });
 
-export const { addItemToCart, removeItemToCart } = cartsSlice.actions;
+export const { addItemToCart, removeItemToCart, setQuantity, setCarts } =
+  cartsSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
 export const selectCartsItem = (state) => state.carts.carts;

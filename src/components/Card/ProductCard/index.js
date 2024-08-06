@@ -9,8 +9,9 @@ import { FaHeartCirclePlus, FaHeartCircleXmark } from "react-icons/fa6";
 import { LuEye } from "react-icons/lu";
 
 import "./ProductCard.css";
+import clsx from "clsx";
 
-const ProductCard = ({ data }) => {
+const ProductCard = ({ data, padding }) => {
   const { name, images, slug, options, discount } = data;
 
   const [imageSelector, setImageSelector] = useState({});
@@ -69,7 +70,7 @@ const ProductCard = ({ data }) => {
   };
 
   return (
-    <div className={"card px-4"}>
+    <div className={clsx("card", { "px-4": padding })}>
       <div className="cardImage block relative z-1 w-full aspect-square cardShadow ">
         {discount ?? (
           <div className="absolute top-1 right-1 bg-red-600 text-white">
@@ -127,7 +128,7 @@ const ProductCard = ({ data }) => {
         </div>
         <div className="text-xl productTitle">
           <Link
-            className="text-black hover:underline hover:text-blue-800 transition-all"
+            className="text-black hover:text-blue-800 transition"
             onClick={(e) => handleClick(e)}
             onMouseUp={(e) => handleClick(e)}
             onMouseMove={() => setMouseMoved(true)}

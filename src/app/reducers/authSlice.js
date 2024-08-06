@@ -33,6 +33,7 @@ const authSlice = createSlice({
   name: baseame,
   initialState: {
     token: Cookies.get("token") ?? null,
+    
     register: {
       name: "",
       email: "",
