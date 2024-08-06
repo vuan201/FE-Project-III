@@ -67,7 +67,9 @@ const Footer = () => {
 
             <ul>
               <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">Privacy Policy</Link>
+                <Link to="/privacy-policy" className="hover:text-[#db1215]">
+                  Privacy Policy
+                </Link>
               </li>
               <li className="mb-[10px] text-sm">
                 <Link className="hover:text-[#db1215]">
