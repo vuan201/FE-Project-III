@@ -1,30 +1,48 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styles from "./index.module.css";
 import clsx from "clsx";
 import { IoCartOutline } from "react-icons/io5";
 import { FiHeart, FiShuffle } from "react-icons/fi";
 import { LuEye } from "react-icons/lu";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const IMAGES = [
-  "https://picsum.photos/800/800",
-  "https://picsum.photos/700/700",
-  "https://picsum.photos/650/650",
-  "https://picsum.photos/850/850",
-  "https://picsum.photos/750/750",
-];
-
-const MyProductCard = () => {
+const MyProductCard = ({ data }) => {
+  const navigate = useNavigate();
   const [imageSelected, setImageSelected] = useState(0);
+
+  const { images, price } = useMemo(() => {
+    const images = data?.images?.reduce((res, curr) => {
+      const isExists = res?.some((it) => it.color === curr.color);
+
+      if (!isExists) {
+        res.push(curr);
+      }
+
+      return res;
+    }, []);
+    const imageSelectedData = images[imageSelected];
+    const colorSelected = data?.options?.find(
+      (it) => it.color === imageSelectedData.color
+    );
+    const price = colorSelected.price;
+
+    return {
+      images,
+      price,
+    };
+  }, [data?.images, data?.options, imageSelected]);
 
   const onThumbnailHover = (index) => {
     setImageSelected(index);
   };
 
   return (
-    <Link to="Product">
+    <div
+      onClick={() => navigate(`/products/${data.slug}`)}
+      className="cursor-pointer"
+    >
       <div
-        style={{ backgroundImage: `url(${IMAGES[imageSelected]})` }}
+        style={{ backgroundImage: `url(${images?.[imageSelected].url})` }}
         className="pt-[100%] bg-cover bg-center bg-no-repeat relative overflow-hidden group"
       >
         <div className="flex gap-x-1 absolute pb-2 bottom-0 w-full justify-center translate-y-full group-hover:translate-y-0 transition-all">
@@ -44,30 +62,32 @@ const MyProductCard = () => {
       </div>
 
       <div className="pt-5 flex flex-col gap-y-3">
-        <p className="text-left uppercase font-bold">
-          Polar Night Pack 2 Fusion 2.0
-        </p>
+        <p className="text-left uppercase font-bold">{data?.name}</p>
 
         <div className="flex items-center gap-x-2 text-sm">
-          <p className="text-[#0000008c] line-through">$150.00</p>
-          <p className="text-[#db1215] font-semibold">$149.95</p>
+          <p className="text-[#db1215] font-semibold">${price}</p>
         </div>
 
-        <div className="flex gap-x-1 justify-center">
-          {IMAGES.map((item, index) => (
+        <div className="flex gap-1 justify-center flex-wrap">
+          {images?.map((item, index) => (
             <div
               key={index}
               className={clsx(styles.thumbnailWrap, {
                 [styles.active]: index === imageSelected,
               })}
               onMouseOver={() => onThumbnailHover(index)}
+              onClick={(e) => e.stopPropagation()}
             >
-              <img src={item} alt="Thumbnail" />
+              <img
+                src={item.url}
+                alt="Thumbnail"
+                className="object-cover w-full h-full"
+              />
             </div>
           ))}
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

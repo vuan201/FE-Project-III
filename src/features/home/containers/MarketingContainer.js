@@ -33,7 +33,9 @@ const MarketingContainer = () => {
           {icons.map((icon, index) => (
             <div key={index} className="w-full h-full text-center mx-5">
               <div className="m-auto w-[40px] h-[40px] mb-4 ">{icon}</div>
-              <h5 className="uppercase text-lg mb-4">{descriptions[index].title}</h5>
+              <h5 className="uppercase text-lg mb-4">
+                {descriptions[index].title}
+              </h5>
               <p className="pb-4">{descriptions[index].description}</p>
             </div>
           ))}

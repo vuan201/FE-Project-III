@@ -6,10 +6,10 @@ const Button = (prop) => {
   const { children, onClick, type, className, isFull } = prop;
   const { afterAnimation, black, white, sky } = prop;
 
-  const btnClassName = clsx("button relative p-3 text-center transition-all", className, {
+  const btnClassName = clsx("button relative p-2 text-center transition-all", className, {
     ' w-full h-full': isFull,
     "bg-black text-white": black,
-    "bg-white text-black border border-black": white,
+    "bg-white text-black border border-black hover:bg-black hover:text-white": white,
     "bg-sky-100 text-black hover:border hover:border-sky-100 hover:bg-white":
       sky,
     "afterAnimation overflow-hidden": afterAnimation,

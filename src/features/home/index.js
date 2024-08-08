@@ -11,24 +11,23 @@ import {
   BigBanner,
   ByMeContainer,
   NewsletterSignupForm,
-  MarketingContainer,
-
+  // MarketingContainer,
 } from "./containers";
+import NewMarketingContainer from "./containers/NewMarketingContainer";
 
 const Home = () => {
-  
   return (
     <div className="m-auto">
       <IntroSlide />
-      <CategoriesSlide />
-      <BrandsSlide />
-      <NewProducts/>
+      {/* <CategoriesSlide /> */}
+      {/* <BrandsSlide /> */}
+      <NewProducts />
       <BannerWrapContainer />
       <OutstandingContainer />
       <BigBanner />
       <ByMeContainer />
       <NewsletterSignupForm />
-      <MarketingContainer />
+      <NewMarketingContainer />
     </div>
   );
 };

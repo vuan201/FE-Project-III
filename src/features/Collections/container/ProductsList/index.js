@@ -1,34 +1,40 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sort } from "../../../../utils/sort";
 import {
   fetchProducts,
-  selectProductsError,
   selectProductsItem,
   selectProductsStatus,
   selectFiltersColors,
   selectFiltersSizes,
   selectFiltersPrice,
   presentValue,
-  setProducts,
   selectCategory,
+  selectLimitDefoult,
+  selectPage,
+  addProducts,
+  selectAllProducts,
+  resetAllProducts,
+  setPage,
+  resetParamsPage,
 } from "../../../../app/reducers";
 import { Loading, ProductCard } from "../../../../components";
 
 const ProductsList = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectProductsItem);
+  const allProducts = useSelector(selectAllProducts);
   const status = useSelector(selectProductsStatus);
 
-  // filter
+  // params
   const category = useSelector(selectCategory);
   const filterColors = useSelector(selectFiltersColors);
   const filterSizes = useSelector(selectFiltersSizes);
   const filterPrice = useSelector(selectFiltersPrice);
   const sortType = useSelector(presentValue);
+  const limit = useSelector(selectLimitDefoult);
+  const page = useSelector(selectPage);
 
-  // console.log(category);
-
+  // call lại api khi param thay đổi
   useEffect(() => {
     const params = {
       category: category.id ?? null,
@@ -36,6 +42,8 @@ const ProductsList = () => {
       maxPrice: filterPrice[1],
       sort: sortType.sort,
       order: sortType.order,
+      limit: limit,
+      page: page,
     };
     filterColors.length > 0
       ? (params.color = filterColors.join(","))
@@ -43,19 +51,59 @@ const ProductsList = () => {
     filterSizes.length > 0
       ? (params.size = filterSizes.join(","))
       : (params.size = null);
-
     dispatch(fetchProducts(params));
+  }, [filterColors, filterSizes, filterPrice, sortType, category, page]);
 
-  }, [filterColors, filterSizes, filterPrice, sortType]);
+  // thêm các sản phẩm mới featch vào danh sách được in ra
+  useEffect(() => {
+    if (status === "succeeded") {
+      dispatch(addProducts(products));
+    }
+  }, [products]);
 
-  if (status === "loading") return <Loading />;
+  // reset danh sách sản phẩm khi các phần tử của bộ lọc thay đổi
+  useEffect(() => {
+    dispatch(resetAllProducts());
+    dispatch(resetParamsPage())
+  }, [filterColors, filterSizes, filterPrice, sortType, category]);
+
+  useEffect(() => {
+    // Thêm sự kiện cuộn
+    const handleScroll = () => {
+      //  Lấy giá trị khoảng cách từ đầu trang đến vị trí hiện tại
+      const scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      // Lấy chiều cao tổng cộng của tài liệu
+      const scrollHeight =
+        document.documentElement.scrollHeight || document.body.scrollHeight;
+
+      // Lấy chiều cao của cửa sổ hiển thị
+      const clientHeight =
+        document.documentElement.clientHeight || window.innerHeight;
+
+      if (
+        scrollTop + clientHeight >= scrollHeight - 5 &&
+        status !== "loading" &&
+        products.length > 0
+      ) {
+        dispatch(setPage());
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // cleanup function
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [status]);
+
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-      {products.length > 0
-        ? products.map((product, index) => (
+      {allProducts.length > 0
+        ? allProducts.map((product, index) => (
             <ProductCard data={product} key={index} />
           ))
         : undefined}
+      {status === "loading" ?? <Loading />}
     </div>
   );
 };

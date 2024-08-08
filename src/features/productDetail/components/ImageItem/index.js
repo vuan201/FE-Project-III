@@ -15,10 +15,7 @@ const ImageItem = ({ image, isSelector, isValid, onClick }) => {
     }
   );
   return (
-    <div
-      className={imageBoxClassName}
-      onClick={() => onClick(color) }
-    >
+    <div className={imageBoxClassName} onClick={() => onClick(color)}>
       <div className="w-full h-[70px]">
         <Image data={{ name: color, image: url }} />
       </div>

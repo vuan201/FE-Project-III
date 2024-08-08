@@ -1,6 +1,6 @@
-import { React, useRef } from "react";
+import { React, useEffect } from "react";
 import "./Form.css";
-import { Input, Button } from "../../../components";
+import { Input, Button, AlertMessage } from "../../../components";
 import validator from "./Validate";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,13 +13,24 @@ import {
   setPasswordComfirmation,
   register,
   selectAuthError,
+  selectAuthToken,
+  selectAuthStatus,
+  resetAuthState,
 } from "../../../app/reducers/";
 
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const infomation = useSelector(selectAuthRegister);
+  const token = useSelector(selectAuthToken);
+  const status = useSelector(selectAuthStatus);
   const error = useSelector(selectAuthError);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetAuthState());
+    };
+  }, []);
 
   const baseOptions = {
     form: "#registerForm",
@@ -36,15 +47,9 @@ const Register = () => {
     const isPassword = handlePasswordValidator();
     const isPasswordComfirmation = handlePasswordComfirmationValidator();
 
-    // console.log(isName, isEmail, isPhone, isPassword, isPasswordComfirmation);
-
     if (isName && isEmail && isPhone && isPassword && isPasswordComfirmation) {
       dispatch(register(infomation));
-      if (error) {
-        console.log(error);
-      } else {
-        navigate("/");
-      }
+      if (token) navigate("/");
     }
   };
 
@@ -109,10 +114,12 @@ const Register = () => {
     <>
       {/* <BannerHeadPage title={"Đăng ký"} /> */}
       <div className="form ">
+        {status === "failed" ? (
+          <AlertMessage type={"error"}>Tài khoản đã tồn tại</AlertMessage>
+        ) : undefined}
         <div className="formValue">
           <form className="grid justify-items-center " id="registerForm">
             <h1>ĐĂNG KÝ</h1>
-
             <Input
               id="name"
               type="text"

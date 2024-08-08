@@ -18,6 +18,7 @@ export const productsSlice = createSlice({
 
   // các giá trị ban đầu
   initialState: {
+    allProducts: [],
     products: [],
     newProducts: [],
     status: "idle",
@@ -31,6 +32,13 @@ export const productsSlice = createSlice({
       state.error = null;
       state.products = [];
       state.status = "idle";
+    },
+    addProducts: (state, action) => {
+      const newAllProducts = [...state.allProducts, ...action.payload];
+      state.allProducts = newAllProducts;
+    },
+    resetAllProducts: (state) => {
+      state.allProducts = [];
     },
   },
 
@@ -52,9 +60,11 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { resetProducts, setProducts } = productsSlice.actions;
+export const { resetProducts, setProducts, addProducts, resetAllProducts } =
+  productsSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
+export const selectAllProducts = (state) => state.products.allProducts;
 export const selectProductsItem = (state) => state.products.products;
 export const selectProductsStatus = (state) => state.products.status;
 export const selectProductsError = (state) => state.products.error;

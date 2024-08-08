@@ -12,6 +12,7 @@ export const paramsSlice = createSlice({
     colors: [],
     sizes: [],
     price: [0, 5000000],
+    limitDefoult: 20,
     page: 1,
     // sort
     sortList: [
@@ -19,18 +20,18 @@ export const paramsSlice = createSlice({
       // { key: "BEST_SELLING", value: "Bán chạy nhất" },
       { key: "A_Z", value: "Từ A-Z", sort: "name", order: "ASC" },
       { key: "Z_A", value: "Từ Z-A", sort: "name", order: "DESC" },
-      {
-        key: "LOW_IN_HIGH",
-        value: "Giá thấp đến cao",
-        sort: "price",
-        order: "ASC",
-      },
-      {
-        key: "HIGH_IN_LOW",
-        value: "Giá cao đến thấp",
-        sort: "price",
-        order: "DESC",
-      },
+      // {
+      //   key: "LOW_IN_HIGH",
+      //   value: "Giá thấp đến cao",
+      //   sort: "price",
+      //   order: "ASC",
+      // },
+      // {
+      //   key: "HIGH_IN_LOW",
+      //   value: "Giá cao đến thấp",
+      //   sort: "price",
+      //   order: "DESC",
+      // },
       {
         key: "OLD_TO_NEW",
         value: "Ngày mới đến cũ",
@@ -57,12 +58,12 @@ export const paramsSlice = createSlice({
     handleFilterColors: (state, action) => {
       const result = state.colors.includes(action.payload);
 
-      // nếu không tồn tại màu đó trong bộ lọc, thì sẽ thêm vào
+      // nếu đã tồn tại màu đó trong bộ lọc thì sẽ xóa bỏ nó đi
       if (result) {
         const newArray = state.colors.filter((item) => item !== action.payload);
         state.colors = newArray;
       }
-      // nếu đã tồn tại màu đó trong bộ lọc thì sẽ xóa bỏ nó đi
+      // nếu không tồn tại màu đó trong bộ lọc, thì sẽ thêm vào
       else {
         state.colors.push(action.payload);
       }
@@ -75,12 +76,12 @@ export const paramsSlice = createSlice({
     handleFilterSizes: (state, action) => {
       const result = state.sizes.includes(action.payload);
 
-      // nếu không tồn tại màu đó trong bộ lọc, thì sẽ thêm vào
+      // nếu đã tồn tại màu đó trong bộ lọc thì sẽ xóa bỏ nó đi
       if (result) {
         const newArray = state.sizes.filter((item) => item !== action.payload);
         state.sizes = newArray;
       }
-      // nếu đã tồn tại màu đó trong bộ lọc thì sẽ xóa bỏ nó đi
+      // nếu không tồn tại màu đó trong bộ lọc, thì sẽ thêm vào
       else {
         state.sizes.push(action.payload);
       }
@@ -89,20 +90,27 @@ export const paramsSlice = createSlice({
       state.presentValue = action.payload;
     },
 
-    increasePage: (state) => {
+    setPage: (state) => {
       state.page += 1;
     },
-    decrementPage: (state) => {
-      if (state.page > 1) state.page -= 1;
-    },
+
+    // increasePage: (state) => {
+    //   state.page += 1;
+    // },
+    // decrementPage: (state) => {
+    //   if (state.page > 1) state.page -= 1;
+    // },
 
     resetParams: (state) => {
       state.colors = [];
-      // state.category = null;
+      state.category = {};
       state.price = [0, 5000000];
       state.sizes = [];
       state.page = 1;
       state.presentValue = state.sortList[0];
+    },
+    resetParamsPage: (state) => {
+      state.page = 1;
     },
   },
 });
@@ -115,12 +123,16 @@ export const {
   setFilterPrice,
   setPresentValue,
   handleFilterSizes,
-  increasePage,
-  decrementPage,
+  // increasePage,
+  // decrementPage,
+  setPage,
+  resetParamsPage,
 } = paramsSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
 export const selectCategory = (state) => state.params.category;
+export const selectPage = (state) => state.params.page;
+export const selectLimitDefoult = (state) => state.params.limitDefoult;
 
 export const selectFiltersColors = (state) => state.params.colors;
 export const selectFiltersPrice = (state) => state.params.price;

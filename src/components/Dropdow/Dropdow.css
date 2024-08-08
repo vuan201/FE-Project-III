@@ -1,7 +1,8 @@
-.dropdowItem{
+.dropdowItem {
   position: absolute;
   background-color: var(--color-background);
   min-width: 208px;
+  white-space: nowrap;
   z-index: 3;
   opacity: 0;
   visibility: hidden;
@@ -12,13 +13,4 @@
 .dropdown:hover .dropdowItem {
   opacity: 1;
   visibility: visible;
-}
-.itemCenter{
-  left: -50%;
-}
-.itemLeft{
-  left: 0;
-}
-.itemRight{
-  right: 0;
 }

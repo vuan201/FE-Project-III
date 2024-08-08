@@ -26,7 +26,14 @@ const ProductSlideImage = ({ images }) => {
               );
           })
         ) : (
-          <div className="col-span-2 aspect-square">{newImages[selectColor][0].url}</div>
+          <div className="col-span-2 aspect-square">
+            <Image
+              data={{
+                image: newImages[selectColor][0].url,
+                name: newImages[selectColor][0].color,
+              }}
+            />
+          </div>
         )
       ) : undefined}
     </div>

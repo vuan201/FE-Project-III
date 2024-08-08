@@ -4,3 +4,4 @@ export { default as productsApi } from "./productsApi";
 export { default as colorsApi } from "./colorsApi";
 export { default as authApi } from "./authApi";
 export { default as sizesApi } from "./sizeApi";
+export { default as cartsApi } from "./cartsApi";

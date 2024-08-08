@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { ImageItem, SizeItem } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setSelectorColor,
@@ -8,19 +7,27 @@ import {
   selectorOption,
   selectorSize,
   setSelectorOption,
+  selectAuthToken,
+  selectCartsItem,
+  addItemToCart,
+  updateItemCarts,
 } from "../../../../app/reducers";
+import { ImageItem, SizeItem, ListPolicy } from "../../components";
 import { Button, InputQuantity } from "../../../../components";
-
 import { FaRegHeart } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
-import { ListPolicy } from "../";
+import { priceConvert } from "../../../../utils/priceConvert";
 
 const ProductInfomation = ({ data }) => {
-  const { name, description, price, brand, categories, options, images } = data;
+  const { name, description, brand, categories, options, images } = data;
 
   const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
+
+  const token = useSelector(selectAuthToken);
+  const cartItems = useSelector(selectCartsItem);
+
   const selectOption = useSelector(selectorOption);
 
   const selectColor = useSelector(selectorColor);
@@ -36,7 +43,23 @@ const ProductInfomation = ({ data }) => {
       dispatch(setSelectorColor(options[0].color));
       dispatch(setSelectorSize(options[0].size));
     }
+    if (quantity > selectOption.quantity) setQuantity(selectOption.quantity);
   }, [selectColor, selectSize]);
+
+  const isColorValid = (color) => {
+    return selectSize !== ""
+      ? optionsBySize[selectSize].some((option) => {
+          return option.color === color;
+        })
+      : true;
+  };
+  const isSizeValid = (size) => {
+    return selectColor !== ""
+      ? optionsByColor[selectColor].some((option) => {
+          return option.size === size;
+        })
+      : true;
+  };
 
   const handleSetSelectorColor = (color) => {
     dispatch(setSelectorColor(color));
@@ -72,27 +95,20 @@ const ProductInfomation = ({ data }) => {
     }
   };
 
-  const isColorValid = (color) => {
-    return selectSize !== ""
-      ? optionsBySize[selectSize].some((option) => {
-          return option.color === color;
-        })
-      : true;
+  const handleAddToCart = () => {
+    dispatch(addItemToCart({ sku: selectOption.sku, quantity: quantity }));
+    if (token) dispatch(updateItemCarts(cartItems));
   };
-  const isSizeValid = (size) => {
-    return selectColor !== ""
-      ? optionsByColor[selectColor].some((option) => {
-          return option.size === size;
-        })
-      : true;
-  };
+
   return (
     <div>
       <div className="mb-5 ">
         <h2 className="font-normal text-3xl">{name}</h2>
       </div>
       <div className="mb-5">
-        <span className="text-red-600 text-3xl">{price}</span>
+        <span className="text-red-600 text-3xl">
+          {priceConvert(selectOption.price)} VND
+        </span>
       </div>
       <div className="mb-5">
         <span>Tình trạng : </span>
@@ -119,7 +135,6 @@ const ProductInfomation = ({ data }) => {
           <li key={key} className="mr-1">
             <ImageItem
               image={newImages[key][0]}
-              // isValid={isColorValid(selectSize)}
               isValid={isColorValid(key)}
               isSelector={key === selectColor}
               onClick={handleSetSelectorColor}
@@ -146,24 +161,31 @@ const ProductInfomation = ({ data }) => {
         <span>Số lượng: </span>
       </div>
       <div className="mb-5 ">
-        <InputQuantity limit={selectOption.quantity} />
+        <InputQuantity
+          limit={selectOption.quantity}
+          value={quantity}
+          setValue={setQuantity}
+        />
       </div>
       <div className="mb-5 flex gap-1 items-stretch">
-        <div className="basis-10/12">
+        <div className="basis-11/12" onClick={() => handleAddToCart()}>
           <Button black afterAnimation isFull>
             Mua ngay
           </Button>
         </div>
         <div className="basis-1/12 flex justify-center items-center text-xl">
-          <Button white className={""}>
+          <Button white>
             <FaRegHeart />
           </Button>
         </div>
-        <div className="basis-1/12 flex justify-center items-center text-xl">
+        {/* <div
+          className="basis-1/12 flex justify-center items-center text-xl"
+          onClick={() => handleAddToCart()}
+        >
           <Button white>
             <FaCartPlus />
           </Button>
-        </div>
+        </div> */}
       </div>
       <div className="mb-5">
         <ListPolicy />
