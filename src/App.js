@@ -1,3 +1,4 @@
+import React, { Suspense } from "react";
 import { Routes, Route } from "react-router";
 import "./assets/styles/App.css";
 import { Header, Footer } from "./features";
@@ -10,6 +11,7 @@ import {
   Carts,
 } from "./features";
 import ScrollToTop from "./utils/ScrollToTop";
+import { Loading } from "./components";
 
 function App() {
   return (

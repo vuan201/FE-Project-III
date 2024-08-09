@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { categoriesSlideSettings } from "../../../config";
+import { categoriesSlideSettings, fetchIdle, fetchLoading } from "../../../config";
 import { Loading, Sliders, CategoryCard } from "../../../components";
 
 import {
@@ -18,12 +18,12 @@ const CategoriesSlide = () => {
   const error = useSelector(selectCategoriesError);
 
   useEffect(() => {
-    if (status === "idle") {
+    if (status === fetchIdle) {
       dispatch(fetchCategories());
     }
   }, [status, dispatch]);
 
-  if (status === "loading") return <Loading />;
+  if (status === fetchLoading) return <Loading />;
 
   return (
     <div className="mx-auto mb-10 px-12">

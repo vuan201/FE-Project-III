@@ -2,6 +2,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { authApi } from "../../Api";
 import Cookies from "js-cookie";
 import { getTimeByToken } from "../../utils/getTimeByToken";
+import {
+  fetchIdle,
+  fetchFailed,
+  fetchLoading,
+  fetchSucceeded,
+} from "../../config";
+
 // tên reducers
 const baseame = "auth";
 
@@ -41,7 +48,7 @@ const authSlice = createSlice({
       password: "",
       passwordComfirmation: "",
     },
-    status: "idle",
+    status: fetchIdle,
     error: null,
   },
   reducers: {
@@ -53,13 +60,13 @@ const authSlice = createSlice({
         password: "",
         passwordComfirmation: "",
       };
-      state.status = "idle";
+      state.status = fetchIdle;
       state.error = null;
     },
     logout: (state) => {
       state.token = null;
       state.error = null;
-      state.status = "idle";
+      state.status = fetchIdle;
       Cookies.remove("token");
     },
     setName: (state, action) => {
@@ -81,11 +88,11 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
-        state.status = "loading";
+        state.status = fetchLoading;
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = fetchSucceeded;
         state.token = action.payload.token;
         Cookies.set(
           "token",
@@ -95,16 +102,16 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(login.rejected, (state, action) => {
-        state.status = "failed";
+        state.status = fetchFailed;
         state.error = action.payload;
       })
 
       .addCase(register.pending, (state) => {
-        state.status = "loading";
+        state.status = fetchLoading;
         state.error = null;
       })
       .addCase(register.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = fetchSucceeded;
         state.token = action.payload.token;
         Cookies.set(
           "token",
@@ -114,7 +121,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(register.rejected, (state, action) => {
-        state.status = "failed";
+        state.status = fetchFailed;
         state.error = action.payload;
       });
   },

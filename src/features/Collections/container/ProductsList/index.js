@@ -18,6 +18,7 @@ import {
   resetParamsPage,
 } from "../../../../app/reducers";
 import { Loading, ProductCard } from "../../../../components";
+import { fetchLoading, fetchSucceeded } from "../../../../config";
 
 const ProductsList = () => {
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ const ProductsList = () => {
 
   // thêm các sản phẩm mới featch vào danh sách được in ra
   useEffect(() => {
-    if (status === "succeeded") {
+    if (status === fetchSucceeded) {
       dispatch(addProducts(products));
     }
   }, [products]);
@@ -64,7 +65,7 @@ const ProductsList = () => {
   // reset danh sách sản phẩm khi các phần tử của bộ lọc thay đổi
   useEffect(() => {
     dispatch(resetAllProducts());
-    dispatch(resetParamsPage())
+    dispatch(resetParamsPage());
   }, [filterColors, filterSizes, filterPrice, sortType, category]);
 
   useEffect(() => {
@@ -83,7 +84,7 @@ const ProductsList = () => {
 
       if (
         scrollTop + clientHeight >= scrollHeight - 5 &&
-        status !== "loading" &&
+        status !== fetchLoading &&
         products.length > 0
       ) {
         dispatch(setPage());
@@ -103,7 +104,7 @@ const ProductsList = () => {
             <ProductCard data={product} key={index} />
           ))
         : undefined}
-      {status === "loading" ?? <Loading />}
+      {status === fetchLoading ?? <Loading />}
     </div>
   );
 };

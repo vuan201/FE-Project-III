@@ -8,6 +8,8 @@ import {
   updateCartItems,
 } from "../../../../app/reducers";
 import CartItem from "../CartItem";
+import { fetchLoading } from "../../../../config";
+import { Loading } from "../../../../components";
 
 const ListCartItem = () => {
   const dispatch = useDispatch();
@@ -29,6 +31,7 @@ const ListCartItem = () => {
     <ul>
       {carts && Array.isArray(carts) ? (
         <>
+          {cartsStatus === fetchLoading && <Loading />}
           <div className="grid grid-cols-12 gap-1 justify-items-center ">
             <div className="col-span-1"></div>
             <div className="col-span-4 font-medium">Tên sản phẩm</div>

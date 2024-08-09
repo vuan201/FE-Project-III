@@ -1,5 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { cartsApi } from "../../Api";
+import {
+  fetchFailed,
+  fetchIdle,
+  fetchLoading,
+  fetchSucceeded,
+} from "../../config";
 
 // tên reducers
 const baseName = "carts";
@@ -43,7 +49,7 @@ export const cartsSlice = createSlice({
     // carts: [],
     carts: JSON.parse(localStorage.getItem("carts")) ?? [],
     // carts: localStorage.removeItem("carts") ?? [],
-    status: "idle",
+    status: fetchIdle,
     error: null,
   },
 
@@ -92,6 +98,9 @@ export const cartsSlice = createSlice({
         localStorage.setItem("carts", JSON.stringify(state.carts ?? []));
       }
     },
+    resetCartStatus: (state) => {
+      state.status = fetchIdle;
+    },
   },
 
   // xử lý các action được tạo bởi createAsyncThunk
@@ -99,34 +108,39 @@ export const cartsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCarts.pending, (state) => {
-        state.status = "loading";
+        state.status = fetchLoading;
       })
       .addCase(fetchCarts.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = fetchSucceeded;
         state.carts = action.payload.items;
         localStorage.setItem("carts", JSON.stringify(state.carts ?? []));
       })
       .addCase(fetchCarts.rejected, (state, action) => {
-        state.status = "failed";
+        state.status = fetchFailed;
         state.error = action.error.message;
       })
       .addCase(updateCartItems.pending, (state) => {
-        state.status = "loading";
+        state.status = fetchLoading;
       })
       .addCase(updateCartItems.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = fetchSucceeded;
         state.carts = action.payload.items;
         localStorage.setItem("carts", JSON.stringify(state.carts ?? []));
       })
       .addCase(updateCartItems.rejected, (state, action) => {
-        state.status = "failed";
+        state.status = fetchFailed;
         state.error = action.error.message;
       });
   },
 });
 
-export const { addItemToCart, removeItemToCart, setQuantity, setCarts } =
-  cartsSlice.actions;
+export const {
+  addItemToCart,
+  removeItemToCart,
+  setQuantity,
+  setCarts,
+  resetCartStatus,
+} = cartsSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
 export const selectCartsItem = (state) => state.carts.carts;

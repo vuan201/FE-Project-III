@@ -8,9 +8,10 @@ import {
   selectorSize,
   setSelectorOption,
   selectAuthToken,
-  selectCartsItem,
   addItemToCart,
   updateCartItems,
+  selectCartsStatus,
+  selectCartsItem,
 } from "../../../../app/reducers";
 import {
   ImageItem,
@@ -20,8 +21,9 @@ import {
   ProductStatus,
   ProductColorName,
 } from "../../components";
-import { Button, InputQuantity } from "../../../../components";
+import { AlertMessage, Button, InputQuantity } from "../../../../components";
 import { FaRegHeart } from "react-icons/fa";
+import { fetchSucceeded } from "../../../../config";
 
 const ProductInfomation = ({ data }) => {
   const { name, description, brand, categories, options, images, slug } = data;
@@ -31,8 +33,8 @@ const ProductInfomation = ({ data }) => {
   const dispatch = useDispatch();
 
   const token = useSelector(selectAuthToken);
-  const cartItems = useSelector(selectCartsItem);
-
+  const carts = useSelector(selectCartsItem);
+  const cartsStatus = useSelector(selectCartsStatus);
   const selectOption = useSelector(selectorOption);
 
   const selectColor = useSelector(selectorColor);
@@ -42,13 +44,28 @@ const ProductInfomation = ({ data }) => {
   const optionsByColor = Object.groupBy(options, ({ color }) => color);
   const optionsBySize = Object.groupBy(options, ({ size }) => size);
 
-  // xử lý lần đầu render
+  const [localStatus, setLocalStatus] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false); // Theo dõi lần đầu render
+
+  // lắng nghe để đưa ra thông báo khi thêm sản phẩm vào cart
   useEffect(() => {
+    if (hasMounted && carts) {
+      setLocalStatus(true);
+    } else {
+      setHasMounted(true); // Đánh dấu đã render lần đầu tiên
+    }
+  }, [carts]);
+
+  // xử lý lần đầu re-render
+  useEffect(() => {
+    // chọn vào phần tử option đầu tiên
     if (selectColor === "" && selectSize === "" && options[0]) {
       dispatch(setSelectorOption(options[0]));
       dispatch(setSelectorColor(options[0].color));
       dispatch(setSelectorSize(options[0].size));
     }
+
+    // chỉnh sửa quantity sau khi re-render
     if (quantity > selectOption.quantity) setQuantity(selectOption.quantity);
   }, [selectColor, selectSize]);
 
@@ -106,14 +123,11 @@ const ProductInfomation = ({ data }) => {
     }
   };
 
-  useEffect(() => {
-    if (token) dispatch(updateCartItems(cartItems));
-  }, []);
-
   // Thêm sản phẩm vào giỏ hàng
   const handleAddToCart = () => {
+    setLocalStatus(false);
     if (token) {
-      const log = dispatch(
+      dispatch(
         updateCartItems([
           {
             sku: selectOption.sku,
@@ -121,9 +135,8 @@ const ProductInfomation = ({ data }) => {
           },
         ])
       );
-      console.log(log);
-      
-      return
+
+      return;
     }
     dispatch(
       addItemToCart({
@@ -140,7 +153,13 @@ const ProductInfomation = ({ data }) => {
   };
 
   return (
-    <div>
+    <div className="my-4">
+      {(cartsStatus === fetchSucceeded || localStatus) && (
+        <AlertMessage type={"success"}>
+          Thêm sản phẩm vào giỏ hàng thành công
+        </AlertMessage>
+      )}
+
       <div className="mb-5 ">
         <h2 className="font-normal text-3xl">{name}</h2>
       </div>

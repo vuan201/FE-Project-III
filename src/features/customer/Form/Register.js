@@ -18,6 +18,7 @@ import {
   resetAuthState,
 } from "../../../app/reducers/";
 import { useAuthRedirect } from "../../../hooks/useAuthRedirect";
+import { alertError, fetchFailed } from "../../../config";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -119,8 +120,8 @@ const Register = () => {
     <>
       {/* <BannerHeadPage title={"Đăng ký"} /> */}
       <div className="form ">
-        {status === "failed" ? (
-          <AlertMessage type={"error"}>Tài khoản đã tồn tại</AlertMessage>
+        {status === fetchFailed ? (
+          <AlertMessage type={alertError}>Tài khoản đã tồn tại</AlertMessage>
         ) : undefined}
         <div className="formValue">
           <form className="grid justify-items-center " id="registerForm">

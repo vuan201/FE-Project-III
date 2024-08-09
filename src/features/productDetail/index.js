@@ -10,13 +10,14 @@ import {
 
 import {
   fetchProduct,
+  resetCartStatus,
   resetProduct,
   selectProductError,
   selectProductItem,
   selectProductStatus,
 } from "../../app/reducers";
+import { fetchFailed, fetchLoading, fetchSucceeded } from "../../config";
 const ProductDetail = () => {
-  
   const { slug } = useParams();
 
   const dispatch = useDispatch();
@@ -26,14 +27,15 @@ const ProductDetail = () => {
 
   useEffect(() => {
     dispatch(fetchProduct(`${slug}`));
-    return () =>{
-      dispatch(resetProduct())
-    }
+    return () => {
+      dispatch(resetProduct());
+      dispatch(resetCartStatus());
+    };
   }, [dispatch, slug]);
 
-  if (status === "loading") return <Loading />;
-  else if (status === "failed") return <div>{error}</div>;
-  else if (status === "succeeded")
+  if (status === fetchLoading) return <Loading />;
+  else if (status === fetchFailed) return <div>{error}</div>;
+  else if (status === fetchSucceeded)
     return (
       <>
         <div className="mx-auto mb-10 px-12">
