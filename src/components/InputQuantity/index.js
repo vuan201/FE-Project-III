@@ -1,10 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import { BsPlusLg } from "react-icons/bs";
 import { FiMinus } from "react-icons/fi";
 import clsx from "clsx";
 
 const InputQuantity = (prop) => {
   const { limit, value, setValue } = prop;
+
 
   const spanClassName = clsx(
     "grid justify-items-center content-center bg-slate-100 w-10 cursor-pointer border border-slate-300 hover:border-black transition hover:text-red-600"

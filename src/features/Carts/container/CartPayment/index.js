@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 const CartPayment = () => {
+  
   return (
     <div>
-      khung thanh toán
+      <h1 className='text-2xl uppercase '>Thông tin đơn hàng</h1>
     </div>
   );
 };
 
-export default CartPayment;
+export default memo(CartPayment);

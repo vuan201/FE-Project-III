@@ -1,4 +1,4 @@
-import { React, useEffect } from "react";
+import { React, useCallback, useEffect } from "react";
 import "./Form.css";
 import { Input, Button, AlertMessage } from "../../../components";
 import validator from "./Validate";
@@ -17,10 +17,12 @@ import {
   selectAuthStatus,
   resetAuthState,
 } from "../../../app/reducers/";
+import { useAuthRedirect } from "../../../hooks/useAuthRedirect";
 
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const infomation = useSelector(selectAuthRegister);
   const token = useSelector(selectAuthToken);
   const status = useSelector(selectAuthStatus);
@@ -31,6 +33,8 @@ const Register = () => {
       dispatch(resetAuthState());
     };
   }, []);
+
+  useAuthRedirect(token, status, navigate);
 
   const baseOptions = {
     form: "#registerForm",
@@ -49,7 +53,6 @@ const Register = () => {
 
     if (isName && isEmail && isPhone && isPassword && isPasswordComfirmation) {
       dispatch(register(infomation));
-      if (token) navigate("/");
     }
   };
 
@@ -72,6 +75,7 @@ const Register = () => {
       ],
     });
   };
+
   const handlePhoneValidator = () => {
     return handleValidator({
       ...baseOptions,
@@ -108,6 +112,7 @@ const Register = () => {
       ],
     });
   };
+
   const handleValidator = (options) => validator(options);
 
   return (

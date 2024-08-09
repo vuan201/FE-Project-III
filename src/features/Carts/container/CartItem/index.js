@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { Image, InputQuantity } from "../../../../components";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,13 +9,13 @@ import {
   updateCartItems,
 } from "../../../../app/reducers";
 import CartItemPrice from "../../components/CartItemPrice";
-import CartItemInfomation from "../../components/CartItemInfomation";
-import CartRemoveIcon from "../../components/CartRemoveIcon";
-const CartItem = ({ cart }) => {
+import { TfiClose } from "react-icons/tfi";
+
+const CartItem = ({ cartItem }) => {
   const dispatch = useDispatch();
   const token = useSelector(selectAuthToken);
 
-  const { name, imageUrl, slug, sku, price, quantity, color, size } = cart;
+  const { name, imageUrl, slug, sku, price, quantity, color, size } = cartItem;
 
   const handleSetQuantity = (newQuantity) => {
     if (token) {
@@ -43,21 +43,26 @@ const CartItem = ({ cart }) => {
   return (
     <div className="grid grid-cols-12 gap-1 my-2 place-items-center">
       <div className="col-span-1"></div>
+
       <div className="col-span-1 place-self-center h-full">
         <Image data={{ image: imageUrl, name: name }} />
       </div>
 
-      <div className="col-span-5 justify-self-start">
-        <div className="flex flex-col gap-2 ">
-          <Link
-            className="text-black hover:underline hover:text-blue-800 transition"
-            to={`/products/${slug}`}
-          >
-            <CartItemInfomation>{name}</CartItemInfomation>
-          </Link>
-          <CartItemInfomation>{color}</CartItemInfomation>
-          <CartItemInfomation>{size}</CartItemInfomation>
-        </div>
+      <div className="col-span-3 justify-self-start">
+        <Link
+          className="text-black hover:text-blue-800 transition"
+          to={`/products/${slug}`}
+        >
+          <div>{name}</div>
+        </Link>
+      </div>
+
+      <div className="col-span-1 justify-self-center">
+        <div>{color}</div>
+      </div>
+
+      <div className="col-span-1 justify-self-center">
+        <div>{size}</div>
       </div>
 
       <div className="col-span-1">
@@ -76,9 +81,18 @@ const CartItem = ({ cart }) => {
         <CartItemPrice price={price * quantity} />
       </div>
 
-      <CartRemoveIcon onClick={() => handleSetQuantity(0)} />
+      <div
+        onClick={() => handleSetQuantity(0)}
+        className="col-span-1 cursor-pointer hover:text-red-700 hover:bg-slate-200 transition p-2 border rounded-full hover:border-black"
+      >
+        <TfiClose />
+      </div>
     </div>
   );
 };
 
-export default CartItem;
+export default memo(
+  CartItem,
+  (currentProp, nextProp) =>
+    currentProp.cartItem.quantity === nextProp.cartItem.quantity
+);

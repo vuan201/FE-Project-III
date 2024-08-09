@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useCallback, useEffect, useState } from "react";
 import { AlertMessage, Button, Input, Loading } from "../../../components";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import {
   login,
   resetAuthState,
 } from "../../../app/reducers";
+import { useAuthRedirect } from "../../../hooks/useAuthRedirect";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -27,13 +28,15 @@ const Login = () => {
     };
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(login({ email: email, password: password }));
-    if (status === "succeeded") {
-      navigate("/");
-    }
-  };
+  useAuthRedirect(token, status, navigate);
+
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(login({ email: email, password: password }));
+    },
+    [dispatch, email, password]
+  );
   return (
     <div className="form ">
       {status === "failed" ? (
