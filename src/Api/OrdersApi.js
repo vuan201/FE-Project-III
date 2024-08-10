@@ -13,7 +13,7 @@ const ordersApi = {
   },
   add(data) {
     const url = `${baseUrl}}`;
-    return axiosClient.post(url);
+    return axiosClient.post(url, data);
   },
   update(orders, headers) {
     const url = `${baseUrl}`;

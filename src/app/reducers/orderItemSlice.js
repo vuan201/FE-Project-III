@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import { OrdersApi } from "../../Api";
 import {
   fetchFailed,
   fetchIdle,
@@ -23,7 +23,7 @@ export const addOrders = createAsyncThunk(
       });
 
     try {
-      response = await cartsApi.update(newOrderItem);
+      response = await OrdersApi.add(newOrderItem);
     } catch (error) {
       console.log(error);
     }
