@@ -21,11 +21,13 @@ const ListCartItem = () => {
   const [async, setAsync] = useState(true);
 
   useEffect(() => {
+    if (!async && !token) setAsync(true);
+
     if (async && token) {
       dispatch(updateCartItems(carts));
       setAsync(false);
     }
-  }, [async]);
+  }, [async, token]);
 
   return (
     <ul>
