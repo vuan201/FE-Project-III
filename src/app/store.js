@@ -23,6 +23,7 @@ import {
   paramsSlice,
   authSlice,
   cartsSlice,
+  orderSlice,
 } from "./reducers";
 
 export default configureStore({
@@ -37,5 +38,6 @@ export default configureStore({
     productDetail: productDetailSlice,
     auth: authSlice,
     carts: cartsSlice,
+    order: orderSlice,
   },
 });

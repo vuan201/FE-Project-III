@@ -8,6 +8,7 @@ export { default as productDetailSlice } from "./productDetailSlice";
 export { default as authSlice } from "./authSlice";
 export { default as paramsSlice } from "./paramsSlice";
 export { default as cartsSlice } from "./cartsSlice";
+export { default as orderSlice } from "./orderSlice";
 
 export * from "./categoriesSlice";
 export * from "./brandsSlice";
@@ -19,3 +20,4 @@ export * from "./sizesSlice";
 export * from "./productDetailSlice";
 export * from "./authSlice";
 export * from "./cartsSlice";
+export * from "./orderSlice";

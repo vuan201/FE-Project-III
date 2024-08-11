@@ -1,15 +1,19 @@
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
-import { Image, InputQuantity } from "../../../../components";
+import { Checked, Image, InputQuantity } from "../../../../components";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  handleMutateOrderItems,
   removeItemToCart,
   selectAuthToken,
+  selectOrderItems,
+  setOrderQuantity,
   setQuantity,
   updateCartItems,
 } from "../../../../app/reducers";
 import CartItemPrice from "../../components/CartItemPrice";
 import { TfiClose } from "react-icons/tfi";
+import { Checkbox } from "@mui/material";
 
 const CartItem = ({ cartItem }) => {
   const dispatch = useDispatch();
@@ -17,32 +21,40 @@ const CartItem = ({ cartItem }) => {
 
   const { name, imageUrl, slug, sku, price, quantity, color, size } = cartItem;
 
-  const handleSetQuantity = (newQuantity) => {
-    if (token) {
-      const item = {
-        name,
-        imageUrl,
-        slug,
-        sku,
-        price,
-        quantity: newQuantity,
-        color,
-        size,
-      };
+  const orderItems = useSelector(selectOrderItems);
 
+  const handleUpdateQuantity = (newQuantity) => {
+    const item = {
+      name,
+      imageUrl,
+      slug,
+      sku,
+      price,
+      quantity: newQuantity,
+      color,
+      size,
+    };
+
+    if (token) {
       dispatch(updateCartItems([item]));
-      return;
-    }
-    if (newQuantity === 0) {
-      dispatch(removeItemToCart(sku));
     } else {
       dispatch(setQuantity({ sku, quantity: newQuantity }));
     }
+
+    dispatch(setOrderQuantity({ sku, quantity: newQuantity, price }));
   };
 
   return (
     <div className="grid grid-cols-12 gap-1 my-2 place-items-center">
-      <div className="col-span-1"></div>
+      <div className="col-span-1">
+        {/* <Checked/> */}
+        <Checkbox
+          checked={orderItems.some((item) => item.sku === sku)}
+          onClick={() =>
+            dispatch(handleMutateOrderItems({ sku, quantity, price }))
+          }
+        />
+      </div>
 
       <div className="col-span-1 place-self-center h-full">
         <Image data={{ image: imageUrl, name: name }} />
@@ -73,7 +85,7 @@ const CartItem = ({ cartItem }) => {
         <InputQuantity
           limit={99}
           value={quantity}
-          setValue={handleSetQuantity}
+          setValue={handleUpdateQuantity}
         />
       </div>
 
@@ -82,7 +94,7 @@ const CartItem = ({ cartItem }) => {
       </div>
 
       <div
-        onClick={() => handleSetQuantity(0)}
+        onClick={() => handleUpdateQuantity(0)}
         className="col-span-1 cursor-pointer hover:text-red-700 hover:bg-slate-200 transition p-2 border rounded-full hover:border-black"
       >
         <TfiClose />

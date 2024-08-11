@@ -71,30 +71,46 @@ export const orderSlice = createSlice({
         state.items.push(action.payload);
       }
     },
-    setQuantity: (state, action) => {
+    setOrderQuantity: (state, action) => {
       if (state.items.some((item) => item.sku === action.payload.sku)) {
-        const newItems = state.items.map((item) => {
-          if (item.sku === action.payload.sku)
-            item.quantity = action.payload.quantity;
-          return item;
-        });
+        let newItems = {};
+        if (action.payload.quantity === 0) {
+          newItems = state.items.filter(
+            (item) => item.sku !== action.payload.sku
+          );
+        } else {
+          newItems = state.items.map((item) => {
+            if (item.sku === action.payload.sku)
+              item.quantity = action.payload.quantity;
+            return item;
+          });
+        }
+
         state.items = newItems;
+      }
+    },
+    removeOrderItem: (state, action) => {
+      if (state.items.some((item) => item.sku === action.payload)) {
+        const newOrderItem = state.items.filter(
+          (item) => item.sku !== action.payload
+        );
+        state.items = newOrderItem;
       }
     },
     resetOrder: (state) => {
       state.status = fetchIdle;
       state.voucher = null;
-      items = [];
-      address = {
+      state.items = [];
+      state.address = {
         city: "",
         district: "",
         specificAddress: "",
       };
-      paymentMethod = {
+      state.paymentMethod = {
         name: "",
         provider: null,
       };
-      error = null;
+      state.error = null;
     },
   },
 
@@ -108,7 +124,8 @@ export const {
   setAddress,
   setPaymentMethod,
   handleMutateOrderItems,
-  setQuantity,
+  setOrderQuantity,
+  removeOrderItem,
   resetOrder,
 } = orderSlice.actions;
 

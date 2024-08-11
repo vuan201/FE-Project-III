@@ -47,7 +47,7 @@ export const cartsSlice = createSlice({
   // các giá trị ban đầu
   initialState: {
     // carts: [],
-    carts: JSON.parse(localStorage.getItem("carts")) ?? [],
+    cartItems: JSON.parse(localStorage.getItem("carts")) ?? [],
     // carts: localStorage.removeItem("carts") ?? [],
     status: fetchIdle,
     error: null,
@@ -55,47 +55,48 @@ export const cartsSlice = createSlice({
 
   reducers: {
     setCarts: (state, action) => {
-      state.carts = action.payload;
+      state.cartItems = action.payload;
     },
     addItemToCart: (state, action) => {
-      if (state.carts.some((cart) => cart.sku === action.payload.sku)) {
-        if (Array.isArray(state.carts) && state.carts.length > 1) {
-          const newCarts = state.carts.map((cart) => {
-            if (cart.sku === action.payload.sku)
-              cart.quantity += action.payload.quantity;
-            return cart;
-          });
-          state.carts = newCarts;
-        } else {
-          if (state.carts[0].sku === action.payload.sku) {
-            state.carts[0].quantity += action.payload.quantity;
-          }
-        }
+      if (state.cartItems.some((cart) => cart.sku === action.payload.sku)) {
+        const newCarts = state.cartItems.map((cart) => {
+          if (cart.sku === action.payload.sku)
+            cart.quantity += action.payload.quantity;
+          return cart;
+        });
+        state.cartItems = newCarts;
       } else {
-        state.carts.push(action.payload);
+        state.cartItems.push(action.payload);
       }
 
-      localStorage.setItem("carts", JSON.stringify(state.carts ?? []));
+      localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
     },
     removeItemToCart: (state, action) => {
-      if (state.carts.some((cart) => cart.sku === action.payload)) {
-        state.carts = state.carts.filter((cart) => cart.sku !== action.payload);
-        localStorage.setItem("carts", JSON.stringify(state.carts ?? []));
+      if (state.cartItems.some((cart) => cart.sku === action.payload)) {
+        state.cartItems = state.cartItems.filter(
+          (cart) => cart.sku !== action.payload
+        );
+        localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
       }
     },
     setQuantity: (state, action) => {
-      if (state.carts.some((cart) => cart.sku === action.payload.sku)) {
-        if (state.carts.length > 1) {
-          state.carts.map((cart) => {
+      if (state.cartItems.some((cart) => cart.sku === action.payload.sku)) {
+        let newCartItems;
+
+        if (action.payload.quantity === 0) {
+          newCartItems = state.cartItems.filter(
+            (item) => item.sku !== action.payload.sku
+          );
+        } else {
+          newCartItems = state.cartItems.map((cart) => {
             if (cart.sku === action.payload.sku)
               cart.quantity = action.payload.quantity;
             return cart;
           });
-        } else {
-          if (state.carts[0].sku === action.payload.sku)
-            state.carts[0].quantity = action.payload.quantity;
         }
-        localStorage.setItem("carts", JSON.stringify(state.carts ?? []));
+
+        state.cartItems = newCartItems;
+        localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
       }
     },
     resetCartStatus: (state) => {
@@ -112,8 +113,8 @@ export const cartsSlice = createSlice({
       })
       .addCase(fetchCarts.fulfilled, (state, action) => {
         state.status = fetchSucceeded;
-        state.carts = action.payload.items;
-        localStorage.setItem("carts", JSON.stringify(state.carts ?? []));
+        state.cartItems = action.payload.items;
+        localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
       })
       .addCase(fetchCarts.rejected, (state, action) => {
         state.status = fetchFailed;
@@ -124,8 +125,8 @@ export const cartsSlice = createSlice({
       })
       .addCase(updateCartItems.fulfilled, (state, action) => {
         state.status = fetchSucceeded;
-        state.carts = action.payload.items;
-        localStorage.setItem("carts", JSON.stringify(state.carts ?? []));
+        state.cartItems = action.payload.items;
+        localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
       })
       .addCase(updateCartItems.rejected, (state, action) => {
         state.status = fetchFailed;
@@ -143,7 +144,7 @@ export const {
 } = cartsSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
-export const selectCartsItem = (state) => state.carts.carts;
+export const selectCartsItem = (state) => state.carts.cartItems;
 export const selectCartsStatus = (state) => state.carts.status;
 export const selectCartsError = (state) => state.carts.error;
 
