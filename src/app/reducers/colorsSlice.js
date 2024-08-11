@@ -8,11 +8,11 @@ import {
 } from "../../config";
 
 // tên reducers
-const baseame = "colors";
+const baseName = "colors";
 
 // Async thunks để gọi API
 export const fetchColors = createAsyncThunk(
-  `${baseame}/fetchColors`,
+  `${baseName}/fetchColors`,
   async (params) => {
     const response = await colorsApi.getAll(params);
     return response;
@@ -20,7 +20,7 @@ export const fetchColors = createAsyncThunk(
 );
 
 export const colorsSlice = createSlice({
-  name: baseame,
+  name: baseName,
 
   // các giá trị ban đầu
   initialState: {

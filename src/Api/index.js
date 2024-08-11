@@ -6,3 +6,4 @@ export { default as authApi } from "./authApi";
 export { default as sizesApi } from "./sizeApi";
 export { default as cartsApi } from "./cartsApi";
 export { default as OrdersApi } from "./OrdersApi";
+export { default as addressListApi } from "./AddressListApi";

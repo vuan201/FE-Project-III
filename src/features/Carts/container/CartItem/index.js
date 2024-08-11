@@ -41,7 +41,7 @@ const CartItem = ({ cartItem }) => {
       dispatch(setQuantity({ sku, quantity: newQuantity }));
     }
 
-    dispatch(setOrderQuantity({ sku, quantity: newQuantity, price }));
+    dispatch(setOrderQuantity({ sku, name, quantity: newQuantity, price }));
   };
 
   return (
@@ -51,7 +51,7 @@ const CartItem = ({ cartItem }) => {
         <Checkbox
           checked={orderItems.some((item) => item.sku === sku)}
           onClick={() =>
-            dispatch(handleMutateOrderItems({ sku, quantity, price }))
+            dispatch(handleMutateOrderItems({ sku, name, quantity, price }))
           }
         />
       </div>
@@ -69,15 +69,15 @@ const CartItem = ({ cartItem }) => {
         </Link>
       </div>
 
-      <div className="col-span-1 justify-self-center">
+      <div className="col-span-1 justify-self-center text-center">
         <div>{color}</div>
       </div>
 
-      <div className="col-span-1 justify-self-center">
+      <div className="col-span-1 justify-self-center text-center">
         <div>{size}</div>
       </div>
 
-      <div className="col-span-1">
+      <div className="col-span-1 justify-self-start">
         <CartItemPrice price={price} />
       </div>
 
@@ -89,7 +89,7 @@ const CartItem = ({ cartItem }) => {
         />
       </div>
 
-      <div className="col-span-1">
+      <div className="col-span-1 justify-self-end">
         <CartItemPrice price={price * quantity} />
       </div>
 

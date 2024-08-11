@@ -8,16 +8,11 @@ const Carts = () => {
   return (
     <div>
       <BannerHeadPage title={"Giỏ hàng"} />
-      <div className="mx-auto my-10 px-12">
+      <div className="mx-auto my-10">
         <div className="w-full m-auto max-w-container">
-          <div className="grid grid-cols-4 gap-2">
-            <div className="col-span-4 lg:col-span-3">
-              <ListCartItem />
-            </div>
-
-            <div className="col-span-4 md:col-span-1">
-              <CartPayment />
-            </div>
+          <ListCartItem />
+          <div className="sticky bottom-0 w-full bg-white">
+            <CartPayment />
           </div>
         </div>
       </div>

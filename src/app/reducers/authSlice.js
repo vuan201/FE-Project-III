@@ -10,10 +10,10 @@ import {
 } from "../../config";
 
 // tên reducers
-const baseame = "auth";
+const baseName = "auth";
 
 export const login = createAsyncThunk(
-  `${baseame}/login`,
+  `${baseName}/login`,
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await authApi.login(credentials);
@@ -25,7 +25,7 @@ export const login = createAsyncThunk(
 );
 
 export const register = createAsyncThunk(
-  `${baseame}/register`,
+  `${baseName}/register`,
   async (infomation, { rejectWithValue }) => {
     try {
       const response = await authApi.register(infomation);
@@ -37,7 +37,7 @@ export const register = createAsyncThunk(
 );
 
 const authSlice = createSlice({
-  name: baseame,
+  name: baseName,
   initialState: {
     token: Cookies.get("token") ?? null,
     

@@ -9,11 +9,11 @@ import {
 } from "../../config";
 
 // tên reducers
-const baseame = "categories";
+const baseName = "categories";
 
 // Async thunks để gọi API
 export const fetchCategories = createAsyncThunk(
-  `${baseame}/fetchCategories`,
+  `${baseName}/fetchCategories`,
   async (params) => {
     const response = await categoriesApi.getAll(params);
     return response;
@@ -21,7 +21,7 @@ export const fetchCategories = createAsyncThunk(
 );
 
 export const categoriesSlice = createSlice({
-  name: baseame,
+  name: baseName,
 
   // các giá trị ban đầu
   initialState: {
