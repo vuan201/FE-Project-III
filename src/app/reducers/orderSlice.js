@@ -41,6 +41,7 @@ export const orderSlice = createSlice({
     address: {
       city: "",
       district: "",
+      ward: "",
       specificAddress: "",
     },
     paymentMethod: {

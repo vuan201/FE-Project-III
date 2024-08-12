@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { useSelector } from "react-redux";
-import { selectOrderItems } from "../../../../app/reducers";
+import { selectAuthToken, selectOrderItems } from "../../../../app/reducers";
 import { priceConvert } from "../../../../utils/priceConvert";
 import { Button } from "../../../../components";
 import { useNavigate } from "react-router";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 const CartPayment = () => {
   const navigate = useNavigate();
   const orderList = useSelector(selectOrderItems);
+  const token = useSelector(selectAuthToken);
 
   const totalPrice = orderList.reduce(
     (total, { price, quantity }) => price * quantity + total,
@@ -15,7 +16,7 @@ const CartPayment = () => {
   );
 
   const handleGoToCheckout = () => {
-    navigate("/order");
+    if (token) navigate("/order");
   };
 
   return (
