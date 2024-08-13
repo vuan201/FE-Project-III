@@ -23,14 +23,12 @@ const Footer = () => {
             </Link>
 
             <ul className="text-sm leading-relaxed">
+              <li className="mb-1">Địa chỉ: VTC Online Building</li>
               <li className="mb-1">
-                Address: 1234 Fashion Street, Suite 567, New York, NY 10001
+                Email: <strong>QMShop@gmail.com</strong>
               </li>
               <li className="mb-1">
-                Email: <strong>info@fashionshop.com</strong>
-              </li>
-              <li className="mb-1">
-                Phone: <strong>(212)555-1234</strong>
+                Phone: <strong>0365087570</strong>
               </li>
             </ul>
 
@@ -63,67 +61,79 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-lg mb-4 font-medium text-black">Help</h3>
+            <h3 className="text-lg mb-4 font-medium text-black">TRỢ GIÚP</h3>
 
             <ul>
               <li className="mb-[10px] text-sm">
                 <Link to="/privacy-policy" className="hover:text-[#db1215]">
-                  Privacy Policy
+                  Chính sách bảo hành
                 </Link>
               </li>
               <li className="mb-[10px] text-sm">
                 <Link className="hover:text-[#db1215]">
-                  Returns + Exchanges
+                  Chính sách khách hàng thân thiết
                 </Link>
               </li>
               <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">Shipping</Link>
+                <Link className="hover:text-[#db1215]">
+                  Chính sách bảo vệ thông tin khách hàng
+                </Link>
               </li>
               <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">Terms & Conditions</Link>
+                <Link className="hover:text-[#db1215]">
+                  Trạng thái đơn hàng
+                </Link>
               </li>
               <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">FAQ’s</Link>
+                <Link className="hover:text-[#db1215]">
+                  HÌnh thức giao hàng{" "}
+                </Link>
               </li>
               <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">Compare</Link>
+                <Link className="hover:text-[#db1215]">
+                  Hình thức thanh toán
+                </Link>
               </li>
               <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">My Wishlist</Link>
+                <Link className="hover:text-[#db1215]">
+                  Hướng dẫn cách chọn Size
+                </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg mb-4 font-medium text-black">About Us</h3>
+            <h3 className="text-lg mb-4 font-medium text-black">Về QM SHOP</h3>
 
             <ul>
               <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">Our Story</Link>
+                <Link className="hover:text-[#db1215]">
+                  Câu chuyện về chúng tôi
+                </Link>
               </li>
               <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">Visit Our Store</Link>
+                <Link className="hover:text-[#db1215]">Hoạt động</Link>
               </li>
               <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">Contact Us</Link>
+                <Link className="hover:text-[#db1215]">Liên hệ</Link>
               </li>
-              <li className="mb-[10px] text-sm">
+              {/* <li className="mb-[10px] text-sm">
                 <Link className="hover:text-[#db1215]">About Us</Link>
               </li>
               <li className="mb-[10px] text-sm">
                 <Link className="hover:text-[#db1215]">Account</Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
           <div>
             <h3 className="text-lg mb-4 font-medium text-black">
-              Sign Up for Email
+              Đăng ký nhận bản tin
             </h3>
 
             <p className="text-sm mt-8">
-              Sign up to get first dibs on new arrivals, sales, exclusive
-              content, events and more!
+              Để nhận các thông tin mới từ QM Shop cũng như các chương trình
+              khuyến mãi hấp dẫn
             </p>
 
             <form
@@ -132,12 +142,12 @@ const Footer = () => {
             >
               <input
                 type="text"
-                placeholder="Enter email address"
+                placeholder="Vui lòng nhập email của bạn"
                 className="flex-1 outline-none pr-3 text-sm"
               />
 
               <button className="flex items-center gap-x-1 bg-black rounded h-10 text-white justify-center px-3 text-sm font-semibold cursor-pointer">
-                Subscribe
+                ĐĂNG KÝ
                 <HiOutlineExternalLink />
               </button>
             </form>
@@ -212,7 +222,9 @@ const Footer = () => {
       </div>
 
       <div className="max-w-container mx-auto w-full px-12 py-6 flex justify-between flex-col gap-4 items-center md:flex-row">
-        <p className="text-sm">© 2024 Ecomus . All rights reserved.</p>
+        <p className="text-sm">
+          © 2024 QM Shop. Powered by Haravan Enterprise.
+        </p>
 
         <div className="flex items-center gap-x-2">
           <img src="/svg/visa.svg" alt="Visa" className="h-[30px]" />
