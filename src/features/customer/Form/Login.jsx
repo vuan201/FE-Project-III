@@ -9,7 +9,7 @@ import {
   login,
   resetAuthState,
 } from "../../../app/reducers";
-import { useAuthRedirect } from "../../../hooks/useAuthRedirect";
+import useAuthRedirect from "../../../hooks/useAuthRedirect";
 import { alertError, fetchFailed } from "../../../config";
 
 const Login = () => {

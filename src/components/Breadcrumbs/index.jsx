@@ -9,35 +9,20 @@ const Breadcrumbs = ({ breadcrumbs }) => {
         <Link to="/">Trang chủ</Link>
       </span>
       <span className="flex">
-        {breadcrumbs.length > 1 ? (
-          breadcrumbs.map((breadcrumb) => (
-            <>
-              <span className="mx-1 my-auto">
-                <FaCaretRight />
-              </span>
-              <span className="mx-1 my-auto">
-                {breadcrumb.url ? (
-                  <Link to={breadcrumb.url}>{breadcrumb.name}</Link>
-                ) : (
-                  <span>{breadcrumb.name}</span>
-                )}
-              </span>
-            </>
-          ))
-        ) : (
+        {breadcrumbs.map((breadcrumb) => (
           <>
             <span className="mx-1 my-auto">
               <FaCaretRight />
             </span>
             <span className="mx-1 my-auto">
-              {breadcrumbs[0].url ? (
-                <Link to={breadcrumbs[0].url}>{breadcrumbs[0].name}</Link>
+              {breadcrumb.url ? (
+                <Link to={breadcrumb.url}>{breadcrumb.name}</Link>
               ) : (
-                <span>{breadcrumbs[0].name}</span>
+                <span>{breadcrumb.name}</span>
               )}
             </span>
           </>
-        )}
+        ))}
       </span>
     </nav>
   );

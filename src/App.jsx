@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Routes, Route } from "react-router";
 import "./assets/styles/App.css";
 import { Header, Footer } from "./features";
@@ -9,11 +9,12 @@ import {
   Collections,
   ProductDetail,
   Carts,
+  Checkout
 } from "./features";
 import ScrollToTop from "./utils/ScrollToTop";
-import { Loading } from "./components";
 
 function App() {
+
   return (
     <div className={"App bg-transparent"}>
       <Header />
@@ -27,6 +28,7 @@ function App() {
           <Route path="/collections/:category" element={<Collections />} />
           <Route path="/products/:slug" element={<ProductDetail />} />
           <Route path="/carts" element={<Carts />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </div>
       <Footer />
