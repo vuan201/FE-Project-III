@@ -4,11 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectAuthToken, logout } from "../../app/reducers";
 
 import { FaSearch, FaRegHeart, FaShoppingCart } from "react-icons/fa";
-import { Overlay, PopupMessage } from "../../components";
+import { Overlay, PopupMessage, Logo } from "../../components";
 import Navbar from "./containers/Navbar";
 import Dropdow from "./components/Dropdow";
 import { FiUser } from "react-icons/fi";
-import Logo from "./components/Logo";
 import HeaderIcons from "./components/HeaderIcons";
 import clsx from "clsx";
 import useScrollDirection from "../../hooks/useScrollDirection";
@@ -58,9 +57,9 @@ const Header = () => {
       >
         <div className={"flex items-center gap-2 bg-transparent max-h-14"}>
           <div className="flex basis-1/2 self-center max-h-14">
-            <Link className="basis-1/6 self-center cursor-pointer" to={"/"}>
+            <div className="basis-1/6 self-center" >
               <Logo />
-            </Link>
+            </div>
 
             <div className="pl-8 self-center">
               <Navbar />

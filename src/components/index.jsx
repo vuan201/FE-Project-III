@@ -15,6 +15,8 @@ export { default as InputQuantity } from "./InputQuantity";
 export { default as BannerHeadPage } from "./BannerHeadPage";
 export { default as AlertMessage } from "./AlertMessage";
 export { default as PopupMessage } from "./PopupMessage";
+export { default as Logo } from "./Logo";
+export { default as Container } from "./Container";
 
 export { default as NextArrow } from "./Sliders/DirectionButton/NextArrow";
 export { default as PrevArrow } from "./Sliders/DirectionButton/PrevArrow ";
