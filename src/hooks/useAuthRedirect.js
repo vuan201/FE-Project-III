@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-const useAuthRedirect = (token, status, navigate) => {
+const useAuthRedirect = (token, status, navigate, page) => {
   useEffect(() => {
-    if (token) navigate("/");
+    if (token) navigate(page);
   }, [token, status, navigate]);
 };
 

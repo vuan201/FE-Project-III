@@ -12,7 +12,7 @@ import {
 import useAuthRedirect from "../../../hooks/useAuthRedirect";
 import { alertError, fetchFailed } from "../../../config";
 
-const Login = () => {
+const Login = ({page = '/'}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -29,7 +29,7 @@ const Login = () => {
     };
   }, []);
 
-  useAuthRedirect(token, status, navigate);
+  useAuthRedirect(token, status, navigate, page);
 
   const handleSubmit = useCallback(
     (e) => {

@@ -20,7 +20,7 @@ import {
 import useAuthRedirect from "../../../hooks/useAuthRedirect";
 import { alertError, fetchFailed } from "../../../config";
 
-const Register = () => {
+const Register = ({page = '/'}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ const Register = () => {
     };
   }, []);
 
-  useAuthRedirect(token, status, navigate);
+  useAuthRedirect(token, status, navigate, page);
 
   const baseOptions = {
     form: "#registerForm",
