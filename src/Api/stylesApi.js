@@ -1,8 +1,8 @@
 import axiosClient from "./axiosClient";
 
-const baseUrl = "/sizes";
+const baseUrl = "/styles";
 
-const sizesApi = {
+const stylesApi = {
   getAll(params) {
     const url = baseUrl;
     return axiosClient.get(url, { params });
@@ -25,4 +25,4 @@ const sizesApi = {
   },
 };
 
-export default sizesApi;
+export default stylesApi;

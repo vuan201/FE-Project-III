@@ -1,9 +1,9 @@
-
-.nextLink, .nextLink::after{
-  transition: color .25s ease-in-out, background-color .25s ease-in-out;
+.nextLink,
+.nextLink::after {
+  transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
 }
 
-.nextLink::after{
+.nextLink::after {
   position: absolute;
   content: "";
   left: 0;
@@ -12,24 +12,23 @@
   height: 1px;
 }
 
-.dark{
+.dark {
   color: black;
 }
-.dark::after{
+.dark::after {
   background-color: black;
 }
 
-.light{
+.light {
   color: white;
 }
-.light::after{
+.light::after {
   background-color: white;
 }
 
-
-.nextLink:hover .nextLink{
+.nextLink:hover .nextLink {
   color: rgb(219 18 21);
 }
-.nextLink:hover::after{
-  background-color:rgb(219 18 21);
+.nextLink:hover::after {
+  background-color: rgb(219 18 21);
 }

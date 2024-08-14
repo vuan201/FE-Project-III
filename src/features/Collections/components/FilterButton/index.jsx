@@ -10,9 +10,7 @@ const FilterButton = ({ children }) => {
 
   return (
     <div className={filterDiv}>
-      <button className={filterButton}>
-        {children}
-      </button>
+      <button className={filterButton}>{children}</button>
     </div>
   );
 };

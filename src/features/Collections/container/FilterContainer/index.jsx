@@ -68,7 +68,7 @@ const FilterContainer = ({ isOpenFilter, onClick }) => {
           </div>
         </div>
         <div className="p-4">
-          <FiltersList/>
+          <FiltersList />
         </div>
       </div>
     </div>

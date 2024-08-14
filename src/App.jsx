@@ -12,6 +12,7 @@ import {
   Checkout,
 } from "./features";
 import ScrollToTop from "./utils/ScrollToTop";
+import PrivacyPolicy from "./features/PrivacyPolicy";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/products/:slug" element={<ProductDetail />} />
           <Route path="/carts" element={<Carts />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
         <Footer />
       </div>

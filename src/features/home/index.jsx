@@ -11,8 +11,9 @@ import {
   BigBanner,
   ByMeContainer,
   NewsletterSignupForm,
-  MarketingContainer,
+  // MarketingContainer,
 } from "./containers";
+import NewMarketingContainer from "./containers/NewMarketingContainer";
 
 const Home = () => {
   return (
@@ -26,7 +27,7 @@ const Home = () => {
       <BigBanner />
       <ByMeContainer />
       <NewsletterSignupForm />
-      <MarketingContainer />
+      <NewMarketingContainer />
     </div>
   );
 };

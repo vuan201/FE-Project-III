@@ -1,4 +1,5 @@
-.nextBtn, .prevBtn {
+.nextBtn,
+.prevBtn {
   position: absolute;
   font-size: 40px;
   top: 50%;

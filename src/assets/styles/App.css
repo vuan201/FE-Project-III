@@ -7,7 +7,7 @@
   --dark-color-background: rgb(0, 0, 0);
   --color-border-item: #000;
   --color-button-text: 255 255 255;
-  --light_skew-color: rgb(var(--color-button-text)/.25);
+  --light_skew-color: rgb(var(--color-button-text) / 0.25);
   --color-overlay: 0 0 0;
   --color-overlay: 0 0 0;
   --bg-color-filter-item-active: 242 242 242;
