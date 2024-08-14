@@ -1,5 +1,5 @@
 import React from "react";
-import { NextLink, Image, Container } from "../../../components";
+import { CustomLink, Image, Container } from "../../../components";
 import { frame } from "../../../config";
 
 const ByMeContainer = () => {
@@ -29,7 +29,9 @@ const ByMeContainer = () => {
           <h5 className="pb-4">{byMe.intro}</h5>
           <h2 className="title pb-4">{byMe.title}</h2>
           <p className="pb-4">{byMe.detail}</p>
-          <NextLink dark />
+          <CustomLink textDark url={"/collections"} iconEndText bottomLine>
+            Tới bộ sưu tập
+          </CustomLink>
         </div>
       </div>
     </Container>

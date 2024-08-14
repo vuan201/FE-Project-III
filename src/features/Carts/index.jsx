@@ -1,14 +1,15 @@
-import React, { memo, useEffect, useState } from "react";
-import { BannerHeadPage, Image } from "../../components";
+import React, { memo } from "react";
+import { BannerHeadPage, Container } from "../../components";
 
 import CartPayment from "./container/CartPayment";
 import ListCartItem from "./container/ListCartItem";
-import { Container } from "@mui/material";
 
 const Carts = () => {
   return (
     <div>
-      <BannerHeadPage title={"Giỏ hàng"} />
+      <div className="mb-10">
+        <BannerHeadPage title={"Giỏ hàng"} />
+      </div>
       <Container>
         <ListCartItem />
         <div className="sticky bottom-0 w-full bg-white">

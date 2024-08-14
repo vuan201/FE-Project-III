@@ -9,8 +9,34 @@ import {
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { logoApp } from "../../config";
+import IconFotter from "./IconFotter";
+import { CustomLink } from "../../components";
 
 const Footer = () => {
+  const icons = [
+    <FaFacebookF />,
+    <FaXTwitter />,
+    <FaInstagram />,
+    <FaTiktok />,
+    <FaPinterest />,
+  ];
+
+  const listHelpPage = [
+    { name: "Chính sách bảo hành", url: "/privacy-policy" },
+    { name: "Chính sách khách hàng thân thiết", url: "" },
+    { name: "Chính sách bảo vệ thông tin khách hàng", url: "" },
+    { name: "Trạng thái đơn hàng", url: "" },
+    { name: "HÌnh thức giao hàng", url: "" },
+    { name: "Hình thức thanh toán", url: "" },
+    { name: "Hướng dẫn cách chọn Size", url: "" },
+  ];
+
+  const listByShopPage = [
+    { name: "Câu chuyện về chúng tôi", url: "" },
+    { name: "Hoạt động", url: "" },
+    { name: "Liên hệ", url: "" },
+  ];
+
   return (
     <footer className="bg-[#f5f5f5] text-[#545454]">
       <div className="max-w-container mx-auto w-full px-12">
@@ -30,97 +56,40 @@ const Footer = () => {
               </li>
             </ul>
 
-            <Link
-              href=""
-              className="inline-flex items-center gap-x-1 mt-4 border-b border-black pb-1"
-            >
-              <p className="text-black text-sm font-bold">Get direction</p>
-
-              <HiOutlineExternalLink className="text-black" />
-            </Link>
-
-            <div className="mt-6 flex gap-2 flex-wrap">
-              <Link className="size-10 flex items-center justify-center border border-black text-black rounded-full transition-all hover:border-[#fe2c55] hover:text-[#fe2c55]">
-                <FaFacebookF />
-              </Link>
-              <Link className="size-10 flex items-center justify-center border border-black text-black rounded-full transition-all hover:border-[#fe2c55] hover:text-[#fe2c55]">
-                <FaXTwitter />
-              </Link>
-              <Link className="size-10 flex items-center justify-center border border-black text-black rounded-full transition-all hover:border-[#fe2c55] hover:text-[#fe2c55]">
-                <FaInstagram />
-              </Link>
-              <Link className="size-10 flex items-center justify-center border border-black text-black rounded-full transition-all hover:border-[#fe2c55] hover:text-[#fe2c55]">
-                <FaTiktok />
-              </Link>
-              <Link className="size-10 flex items-center justify-center border border-black text-black rounded-full transition-all hover:border-[#fe2c55] hover:text-[#fe2c55]">
-                <FaPinterest />
-              </Link>
-            </div>
+            <ul className="mt-6 flex gap-2 flex-wrap">
+              {icons.map((icon, index) => (
+                <li key={index}>
+                  <IconFotter>{icon}</IconFotter>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div>
             <h3 className="text-lg mb-4 font-medium text-black">TRỢ GIÚP</h3>
 
-            <ul>
-              <li className="mb-[10px] text-sm">
-                <Link to="/privacy-policy" className="hover:text-[#db1215]">
-                  Chính sách bảo hành
-                </Link>
-              </li>
-              <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">
-                  Chính sách khách hàng thân thiết
-                </Link>
-              </li>
-              <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">
-                  Chính sách bảo vệ thông tin khách hàng
-                </Link>
-              </li>
-              <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">
-                  Trạng thái đơn hàng
-                </Link>
-              </li>
-              <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">
-                  HÌnh thức giao hàng{" "}
-                </Link>
-              </li>
-              <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">
-                  Hình thức thanh toán
-                </Link>
-              </li>
-              <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">
-                  Hướng dẫn cách chọn Size
-                </Link>
-              </li>
+            <ul className="text-sm">
+              {listHelpPage.map((help, index) => (
+                <li key={index} className="mb-3">
+                  <CustomLink url={help.url ?? undefined}>
+                    {help.name}
+                  </CustomLink>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
             <h3 className="text-lg mb-4 font-medium text-black">Về QM SHOP</h3>
 
-            <ul>
-              <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">
-                  Câu chuyện về chúng tôi
-                </Link>
-              </li>
-              <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">Hoạt động</Link>
-              </li>
-              <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">Liên hệ</Link>
-              </li>
-              {/* <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">About Us</Link>
-              </li>
-              <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">Account</Link>
-              </li> */}
+            <ul className="text-sm">
+              {listByShopPage.map((byShop, index) => (
+                <li key={index} className="mb-3">
+                  <CustomLink url={byShop.url ?? undefined}>
+                    {byShop.name}
+                  </CustomLink>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -150,8 +119,7 @@ const Footer = () => {
               </button>
             </form>
 
-            <div className="flex gap-x-6 mt-8">
-            </div>
+            <div className="flex gap-x-6 mt-8"></div>
           </div>
         </div>
       </div>

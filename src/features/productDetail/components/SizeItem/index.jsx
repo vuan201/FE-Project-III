@@ -8,7 +8,7 @@ const SizeItem = ({ size, isValid, isSelector, onClick }) => {
       "bg-white text-black": !isSelector,
       "bg-black text-white": isSelector,
       "opacity-100 cursor-pointer": isValid,
-      "opacity-50 bg-slate-300": !isValid,
+      "opacity-50 bg-slate-300 cursor-not-allowed": !isValid,
     }
   );
   return (

@@ -10,7 +10,7 @@ const AlertMessage = ({ type, children }) => {
 
   return (
     <div
-      className={clsx("alertAnimation fixed top-8 right-8 transition-all duration-500", {
+      className={clsx("alertAnimation fixed top-20 right-8 transition-all duration-500", {
         "opacity-0 translate-x-[120%]": !showMeesage,
         "opacity-100 translate-x-0": showMeesage,
       })}

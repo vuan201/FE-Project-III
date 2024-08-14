@@ -11,7 +11,7 @@ const ImageItem = ({ image, isSelector, isValid, onClick }) => {
     {
       imageItemSelector: isSelector,
       "opacity-100 cursor-pointer": isValid,
-      "opacity-50 brightness-50": !isValid,
+      "opacity-50 brightness-50 cursor-not-allowed": !isValid,
     }
   );
   return (

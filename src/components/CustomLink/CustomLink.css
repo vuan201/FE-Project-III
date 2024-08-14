@@ -1,9 +1,8 @@
-.nextLink,
-.nextLink::after {
+.bottomLine::after {
   transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
 }
 
-.nextLink::after {
+.bottomLine::after {
   position: absolute;
   content: "";
   left: 0;
@@ -15,6 +14,7 @@
 .dark {
   color: black;
 }
+
 .dark::after {
   background-color: black;
 }
@@ -22,13 +22,11 @@
 .light {
   color: white;
 }
+
 .light::after {
   background-color: white;
 }
 
-.nextLink:hover .nextLink {
-  color: rgb(219 18 21);
-}
-.nextLink:hover::after {
+.bottomLine:hover::after {
   background-color: rgb(219 18 21);
 }
