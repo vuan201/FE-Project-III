@@ -4,65 +4,77 @@ import BannerHeadPage from "../../components/BannerHeadPage";
 const PrivacyPolicy = () => {
   return (
     <>
-      {/* <div className="privacy-policy-header h-56 flex items-center justify-center">
-        <h1 className="font-bold text-5xl">Privacy Policy</h1>
-      </div> */}
-
       <div>
-        <BannerHeadPage title={"Privacy Policy"} />
+        <BannerHeadPage title={"Chính sách bảo hành"} />
       </div>
 
       <div className="max-w-container mx-auto w-full px-12 py-9">
-        <h4 className="text-[22px]">The Company Private Limited Policy</h4>
-
+        <h4 className="text-[22px]">
+          1. Điều kiện áp dụng và thời gian bảo hành:
+        </h4>
+        <br />
+        <h4 className="text-[22px]">Điều kiện áp dụng:</h4>
         <p className="mt-4 mb-6 text-sm text-[#868686] leading-6">
-          The Company Private Limited and each of their respective subsidiary,
-          parent and affiliated companies is deemed to operate this Website
-          (“we” or “us”) recognizes that you care how information about you is
-          used and shared. We have created this Privacy Policy to inform you
-          what information we collect on the Website, how we use your
-          information and the choices you have about the way your information is
-          collected and used. Please read this Privacy Policy carefully. Your
-          use of the Website indicates that you have read and accepted our
-          privacy practices, as outlined in this Privacy Policy.
+          Trong thời gian bảo hành Khách hàng có nhu cầu bảo hành sản phẩm thì
+          sẽ miễn phí bảo hành với các trường hợp sau: Hở keo, dứt chỉ, gãy móc
+          khoá, bung hoạ tiết trang trí (nơ, nút, hoa, …), lờn gai nỉ.
         </p>
 
         <p className="mt-4 mb-6 text-sm text-[#868686] leading-6">
-          Please be advised that the practices described in this Privacy Policy
-          apply to information gathered by us or our subsidiaries, affiliates or
-          agents: (i) through this Website, (ii) where applicable, through our
-          Customer Service Department in connection with this Website, (iii)
-          through information provided to us in our free standing retail stores,
-          and (iv) through information provided to us in conjunction with
-          marketing promotions and sweepstakes.
+          Thời gian hỗ trợ bảo hành tính từ ngày nhận hàng:
+        </p>
+
+        <p className="mt-4 mb-6 text-sm text-[#868686] leading-6  pl-5">
+          Bảo hành trọn đời với lỗi bong keo, đứt chỉ (vật tư của sản phẩm đủ
+          điều kiện tái chế không bị rách, tróc si...).
+        </p>
+
+        <p className="mt-4 mb-6 text-sm text-[#868686] leading-6  pl-5">
+          Với các lỗi khác thời gian bảo hành 3 tháng cho sản phẩm Biti's, 6
+          tháng cho sản phẩm Gosto, Hunter.
         </p>
 
         <p className="mt-4 mb-6 text-sm text-[#868686] leading-6">
-          We are not responsible for the content or privacy practices on any
-          websites.
+          Nếu quá thời gian bảo hành Khách hàng có nhu cầu bảo hành sản phẩm thì
+          sẽ tính phí bảo hành + phí vận chuyển (nếu có) với các trường hợp sau:
+          Mòn hay mất tẩy cao su chi tiết rời, gãy khoen khoá, bung hoạ tiết
+          trang trí (nơ, nút, hoa, …), lờn gai nỉ.
         </p>
 
         <p className="mt-4 mb-6 text-sm text-[#868686] leading-6">
-          We reserve the right, in our sole discretion, to modify, update, add
-          to, discontinue, remove or otherwise change any portion of this
-          Privacy Policy, in whole or in part, at any time. When we amend this
-          Privacy Policy, we will revise the “last updated” date located at the
-          top of this Privacy Policy.
+          Khi bảo hành khách hàng phải cung cấp hóa đơn (phiếu xuất hàng) hoặc
+          mail xác nhận giao hàng và phiếu bảo hành của sản phẩm.
         </p>
 
         <p className="mt-4 mb-6 text-sm text-[#868686] leading-6">
-          If you provide information to us or access or use the Website in any
-          way after this Privacy Policy has been changed, you will be deemed to
-          have unconditionally consented and agreed to such changes. The most
-          current version of this Privacy Policy will be available on the
-          Website and will supersede all previous versions of this Privacy
-          Policy.
+          Thời gian xử lý bảo hành: Từ 1 đến 15 ngày làm việc kể từ ngày nhà máy
+          nhận được sản phẩm tùy mức độ hư hỏng.
         </p>
 
         <p className="mt-4 mb-6 text-sm text-[#868686] leading-6">
-          If you have any questions regarding this Privacy Policy, you should
-          contact our Customer Service Department by email at
-          marketing@company.com
+          Không hỗ trợ đối với những sản phẩm có thông báo: không áp dụng đổi
+          trả - bảo hành
+        </p>
+
+        <h4 className="text-[22px]">2. Địa điểm tiếp nhận bảo hành:</h4>
+
+        <p className="mt-4 mb-6 text-sm text-[#868686] leading-6">
+          Tại tất cả các cửa hàng tiếp thị của Biti’s trên toàn quốc. Danh sách
+          cửa hàng tiếp thị tại đây
+        </p>
+
+        {/* <p className="mt-4 mb-6 text-sm text-[#868686] leading-6"> */}
+        <u>Lưu ý:</u>
+        {/* </p> */}
+
+        <p className="mt-4 mb-6 text-sm text-[#868686] leading-6">
+          Trường hợp hết thời gian bảo hành, giày dép hư hỏng do hao mòn tự
+          nhiên hoặc bị tác động mạnh từ bên ngoài CHTT tiếp nhận bảo hành tuy
+          nhiên chi phí sửa chữa và vận chuyển khách hàng thanh toán.
+        </p>
+
+        <p className="mt-4 mb-6 text-sm text-[#868686] leading-6">
+          Hàng chậm, xu hướng chậm không được bảo hành.
         </p>
       </div>
     </>
