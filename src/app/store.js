@@ -28,6 +28,6 @@ export default configureStore({
     auth: authSlice,
     carts: cartsSlice,
     order: orderSlice,
-    AddressList: AddressListSlice,
+    addressList: AddressListSlice,
   },
 });

@@ -8,4 +8,4 @@ export const fetchFailed = "failed";
 export const alertSuccess = "success";
 export const alertInfo = "info";
 export const alertWarning = "warning";
-export const alertError = "alertError";
+export const alertError = "error";

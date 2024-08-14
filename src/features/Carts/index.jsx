@@ -6,7 +6,7 @@ import ListCartItem from "./container/ListCartItem";
 
 const Carts = () => {
   return (
-    <div>
+    <div className="min-h-page">
       <div className="mb-10">
         <BannerHeadPage title={"Giỏ hàng"} />
       </div>

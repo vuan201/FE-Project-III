@@ -5,16 +5,18 @@ import { Container } from "@mui/material";
 
 const Checkout = () => {
   return (
-    <Container>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="col-span-2">
-          <CheckoutInfomations />
+    <div className="min-h-page">
+      <Container>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="col-span-2">
+            <CheckoutInfomations />
+          </div>
+          <div className="col-span-2">
+            <CheckoutBillPreview />
+          </div>
         </div>
-        <div className="col-span-2">
-          <CheckoutBillPreview />
-        </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 };
 

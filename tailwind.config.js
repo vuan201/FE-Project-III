@@ -19,6 +19,9 @@ module.exports = {
       maxWidth: {
         container: "1440px",
       },
+      minHeight:{
+        page:"1020px",
+      },
       zIndex: {
         1: "1",
         2: "2",
