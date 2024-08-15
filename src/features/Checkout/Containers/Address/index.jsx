@@ -15,6 +15,7 @@ import {
   setSelectDistrict,
   setSelectWard,
 } from "../../../../app/reducers";
+import Options from "../../Components/Options";
 
 const Address = () => {
   const dispatch = useDispatch();
@@ -52,46 +53,35 @@ const Address = () => {
   };
 
   return (
-    <div>
-      <select
+    <div className="flex gap-4">
+      <Options
+        options={listCity}
         name="city"
         id="city"
         value={selectCity}
-        onChange={handleSelectCity}
+        setValue={handleSelectCity}
       >
-        <option value="">Chọn thành phố</option>
-        {listCity.map((city, index) => (
-          <option value={city.id} key={index}>
-            {city.name}
-          </option>
-        ))}
-      </select>
-      <select
+        Chọn thành phố
+      </Options>
+      <Options
+        options={listDistrict}
         name="district"
         id="district"
         value={selectDistrict}
-        onChange={handleSelectDistrict}
+        setValue={handleSelectDistrict}
       >
-        <option value="">Chọn quận / huyện</option>
-        {listDistrict.map((district, index) => (
-          <option value={district.id} key={index}>
-            {district.name}
-          </option>
-        ))}
-      </select>
-      <select
+        Chọn thành phố
+      </Options>
+      <Options
+        options={listWard}
         name="ward"
         id="ward"
         value={selectWard}
-        onChange={handleSelectWard}
+        setValue={handleSelectWard}
       >
-        <option value="">Chọn phường / xã</option>
-        {listWard.map((ward, index) => (
-          <option value={ward.id} key={index}>
-            {ward.name}
-          </option>
-        ))}
-      </select>
+        Chọn thành phố
+      </Options>
+     
     </div>
   );
 };

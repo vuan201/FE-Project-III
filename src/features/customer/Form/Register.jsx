@@ -124,7 +124,7 @@ const Register = ({page = '/'}) => {
           <AlertMessage type={alertError}>Tài khoản đã tồn tại</AlertMessage>
         ) : undefined}
         <div className="formValue">
-          <form className="grid justify-items-center " id="registerForm">
+          <form className="grid justify-items-center px-4" id="registerForm">
             <h1>ĐĂNG KÝ</h1>
             <Input
               id="name"

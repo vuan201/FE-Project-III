@@ -17,13 +17,15 @@ export const addOrders = createAsyncThunk(
     let newOrderItem = [];
     let response;
 
-    if (Array.isArray(order.items) && order.items.length > 0)
+    if (Array.isArray(order.items) && order.items.length > 0) {
       newOrderItem = order.items.map(({ sku, quantity }) => {
         return { sku: sku, quantity: quantity };
       });
+      order.item = newOrderItem;
+    }
 
     try {
-      response = await OrdersApi.add(newOrderItem);
+      response = await OrdersApi.add(order);
     } catch (error) {
       console.log(error);
     }
@@ -38,17 +40,21 @@ export const orderSlice = createSlice({
   // các giá trị ban đầu
   initialState: {
     items: [],
+
     address: {
       city: "",
       district: "",
       ward: "",
       specificAddress: "",
     },
+
     paymentMethod: {
       name: "",
       provider: null,
     },
+    phoneNumber: "",
     voucher: null,
+
     status: fetchIdle,
     error: null,
   },
@@ -63,6 +69,23 @@ export const orderSlice = createSlice({
     setPaymentMethod: (state, action) => {
       state.address = action.payload;
     },
+    setPhoneNumber: (state, action) => {
+      state.phoneNumber = action.payload;
+    },
+
+    setOrderCity: (state, action) => {
+      state.address.city = action.payload;
+    },
+    setOrderDistrict: (state, action) => {
+      state.address.district = action.payload;
+    },
+    setOrderWard: (state, action) => {
+      state.address.ward = action.payload;
+    },
+    setOrderSpecificAddress: (state, action) => {
+      state.address.specificAddress = action.payload;
+    },
+
     handleMutateOrderItems: (state, action) => {
       if (state.items.some((item) => item.sku === action.payload.sku)) {
         state.items = state.items.filter(
@@ -105,6 +128,7 @@ export const orderSlice = createSlice({
       state.address = {
         city: "",
         district: "",
+        ward: "",
         specificAddress: "",
       };
       state.paymentMethod = {
@@ -128,11 +152,17 @@ export const {
   setOrderQuantity,
   removeOrderItem,
   resetOrder,
+  setPhoneNumber,
+  setOrderCity,
+  setOrderDistrict,
+  setOrderWard,
+  setOrderSpecificAddress,
 } = orderSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
 export const selectOrderItems = (state) => state.order.items;
 export const selectOrderAddress = (state) => state.order.address;
+export const selectOrderPhoneNumber = (state) => state.order.phoneNumber;
 export const selectOrderPaymentMethod = (state) => state.order.paymentMethod;
 export const selectOrderVoucher = (state) => state.order.voucher;
 export const selectOrderStatus = (state) => state.order.status;

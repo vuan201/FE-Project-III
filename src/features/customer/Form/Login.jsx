@@ -46,7 +46,7 @@ const Login = ({page = '/'}) => {
         </AlertMessage>
       ) : undefined}
       <div className="formValue">
-        <form className="grid justify-items-center " id="loginForm">
+        <form className="grid justify-items-center px-4" id="loginForm">
           <h1>ĐĂNG NHẬP</h1>
           <Input
             id="email"
