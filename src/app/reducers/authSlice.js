@@ -40,7 +40,7 @@ const authSlice = createSlice({
   name: baseName,
   initialState: {
     token: Cookies.get("token") ?? null,
-    
+
     register: {
       name: "",
       email: "",
@@ -94,11 +94,9 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.status = fetchSucceeded;
         state.token = action.payload.token;
-        Cookies.set(
-          "token",
-          action.payload.token,
-          getTimeByToken(action.payload.token)
-        );
+        Cookies.set("token", action.payload.token, {
+          expires: getTimeByToken(action.payload.token),
+        });
         state.error = null;
       })
       .addCase(login.rejected, (state, action) => {

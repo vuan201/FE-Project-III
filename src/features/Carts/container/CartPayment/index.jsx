@@ -5,6 +5,7 @@ import { selectAuthToken, selectOrderItems } from "../../../../app/reducers";
 import { priceConvert } from "../../../../utils/priceConvert";
 import { Button, Overlay, PopupMessage } from "../../../../components";
 import useSticky from "../../../../hooks/useSticky";
+import { totalPrice } from "../../../../utils/totalPrice";
 
 const CartPayment = () => {
   const dispatch = useDispatch();
@@ -17,10 +18,8 @@ const CartPayment = () => {
 
   const [checkToken, setCheckToken] = useState(false);
   const [overlay, setOverlay] = useState(false);
-  const totalPrice = orderList.reduce(
-    (total, { price, quantity }) => price * quantity + total,
-    0
-  );
+
+  const total = totalPrice(orderList)
 
   const handleGoToCheckout = () => {
     if (token && orderList.length > 0) {
@@ -71,7 +70,7 @@ const CartPayment = () => {
         </div>
         <div className="flex gap-4 text-xl items-center">
           <span>Tổng thanh toán ({orderList.length} sản phẩm)</span>
-          <span className="text-red-500">{priceConvert(totalPrice)}₫</span>
+          <span className="text-red-500">{priceConvert(total)}₫</span>
           <div>
             <Button
               isFull

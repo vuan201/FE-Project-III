@@ -14,6 +14,7 @@ import {
 import CartItemPrice from "../../components/CartItemPrice";
 import { TfiClose } from "react-icons/tfi";
 import { Checkbox } from "@mui/material";
+import { productNameConnection } from "../../../../utils/productNameConnection";
 
 const CartItem = ({ cartItem }) => {
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ const CartItem = ({ cartItem }) => {
       dispatch(setQuantity({ sku, quantity: newQuantity }));
     }
 
-    dispatch(setOrderQuantity({ sku, name, quantity: newQuantity, price }));
+    dispatch(setOrderQuantity({ sku, quantity: newQuantity }));
   };
 
   return (
@@ -51,7 +52,15 @@ const CartItem = ({ cartItem }) => {
         <Checkbox
           checked={orderItems.some((item) => item.sku === sku)}
           onClick={() =>
-            dispatch(handleMutateOrderItems({ sku, name, quantity, price }))
+            dispatch(
+              handleMutateOrderItems({
+                sku,
+                imageUrl,
+                name: productNameConnection(name, color, size),
+                quantity,
+                price,
+              })
+            )
           }
         />
       </div>

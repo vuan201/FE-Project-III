@@ -10,7 +10,7 @@ const Breadcrumbs = ({ breadcrumbs }) => {
       </span>
       <span className="flex">
         {breadcrumbs.map((breadcrumb) => (
-          <>
+          <div className="flex" key={breadcrumb.name}>
             <span className="mx-1 my-auto">
               <FaCaretRight />
             </span>
@@ -21,7 +21,7 @@ const Breadcrumbs = ({ breadcrumbs }) => {
                 <span>{breadcrumb.name}</span>
               )}
             </span>
-          </>
+          </div>
         ))}
       </span>
     </nav>

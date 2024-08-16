@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchCity,
@@ -42,15 +42,24 @@ const Address = () => {
     dispatch(fetchWard(selectDistrict));
   }, [selectCity, selectDistrict]);
 
-  const handleSelectCity = (event) => {
-    dispatch(setSelectCity(event.target.value));
-  };
-  const handleSelectDistrict = (event) => {
-    dispatch(setSelectDistrict(event.target.value));
-  };
-  const handleSelectWard = (event) => {
-    dispatch(setSelectWard(event.target.value));
-  };
+  const handleSelectCity = useCallback(
+    (event) => {
+      dispatch(setSelectCity(event.target.value));
+    },
+    [dispatch]
+  );
+  const handleSelectDistrict = useCallback(
+    (event) => {
+      dispatch(setSelectDistrict(event.target.value));
+    },
+    [dispatch]
+  );
+  const handleSelectWard = useCallback(
+    (event) => {
+      dispatch(setSelectWard(event.target.value));
+    },
+    [dispatch]
+  );
 
   return (
     <div className="flex gap-4">
@@ -81,7 +90,6 @@ const Address = () => {
       >
         Chọn thành phố
       </Options>
-     
     </div>
   );
 };

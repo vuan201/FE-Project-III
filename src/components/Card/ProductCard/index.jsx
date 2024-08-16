@@ -58,9 +58,8 @@ const ProductCard = ({ data, padding }) => {
       groupedItems[imageSelector.color] &&
       groupedItems[imageSelector.color][1] &&
       groupedItems[imageSelector.color][1].url
-    ) {
+    )
       setImageSelector(groupedItems[imageSelector.color][1]);
-    }
   };
 
   const handleOnMouseOut = () => {
@@ -128,7 +127,7 @@ const ProductCard = ({ data, padding }) => {
         </div>
         <div className="text-xl productTitle">
           <Link
-            className="text-black hover:text-blue-800 transition"
+            className="text-black hover:text-red-600 transition"
             onClick={(e) => handleClick(e)}
             onMouseUp={(e) => handleClick(e)}
             onMouseMove={() => setMouseMoved(true)}
