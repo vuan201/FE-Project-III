@@ -28,6 +28,9 @@ import style3 from "../assets/images/styles/shoe-3_754f417a-8a49-40d6-a97e-0f49e
 import style4 from "../assets/images/styles/shoe-4_8571aa58-425b-41cb-863f-61e557328078.webp";
 import style5 from "../assets/images/styles/shoe-5_4396909a-74bd-46c3-8252-6d565acac45c.jpg";
 
+import vnPayLogo from "../assets/images/paymentMethod/cong-ty-cp-giai-phap-thanh-toan-viet-nam-vnpay-6194ba1fa3d66.webp";
+import CODLogo from "../assets/images/paymentMethod/cod.png";
+
 import logo from "../assets/images/logo/message.png";
 
 export const logoApp = { url: logo, name: "logo QM Store" };
@@ -103,4 +106,13 @@ export const styles = [
   { image: style3 },
   { image: style4 },
   { image: style5 },
+];
+
+export const paymentMethods = [
+  {
+    name: "COD",
+    description: "Thanh toán khi nhận hàng (COD)",
+    imageUrl: CODLogo,
+  },
+  { name: "vnpay", description: "Thanh toán qua VN Pay", imageUrl: vnPayLogo },
 ];

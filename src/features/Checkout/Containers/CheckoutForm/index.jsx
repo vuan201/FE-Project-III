@@ -3,7 +3,9 @@ import { Input } from "../../../../components";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectOrderAddress,
+  selectOrderFullName,
   selectOrderPhoneNumber,
+  setFullName,
   setOrderSpecificAddress,
   setPhoneNumber,
 } from "../../../../app/reducers";
@@ -12,7 +14,8 @@ const CheckoutForm = () => {
   const dispatch = useDispatch();
   const phoneNumber = useSelector(selectOrderPhoneNumber);
   const orderAddress = useSelector(selectOrderAddress);
-
+  const orderFullName = useSelector(selectOrderFullName)
+  
   return (
     <div>
       <div className="flex gap-4">
@@ -23,10 +26,10 @@ const CheckoutForm = () => {
           Số điện thoại
         </Input>
         <Input
-          value={phoneNumber}
-          onChange={(e) => dispatch(setPhoneNumber(e.target.value))}
+          value={orderFullName}
+          onChange={(e) => dispatch(setFullName(e.target.value))}
         >
-          Số điện thoại
+          Tên người nhận
         </Input>
       </div>
       <div>

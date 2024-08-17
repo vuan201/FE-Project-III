@@ -11,6 +11,7 @@ const CheckoutInfomations = () => {
       <div className="my-4">
         <DeliveryInformation />
       </div>
+      
     </div>
   );
 };

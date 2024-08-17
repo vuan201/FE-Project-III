@@ -49,10 +49,11 @@ export const orderSlice = createSlice({
     },
 
     paymentMethod: {
-      name: "",
+      name: "COD",
       provider: null,
     },
     phoneNumber: "",
+    fullName: "",
     voucher: null,
 
     status: fetchIdle,
@@ -63,16 +64,19 @@ export const orderSlice = createSlice({
     setOrder: (state, action) => {
       state.order = action.payload;
     },
+
     setAddress: (state, action) => {
       state.address = action.payload;
     },
-    setPaymentMethod: (state, action) => {
-      state.address = action.payload;
+    setPaymentMethodName: (state, action) => {
+      state.paymentMethod.name = action.payload;
     },
     setPhoneNumber: (state, action) => {
       state.phoneNumber = action.payload;
     },
-
+    setFullName: (state, action) => {
+      state.fullName = action.payload;
+    },
     setOrderCity: (state, action) => {
       state.address.city = action.payload;
     },
@@ -147,7 +151,7 @@ export const orderSlice = createSlice({
 export const {
   setOrder,
   setAddress,
-  setPaymentMethod,
+  setPaymentMethodName,
   handleMutateOrderItems,
   setOrderQuantity,
   removeOrderItem,
@@ -157,12 +161,14 @@ export const {
   setOrderDistrict,
   setOrderWard,
   setOrderSpecificAddress,
+  setFullName
 } = orderSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
 export const selectOrderItems = (state) => state.order.items;
 export const selectOrderAddress = (state) => state.order.address;
 export const selectOrderPhoneNumber = (state) => state.order.phoneNumber;
+export const selectOrderFullName = (state) => state.order.fullName;
 export const selectOrderPaymentMethod = (state) => state.order.paymentMethod;
 export const selectOrderVoucher = (state) => state.order.voucher;
 export const selectOrderStatus = (state) => state.order.status;
