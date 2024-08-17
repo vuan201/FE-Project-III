@@ -82,6 +82,9 @@ export const addressListSlice = createSlice({
       state.status = fetchIdle;
       state.error = null;
     },
+    resetListWard: (state) => {
+      state.listWard = [];
+    },
     resetAddressStatus: (state) => {
       state.status = fetchIdle;
     },
@@ -133,6 +136,7 @@ export const {
   setSelectCity,
   setSelectDistrict,
   setSelectWard,
+  resetListWard,
 } = addressListSlice.actions;
 
 export const selectAddressListCity = (state) => state.addressList.listCity;

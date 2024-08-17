@@ -1,96 +1,27 @@
-import React, { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchCity,
-  fetchDistrict,
-  fetchWard,
-  selectAddressCity,
-  selectAddressDistrict,
-  selectAddressListCity,
-  selectAddressListDistrict,
-  selectAddressListStatus,
-  selectAddressListWard,
-  selectAddressWard,
-  setSelectCity,
-  setSelectDistrict,
-  setSelectWard,
-} from "../../../../app/reducers";
-import Options from "../../Components/Options";
-
+import React, { useState } from "react";
+import NewAddress from "../NewAddress";
+import ChoiceAddress from "../../Components/ChoiceAddress";
+import OldAddress from "../OldAddress";
 const Address = () => {
-  const dispatch = useDispatch();
-
-  const listCity = useSelector(selectAddressListCity);
-  const listDistrict = useSelector(selectAddressListDistrict);
-  const listWard = useSelector(selectAddressListWard);
-
-  const selectCity = useSelector(selectAddressCity);
-  const selectDistrict = useSelector(selectAddressDistrict);
-  const selectWard = useSelector(selectAddressWard);
-
-  const fetchStatus = useSelector(selectAddressListStatus);
-
-  useEffect(() => {
-    dispatch(fetchCity());
-  }, []);
-
-  useEffect(() => {
-    dispatch(fetchDistrict(selectCity));
-  }, [selectCity]);
-
-  useEffect(() => {
-    dispatch(fetchWard(selectDistrict));
-  }, [selectCity, selectDistrict]);
-
-  const handleSelectCity = useCallback(
-    (event) => {
-      dispatch(setSelectCity(event.target.value));
-    },
-    [dispatch]
-  );
-  const handleSelectDistrict = useCallback(
-    (event) => {
-      dispatch(setSelectDistrict(event.target.value));
-    },
-    [dispatch]
-  );
-  const handleSelectWard = useCallback(
-    (event) => {
-      dispatch(setSelectWard(event.target.value));
-    },
-    [dispatch]
-  );
-
+  const [newAddress, setNewAddress] = useState(false);
   return (
-    <div className="flex gap-4">
-      <Options
-        options={listCity}
-        name="city"
-        id="city"
-        value={selectCity}
-        setValue={handleSelectCity}
-      >
-        Chọn thành phố
-      </Options>
-      <Options
-        options={listDistrict}
-        name="district"
-        id="district"
-        value={selectDistrict}
-        setValue={handleSelectDistrict}
-      >
-        Chọn thành phố
-      </Options>
-      <Options
-        options={listWard}
-        name="ward"
-        id="ward"
-        value={selectWard}
-        setValue={handleSelectWard}
-      >
-        Chọn thành phố
-      </Options>
-    </div>
+    <>
+      <div className="flex gap-4 justify-center text-center text-2xl mb-8">
+        <ChoiceAddress
+          active={!newAddress}
+          changeActive={() => setNewAddress(false)}
+        >
+          Sử dụng địa chỉ đã có
+        </ChoiceAddress>
+        <ChoiceAddress
+          active={newAddress}
+          changeActive={() => setNewAddress(true)}
+        >
+          Sử dụng địa chỉ mới
+        </ChoiceAddress>
+      </div>
+      {newAddress ? <NewAddress /> : <OldAddress/>}
+    </>
   );
 };
 

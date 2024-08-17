@@ -65,7 +65,7 @@ export const orderSlice = createSlice({
       state.order = action.payload;
     },
 
-    setAddress: (state, action) => {
+    setOrderAddress: (state, action) => {
       state.address = action.payload;
     },
     setPaymentMethodName: (state, action) => {
@@ -150,7 +150,7 @@ export const orderSlice = createSlice({
 
 export const {
   setOrder,
-  setAddress,
+  setOrderAddress,
   setPaymentMethodName,
   handleMutateOrderItems,
   setOrderQuantity,

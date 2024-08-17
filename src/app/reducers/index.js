@@ -10,6 +10,7 @@ export { default as paramsSlice } from "./paramsSlice";
 export { default as cartsSlice } from "./cartsSlice";
 export { default as orderSlice } from "./orderSlice";
 export { default as AddressListSlice } from "./AddressListSlice";
+export { default as customerSlice } from "./customerSlice";
 
 export * from "./categoriesSlice";
 export * from "./brandsSlice";
@@ -23,3 +24,4 @@ export * from "./authSlice";
 export * from "./cartsSlice";
 export * from "./orderSlice";
 export * from "./AddressListSlice";
+export * from "./customerSlice";

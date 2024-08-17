@@ -81,8 +81,8 @@ const Register = ({page = '/'}) => {
     return handleValidator({
       ...baseOptions,
       rules: [
-        validator.isRequired("#phone", infomation.phone),
-        validator.isPhone("#phone", infomation.phone),
+        validator.isRequired("#phone", infomation.phoneNumber),
+        validator.isPhone("#phone", infomation.phoneNumber),
       ],
     });
   };
@@ -149,7 +149,7 @@ const Register = ({page = '/'}) => {
             <Input
               id="phone"
               type="text"
-              value={infomation.phone}
+              value={infomation.phoneNumber}
               onChange={(e) => dispatch(setPhone(e.target.value))}
               Validator={handlePhoneValidator}
             >

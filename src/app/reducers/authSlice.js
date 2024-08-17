@@ -44,7 +44,7 @@ const authSlice = createSlice({
     register: {
       name: "",
       email: "",
-      phone: "",
+      phoneNumber: "",
       password: "",
       passwordComfirmation: "",
     },
@@ -56,7 +56,7 @@ const authSlice = createSlice({
       state.register = {
         name: "",
         email: "",
-        phone: "",
+        phoneNumber: "",
         password: "",
         passwordComfirmation: "",
       };
@@ -76,7 +76,7 @@ const authSlice = createSlice({
       state.register.email = action.payload;
     },
     setPhone: (state, action) => {
-      state.register.phone = action.payload;
+      state.register.phoneNumber = action.payload;
     },
     setPassword: (state, action) => {
       state.register.password = action.payload;

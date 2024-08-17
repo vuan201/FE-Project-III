@@ -7,3 +7,5 @@ export { default as sizesApi } from "./sizeApi";
 export { default as cartsApi } from "./cartsApi";
 export { default as OrdersApi } from "./OrdersApi";
 export { default as addressListApi } from "./AddressListApi";
+export { default as customerApi } from "./customerApi";
+export { default as customerAddressesApi } from "./customerAddressesApi";

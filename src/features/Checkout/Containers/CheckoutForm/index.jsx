@@ -1,21 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Input } from "../../../../components";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectOrderAddress,
+  fetchCustomerInfomations,
+  selectCustomerName,
+  selectCustomerPhone,
+  selectCustomerStatus,
   selectOrderFullName,
   selectOrderPhoneNumber,
   setFullName,
-  setOrderSpecificAddress,
   setPhoneNumber,
 } from "../../../../app/reducers";
+import { fetchSucceeded } from "../../../../config";
 
 const CheckoutForm = () => {
   const dispatch = useDispatch();
   const phoneNumber = useSelector(selectOrderPhoneNumber);
-  const orderAddress = useSelector(selectOrderAddress);
-  const orderFullName = useSelector(selectOrderFullName)
-  
+  const orderFullName = useSelector(selectOrderFullName);
+
+  const customerName = useSelector(selectCustomerName);
+  const customerPhone = useSelector(selectCustomerPhone);
+  const customerStatus = useSelector(selectCustomerStatus);
+
+  useEffect(() => {
+    dispatch(fetchCustomerInfomations());
+  }, []);
+
+  useEffect(() => {
+    if (customerStatus === fetchSucceeded) {
+      dispatch(setPhoneNumber(customerPhone));
+      dispatch(setFullName(customerName));
+    }
+  }, [customerStatus]);
+
   return (
     <div>
       <div className="flex gap-4">
@@ -30,14 +47,6 @@ const CheckoutForm = () => {
           onChange={(e) => dispatch(setFullName(e.target.value))}
         >
           Tên người nhận
-        </Input>
-      </div>
-      <div>
-        <Input
-          value={orderAddress.specificAddress}
-          onChange={(e) => dispatch(setOrderSpecificAddress(e.target.value))}
-        >
-          Chi tiết địa chỉ giao hàng
         </Input>
       </div>
     </div>

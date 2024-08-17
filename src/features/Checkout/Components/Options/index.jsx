@@ -14,7 +14,7 @@ const Options = (prop) => {
       <option value="">{children}</option>
       {Array.isArray(options) &&
         options.map(({ id, name }) => (
-          <option key={id} value={id}>
+          <option key={id} value={id} data-name={name}>
             {name}
           </option>
         ))}

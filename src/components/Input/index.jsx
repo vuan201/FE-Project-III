@@ -16,7 +16,7 @@ const Input = (prop) => {
   } = prop;
 
   return (
-    <div className={`py-5 relative w-full`}>
+    <div className={`formGroup py-5 relative w-full`}>
       <input
         className="form__field "
         id={id}
