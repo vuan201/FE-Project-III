@@ -12,10 +12,12 @@ const ordersApi = {
     return axiosClient.get(url);
   },
   add(data) {
-    const url = `${baseUrl}}`;
+    console.log(data);
+    
+    const url = baseUrl;
     return axiosClient.post(url, data);
   },
-  update(orders, headers) {
+  update(orders) {
     const url = `${baseUrl}`;
     return axiosClient.put(url, orders);
   },

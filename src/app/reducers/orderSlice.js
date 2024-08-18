@@ -21,7 +21,7 @@ export const addOrders = createAsyncThunk(
       newOrderItem = order.items.map(({ sku, quantity }) => {
         return { sku: sku, quantity: quantity };
       });
-      order.item = newOrderItem;
+      order.items = newOrderItem;
     }
 
     try {
@@ -40,7 +40,7 @@ export const orderSlice = createSlice({
   // các giá trị ban đầu
   initialState: {
     items: [],
-
+    addressId: 0,
     address: {
       city: "",
       district: "",
@@ -64,7 +64,9 @@ export const orderSlice = createSlice({
     setOrder: (state, action) => {
       state.order = action.payload;
     },
-
+    setAddressId:(state, action) => {
+      state.addressId = action.payload
+    },
     setOrderAddress: (state, action) => {
       state.address = action.payload;
     },
@@ -150,6 +152,7 @@ export const orderSlice = createSlice({
 
 export const {
   setOrder,
+  setAddressId,
   setOrderAddress,
   setPaymentMethodName,
   handleMutateOrderItems,
@@ -161,12 +164,13 @@ export const {
   setOrderDistrict,
   setOrderWard,
   setOrderSpecificAddress,
-  setFullName
+  setFullName,
 } = orderSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
 export const selectOrderItems = (state) => state.order.items;
 export const selectOrderAddress = (state) => state.order.address;
+export const selectOrderAddressId = (state) => state.order.addressId;
 export const selectOrderPhoneNumber = (state) => state.order.phoneNumber;
 export const selectOrderFullName = (state) => state.order.fullName;
 export const selectOrderPaymentMethod = (state) => state.order.paymentMethod;
