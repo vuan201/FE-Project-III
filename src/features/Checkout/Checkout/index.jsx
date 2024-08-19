@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CheckoutInfomations from "./Containers/CheckoutInfomations";
 import CheckoutBillPreview from "./Containers/CheckoutBillPreview";
 import { Container } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { resetOrder } from "../../../app/reducers";
 
 const Checkout = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    return () => dispatch(resetOrder())
+  },[])
+
   return (
     <div className="min-h-page">
       <Container>

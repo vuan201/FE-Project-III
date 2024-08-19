@@ -58,14 +58,20 @@ export const orderSlice = createSlice({
 
     status: fetchIdle,
     error: null,
+
+    vnPayResult: {
+      Message: "",
+      PaymentUrl: "",
+      StatusCode: "",
+    },
   },
 
   reducers: {
     setOrder: (state, action) => {
       state.order = action.payload;
     },
-    setAddressId:(state, action) => {
-      state.addressId = action.payload
+    setAddressId: (state, action) => {
+      state.addressId = action.payload;
     },
     setOrderAddress: (state, action) => {
       state.address = action.payload;
@@ -128,8 +134,6 @@ export const orderSlice = createSlice({
       }
     },
     resetOrder: (state) => {
-      state.status = fetchIdle;
-      state.voucher = null;
       state.items = [];
       state.address = {
         city: "",
@@ -138,16 +142,43 @@ export const orderSlice = createSlice({
         specificAddress: "",
       };
       state.paymentMethod = {
-        name: "",
+        name: "COD",
         provider: null,
       };
+
+      state.addressId = 0;
+      state.phoneNumber = "";
+      state.fullName = "";
+      state.vnPayResult = {
+        Message: "",
+        PaymentUrl: "",
+        StatusCode: "",
+      };
+
+      state.status = fetchIdle;
+      state.voucher = null;
       state.error = null;
     },
   },
 
   // xử lý các action được tạo bởi createAsyncThunk
   // hoặc các action khác không được định nghĩa trong phần reducers của slice.
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(addOrders.pending, (state) => {
+        state.status = fetchLoading;
+      })
+      .addCase(addOrders.fulfilled, (state, action) => {
+        state.status = fetchSucceeded;
+        state.vnPayResult.Message = action.payload.Message ?? "";
+        state.vnPayResult.PaymentUrl = action.payload.PaymentUrl ?? "";
+        state.vnPayResult.StatusCode = action.payload.StatusCode ?? "";
+      })
+      .addCase(addOrders.rejected, (state, action) => {
+        state.status = fetchFailed;
+        state.error = action.error.message;
+      });
+  },
 });
 
 export const {
@@ -158,13 +189,13 @@ export const {
   handleMutateOrderItems,
   setOrderQuantity,
   removeOrderItem,
-  resetOrder,
   setPhoneNumber,
   setOrderCity,
   setOrderDistrict,
   setOrderWard,
   setOrderSpecificAddress,
   setFullName,
+  resetOrder,
 } = orderSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
@@ -174,6 +205,8 @@ export const selectOrderAddressId = (state) => state.order.addressId;
 export const selectOrderPhoneNumber = (state) => state.order.phoneNumber;
 export const selectOrderFullName = (state) => state.order.fullName;
 export const selectOrderPaymentMethod = (state) => state.order.paymentMethod;
+export const selectOrderVnPayResult = (state) => state.order.vnPayResult;
+
 export const selectOrderVoucher = (state) => state.order.voucher;
 export const selectOrderStatus = (state) => state.order.status;
 export const selectOrderError = (state) => state.order.error;

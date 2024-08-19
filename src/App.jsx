@@ -17,7 +17,7 @@ import PrivacyPolicy from "./features/PrivacyPolicy";
 function App() {
   return (
     <div className={"App bg-transparent"}>
-      <div id="mainContent" className="w-full">
+      <div id="mainContent" className="w-full relative">
         <Header />
         <ScrollToTop />
         <Routes>
@@ -28,6 +28,7 @@ function App() {
           <Route path="/collections/:category" element={<Collections />} />
           <Route path="/products/:slug" element={<ProductDetail />} />
           <Route path="/carts" element={<Carts />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>

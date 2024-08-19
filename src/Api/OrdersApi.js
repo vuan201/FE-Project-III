@@ -12,8 +12,6 @@ const ordersApi = {
     return axiosClient.get(url);
   },
   add(data) {
-    console.log(data);
-    
     const url = baseUrl;
     return axiosClient.post(url, data);
   },

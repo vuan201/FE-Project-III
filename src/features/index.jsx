@@ -10,4 +10,4 @@ export { default as Collections } from "./Collections";
 export { default as Home } from "./home";
 export { default as ProductDetail } from "./productDetail";
 export { default as Carts } from "./Carts";
-export { default as Checkout } from "./Checkout";
+export { default as Checkout } from "./Checkout/Checkout";

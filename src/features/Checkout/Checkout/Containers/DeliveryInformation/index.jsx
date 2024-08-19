@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CheckoutForm from "../CheckoutForm";
 import PaymentMethod from "../PaymentMethod";
 import Address from "../Address";
-import { Button } from "../../../../components";
+import { Button } from "../../../../../components";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addOrders,
@@ -12,8 +12,9 @@ import {
   selectOrderItems,
   selectOrderPaymentMethod,
   selectOrderPhoneNumber,
+  selectOrderVnPayResult,
   selectOrderVoucher,
-} from "../../../../app/reducers";
+} from "../../../../../app/reducers";
 const DeliveryInformation = () => {
   const dispatch = useDispatch();
   const orderItem = useSelector(selectOrderItems);
@@ -23,6 +24,17 @@ const DeliveryInformation = () => {
   const orderPhoneNumber = useSelector(selectOrderPhoneNumber);
   const orderVoucher = useSelector(selectOrderVoucher);
   const orderAddressId = useSelector(selectOrderAddressId);
+
+  const vnPayResult = useSelector(selectOrderVnPayResult);
+
+  useEffect(() => {
+    if (
+      orderPaymentMethod.name === "vnpay" &&
+      vnPayResult.StatusCode === "307"
+    ) {
+      window.location.href = vnPayResult.PaymentUrl;
+    }
+  }, [vnPayResult]);
 
   const handleOrder = (e) => {
     e.preventDefault();

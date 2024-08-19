@@ -1,5 +1,5 @@
 import React from "react";
-import { Logo, Breadcrumbs } from "../../../../components";
+import { Logo, Breadcrumbs } from "../../../../../components";
 
 const CheckoutInfomationsHeader = () => {
   const BreadcrumbsList = [

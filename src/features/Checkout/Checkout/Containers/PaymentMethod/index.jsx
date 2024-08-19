@@ -1,11 +1,11 @@
 import React from "react";
-import { paymentMethods } from "../../../../config";
-import { Image } from "../../../../components";
+import { paymentMethods } from "../../../../../config";
+import { Image } from "../../../../../components";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectOrderPaymentMethod,
   setPaymentMethodName,
-} from "../../../../app/reducers";
+} from "../../../../../app/reducers";
 const PaymentMethod = () => {
   const dispatch = useDispatch();
   const paymentMethod = useSelector(selectOrderPaymentMethod);

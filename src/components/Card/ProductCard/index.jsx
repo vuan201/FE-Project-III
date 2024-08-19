@@ -94,7 +94,7 @@ const ProductCard = ({ data, padding }) => {
             </CSSTransition>
           </TransitionGroup>
         </Link>
-        <div className="mx-3 my-2 absolute bottom-0 w-full">
+        <div className="my-2 absolute bottom-0 w-full">
           <div className="flex justify-center gap-4">
             <div className="cardIcon cardIcon-1 shadow-md">
               <Button white>

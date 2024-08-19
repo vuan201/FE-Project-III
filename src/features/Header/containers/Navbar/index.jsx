@@ -96,6 +96,7 @@ const Navbar = () => {
     { pageName: "Đăng ký", url: "/register" },
     { pageName: "Bộ sưu tập", url: "/collections" },
     { pageName: "Giỏ hàng", url: "/carts" },
+    { pageName: "Thanh toán", url: "/checkout" },
   ];
 
   const navItem = clsx(

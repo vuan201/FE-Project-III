@@ -20,9 +20,9 @@ import {
   setSelectWard,
   selectOrderAddress,
   setOrderSpecificAddress,
-} from "../../../../app/reducers";
+} from "../../../../../app/reducers";
 import Options from "../../Components/Options";
-import { Input } from "../../../../components";
+import { Input } from "../../../../../components";
 
 const NewAddress = () => {
   const dispatch = useDispatch();

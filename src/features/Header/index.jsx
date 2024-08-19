@@ -16,6 +16,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectAuthToken);
   const [overlay, setOverlay] = useState(false);
+  
   const handleLogout = () => {
     dispatch(logout());
     setOverlay(false);
@@ -49,13 +50,13 @@ const Header = () => {
 
       <header
         className={clsx(
-          "sticky top-0 left-0 w-full p-4 mx-2 border-b-1 border-line-border z-10",
+          "sticky top-0 left-0 w-full p-4 border-b-1 border-line-border z-10",
           "bg-white text-black text-center ",
           "transition-transform duration-300",
           `${useScrollDirection() ? "-translate-y-full" : "translate-y-0"}`
         )}
       >
-        <div className={"flex items-center gap-2 bg-transparent max-h-14"}>
+        <div className={"flex items-center space-x-2 bg-transparent max-h-14"}>
           <div className="flex basis-1/2 self-center max-h-14">
             <div className="basis-1/6 self-center" >
               <Logo />

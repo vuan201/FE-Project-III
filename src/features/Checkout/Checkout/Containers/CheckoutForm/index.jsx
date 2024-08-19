@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Input } from "../../../../components";
+import { Input } from "../../../../../components";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchCustomerInfomations,
@@ -10,8 +10,8 @@ import {
   selectOrderPhoneNumber,
   setFullName,
   setPhoneNumber,
-} from "../../../../app/reducers";
-import { fetchSucceeded } from "../../../../config";
+} from "../../../../../app/reducers";
+import { fetchSucceeded } from "../../../../../config";
 
 const CheckoutForm = () => {
   const dispatch = useDispatch();
