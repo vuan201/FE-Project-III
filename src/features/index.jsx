@@ -11,3 +11,8 @@ export { default as Home } from "./home";
 export { default as ProductDetail } from "./productDetail";
 export { default as Carts } from "./Carts";
 export { default as Checkout } from "./Checkout/Checkout";
+export { default as CheckoutResults } from "./Checkout/CheckoutResults";
+
+
+// footer
+export { default as PrivacyPolicy } from "./PrivacyPolicy";

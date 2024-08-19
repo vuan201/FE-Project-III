@@ -18,6 +18,7 @@ import {
 } from "../../app/reducers";
 import { fetchFailed, fetchLoading, fetchSucceeded } from "../../config";
 const ProductDetail = () => {
+  
   const { slug } = useParams();
 
   const dispatch = useDispatch();

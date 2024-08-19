@@ -6,10 +6,10 @@ import { useDispatch } from "react-redux";
 import { resetOrder } from "../../../app/reducers";
 
 const Checkout = () => {
-  const dispatch = useDispatch()
-  useEffect(() => {
-    return () => dispatch(resetOrder())
-  },[])
+  // const dispatch = useDispatch()
+  // useEffect(() => {
+  //   return () => dispatch(resetOrder())
+  // },[])
 
   return (
     <div className="min-h-page">
