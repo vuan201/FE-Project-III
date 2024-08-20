@@ -6,7 +6,7 @@ const Address = () => {
   const [newAddress, setNewAddress] = useState(false);
   return (
     <>
-      <div className="flex gap-4 justify-center text-center text-2xl mb-8">
+      <div className="flex gap-4 justify-center text-center text-2xl">
         <ChoiceAddress
           active={!newAddress}
           changeActive={() => setNewAddress(false)}

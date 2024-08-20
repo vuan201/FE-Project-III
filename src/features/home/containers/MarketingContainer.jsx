@@ -10,17 +10,17 @@ const MarketingContainer = () => {
     {
       icon: <PiTruckDuotone className="w-full h-full" />,
       title: "Miễn phí vận chuyển",
-      description: "Bạn sẽ yêu thích với mức giá cực kỳ thấp",
+      description: "Miễn phí vận chuyển với các hóa đơn trên 1,5 triệu",
     },
     {
       icon: <MdCreditScore className="w-full h-full" />,
       title: "Thanh toán linh hoạt",
-      description: "Thanh toán bằng nhiều thẻ tín dụng.",
+      description: "Thanh toán bằng nhiều thẻ tín dụng",
     },
     {
       icon: <GiCardExchange className="w-full h-full" />,
       title: "đổi size trong 7 ngày",
-      description: "Trong vòng 7 ngày để đổi size nếu bạn không vừa.",
+      description: "Trong vòng 7 ngày để đổi size nếu bạn không vừa",
     },
   ];
 

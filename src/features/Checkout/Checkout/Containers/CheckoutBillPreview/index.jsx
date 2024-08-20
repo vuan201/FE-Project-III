@@ -12,8 +12,8 @@ const CheckoutBillPreview = () => {
   const [discount, setDiscount] = useState({ name: "", discount: 100000 });
   const [shippingFee, setShippingFee] = useState(0);
   return (
-    <div>
-      <h3 className="text-2xl">Danh sách sản phẩm</h3>
+    <div className="my-4">
+      <h3 className="text-3xl">Danh sách sản phẩm</h3>
       <ul className="my-4">
         {listOrderItem.map((orderItem) => (
           <li
