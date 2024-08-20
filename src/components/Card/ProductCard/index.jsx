@@ -70,7 +70,7 @@ const ProductCard = ({ data, padding }) => {
 
   return (
     <div className={clsx("card", { "px-4": padding })}>
-      <div className="cardImage block relative z-1 w-full aspect-square cardShadow ">
+      <div className="cardImage block relative z-1 w-full aspect-square cardShadow rounded-md overflow-hidden">
         {discount ?? (
           <div className="absolute top-1 right-1 bg-red-600 text-white">
             {/* <span>-30%</span> */}

@@ -39,7 +39,7 @@ const OutstandingContainer = () => {
               : undefined}
           </div>
         </div>
-        <div className="col-span-1 order-1 md:order-2">
+        <div className="col-span-1 order-1 md:order-2 rounded-md overflow-hidden">
           <BannerWrap data={bannerWrap[3]} bottom />
         </div>
       </div>

@@ -65,7 +65,7 @@ const CartItem = ({ cartItem }) => {
         />
       </div>
 
-      <div className="col-span-1 place-self-center h-full">
+      <div className="col-span-1 place-self-center h-full rounded-md overflow-hidden">
         <Image data={{ image: imageUrl, name: name }} />
       </div>
 

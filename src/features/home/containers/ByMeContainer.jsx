@@ -16,10 +16,10 @@ const ByMeContainer = () => {
         <div className="col-span-1">
           <div className="relative overflow-hidden">
             <div className="flex flex-row gap-8">
-              <div className="basis-1/2">
+              <div className="basis-1/2 rounded-md overflow-hidden">
                 <Image data={frame[1]} animation />
               </div>
-              <div className="basis-1/2">
+              <div className="basis-1/2 rounded-md overflow-hidden">
                 <Image data={frame[2]} animation />
               </div>
             </div>

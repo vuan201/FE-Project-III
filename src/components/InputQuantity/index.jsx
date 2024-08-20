@@ -8,7 +8,7 @@ const InputQuantity = (prop) => {
 
 
   const spanClassName = clsx(
-    "grid justify-items-center content-center bg-slate-100 w-10 cursor-pointer border border-slate-300 hover:border-black transition hover:text-red-600"
+    "grid justify-items-center content-center bg-slate-100 w-8 cursor-pointer border border-slate-300 hover:border-black transition hover:text-red-600 rounded-md overflow-hidden"
   );
   const handleIncrease = () => {
     setValue(value + 1);

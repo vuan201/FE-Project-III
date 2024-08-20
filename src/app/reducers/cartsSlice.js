@@ -28,7 +28,7 @@ export const updateCartItems = createAsyncThunk(
 
     if (Array.isArray(cartItems) && cartItems.length > 0)
       newCartItems = cartItems.map(({ sku, quantity }) => {
-        return { sku: sku, quantity: quantity };
+        return { sku, quantity };
       });
 
     try {

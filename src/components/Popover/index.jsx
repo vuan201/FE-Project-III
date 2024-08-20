@@ -9,7 +9,7 @@ const Popover = (props) => {
 
   const ref = useRef();
 
-  const className = clsx("transition-all h-[44px] border z-3 relative", {
+  const className = clsx("transition-all h-[44px] border z-3 relative overflow-hidden rounded-md", {
     // fix cứng kích thước khi không có icon (chỉ sử dụng cho sortButton)
     "w-[190px]": !Icon,
 

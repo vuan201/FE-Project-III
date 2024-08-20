@@ -12,14 +12,14 @@ const NewsletterSignupForm = () => {
       </div>
       <div className="relative flex">
         <div className="z-2 relative px-12 max-w-container w-full m-auto">
-          <div className="max-w-[950px] bg-white flex flex-col m-auto p-5 md:p-28">
-            <h5 className="title mb-4">THAM GIA VÀO CỘNG ĐÒNG QMSHOES</h5>
+          <div className="max-w-[950px] bg-white flex flex-col m-auto p-5 md:p-28 rounded-md overflow-hidden">
+            <h5 className="title mb-4">THAM GIA VÀO CỘNG ĐỒNG QMSHOES</h5>
             <p className="mb-4">
               Khuyến mãi, sản phẩm mới sẽ được gửi trực tiếp tới hộp thư của bạn
             </p>
             <div className="w-full mb-4">
               <form method="post" action="">
-                <div className="w-full flex flex-row items-center">
+                <div className="w-full flex flex-row items-center gap-2">
                   <div className="basis-3/4">
                     <Input>Email</Input>
                   </div>

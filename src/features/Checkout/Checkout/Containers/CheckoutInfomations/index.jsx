@@ -6,7 +6,7 @@ const CheckoutInfomations = () => {
   return (
     <div>
       <div className="my-4">
-        <CheckoutInfomationsHeader />
+        {/* <CheckoutInfomationsHeader /> */}
       </div>
       <div className="my-4">
         <DeliveryInformation />

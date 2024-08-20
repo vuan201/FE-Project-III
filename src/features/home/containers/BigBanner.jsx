@@ -5,7 +5,9 @@ import { frame } from "../../../config";
 const BigBanner = () => {
   return (
     <Container>
-      <Image data={frame[0]} />
+      <div className="rounded-md overflow-hidden">
+        <Image data={frame[0]} />
+      </div>
     </Container>
   );
 };

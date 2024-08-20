@@ -4,63 +4,45 @@ import {
   fetchCustomerAddresses,
   selectAuthToken,
   selectCustomerAddresses,
-  selectOrderAddress,
+  selectCustomerStatus,
   selectOrderAddressId,
   setAddressId,
-  setOrderAddress,
 } from "../../../../../app/reducers";
-import Options from "../../Components/Options";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { fetchSucceeded } from "../../../../../config";
 
 const OldAddress = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectAuthToken);
   const customerAddresses = useSelector(selectCustomerAddresses);
-  const selectAddress = useSelector(selectOrderAddress);
   const AddressId = useSelector(selectOrderAddressId);
+  const status = useSelector(selectCustomerStatus);
 
   useEffect(() => {
     if (token) {
       dispatch(fetchCustomerAddresses());
+      // dispatch(setAddressId(customerAddresses[0].id ?? 0))
     }
   }, []);
+
+  // useEffect(() => {
+  //   if (status === fetchSucceeded) {
+  //     dispatch(setAddressId(customerAddresses[0].id ?? 0));
+  //   }
+  // }, [status]);
 
   const handleSetAddress = (event) => {
     dispatch(setAddressId(event.target.value));
   };
 
-  const [age, setAge] = useState("");
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-
   return (
     <div>
-      {/* <FormControl variant="outlined" style={{ minWidth: 120 }}>
-        <InputLabel id="select-label">Age</InputLabel>
-        <Select
-          labelId="select-label"
-          value={age}
-          onChange={handleChange}
-          label="Age"
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl> */}
       <select
-        className="p-4 border border-slate-600 w-full"
+        className="p-4 border border-slate-600 w-full rounded-md"
         name="oldAddress"
         id="oldAddress"
         value={AddressId}
         onChange={handleSetAddress}
       >
-        <option value={0}>Chọn địa chỉ</option>
         {customerAddresses.map((address) => (
           <option key={address.id} value={address.id}>
             {address.specificAddress}

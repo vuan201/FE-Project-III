@@ -49,7 +49,9 @@ const Swatchs = (prop) => {
         ? newSwatchs.map((swatch, index) => (
             <li
               key={index}
-              className={imageSelector.color === swatch.color ? "item active" : "item"}
+              className={
+                imageSelector.color === swatch.color ? "item active " : "item "
+              }
               onClick={() => setImageSelector(swatch)}
             >
               <Image data={{ image: swatch.url, name: swatch.color }} />

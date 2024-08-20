@@ -14,7 +14,7 @@ const PopupMessage = (prop) => {
   return (
     <div
       className={clsx(
-        "fixed top-1/2 left-1/2 w-80 cursor-auto -translate-x-1/2 -translate-y-1/2 p-5 bg-white text-center transition-opacity z-30",
+        "fixed top-1/2 left-1/2 w-80 cursor-auto -translate-x-1/2 -translate-y-1/2 p-5 bg-white text-center transition-opacity z-30 overflow-hidden rounded-md",
         {
           "opacity-0 invisible": !receive,
           "opacity-100 visible": receive,

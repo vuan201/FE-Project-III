@@ -18,20 +18,20 @@ const ListCartItem = () => {
   const cartsStatus = useSelector(selectCartsStatus);
   const cartsError = useSelector(selectCartsError);
 
-  const [async, setAsync] = useState(true);
+  const [async1, setAsync] = useState(true);
 
   useEffect(() => {
-    if (!async && !token) setAsync(true);
+    if (!async1 && !token) setAsync(true);
 
-    if (async && token) {
+    if (async1 && token) {
       dispatch(updateCartItems(carts));
       setAsync(false);
     }
-  }, [async, token]);
+  }, [async1, token]);
 
   return (
     <ul>
-      {carts && Array.isArray(carts) ? (
+      {Array.isArray(carts) && carts.length > 0 ? (
         <>
           {cartsStatus === fetchLoading && <Loading />}
           <div className="grid grid-cols-12 gap-1 justify-items-center ">

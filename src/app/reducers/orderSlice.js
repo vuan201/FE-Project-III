@@ -16,7 +16,6 @@ export const addOrders = createAsyncThunk(
   async (order) => {
     let newOrderItem = [];
     let response;
-
     if (Array.isArray(order.items) && order.items.length > 0) {
       newOrderItem = order.items.map(({ sku, quantity }) => {
         return { sku: sku, quantity: quantity };
