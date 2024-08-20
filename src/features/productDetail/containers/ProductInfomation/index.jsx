@@ -17,13 +17,13 @@ import {
   ImageItem,
   SizeItem,
   ListPolicy,
-  ProductPrice,
   ProductStatus,
   ProductColorName,
 } from "../../components";
 import { AlertMessage, Button, InputQuantity } from "../../../../components";
 import { FaRegHeart } from "react-icons/fa";
 import { fetchSucceeded } from "../../../../config";
+import { priceConvert } from "../../../../utils/priceConvert";
 
 const ProductInfomation = ({ data }) => {
   const { name, description, brand, categories, options, images, slug } = data;
@@ -165,7 +165,9 @@ const ProductInfomation = ({ data }) => {
       </div>
 
       <div className="mb-5">
-        <ProductPrice price={selectOption.price} />
+        <span className="text-red-600 text-3xl">
+          {priceConvert(selectOption.price)}
+        </span>
       </div>
 
       <div className="mb-5">
@@ -194,7 +196,7 @@ const ProductInfomation = ({ data }) => {
       </ul>
 
       <div className="mb-5">
-        <span>Kích thước: </span>
+        <span>Kích thước: {selectSize}</span>
       </div>
 
       <ul className="mb-5 flex">
@@ -225,7 +227,7 @@ const ProductInfomation = ({ data }) => {
       <div className="mb-5 flex gap-1 items-stretch">
         <div className="basis-11/12" onClick={() => handleAddToCart()}>
           <Button black afterAnimation isFull>
-            Mua ngay
+            Thêm vào giỏ hàng
           </Button>
         </div>
 

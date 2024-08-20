@@ -19,8 +19,8 @@ const MarketingContainer = () => {
     },
     {
       icon: <GiCardExchange className="w-full h-full" />,
-      title: "đổi trả trong 14 ngày",
-      description: "Trong vòng 14 ngày để đổi hàng.",
+      title: "đổi size trong 7 ngày",
+      description: "Trong vòng 7 ngày để đổi size nếu bạn không vừa.",
     },
   ];
 

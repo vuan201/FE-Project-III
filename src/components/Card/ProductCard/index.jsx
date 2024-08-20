@@ -138,7 +138,6 @@ const ProductCard = ({ data, padding }) => {
         </div>
         <div className="flex gap-1 items-center text-red-600 text-xl">
           <span>{priceConvert(options[0].price)}</span>
-          <span>₫</span>
         </div>
       </div>
       <div className="my-5">

@@ -19,11 +19,11 @@ const ListPolicy = () => {
       name: "Đổi size trong vòng 7 ngày",
       title: "Đổi size trong vòng 7 ngày",
     },
-    {
-      image: policyImage[3],
-      name: "Đổi trả hàng trong vòng 7 ngày",
-      title: "Đổi trả hàng trong vòng 7 ngày",
-    },
+    // {
+    //   image: policyImage[3],
+    //   name: "Đổi trả hàng trong vòng 7 ngày",
+    //   title: "Đổi trả hàng trong vòng 7 ngày",
+    // },
     {
       image: policyImage[4],
       name: "Free ship đơn hàng 1.5 Triệu",

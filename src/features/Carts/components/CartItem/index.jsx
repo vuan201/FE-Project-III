@@ -11,12 +11,13 @@ import {
   setQuantity,
   updateCartItems,
 } from "../../../../app/reducers";
-import CartItemPrice from "../../components/CartItemPrice";
 import { TfiClose } from "react-icons/tfi";
 import { Checkbox } from "@mui/material";
 import { productNameConnection } from "../../../../utils/productNameConnection";
+import { priceConvert } from "../../../../utils/priceConvert";
 
 const CartItem = ({ cartItem }) => {
+  
   const dispatch = useDispatch();
   const token = useSelector(selectAuthToken);
 
@@ -87,7 +88,7 @@ const CartItem = ({ cartItem }) => {
       </div>
 
       <div className="col-span-1 justify-self-start">
-        <CartItemPrice price={price} />
+        <span>{priceConvert(price)}</span>
       </div>
 
       <div className="col-span-2">
@@ -99,7 +100,7 @@ const CartItem = ({ cartItem }) => {
       </div>
 
       <div className="col-span-1 justify-self-end">
-        <CartItemPrice price={price * quantity} />
+        <span>{priceConvert(price * quantity)}</span>
       </div>
 
       <div

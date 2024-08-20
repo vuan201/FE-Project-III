@@ -7,7 +7,7 @@ import {
   selectCartsStatus,
   updateCartItems,
 } from "../../../../app/reducers";
-import CartItem from "../CartItem";
+import CartItem from "../../components/CartItem";
 import { fetchLoading } from "../../../../config";
 import { Loading } from "../../../../components";
 

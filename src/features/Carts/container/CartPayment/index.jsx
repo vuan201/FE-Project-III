@@ -8,7 +8,6 @@ import useSticky from "../../../../hooks/useSticky";
 import { totalPrice } from "../../../../utils/totalPrice";
 
 const CartPayment = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const orderList = useSelector(selectOrderItems);
@@ -16,7 +15,6 @@ const CartPayment = () => {
 
   const { isSticky, elementRef } = useSticky();
 
-  const [checkToken, setCheckToken] = useState(false);
   const [overlay, setOverlay] = useState(false);
 
   const total = totalPrice(orderList)
@@ -70,7 +68,7 @@ const CartPayment = () => {
         </div>
         <div className="flex gap-4 text-xl items-center">
           <span>Tổng thanh toán ({orderList.length} sản phẩm)</span>
-          <span className="text-red-500">{priceConvert(total)}₫</span>
+          <span className="text-red-500">{priceConvert(total)}</span>
           <div>
             <Button
               isFull
@@ -78,7 +76,7 @@ const CartPayment = () => {
               afterAnimation
               onClick={() => handleGoToCheckout()}
             >
-              Mua ngay
+              Thanh toán
             </Button>
           </div>
         </div>
