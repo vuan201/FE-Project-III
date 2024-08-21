@@ -20,14 +20,14 @@ import {
 import { Loading, ProductCard } from "../../../../components";
 import { fetchLoading, fetchSucceeded } from "../../../../config";
 
-const ProductsList = () => {
+const ProductsList = ({ categoryId }) => {
   const dispatch = useDispatch();
   const products = useSelector(selectProductsItem);
   const allProducts = useSelector(selectAllProducts);
   const status = useSelector(selectProductsStatus);
 
   // params
-  const category = useSelector(selectCategory);
+  // const category = useSelector(selectCategory);
   const filterColors = useSelector(selectFiltersColors);
   const filterSizes = useSelector(selectFiltersSizes);
   const filterPrice = useSelector(selectFiltersPrice);
@@ -38,7 +38,7 @@ const ProductsList = () => {
   // call lại api khi param thay đổi
   useEffect(() => {
     const params = {
-      category: category.id ?? null,
+      category: categoryId ?? null,
       minPrice: filterPrice[0],
       maxPrice: filterPrice[1],
       sort: sortType.sort,
@@ -53,7 +53,7 @@ const ProductsList = () => {
       ? (params.size = filterSizes.join(","))
       : (params.size = null);
     dispatch(fetchProducts(params));
-  }, [filterColors, filterSizes, filterPrice, sortType, category, page]);
+  }, [filterColors, filterSizes, filterPrice, sortType, categoryId, page]);
 
   // thêm các sản phẩm mới featch vào danh sách được in ra
   useEffect(() => {
@@ -66,7 +66,7 @@ const ProductsList = () => {
   useEffect(() => {
     dispatch(resetAllProducts());
     dispatch(resetParamsPage());
-  }, [filterColors, filterSizes, filterPrice, sortType, category]);
+  }, [filterColors, filterSizes, filterPrice, sortType, categoryId]);
 
   useEffect(() => {
     // Thêm sự kiện cuộn

@@ -9,7 +9,6 @@ export const paramsSlice = createSlice({
 
   // các giá trị ban đầu
   initialState: {
-    category: {},
     colors: [],
     sizes: [],
     price: [0, 5000000],
@@ -82,6 +81,7 @@ export const paramsSlice = createSlice({
         const newArray = state.sizes.filter((item) => item !== action.payload);
         state.sizes = newArray;
       }
+
       // nếu không tồn tại màu đó trong bộ lọc, thì sẽ thêm vào
       else {
         state.sizes.push(action.payload);
@@ -94,13 +94,6 @@ export const paramsSlice = createSlice({
     setPage: (state) => {
       state.page += 1;
     },
-
-    // increasePage: (state) => {
-    //   state.page += 1;
-    // },
-    // decrementPage: (state) => {
-    //   if (state.page > 1) state.page -= 1;
-    // },
 
     resetParams: (state) => {
       state.colors = [];
@@ -124,14 +117,11 @@ export const {
   setFilterPrice,
   setPresentValue,
   handleFilterSizes,
-  // increasePage,
-  // decrementPage,
   setPage,
   resetParamsPage,
 } = paramsSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
-export const selectCategory = (state) => state.params.category;
 export const selectPage = (state) => state.params.page;
 export const selectLimitDefoult = (state) => state.params.limitDefoult;
 

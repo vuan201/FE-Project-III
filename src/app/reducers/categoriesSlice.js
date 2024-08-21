@@ -19,6 +19,13 @@ export const fetchCategories = createAsyncThunk(
     return response;
   }
 );
+export const fetchCategory = createAsyncThunk(
+  `${baseName}/fetchCategory`,
+  async (slug) => {
+    const response = await categoriesApi.get(slug);
+    return response;
+  }
+);
 
 export const categoriesSlice = createSlice({
   name: baseName,
@@ -26,6 +33,7 @@ export const categoriesSlice = createSlice({
   // các giá trị ban đầu
   initialState: {
     categories: [],
+    category: {},
     status: fetchIdle,
     error: null,
   },
@@ -45,12 +53,24 @@ export const categoriesSlice = createSlice({
       .addCase(fetchCategories.rejected, (state, action) => {
         state.status = fetchFailed;
         state.error = action.error.message;
+      })
+      .addCase(fetchCategory.pending, (state) => {
+        state.status = fetchLoading;
+      })
+      .addCase(fetchCategory.fulfilled, (state, action) => {
+        state.status = fetchSucceeded;
+        state.category = action.payload;
+      })
+      .addCase(fetchCategory.rejected, (state, action) => {
+        state.status = fetchFailed;
+        state.error = action.error.message;
       });
   },
 });
 
 // đẩy các dữ liệu ra ngoài
 export const selectCategoriesItem = (state) => state.categories.categories;
+export const selectCategory = (state) => state.categories.category;
 export const selectCategoriesStatus = (state) => state.categories.status;
 export const selectCategoriesError = (state) => state.categories.error;
 

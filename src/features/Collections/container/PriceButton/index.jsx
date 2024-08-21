@@ -21,7 +21,7 @@ const PriceButton = () => {
   return (
     <Popover Icon={FaMoneyBill} value={"Giá"}>
       <div className="box_shadow">
-        <div className="bg-white absolute top-[110%] left-[-100%] w-[300%] z-10">
+        <div className="bg-white absolute top-[110%] left-[-100%] w-[300%] z-10 overflow-hidden rounded-md">
           <output className="text-center w-full block">
             {values[0] ? values[0].toLocaleString("vi-VN") : undefined} VND -{" "}
             {values[1] ? values[1].toLocaleString("vi-VN") : undefined} VND

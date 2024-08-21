@@ -115,13 +115,13 @@ const Navbar = () => {
       </div> */}
       <div className={navItem}>
         <Dropdow listPage={listBrands} itemLeft>
-          Hãng
+          Nhãn hàng
         </Dropdow>
       </div>
       {/* ) : undefined} */}
       <div className={navItem}>
         <Dropdow listPage={listCategories} itemLeft>
-          Danh mục
+          Các thể loại giày
         </Dropdow>
       </div>
     </nav>

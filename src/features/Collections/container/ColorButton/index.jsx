@@ -23,10 +23,6 @@ const ColorButton = () => {
     dispatch(fetchColors());
   }, [dispatch]);
 
-  const handleSetFilterColors = (colorId) => {
-    dispatch(handleFilterColors(colorId));
-  };
-
   return (
     <Popover Icon={BiSolidColor} value={"Màu sắc"}>
       <div className="box_shadow">
@@ -37,7 +33,7 @@ const ColorButton = () => {
                   <FilterItem
                     value={color.name}
                     isActive={filtersColors.includes(color.id)}
-                    onClick={() => handleSetFilterColors(color.id)}
+                    onClick={() => dispatch(handleFilterColors(color.id))}
                   />
                 </li>
               ))

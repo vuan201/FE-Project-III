@@ -63,7 +63,10 @@ const ProductCard = ({ data, padding }) => {
   };
 
   const handleOnMouseOut = () => {
-    if (imageSelector.url !== groupedItems[imageSelector.color][0].url) {
+    if (
+      groupedItems[imageSelector.color][0].url &&
+      imageSelector.url !== groupedItems[imageSelector.color][0].url
+    ) {
       setImageSelector(groupedItems[imageSelector.color][0]);
     }
   };
@@ -146,7 +149,6 @@ const ProductCard = ({ data, padding }) => {
           imageSelector={imageSelector}
           setImageSelector={setImageSelector}
           isLimit={false}
-          // limit={3}
         />
       </div>
     </div>
