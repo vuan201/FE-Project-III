@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import {
   FaFacebookF,
@@ -11,14 +11,23 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 import { logoApp } from "../../config";
 import Select from "./select";
+import ScrollToTopBtn from "../../utils/ScrollToTopBtn";
 
 const Footer = () => {
+  const location = useLocation();
+
+  const handleClick = (event) => {
+    if (location.pathname === "/") {
+      window.scrollTo(0, 0);
+      event.preventDefault();
+    }
+  };
   return (
     <footer className="bg-[#f5f5f5] text-[#545454]">
       <div className="max-w-container mx-auto w-full px-12">
         <div className="border-b border-b-[#8686861f] pt-20 pb-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div>
-            <Link className="h-10 mb-10 block" to={"/"}>
+            <Link className="h-10 mb-10 block" to={"/"} onClick={handleClick}>
               <img src={logoApp.url} alt="Logo" className="h-full" />
             </Link>
 
@@ -70,8 +79,8 @@ const Footer = () => {
                 </Link>
               </li>
               <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">
-                  Chính sách khách hàng thân thiết
+                <Link to="/return-policy" className="hover:text-[#db1215]">
+                  Chính sách đổi trả
                 </Link>
               </li>
               <li className="mb-[10px] text-sm">
@@ -80,7 +89,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">
+                <Link to="/order-status" className="hover:text-[#db1215]">
                   Trạng thái đơn hàng
                 </Link>
               </li>
@@ -95,7 +104,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">
+                <Link to="/select-size" className="hover:text-[#db1215]">
                   Hướng dẫn cách chọn Size
                 </Link>
               </li>
@@ -107,7 +116,7 @@ const Footer = () => {
 
             <ul>
               <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">
+                <Link to="/story" className="hover:text-[#db1215]">
                   Câu chuyện về chúng tôi
                 </Link>
               </li>
@@ -220,6 +229,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <ScrollToTopBtn/>
 
       <div className="max-w-container mx-auto w-full px-12 py-6 flex justify-between flex-col gap-4 items-center md:flex-row">
         <p className="text-sm">

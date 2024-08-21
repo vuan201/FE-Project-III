@@ -5,6 +5,8 @@ import { Login, Home, Register, Collections, ProductDetail } from "./features";
 import ScrollToTop from "./utils/ScrollToTop";
 import Carts from "./features/Carts";
 import PrivacyPolicy from "./features/PrivacyPolicy";
+import ReturnPolicy from "./features/ReturnPolicy";
+import SelectSize from "./features/SelectSize";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="/products/:slug" element={<ProductDetail />} />
           <Route path="/cart" element={<Carts />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/return-policy" element={<ReturnPolicy />} />
+          <Route path="/select-size" element={<SelectSize />} />
         </Routes>
       </div>
       <Footer />
