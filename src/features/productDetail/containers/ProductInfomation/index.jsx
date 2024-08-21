@@ -218,6 +218,7 @@ const ProductInfomation = ({ data }) => {
 
       <div className="mb-5 ">
         <InputQuantity
+          min={1}
           limit={selectOption.quantity}
           value={quantity}
           setValue={setQuantity}

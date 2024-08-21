@@ -105,7 +105,7 @@ const Footer = () => {
 
             <form
               action=""
-              className="flex items-center border border-[#ebebeb] mt-6 h-14 bg-white rounded px-3"
+              className="flex items-center border border-[#ebebeb] mt-6 bg-white rounded px-3"
             >
               <input
                 type="text"
@@ -113,9 +113,11 @@ const Footer = () => {
                 className="flex-1 outline-none pr-3 text-sm"
               />
 
-              <button className="flex items-center gap-x-1 bg-black rounded h-10 text-white justify-center px-3 text-sm font-semibold cursor-pointer">
-                ĐĂNG KÝ
-                <HiOutlineExternalLink />
+              <button className="flex items-center justify-center gap-x-1 bg-black rounded h-10 text-white px-3 text-sm font-semibold cursor-pointer">
+                <div>ĐĂNG KÝ</div>
+                <div>
+                  <HiOutlineExternalLink />
+                </div>
               </button>
             </form>
 
