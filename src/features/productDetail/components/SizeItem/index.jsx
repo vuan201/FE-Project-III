@@ -3,11 +3,13 @@ import clsx from "clsx";
 import React from "react";
 
 const SizeItem = ({ size, isValid, isSelector, onClick }) => {
+  console.log(isSelector);
+  
   const sizeItemClassName = clsx(
-    "block transition bg-white text-black",
+    "block transition text-black",
     // "block p-2 hover:bg-black hover:text-white transition border boder-black",
     {
-      "bg-white text-black": !isSelector,
+      "bg-white": !isSelector,
       "bg-slate-200": isSelector,
       "opacity-100 cursor-pointer": isValid,
       "size-invalid opacity-50 bg-slate-300 cursor-not-allowed": !isValid,
