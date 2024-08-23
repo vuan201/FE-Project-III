@@ -1,5 +1,9 @@
 import { React, useCallback, useEffect, useState } from "react";
-import { AlertMessage, Button, Input, Loading } from "../../../components";
+import {
+  Button,
+  CustomSnackbar,
+  Input,
+} from "../../../components";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -8,11 +12,12 @@ import {
   selectAuthToken,
   login,
   resetAuthState,
+  resetAuthStatus,
 } from "../../../app/reducers";
 import useAuthRedirect from "../../../hooks/useAuthRedirect";
 import { ALERT_ERROR, FETCH_FAILED } from "../../../config";
 
-const Login = ({page = '/'}) => {
+const Login = ({ page = "/" }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -21,7 +26,6 @@ const Login = ({page = '/'}) => {
 
   const token = useSelector(selectAuthToken);
   const status = useSelector(selectAuthStatus);
-  const error = useSelector(selectAuthError);
 
   useEffect(() => {
     return () => {
@@ -40,11 +44,6 @@ const Login = ({page = '/'}) => {
   );
   return (
     <div className="form ">
-      {status === FETCH_FAILED ? (
-        <AlertMessage type={ALERT_ERROR}>
-          Tài khoản hoặc mật khẩu không đúng
-        </AlertMessage>
-      ) : undefined}
       <div className="formValue">
         <form className="grid justify-items-center px-4" id="loginForm">
           <h1>ĐĂNG NHẬP</h1>
@@ -92,6 +91,14 @@ const Login = ({page = '/'}) => {
           </Link>
         </div>
       </div>
+
+      <CustomSnackbar 
+        openSnackbar={status === FETCH_FAILED}
+        handleCloseSnackbar={() => dispatch(resetAuthStatus())}
+        snackbarSeverity={ALERT_ERROR}
+      >
+        Tài khoản hoặc mật khẩu không đúng
+      </CustomSnackbar>
     </div>
   );
 };

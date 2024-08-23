@@ -16,7 +16,7 @@ import {
   selectOrderVoucher,
 } from "../../../../../app/reducers";
 import { useDispatch, useSelector } from "react-redux";
-import { VN_PAY } from "../../../../../config";
+import { ALERT_ERROR, ALERT_SUCCESS, VN_PAY } from "../../../../../config";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 
@@ -33,7 +33,7 @@ const CheckoutInfomations = () => {
 
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
-  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+  const [snackbarSeverity, setSnackbarSeverity] = useState(ALERT_SUCCESS);
 
   useEffect(() => {
     if (
@@ -76,12 +76,12 @@ const CheckoutInfomations = () => {
 
       // Hiển thị thông báo thành công
       setSnackbarMessage("Đơn hàng đã được hoàn tất thành công!");
-      setSnackbarSeverity("success");
+      setSnackbarSeverity(ALERT_SUCCESS);
       setOpenSnackbar(true);
     } else {
       // Hiển thị thông báo lỗi
       setSnackbarMessage("Vui lòng kiểm tra lại thông tin đơn hàng!");
-      setSnackbarSeverity("error");
+      setSnackbarSeverity(ALERT_ERROR);
       setOpenSnackbar(true);
     }
   };

@@ -63,6 +63,10 @@ const authSlice = createSlice({
       state.status = FETCH_IDLE;
       state.error = null;
     },
+    resetAuthStatus: (state) => {
+      state.status = FETCH_IDLE;
+      state.error = null;
+    },
     logout: (state) => {
       state.token = null;
       state.error = null;
@@ -131,6 +135,7 @@ export const {
   setEmail,
   setPhone,
   setPassword,
+  resetAuthStatus,
   setPasswordComfirmation,
   resetAuthState,
 } = authSlice.actions;
