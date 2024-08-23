@@ -37,6 +37,7 @@ export const customerSlice = createSlice({
     phone: "",
     addresses: [],
 
+    addressStatus: FETCH_IDLE,
     status: FETCH_IDLE,
     error: null,
   },
@@ -60,14 +61,14 @@ export const customerSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(fetchCustomerAddresses.pending, (state) => {
-        state.status = FETCH_LOADING;
+        state.addressStatus = FETCH_LOADING;
       })
       .addCase(fetchCustomerAddresses.fulfilled, (state, action) => {
-        state.status = FETCH_SUCCEEDED;
+        state.addressStatus = FETCH_SUCCEEDED;
         state.addresses = action.payload;
       })
       .addCase(fetchCustomerAddresses.rejected, (state, action) => {
-        state.status = FETCH_FAILED;
+        state.addressStatus = FETCH_FAILED;
         state.error = action.error.message;
       });
   },
@@ -80,6 +81,7 @@ export const selectCustomerEmail = (state) => state.customer.email;
 export const selectCustomerAddresses = (state) => state.customer.addresses;
 
 export const selectCustomerStatus = (state) => state.customer.status;
+export const selectCustomerAddressStatus = (state) => state.customer.addressStatus;
 export const selectCustomerError = (state) => state.customer.error;
 
 export default customerSlice.reducer;

@@ -4,6 +4,7 @@ import {
   fetchCustomerAddresses,
   selectAuthToken,
   selectCustomerAddresses,
+  selectCustomerAddressStatus,
   selectCustomerStatus,
   selectOrderAddressId,
   setAddressId,
@@ -15,7 +16,7 @@ const OldAddress = () => {
   const token = useSelector(selectAuthToken);
   const customerAddresses = useSelector(selectCustomerAddresses);
   const AddressId = useSelector(selectOrderAddressId);
-  const status = useSelector(selectCustomerStatus);
+  const addressStatus = useSelector(selectCustomerAddressStatus);
 
   useEffect(() => {
     if (token) {
@@ -24,11 +25,13 @@ const OldAddress = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (status === FETCH_SUCCEEDED) {
-  //     dispatch(setAddressId(customerAddresses[0].id ?? 0));
-  //   }
-  // }, [status]);
+  useEffect(() => {
+    if (addressStatus === FETCH_SUCCEEDED) {
+      customerAddresses.length > 0
+        ? dispatch(setAddressId(customerAddresses[0].id))
+        : dispatch(setAddressId(0));
+    }
+  }, [addressStatus]);
 
   const handleSetAddress = (event) => {
     dispatch(setAddressId(event.target.value));
@@ -43,11 +46,15 @@ const OldAddress = () => {
         value={AddressId}
         onChange={handleSetAddress}
       >
-        {customerAddresses.map((address) => (
-          <option key={address.id} value={address.id}>
-            {address.specificAddress}
-          </option>
-        ))}
+        {customerAddresses.length > 0 ? (
+          customerAddresses.map((address) => (
+            <option key={address.id} value={address.id}>
+              {address.specificAddress}
+            </option>
+          ))
+        ) : (
+          <option>Bạn chưa có địa chỉ đã lưu</option>
+        )}
       </select>
     </div>
   );

@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import CheckoutInfomationsHeader from "../../Components/CheckoutInfomationsHeader";
 import Address from "../Address";
 import CheckoutForm from "../CheckoutForm";
 import PaymentMethod from "../PaymentMethod";
-import { Button } from "../../../../../components";
+import { Button, CustomSnackbar } from "../../../../../components";
 import {
   addOrders,
   selectOrderAddress,
@@ -17,6 +17,8 @@ import {
 } from "../../../../../app/reducers";
 import { useDispatch, useSelector } from "react-redux";
 import { VN_PAY } from "../../../../../config";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 const CheckoutInfomations = () => {
   const dispatch = useDispatch();
@@ -27,8 +29,11 @@ const CheckoutInfomations = () => {
   const orderPhoneNumber = useSelector(selectOrderPhoneNumber);
   const orderVoucher = useSelector(selectOrderVoucher);
   const orderAddressId = useSelector(selectOrderAddressId);
-
   const vnPayResult = useSelector(selectOrderVnPayResult);
+
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
   useEffect(() => {
     if (
@@ -53,7 +58,10 @@ const CheckoutInfomations = () => {
       orderAddress.ward !== "" &&
       orderAddress.specificAddress !== "";
 
-    if (isOrderValid && (isAddressComplete || orderAddressId !== 0)) {
+    if (
+      isOrderValid &&
+      (isAddressComplete || orderAddressId !== 0 || orderAddressId !== "0")
+    ) {
       const order = {
         items: orderItem,
         paymentMethod: orderPaymentMethod,
@@ -65,7 +73,21 @@ const CheckoutInfomations = () => {
           : { addressId: orderAddressId }),
       };
       dispatch(addOrders(order));
+
+      // Hiển thị thông báo thành công
+      setSnackbarMessage("Đơn hàng đã được hoàn tất thành công!");
+      setSnackbarSeverity("success");
+      setOpenSnackbar(true);
+    } else {
+      // Hiển thị thông báo lỗi
+      setSnackbarMessage("Vui lòng kiểm tra lại thông tin đơn hàng!");
+      setSnackbarSeverity("error");
+      setOpenSnackbar(true);
     }
+  };
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
   };
 
   return (
@@ -83,6 +105,15 @@ const CheckoutInfomations = () => {
           </Button>
         </div>
       </div>
+
+      {/* Snackbar */}
+      <CustomSnackbar
+        openSnackbar={openSnackbar}
+        handleCloseSnackbar={handleCloseSnackbar}
+        snackbarSeverity={snackbarSeverity}
+      >
+        {snackbarMessage}
+      </CustomSnackbar>
     </div>
   );
 };
