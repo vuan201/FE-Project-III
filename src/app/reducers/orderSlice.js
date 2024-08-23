@@ -6,6 +6,7 @@ import {
   fetchLoading,
   fetchSucceeded,
 } from "../../config";
+import { productNameConnection } from "../../utils/productNameConnection";
 
 // tên reducers
 const baseName = "order";
@@ -66,8 +67,19 @@ export const orderSlice = createSlice({
   },
 
   reducers: {
-    setOrder: (state, action) => {
-      state.order = action.payload;
+    setOrderItems: (state, action) => {
+      const newItem = action.payload.map(
+        ({ sku, imageUrl, name, quantity, price, color, size }) => {
+          return {
+            sku,
+            imageUrl,
+            name: productNameConnection(name, color, size),
+            quantity,
+            price,
+          };
+        }
+      );
+      state.items = newItem;
     },
     setAddressId: (state, action) => {
       state.addressId = action.payload;
@@ -125,12 +137,25 @@ export const orderSlice = createSlice({
       }
     },
     removeOrderItem: (state, action) => {
+      // Xóa nhiều
+      if (Array.isArray(action.payload)) {
+        const newOrderItem = state.items.filter((item) =>
+          action.payload.some((orderItem) => item.sku !== orderItem.sku)
+        );
+        state.items = newOrderItem;
+        return;
+      }
+
+      // Xóa một
       if (state.items.some((item) => item.sku === action.payload)) {
         const newOrderItem = state.items.filter(
           (item) => item.sku !== action.payload
         );
         state.items = newOrderItem;
       }
+    },
+    resetOrderItem: (state) => {
+      state.items = [];
     },
     resetOrder: (state) => {
       state.items = [];
@@ -181,7 +206,7 @@ export const orderSlice = createSlice({
 });
 
 export const {
-  setOrder,
+  setOrderItems,
   setAddressId,
   setOrderAddress,
   setPaymentMethodName,
@@ -194,6 +219,7 @@ export const {
   setOrderWard,
   setOrderSpecificAddress,
   setFullName,
+  resetOrderItem,
   resetOrder,
 } = orderSlice.actions;
 

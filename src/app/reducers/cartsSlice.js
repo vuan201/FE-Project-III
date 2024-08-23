@@ -26,10 +26,11 @@ export const updateCartItems = createAsyncThunk(
     let newCartItems = [];
     let response;
 
-    if (Array.isArray(cartItems) && cartItems.length > 0)
+    if (Array.isArray(cartItems) && cartItems.length > 0) {
       newCartItems = cartItems.map(({ sku, quantity }) => {
         return { sku, quantity };
       });
+    }
 
     try {
       response = await cartsApi.update(newCartItems);
@@ -57,6 +58,7 @@ export const cartsSlice = createSlice({
     setCarts: (state, action) => {
       state.cartItems = action.payload;
     },
+
     addItemToCart: (state, action) => {
       if (state.cartItems.some((cart) => cart.sku === action.payload.sku)) {
         const newCarts = state.cartItems.map((cart) => {
@@ -71,14 +73,16 @@ export const cartsSlice = createSlice({
 
       localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
     },
-    removeItemToCart: (state, action) => {
-      if (state.cartItems.some((cart) => cart.sku === action.payload)) {
-        state.cartItems = state.cartItems.filter(
-          (cart) => cart.sku !== action.payload
+    removeCartItems: (state, action) => {
+      if (Array.isArray(action.payload)) {
+        const newCartItems = state.cartItems.filter(
+          ({ sku }) => !action.payload.some((order) => order.sku === sku)
         );
-        localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
+        state.cartItems = newCartItems;
+        localStorage.setItem("carts", JSON.stringify(newCartItems ?? []));
       }
     },
+
     setQuantity: (state, action) => {
       if (state.cartItems.some((cart) => cart.sku === action.payload.sku)) {
         let newCartItems;
@@ -137,9 +141,9 @@ export const cartsSlice = createSlice({
 
 export const {
   addItemToCart,
-  removeItemToCart,
   setQuantity,
   setCarts,
+  removeCartItems,
   resetCartStatus,
 } = cartsSlice.actions;
 

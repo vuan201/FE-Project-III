@@ -28,10 +28,9 @@ const ListCartItem = () => {
       setAsync(false);
     }
   }, [async1, token]);
-
   return (
     <ul>
-      {Array.isArray(carts) && carts.length > 0 ? (
+      {carts.length > 0 ? (
         <>
           {cartsStatus === fetchLoading && <Loading />}
           <div className="grid grid-cols-12 gap-1 justify-items-center ">

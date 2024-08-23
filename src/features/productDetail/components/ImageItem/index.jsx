@@ -7,11 +7,11 @@ const ImageItem = ({ image, isSelector, isValid, onClick }) => {
   const { color, url } = image;
 
   const imageBoxClassName = clsx(
-    "imageItem w-20 h-28 relative transition hover:border hover:border-black",
+    "imageItem w-20 h-28 relative transition hover:border hover:border-black cursor-pointer",
     {
       imageItemSelector: isSelector,
-      "opacity-100 cursor-pointer": isValid,
-      "opacity-50 brightness-50 cursor-not-allowed": !isValid,
+      "opacity-100": isValid,
+      "opacity-50 brightness-50 ": !isValid,
     }
   );
   return (

@@ -3,8 +3,6 @@ import clsx from "clsx";
 import React from "react";
 
 const SizeItem = ({ size, isValid, isSelector, onClick }) => {
-  console.log(isSelector);
-  
   const sizeItemClassName = clsx(
     "block transition text-black",
     // "block p-2 hover:bg-black hover:text-white transition border boder-black",

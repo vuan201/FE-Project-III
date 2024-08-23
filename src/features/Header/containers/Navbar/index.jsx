@@ -121,7 +121,7 @@ const Navbar = () => {
       {/* ) : undefined} */}
       <div className={navItem}>
         <Dropdow listPage={listCategories} itemLeft>
-          Các thể loại giày
+          Các loại giày
         </Dropdow>
       </div>
     </nav>
