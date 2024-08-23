@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { brandsApi } from "../../Api";
 import {
-  fetchIdle,
-  fetchLoading,
-  fetchSucceeded,
-  fetchFailed,
+  FETCH_IDLE,
+  FETCH_LOADING,
+  FETCH_SUCCEEDED,
+  FETCH_FAILED,
 } from "../../config";
 
 // tên reducers
@@ -25,7 +25,7 @@ export const brandsSlice = createSlice({
   // các giá trị ban đầu
   initialState: {
     brands: [],
-    status: fetchIdle,
+    status: FETCH_IDLE,
     error: null,
   },
   reducers: {},
@@ -35,14 +35,14 @@ export const brandsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchBrands.pending, (state) => {
-        state.status = fetchLoading;
+        state.status = FETCH_LOADING;
       })
       .addCase(fetchBrands.fulfilled, (state, action) => {
-        state.status = fetchSucceeded;
+        state.status = FETCH_SUCCEEDED;
         state.brands = action.payload;
       })
       .addCase(fetchBrands.rejected, (state, action) => {
-        state.status = fetchFailed;
+        state.status = FETCH_FAILED;
         state.error = action.error.message;
       });
   },

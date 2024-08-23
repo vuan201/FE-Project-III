@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { cartsApi } from "../../Api";
 import {
-  fetchFailed,
-  fetchIdle,
-  fetchLoading,
-  fetchSucceeded,
+  FETCH_FAILED,
+  FETCH_IDLE,
+  FETCH_LOADING,
+  FETCH_SUCCEEDED,
 } from "../../config";
 
 // tên reducers
@@ -50,7 +50,7 @@ export const cartsSlice = createSlice({
     // carts: [],
     cartItems: JSON.parse(localStorage.getItem("carts")) ?? [],
     // carts: localStorage.removeItem("carts") ?? [],
-    status: fetchIdle,
+    status: FETCH_IDLE,
     error: null,
   },
 
@@ -104,7 +104,7 @@ export const cartsSlice = createSlice({
       }
     },
     resetCartStatus: (state) => {
-      state.status = fetchIdle;
+      state.status = FETCH_IDLE;
     },
   },
 
@@ -113,27 +113,27 @@ export const cartsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCarts.pending, (state) => {
-        state.status = fetchLoading;
+        state.status = FETCH_LOADING;
       })
       .addCase(fetchCarts.fulfilled, (state, action) => {
-        state.status = fetchSucceeded;
+        state.status = FETCH_SUCCEEDED;
         state.cartItems = action.payload.items;
         localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
       })
       .addCase(fetchCarts.rejected, (state, action) => {
-        state.status = fetchFailed;
+        state.status = FETCH_FAILED;
         state.error = action.error.message;
       })
       .addCase(updateCartItems.pending, (state) => {
-        state.status = fetchLoading;
+        state.status = FETCH_LOADING;
       })
       .addCase(updateCartItems.fulfilled, (state, action) => {
-        state.status = fetchSucceeded;
+        state.status = FETCH_SUCCEEDED;
         state.cartItems = action.payload.items;
         localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
       })
       .addCase(updateCartItems.rejected, (state, action) => {
-        state.status = fetchFailed;
+        state.status = FETCH_FAILED;
         state.error = action.error.message;
       });
   },

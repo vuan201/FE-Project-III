@@ -16,6 +16,7 @@ import {
   selectOrderVoucher,
 } from "../../../../../app/reducers";
 import { useDispatch, useSelector } from "react-redux";
+import { VN_PAY } from "../../../../../config";
 
 const CheckoutInfomations = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const CheckoutInfomations = () => {
 
   useEffect(() => {
     if (
-      orderPaymentMethod.name === "vnpay" &&
+      orderPaymentMethod.name === VN_PAY &&
       vnPayResult.StatusCode === "307"
     ) {
       window.location.href = vnPayResult.PaymentUrl;
@@ -52,7 +53,7 @@ const CheckoutInfomations = () => {
       orderAddress.ward !== "" &&
       orderAddress.specificAddress !== "";
 
-    if (isOrderValid && (isAddressComplete || orderAddressId !== "0")) {
+    if (isOrderValid && (isAddressComplete || orderAddressId !== 0)) {
       const order = {
         items: orderItem,
         paymentMethod: orderPaymentMethod,

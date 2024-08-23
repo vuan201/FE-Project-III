@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { colorsApi } from "../../Api";
 import {
-  fetchIdle,
-  fetchLoading,
-  fetchSucceeded,
-  fetchFailed,
+  FETCH_IDLE,
+  FETCH_LOADING,
+  FETCH_SUCCEEDED,
+  FETCH_FAILED,
 } from "../../config";
 
 // tên reducers
@@ -25,7 +25,7 @@ export const colorsSlice = createSlice({
   // các giá trị ban đầu
   initialState: {
     colors: [],
-    status: fetchIdle,
+    status: FETCH_IDLE,
     error: null,
   },
   reducers: {},
@@ -35,14 +35,14 @@ export const colorsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchColors.pending, (state) => {
-        state.status = fetchLoading;
+        state.status = FETCH_LOADING;
       })
       .addCase(fetchColors.fulfilled, (state, action) => {
-        state.status = fetchSucceeded;
+        state.status = FETCH_SUCCEEDED;
         state.colors = action.payload;
       })
       .addCase(fetchColors.rejected, (state, action) => {
-        state.status = fetchFailed;
+        state.status = FETCH_FAILED;
         state.error = action.error.message;
       });
   },

@@ -10,7 +10,7 @@ import {
   resetAuthState,
 } from "../../../app/reducers";
 import useAuthRedirect from "../../../hooks/useAuthRedirect";
-import { alertError, fetchFailed } from "../../../config";
+import { ALERT_ERROR, FETCH_FAILED } from "../../../config";
 
 const Login = ({page = '/'}) => {
   const navigate = useNavigate();
@@ -40,8 +40,8 @@ const Login = ({page = '/'}) => {
   );
   return (
     <div className="form ">
-      {status === fetchFailed ? (
-        <AlertMessage type={alertError}>
+      {status === FETCH_FAILED ? (
+        <AlertMessage type={ALERT_ERROR}>
           Tài khoản hoặc mật khẩu không đúng
         </AlertMessage>
       ) : undefined}

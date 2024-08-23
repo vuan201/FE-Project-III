@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { productsApi } from "../../Api";
 import {
-  fetchIdle,
-  fetchLoading,
-  fetchSucceeded,
-  fetchFailed,
+  FETCH_IDLE,
+  FETCH_LOADING,
+  FETCH_SUCCEEDED,
+  FETCH_FAILED,
 } from "../../config";
 
 // tên reducers
@@ -28,7 +28,7 @@ export const productDetailSlice = createSlice({
     selectorOption: {},
     selectorColor: "",
     selectorSize: "",
-    status: fetchIdle,
+    status: FETCH_IDLE,
     error: null,
   },
   reducers: {
@@ -47,7 +47,7 @@ export const productDetailSlice = createSlice({
       state.selectorColor = "";
       state.selectorSize = "";
       state.error = null;
-      state.status = fetchIdle;
+      state.status = FETCH_IDLE;
     },
   },
 
@@ -56,14 +56,14 @@ export const productDetailSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchProduct.pending, (state) => {
-        state.status = fetchLoading;
+        state.status = FETCH_LOADING;
       })
       .addCase(fetchProduct.fulfilled, (state, action) => {
-        state.status = fetchSucceeded;
+        state.status = FETCH_SUCCEEDED;
         state.productDetail = action.payload;
       })
       .addCase(fetchProduct.rejected, (state, action) => {
-        state.status = fetchFailed;
+        state.status = FETCH_FAILED;
         state.error = action.error.message;
       });
   },

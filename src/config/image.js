@@ -32,6 +32,7 @@ import vnPayLogo from "../assets/images/paymentMethod/cong-ty-cp-giai-phap-thanh
 import CODLogo from "../assets/images/paymentMethod/cod.png";
 
 import logo from "../assets/images/logo/message.png";
+import { COD, VN_PAY } from "./consts";
 
 export const logoApp = { url: logo, name: "logo QM Store" };
 
@@ -110,9 +111,9 @@ export const styles = [
 
 export const paymentMethods = [
   {
-    name: "COD",
+    name: COD,
     description: "Thanh toán khi nhận hàng (COD)",
     imageUrl: CODLogo,
   },
-  { name: "vnpay", description: "Thanh toán qua VN Pay", imageUrl: vnPayLogo },
+  { name: VN_PAY, description: "Thanh toán qua VN Pay", imageUrl: vnPayLogo },
 ];

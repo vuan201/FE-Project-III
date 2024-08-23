@@ -105,7 +105,7 @@ const Footer = () => {
 
             <form
               action=""
-              className="flex items-center border border-[#ebebeb] mt-6 bg-white rounded px-3"
+              className="flex items-center border border-[#ebebeb] mt-6 bg-white rounded pl-3"
             >
               <input
                 type="text"

@@ -18,7 +18,7 @@ import {
   resetParamsPage,
 } from "../../../../app/reducers";
 import { Loading, ProductCard } from "../../../../components";
-import { fetchLoading, fetchSucceeded } from "../../../../config";
+import { FETCH_LOADING, FETCH_SUCCEEDED } from "../../../../config";
 
 const ProductsList = ({ categoryId }) => {
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ const ProductsList = ({ categoryId }) => {
 
   // thêm các sản phẩm mới featch vào danh sách được in ra
   useEffect(() => {
-    if (status === fetchSucceeded) {
+    if (status === FETCH_SUCCEEDED) {
       dispatch(addProducts(products));
     }
   }, [products]);
@@ -84,7 +84,7 @@ const ProductsList = ({ categoryId }) => {
 
       if (
         scrollTop + clientHeight >= scrollHeight - 5 &&
-        status !== fetchLoading &&
+        status !== FETCH_LOADING &&
         products.length > 0
       ) {
         dispatch(setPage());
@@ -104,7 +104,7 @@ const ProductsList = ({ categoryId }) => {
             <ProductCard data={product} key={index} />
           ))
         : undefined}
-      {status === fetchLoading ?? <Loading />}
+      {status === FETCH_LOADING ?? <Loading />}
     </div>
   );
 };

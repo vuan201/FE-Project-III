@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { bannerWrap, fetchLoading } from "../../../config";
+import { bannerWrap, FETCH_LOADING } from "../../../config";
 import { ProductCard, Loading, Container } from "../../../components";
 import BannerWrap from "../components/BannerWrap";
 import { useSelector, useDispatch } from "react-redux";
@@ -23,7 +23,7 @@ const OutstandingContainer = () => {
     dispatch(fetchProducts(params));
   }, []);
 
-  if (status === fetchLoading) return <Loading />;
+  if (status === FETCH_LOADING) return <Loading />;
 
   return (
     <Container>

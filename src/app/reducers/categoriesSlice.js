@@ -2,10 +2,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { categoriesApi } from "../../Api";
 
 import {
-  fetchIdle,
-  fetchLoading,
-  fetchSucceeded,
-  fetchFailed,
+  FETCH_IDLE,
+  FETCH_LOADING,
+  FETCH_SUCCEEDED,
+  FETCH_FAILED,
 } from "../../config";
 
 // tên reducers
@@ -34,7 +34,7 @@ export const categoriesSlice = createSlice({
   initialState: {
     categories: [],
     category: {},
-    status: fetchIdle,
+    status: FETCH_IDLE,
     error: null,
   },
   reducers: {},
@@ -44,25 +44,25 @@ export const categoriesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCategories.pending, (state) => {
-        state.status = fetchLoading;
+        state.status = FETCH_LOADING;
       })
       .addCase(fetchCategories.fulfilled, (state, action) => {
-        state.status = fetchSucceeded;
+        state.status = FETCH_SUCCEEDED;
         state.categories = action.payload;
       })
       .addCase(fetchCategories.rejected, (state, action) => {
-        state.status = fetchFailed;
+        state.status = FETCH_FAILED;
         state.error = action.error.message;
       })
       .addCase(fetchCategory.pending, (state) => {
-        state.status = fetchLoading;
+        state.status = FETCH_LOADING;
       })
       .addCase(fetchCategory.fulfilled, (state, action) => {
-        state.status = fetchSucceeded;
+        state.status = FETCH_SUCCEEDED;
         state.category = action.payload;
       })
       .addCase(fetchCategory.rejected, (state, action) => {
-        state.status = fetchFailed;
+        state.status = FETCH_FAILED;
         state.error = action.error.message;
       });
   },

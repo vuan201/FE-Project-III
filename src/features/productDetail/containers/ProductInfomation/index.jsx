@@ -22,7 +22,7 @@ import {
 } from "../../components";
 import { AlertMessage, Button, InputQuantity } from "../../../../components";
 import { FaRegHeart } from "react-icons/fa";
-import { fetchSucceeded } from "../../../../config";
+import { ALERT_SUCCESS, FETCH_SUCCEEDED } from "../../../../config";
 import { priceConvert } from "../../../../utils/priceConvert";
 
 const ProductInfomation = ({ data }) => {
@@ -154,8 +154,8 @@ const ProductInfomation = ({ data }) => {
 
   return (
     <div className="my-4">
-      {(cartsStatus === fetchSucceeded || localStatus) && (
-        <AlertMessage type={"success"}>
+      {(cartsStatus === FETCH_SUCCEEDED || localStatus) && (
+        <AlertMessage type={ALERT_SUCCESS}>
           Thêm sản phẩm vào giỏ hàng thành công
         </AlertMessage>
       )}

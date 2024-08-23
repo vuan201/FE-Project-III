@@ -11,7 +11,7 @@ import {
   setFullName,
   setPhoneNumber,
 } from "../../../../../app/reducers";
-import { fetchSucceeded } from "../../../../../config";
+import { FETCH_SUCCEEDED } from "../../../../../config";
 
 const CheckoutForm = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const CheckoutForm = () => {
   }, []);
 
   useEffect(() => {
-    if (customerStatus === fetchSucceeded) {
+    if (customerStatus === FETCH_SUCCEEDED) {
       dispatch(setPhoneNumber(customerPhone));
       dispatch(setFullName(customerName));
     }

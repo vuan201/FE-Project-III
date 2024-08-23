@@ -15,7 +15,7 @@ import {
   selectCategoriesStatus,
   setParamsCategory,
 } from "../../../../app/reducers";
-import { fetchSucceeded } from "../../../../config";
+import { FETCH_SUCCEEDED } from "../../../../config";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -46,7 +46,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    if (brandsStatus === fetchSucceeded && categoriesStatus === fetchSucceeded) {
+    if (brandsStatus === FETCH_SUCCEEDED && categoriesStatus === FETCH_SUCCEEDED) {
       // console.log(111111);
       const newListBrands = brands.reduce((acc, brand) => {
         const categoryBrand = categories.find(

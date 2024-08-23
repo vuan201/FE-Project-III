@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { OrdersApi } from "../../Api";
 import {
-  fetchFailed,
-  fetchIdle,
-  fetchLoading,
-  fetchSucceeded,
+  COD,
+  FETCH_FAILED,
+  FETCH_IDLE,
+  FETCH_LOADING,
+  FETCH_SUCCEEDED,
 } from "../../config";
 import { productNameConnection } from "../../utils/productNameConnection";
 
@@ -49,14 +50,14 @@ export const orderSlice = createSlice({
     },
 
     paymentMethod: {
-      name: "COD",
+      name: COD,
       provider: null,
     },
     phoneNumber: "",
     fullName: "",
     voucher: null,
 
-    status: fetchIdle,
+    status: FETCH_IDLE,
     error: null,
 
     vnPayResult: {
@@ -166,7 +167,7 @@ export const orderSlice = createSlice({
         specificAddress: "",
       };
       state.paymentMethod = {
-        name: "COD",
+        name: COD,
         provider: null,
       };
 
@@ -179,7 +180,7 @@ export const orderSlice = createSlice({
         StatusCode: "",
       };
 
-      state.status = fetchIdle;
+      state.status = FETCH_IDLE;
       state.voucher = null;
       state.error = null;
     },
@@ -190,16 +191,16 @@ export const orderSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addOrders.pending, (state) => {
-        state.status = fetchLoading;
+        state.status = FETCH_LOADING;
       })
       .addCase(addOrders.fulfilled, (state, action) => {
-        state.status = fetchSucceeded;
+        state.status = FETCH_SUCCEEDED;
         state.vnPayResult.Message = action.payload.Message ?? "";
         state.vnPayResult.PaymentUrl = action.payload.PaymentUrl ?? "";
         state.vnPayResult.StatusCode = action.payload.StatusCode ?? "";
       })
       .addCase(addOrders.rejected, (state, action) => {
-        state.status = fetchFailed;
+        state.status = FETCH_FAILED;
         state.error = action.error.message;
       });
   },

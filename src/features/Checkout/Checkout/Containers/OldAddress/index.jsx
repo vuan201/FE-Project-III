@@ -8,7 +8,7 @@ import {
   selectOrderAddressId,
   setAddressId,
 } from "../../../../../app/reducers";
-import { fetchSucceeded } from "../../../../../config";
+import { FETCH_SUCCEEDED } from "../../../../../config";
 
 const OldAddress = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const OldAddress = () => {
   }, []);
 
   // useEffect(() => {
-  //   if (status === fetchSucceeded) {
+  //   if (status === FETCH_SUCCEEDED) {
   //     dispatch(setAddressId(customerAddresses[0].id ?? 0));
   //   }
   // }, [status]);

@@ -16,7 +16,7 @@ import {
   selectProductItem,
   selectProductStatus,
 } from "../../app/reducers";
-import { fetchFailed, fetchLoading, fetchSucceeded } from "../../config";
+import { FETCH_FAILED, FETCH_LOADING, FETCH_SUCCEEDED } from "../../config";
 const ProductDetail = () => {
   
   const { slug } = useParams();
@@ -34,9 +34,9 @@ const ProductDetail = () => {
     };
   }, [dispatch, slug]);
 
-  if (status === fetchLoading) return <Loading />;
-  else if (status === fetchFailed) return <div>{error}</div>;
-  else if (status === fetchSucceeded)
+  if (status === FETCH_LOADING) return <Loading />;
+  else if (status === FETCH_FAILED) return <div>{error}</div>;
+  else if (status === FETCH_SUCCEEDED)
     return (
       <>
         <div className="mx-auto mb-10 px-12">
