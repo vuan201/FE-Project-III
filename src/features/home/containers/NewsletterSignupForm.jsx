@@ -1,6 +1,6 @@
 import React from "react";
 import { newsletterSignupForm } from "../../../config";
-import { Button, Image, Input } from "../../../components";
+import { Button, Image, Input, Title } from "../../../components";
 const NewsletterSignupForm = () => {
   return (
     <div className="relative overflow-hidden bg-white w-full h-full pb-[130px] pt-[104px] text-center">
@@ -13,7 +13,7 @@ const NewsletterSignupForm = () => {
       <div className="relative flex">
         <div className="z-2 relative px-12 max-w-container w-full m-auto">
           <div className="max-w-[950px] bg-white flex flex-col m-auto p-5 md:p-28 rounded-md overflow-hidden">
-            <h5 className="title mb-4">THAM GIA VÀO CỘNG ĐỒNG QMSHOES</h5>
+            <Title className="mb-4">THAM GIA VÀO CỘNG ĐỒNG QMSHOES</Title>
             <p className="mb-4">
               Khuyến mãi, sản phẩm mới sẽ được gửi trực tiếp tới hộp thư của bạn
             </p>

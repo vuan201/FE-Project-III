@@ -17,6 +17,9 @@ export { default as PopupMessage } from "./PopupMessage";
 export { default as Logo } from "./Logo";
 export { default as Container } from "./Container";
 export { default as CustomSnackbar } from "./CustomSnackbar";
+export { default as Title } from "./Title";
+export { default as LinkInSlide } from "./LinkInSlide";
+
 
 export { default as NextArrow } from "./Sliders/DirectionButton/NextArrow";
 export { default as PrevArrow } from "./Sliders/DirectionButton/PrevArrow ";

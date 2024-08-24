@@ -1,5 +1,5 @@
 import React from "react";
-import { CustomLink, Image, Container } from "../../../components";
+import { CustomLink, Image, Container, Title } from "../../../components";
 import { frame } from "../../../config";
 
 const ByMeContainer = () => {
@@ -27,7 +27,7 @@ const ByMeContainer = () => {
         </div>
         <div className="col-span-1 text-left self-center">
           <h5 className="pb-4">{byMe.intro}</h5>
-          <h2 className="title pb-4">{byMe.title}</h2>
+          <Title className="pb-4">{byMe.title}</Title>
           <p className="pb-4">{byMe.detail}</p>
           <CustomLink textDark url={"/collections"} iconEndText bottomLine>
             Tới bộ sưu tập

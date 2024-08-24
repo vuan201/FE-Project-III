@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { Image, CustomLink } from "../../../../components";
+import { Image, CustomLink, Title } from "../../../../components";
 import "./BannerWrap.css";
 
 const BannerWrap = (prop) => {
@@ -21,7 +21,7 @@ const BannerWrap = (prop) => {
         }
       >
         <div className={childrenClass}>
-          <h3 className="title mb-3">{title}</h3>
+          <Title className={'mb-3'}>{title}</Title>
           {description ? (
             <p className="description mb-5">{description}</p>
           ) : undefined}

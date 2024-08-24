@@ -19,6 +19,7 @@ import {
 } from "../../app/reducers";
 import { FETCH_FAILED, FETCH_LOADING, FETCH_SUCCEEDED } from "../../config";
 const ProductDetail = () => {
+  
   const { slug } = useParams();
 
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ const ProductDetail = () => {
             <div className="w-full h-full">
               <ProductSlideImage images={product.images} />
             </div>
-            <div className="w-full h-full">
+            <div className="w-full h-full ">
               <ProductInfomation data={product} />
             </div>
           </div>
