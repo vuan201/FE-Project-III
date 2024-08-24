@@ -163,7 +163,7 @@ const ProductInfomation = ({ data }) => {
         <ProductColorName color={selectColor} />
       </div>
 
-      <ul className="mb-5 flex">
+      <ul className="mb-5 flex flex-wrap">
         {Object.keys(newImages).map((key) => (
           <li key={key} className="mr-1">
             <ImageItem
@@ -180,7 +180,7 @@ const ProductInfomation = ({ data }) => {
         <span>Kích thước: {selectSize}</span>
       </div>
 
-      <ul className="mb-5 flex">
+      <ul className="mb-5 flex flex-wrap">
         {Object.keys(optionsBySize).map((key) => (
           <li key={key} className="mr-1">
             <SizeItem
