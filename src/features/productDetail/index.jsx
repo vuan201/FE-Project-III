@@ -42,11 +42,11 @@ const ProductDetail = () => {
       <>
         <Container>
           <Breadcrumbs breadcrumbs={[{ name: product.name }]} />
-          <div className={"grid grid-cols-1 md:grid-cols-2 gap-4"}>
-            <div className="w-full h-full">
+          <div className={"flex flex-col lg:flex-row gap-4"}>
+            <div className="w-full h-full lg:sticky lg:top-0">
               <ProductSlideImage images={product.images} />
             </div>
-            <div className="w-full h-full ">
+            <div className="w-full h-full lg:sticky lg:top-0">
               <ProductInfomation data={product} />
             </div>
           </div>
