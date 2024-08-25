@@ -59,27 +59,27 @@ export const sliderImage = [
 
 export const bannerWrap = [
   {
-    name: "bộ sưu tập cho nam",
-    title: "bộ sưu tập cho nam",
+    name: "bộ sưu tập giày nam",
+    title: "bộ sưu tập giày nam",
     description: "Mỗi sản phẩm đều được thiết kế để bền bỉ qua nhiều mùa.",
     image: BannerWrap1,
   },
   {
-    name: "bộ sưu tập cho nữ",
-    title: "bộ sưu tập cho nữ",
+    name: "bộ sưu tập giày nữ",
+    title: "bộ sưu tập giày nữ",
     description: "",
     image: BannerWrap2,
   },
   {
-    name: "bộ sưu tập cho trẻ em",
-    title: "bộ sưu tập cho trẻ em",
+    name: "bộ sưu tập giày trẻ em",
+    title: "bộ sưu tập giày trẻ em",
     description: "",
     image: BannerWrap3,
   },
   {
-    name: "bộ sưu tập theo mùa",
-    title: "bộ sưu tập theo mùa",
-    description: "Mỗi sản phẩm đều được thiết kế để bền bỉ qua nhiều mùa.",
+    name: "bộ sưu tập giày thể thao",
+    title: "bộ sưu tập giày thể thao",
+    description: "",
     image: BannerWrap4,
   },
 ];

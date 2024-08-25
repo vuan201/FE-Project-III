@@ -56,7 +56,7 @@ import "./assets/styles/App.css";
 
 function App() {
   return (
-    <div className={"App bg-transparent "}>
+    <div className={"App bg-gray-50"}>
       <div id="mainContent" className="w-full flex flex-col">
         <Header />
         <div>
@@ -72,6 +72,7 @@ function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/checkout/results" element={<CheckoutResults />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/profile" element={<div />} />
           </Routes>
         </div>
         <Footer />

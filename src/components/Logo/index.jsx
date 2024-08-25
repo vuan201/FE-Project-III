@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 const Logo = () => {
   return (
     <Link className="cursor-pointer" to={"/"}>
-      <Image data={{ image: logoApp.url, name: logoApp.name }} />
+      <img src={logoApp.url} alt={logoApp.name} />
+      {/* <Image data={{ image: logoApp.url, name: logoApp.name }} /> */}
     </Link>
   );
 };

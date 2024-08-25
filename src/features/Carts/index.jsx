@@ -12,7 +12,7 @@ const Carts = () => {
       </div>
       <Container>
         <ListCartItem />
-        <div className="sticky bottom-0 w-full bg-white">
+        <div className="sticky bottom-0 w-full bg-gray-50">
           <CartPayment />
         </div>
       </Container>

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { IoFilter } from "react-icons/io5";
-import "./Filters.css";
-import { FilterButton } from "../../components";
+import React from "react";
 import { ColorButton, SizeButton, PriceButton } from "../";
+import { Container } from "../../../../components";
+import "./Filters.css";
+
 const Filters = () => {
   return (
     <div className="flex flex-row gap-4">

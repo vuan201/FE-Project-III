@@ -1,5 +1,4 @@
 import { React, useEffect } from "react";
-import "./Form.css";
 import { Input, Button, CustomSnackbar } from "../../../components";
 import validator from "./Validate";
 import { Link, useNavigate } from "react-router-dom";
@@ -119,10 +118,12 @@ const Register = ({ page = "/" }) => {
   return (
     <>
       {/* <BannerHeadPage title={"Đăng ký"} /> */}
-      <div className="form ">
+      <div className="form rounded-md shadow-md transition-transform duration-200 w-[500px] text-center m-auto my-10">
         <div className="formValue">
           <form className="grid justify-items-center px-4" id="registerForm">
-            <h1>ĐĂNG KÝ</h1>
+            <h1 className="text-black pt-6 text-center uppercase text-4xl">
+              đăng ký
+            </h1>
             <Input
               id="name"
               type="text"

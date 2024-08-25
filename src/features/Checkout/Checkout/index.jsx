@@ -9,11 +9,11 @@ const Checkout = () => {
     <div className="my-8">
       <Container>
         <CheckoutInfomationsHeader />
-        <div className="grid grid-cols-2 lg:grid-cols-4 space-x-4">
-          <div className="col-span-2">
+        <div className="grid grid-cols-4 lg:grid-cols-8 space-x-4">
+          <div className="col-span-4">
             <CheckoutInfomations />
           </div>
-          <div className="col-span-2">
+          <div className="col-span-4">
             <CheckoutBillPreview />
           </div>
         </div>

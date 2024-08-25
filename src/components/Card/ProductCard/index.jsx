@@ -58,7 +58,7 @@ const ProductCard = ({ data, padding }) => {
   };
 
   return (
-    <div className={clsx("card", { "px-4": padding })}>
+    <div className={clsx("card border border-slate-200 rounded-md shadow-md bg-white", { "px-4": padding })}>
       <div className="cardImage block relative z-1 w-full aspect-square cardShadow rounded-md overflow-hidden">
         {discount ?? (
           <div className="absolute top-1 right-1 bg-red-600 text-white">
@@ -101,7 +101,7 @@ const ProductCard = ({ data, padding }) => {
           </div>
         </div>
       </div>
-      <div className="my-5">
+      <div className="my-5 px-2">
         <div className="flex justify-between gap-1 my-2 ">
           <div className="flex gap-1">
             <span>{totalColors}</span>

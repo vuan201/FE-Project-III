@@ -50,15 +50,15 @@ const Header = () => {
 
       <header
         className={clsx(
-          "sticky top-0 left-0 w-full p-4 border-b-1 border-line-border z-10",
+          "sticky top-0 left-0 w-full p-4 border-b-1 border-line-border z-20",
           "bg-white text-black text-center ",
           "transition-transform duration-300",
           `${useScrollDirection() ? "-translate-y-full" : "translate-y-0"}`
         )}
       >
-        <div className={"flex items-center space-x-2 bg-transparent max-h-14"}>
-          <div className="flex basis-1/2 self-center max-h-14">
-            <div className="basis-1/6 self-center" >
+        <div className={"flex items-center space-x-2 justify-between max-h-14"}>
+          <div className="flex self-center max-h-14">
+            <div className="basis-52 self-center" >
               <Logo />
             </div>
 
@@ -67,7 +67,7 @@ const Header = () => {
             </div>
           </div>
 
-          <div className="basis-1/2 flex justify-end items-center">
+          <div className="flex items-center">
             <HeaderIcons>
               <FaSearch />
             </HeaderIcons>

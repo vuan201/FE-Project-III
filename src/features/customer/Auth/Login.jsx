@@ -43,10 +43,10 @@ const Login = ({ page = "/" }) => {
     [dispatch, email, password]
   );
   return (
-    <div className="form ">
+    <div className="form rounded-md shadow-md transition-transform duration-200 w-[500px] text-center m-auto my-10">
       <div className="formValue">
         <form className="grid justify-items-center px-4" id="loginForm">
-          <h1>ĐĂNG NHẬP</h1>
+          <h1 className="text-black pt-6 text-center uppercase text-4xl">ĐĂNG NHẬP</h1>
           <Input
             id="email"
             type="email"

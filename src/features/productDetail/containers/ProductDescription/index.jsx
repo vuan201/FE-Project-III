@@ -10,7 +10,7 @@ const ProductDescription = ({ data }) => {
 
   const detailInfomation = [
     { info: "Tên", value: name },
-    { info: "Đến từ", value: brand },
+    { info: "Thương hiệu", value: brand },
     { info: "Danh mục", value: categories.join(", ") },
     { info: "Các màu của sản phẩm", value: color.join(", ") },
     { info: "Các size của sản phẩm", value: size.join(", ") },
@@ -40,6 +40,8 @@ const ProductDescription = ({ data }) => {
         <Title>Mô tả sản phẩm</Title>
       </div>
       <div>{description}</div>
+
+      <Title>đánh giá sản phẩm</Title>
     </div>
   );
 };
