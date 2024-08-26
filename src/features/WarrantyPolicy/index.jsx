@@ -19,7 +19,7 @@ const WarrantyPolicy = () => {
       <div
         className="flex flex-col items-center p-6 min-h-screen bg-cover bg-center bg-fixed"
         style={{
-          backgroundImage: `url('https://cdn.shopify.com/s/files/1/0775/1765/2242/files/Rectangle_341.jpg?v=1695609113')`,
+          backgroundImage: `url('https://www.elle.vn/wp-content/uploads/2019/04/03/elle-viet-nam-blog-giay-the-thao1-1024x683.jpeg')`,
         }}
       >
         <div className="rounded-lg shadow-md p-2 w-full max-w-7xl bg-white bg-opacity-80">
@@ -82,13 +82,11 @@ const WarrantyPolicy = () => {
                 <FaTimesCircle className="absolute top-0 right-0 text-red-500 text-2xl" />
               </div>
               <p className="text-left font-semibold text-[#403130] ml-4">
-                <span className="text-2xl">SẢN PHẨM ÁP DỤNG ĐỔI:</span>
+                <span className="text-2xl">SẢN PHẨM KHÔNG ÁP DỤNG ĐỔI:</span>
                 <br />
-                <span className="block">- Hỗ trợ đổi size</span>
-                <span className="block">
-                  - Sản phẩm còn mới, chưa qua sử dụng/giặt tẩy
-                </span>
-                <span className="block">- Còn nguyên tem mác sản phẩm</span>
+                <span className="block">- Không hỗ trợ đổi màu, đổi mẫu</span>
+                <span className="block">- Sản phẩm giảm giá trên 30%</span>
+                <span className="block">chỉ hỗ trợ đổi size</span>
               </p>
             </div>
           </div>
@@ -111,8 +109,8 @@ const WarrantyPolicy = () => {
           <p className="mt-2 text-sm text-gray-600 font-semibold italic">
             Áp dụng đổi: CHỈ 1 LẦN DUY NHẤT
           </p>
-          <p className="mt-16 text-center text-[#403130] font-semibold">
-            Website: www.qmshop.vn | Hotline: 0365.087.570 hoặc 0982.942.754
+          <p className="mt-16 text-center text-[#403130] font-semibold italic">
+            Website: www.qmshop.com.vn | Hotline: 0365.087.570 hoặc 0982.942.754
           </p>
         </div>
       </div>
@@ -131,7 +129,7 @@ const WarrantyPolicy = () => {
           </h1>
         </div>
 
-        <div className="bg-black text-white p-8 mb-8 rounded-lg">
+        <div className="bg-black text-white p-12 mb-8 rounded-lg">
           <h2 className="text-xl font-semibold mb-4 max-w-none">
             1. QUY TRÌNH BẢO HÀNH:
           </h2>
@@ -167,9 +165,15 @@ const WarrantyPolicy = () => {
           <h2 className="text-xl font-semibold mb-4">2. NỘI DUNG BẢO HÀNH:</h2>
         </div>
         <div className="grid grid-cols-3 gap-12 mb-8">
-          <div className="border p-6 rounded-lg shadow-sm">
+          <div
+            className="border border-yellow-500 rounded-lg p-8 shadow-md"
+            style={{
+              backgroundImage:
+                "linear-gradient(to bottom, #f59e0b 30%, #ffffff 30%)",
+            }}
+          >
             <h3 className="text-lg font-semibold mb-4 text-center">1 tháng</h3>
-            <p>
+            <p className="mt-8">
               Trong vòng 1 tháng kể từ ngày mua sắm, hỗ trợ 1 đổi 1 (cùng mẫu,
               cùng màu, cùng size,...) với các sản phẩm <br /> bị lỗi, kém chất
               lượng từ phía nhà sản xuất...
@@ -180,17 +184,29 @@ const WarrantyPolicy = () => {
               trả với sản phẩm mua nguyên giá).
             </p>
           </div>
-          <div className="border p-6 rounded-lg shadow-sm">
+          <div
+            className="border border-yellow-500 rounded-lg p-8 shadow-md"
+            style={{
+              backgroundImage:
+                "linear-gradient(to bottom, #f59e0b 30%, #ffffff 30%)",
+            }}
+          >
             <h3 className="text-lg font-semibold mb-4 text-center">6 tháng</h3>
-            <p>
+            <p className="mt-8">
               Trong vòng 6 tháng kể từ ngày mua sắm, chúng tôi hỗ trợ sửa chữa,
               bảo hành cho các trường hợp sau: Bong tróc,nổ góc da, keo ép nhiệt
               bị bong, bị hở, bung, đứt chỉ.
             </p>
           </div>
-          <div className="border p-6 rounded-lg shadow-sm">
+          <div
+            className="border border-yellow-500 rounded-lg p-8 shadow-md"
+            style={{
+              backgroundImage:
+                "linear-gradient(to bottom, #f59e0b 30%, #ffffff 30%)",
+            }}
+          >
             <h3 className="text-lg font-semibold mb-4 text-center">Trọn đời</h3>
-            <p>
+            <p className="mt-8">
               Cam kết cung cấp dịch vụ vệ sinh, làm sạch trọn đời cho các sản
               phẩm.
             </p>
@@ -248,7 +264,7 @@ const WarrantyPolicy = () => {
       <p className="mt-8 text-center text-black font-semibold italic mb-8">
         Lưu ý về những trường hợp sẽ không nhận bảo hành:
       </p>
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto p-4 mb-16">
         <div className="grid grid-cols-2 gap-6 justify-center">
           <ul className="list-disc pl-6 mt-4 space-y-2 text-gray-700">
             <li>Quá thời gian bảo hành theo quy định bảo hành.</li>

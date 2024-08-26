@@ -118,7 +118,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li className="mb-[10px] text-sm">
-                <Link to="/order-status" className="hover:text-[#db1215]">
+                <Link to="/delivery-policy" className="hover:text-[#db1215]">
                   Chính sách giao hàng và kiểm hàng
                 </Link>
               </li>

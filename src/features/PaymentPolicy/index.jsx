@@ -36,7 +36,7 @@ const PaymentPolicy = () => {
             Thông tin ví VNPAY của tôi không được chấp nhận. Tôi phải làm gì?
           </h3>
 
-          <ul className="mt-4 space-y-2">
+          <ul className="mt-4 space-y-0">
             <li>
               Quý khách vui lòng kiểm tra lại đường truyền mạng và đặt hàng lại.
               Nếu ví VNPAY vẫn không được chấp nhận, vui lòng kiểm tra lại ngân
@@ -46,11 +46,11 @@ const PaymentPolicy = () => {
               ví VNPAY, hoặc liên hệ với bộ phận Chăm sóc khách hàng của chúng
               tôi để được hỗ trợ thêm.
             </li>
-            <li>
-              Định danh thông tin trên ví điện tử trước khi thực hiện bất kì
-              giao dịch nào.
-            </li>
           </ul>
+          <div className="mt-2">
+            Định danh thông tin trên ví điện tử trước khi thực hiện bất kì giao
+            dịch nào.
+          </div>
         </section>
         <section className="mb-4 mt-8">
           <h3 className="text-2xl font-semibold text-red-800 mb-4">
@@ -58,7 +58,7 @@ const PaymentPolicy = () => {
             tôi đã đặt hàng thành công?
           </h3>
 
-          <ul className="mt-4 space-y-2">
+          <ul className="mt-4 space-y-0">
             <li>
               Khi đặt hàng thành công, quý khách sẽ nhìn thấy thông báo "Đặt
               hàng thành công" và nhận được Mã số đơn hàng. Nếu quý khách vẫn
@@ -84,7 +84,7 @@ const PaymentPolicy = () => {
           </li>
           <li>
             <span className="font-bold">Hotline:</span>
-            <span className="text-red-800 font-bold"> 0982.942.754</span>
+            <span className="text-red-800 font-bold"> 0365.087.570</span>
           </li>
         </ul>
       </div>

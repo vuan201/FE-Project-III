@@ -46,7 +46,7 @@ const PrivacyPolicy = () => {
             </li>
             <li>
               - Để xác nhận danh tính, liên lạc và xử lý các giao dịch mua bán
-              giữa khách hàng và website Giày Kosu.
+              giữa khách hàng và website QM SHOP.
             </li>
             <li>
               - Để cung cấp cho khách hàng các sản phẩm và dịch vụ phù hợp với
@@ -59,20 +59,20 @@ const PrivacyPolicy = () => {
             </li>
             <li>
               - Để gửi cho khách hàng các thông tin quảng cáo, khuyến mãi, tin
-              tức và bản tin liên quan đến website Giày Kosu hoặc các đối tác
-              liên kết của website Giày Kosu, nếu khách hàng đồng ý nhận.
+              tức và bản tin liên quan đến website QM SHOP hoặc các đối tác liên
+              kết của website QM SHOP, nếu khách hàng đồng ý nhận.
             </li>
             <li>
               - Để phòng ngừa hoặc phát hiện các hành vi vi phạm pháp luật hoặc
-              quy định của website Giày Kosu.
+              quy định của website.
             </li>
             <li>
               - Xử lý các giao dịch tài chính liên quan đến việc thanh toán trực
-              tuyến của bạn
+              tuyến của bạn.
             </li>
             <li>
-              - Giải quyết các khiếu nại, tranh chấp hoặc bảo vệ quyền lợi của
-              Giày Kosu khi có sự vi phạm từ phía khách hàng
+              - Giải quyết các khiếu nại, tranh chấp hoặc bảo vệ quyền lợi khi
+              có sự vi phạm từ phía khách hàng.
             </li>
           </ul>
         </section>
@@ -169,19 +169,20 @@ const PrivacyPolicy = () => {
             cũng
           </p>
           <p className="mt-2">
-            có thể yêu cầu Giày Kosu cập nhật, sửa đổi hoặc xóa thông tin cá
+            có thể yêu cầu chúng tôi cập nhật, sửa đổi hoặc xóa thông tin cá
             nhân của bạn bằng cách liên hệ với chúng tôi qua:
           </p>
           <ul className="list-disc pl-5 mt-4">
             <li>
-              <h4 className="mt-4">Số hotline: 0982.942.754</h4>
+              <h4 className="mt-4">Số hotline: 0365.087.570</h4>
             </li>
             <li>
-              <h4 className="mt-4">Email: cskh.qmshop@gmail.com</h4>
+              <h4 className="mt-4">Email: cskh.qmshop@gmail.com.vn</h4>
             </li>
             <li>
               <h4 className="mt-4">
-                Địa chỉ thư tín: VTC Online Building, 18 Đ. Tam Trinh Hà Nội
+                Địa chỉ thư tín: VTC Online Building 18 Đ. Tam Trinh, Mai Động,
+                Hai Bà Trưng, Hà Nội
               </h4>
             </li>
           </ul>
@@ -210,7 +211,7 @@ const PrivacyPolicy = () => {
 
           <ul className="mt-4 space-y-2">
             <li>
-              Tuy nhiên, Giày Koosu không thể đảm bảo rằng việc truyền tải hoặc
+              Tuy nhiên, chúng tôi không thể đảm bảo rằng việc truyền tải hoặc
               lưu trữ thông tin qua internet là hoàn toàn an toàn và không có
               rủi ro. Do đó, khách hàng
             </li>
@@ -255,14 +256,15 @@ const PrivacyPolicy = () => {
 
           <ul className="list-disc pl-5 mt-4">
             <li>
-              <h4 className="mt-4">Số hotline: 0982.942.754</h4>
+              <h4 className="mt-4">Số hotline: 0365.087.570</h4>
             </li>
             <li>
-              <h4 className="mt-4">Email: cskh.qmshop@gmail.com</h4>
+              <h4 className="mt-4">Email: cskh.qmshop@gmail.com.vn</h4>
             </li>
             <li>
               <h4 className="mt-4">
-                Địa chỉ thư tín: VTC Online Building, 18 Đ. Tam Trinh Hà Nội
+                VTC Online Building 18 Đ. Tam Trinh, Mai Động, Hai Bà Trưng, Hà
+                Nội
               </h4>
             </li>
           </ul>

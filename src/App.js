@@ -7,6 +7,7 @@ import Carts from "./features/Carts";
 import WarrantyPolicy from "./features/WarrantyPolicy";
 import PrivacyPolicy from "./features/PrivacyPolicy";
 import PaymentPolicy from "./features/PaymentPolicy";
+import DeliveryPolicy from "./features/DeliveryPolicy";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/warranty-policy" element={<WarrantyPolicy />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/payment-policy" element={<PaymentPolicy />} />
+          <Route path="/delivery-policy" element={<DeliveryPolicy />} />
         </Routes>
       </div>
       <Footer />
