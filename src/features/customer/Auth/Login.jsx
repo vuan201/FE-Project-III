@@ -1,5 +1,9 @@
 import { React, useCallback, useEffect, useState } from "react";
-import { AlertMessage, Button, Input, Loading } from "../../../components";
+import {
+  Button,
+  CustomSnackbar,
+  Input,
+} from "../../../components";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -8,11 +12,12 @@ import {
   selectAuthToken,
   login,
   resetAuthState,
+  resetAuthStatus,
 } from "../../../app/reducers";
 import useAuthRedirect from "../../../hooks/useAuthRedirect";
-import { alertError, fetchFailed } from "../../../config";
+import { ALERT_ERROR, FETCH_FAILED } from "../../../config";
 
-const Login = ({page = '/'}) => {
+const Login = ({ page = "/" }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -21,7 +26,6 @@ const Login = ({page = '/'}) => {
 
   const token = useSelector(selectAuthToken);
   const status = useSelector(selectAuthStatus);
-  const error = useSelector(selectAuthError);
 
   useEffect(() => {
     return () => {
@@ -39,15 +43,10 @@ const Login = ({page = '/'}) => {
     [dispatch, email, password]
   );
   return (
-    <div className="form ">
-      {status === fetchFailed ? (
-        <AlertMessage type={alertError}>
-          Tài khoản hoặc mật khẩu không đúng
-        </AlertMessage>
-      ) : undefined}
+    <div className="form rounded-md shadow-md transition-transform duration-200 w-[500px] text-center m-auto my-10">
       <div className="formValue">
         <form className="grid justify-items-center px-4" id="loginForm">
-          <h1>ĐĂNG NHẬP</h1>
+          <h1 className="text-black pt-6 text-center uppercase text-4xl">ĐĂNG NHẬP</h1>
           <Input
             id="email"
             type="email"
@@ -92,6 +91,14 @@ const Login = ({page = '/'}) => {
           </Link>
         </div>
       </div>
+
+      <CustomSnackbar 
+        openSnackbar={status === FETCH_FAILED}
+        handleCloseSnackbar={() => dispatch(resetAuthStatus())}
+        snackbarSeverity={ALERT_ERROR}
+      >
+        Tài khoản hoặc mật khẩu không đúng
+      </CustomSnackbar>
     </div>
   );
 };

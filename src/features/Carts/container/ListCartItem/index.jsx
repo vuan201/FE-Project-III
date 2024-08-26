@@ -8,7 +8,7 @@ import {
   updateCartItems,
 } from "../../../../app/reducers";
 import CartItem from "../../components/CartItem";
-import { fetchLoading } from "../../../../config";
+import { FETCH_LOADING } from "../../../../config";
 import { Loading } from "../../../../components";
 
 const ListCartItem = () => {
@@ -28,12 +28,11 @@ const ListCartItem = () => {
       setAsync(false);
     }
   }, [async1, token]);
-
   return (
     <ul>
-      {Array.isArray(carts) && carts.length > 0 ? (
+      {carts.length > 0 ? (
         <>
-          {cartsStatus === fetchLoading && <Loading />}
+          {cartsStatus === FETCH_LOADING && <Loading />}
           <div className="grid grid-cols-12 gap-1 justify-items-center ">
             <div className="col-span-1"></div>
             <div className="col-span-4 font-medium">Tên sản phẩm</div>

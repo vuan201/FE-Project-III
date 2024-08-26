@@ -1,14 +1,12 @@
 import React from "react";
-import { Image } from "..";
+import { Image, Title } from "..";
 import { collectionImage } from "../../config";
 
 const BannerHeadPage = ({ title, description }) => {
   return (
     <div className="relative py-16 text-center">
       <div className="flex flex-col gap-3 justify-center w-full px-10">
-        <div className="title">
-          <h3>{title}</h3>
-        </div>
+        <Title>{title}</Title>
         <div className="description">{description}</div>
       </div>
       <div className="absolute top-0 bottom-0 left-0 right-0">

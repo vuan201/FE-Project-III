@@ -4,7 +4,7 @@ import { FaCaretRight } from "react-icons/fa";
 
 const Breadcrumbs = ({ breadcrumbs }) => {
   return (
-    <nav className="flex">
+    <nav className="flex my-2">
       <span className="mx-1 my-auto">
         <Link to="/">Trang chủ</Link>
       </span>

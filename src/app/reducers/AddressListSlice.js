@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { addressListApi } from "../../Api";
 import {
-  fetchIdle,
-  fetchLoading,
-  fetchSucceeded,
-  fetchFailed,
+  FETCH_IDLE,
+  FETCH_LOADING,
+  FETCH_SUCCEEDED,
+  FETCH_FAILED,
 } from "../../config";
 
 // tên reducers
@@ -58,7 +58,7 @@ export const addressListSlice = createSlice({
     selectDistrict: "",
     selectWard: "",
 
-    status: fetchIdle,
+    status: FETCH_IDLE,
     error: null,
   },
 
@@ -79,52 +79,52 @@ export const addressListSlice = createSlice({
       state.listDistrict = [];
       state.listWard = [];
 
-      state.status = fetchIdle;
+      state.status = FETCH_IDLE;
       state.error = null;
     },
     resetListWard: (state) => {
       state.listWard = [];
     },
     resetAddressStatus: (state) => {
-      state.status = fetchIdle;
+      state.status = FETCH_IDLE;
     },
   },
 
   extraReducers: (builder) => {
     builder
       .addCase(fetchCity.pending, (state) => {
-        state.status = fetchLoading;
+        state.status = FETCH_LOADING;
       })
       .addCase(fetchCity.fulfilled, (state, action) => {
-        state.status = fetchSucceeded;
+        state.status = FETCH_SUCCEEDED;
         state.listCity = action.payload;
       })
       .addCase(fetchCity.rejected, (state, action) => {
-        state.status = fetchFailed;
+        state.status = FETCH_FAILED;
         state.error = action.error.message;
       })
 
       .addCase(fetchDistrict.pending, (state) => {
-        state.status = fetchLoading;
+        state.status = FETCH_LOADING;
       })
       .addCase(fetchDistrict.fulfilled, (state, action) => {
-        state.status = fetchSucceeded;
+        state.status = FETCH_SUCCEEDED;
         state.listDistrict = action.payload;
       })
       .addCase(fetchDistrict.rejected, (state, action) => {
-        state.status = fetchFailed;
+        state.status = FETCH_FAILED;
         state.error = action.error.message;
       })
 
       .addCase(fetchWard.pending, (state) => {
-        state.status = fetchLoading;
+        state.status = FETCH_LOADING;
       })
       .addCase(fetchWard.fulfilled, (state, action) => {
-        state.status = fetchSucceeded;
+        state.status = FETCH_SUCCEEDED;
         state.listWard = action.payload;
       })
       .addCase(fetchWard.rejected, (state, action) => {
-        state.status = fetchFailed;
+        state.status = FETCH_FAILED;
         state.error = action.error.message;
       });
   },

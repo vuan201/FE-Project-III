@@ -17,7 +17,6 @@ import { productNameConnection } from "../../../../utils/productNameConnection";
 import { priceConvert } from "../../../../utils/priceConvert";
 
 const CartItem = ({ cartItem }) => {
-  
   const dispatch = useDispatch();
   const token = useSelector(selectAuthToken);
 
@@ -113,8 +112,9 @@ const CartItem = ({ cartItem }) => {
   );
 };
 
-export default memo(
-  CartItem,
-  (currentProp, nextProp) =>
-    currentProp.cartItem.quantity === nextProp.cartItem.quantity
-);
+export default CartItem;
+// export default memo(
+//   CartItem,
+//   (currentProp, nextProp) =>
+//     currentProp.cartItem.quantity === nextProp.cartItem.quantity
+// );

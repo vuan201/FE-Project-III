@@ -5,6 +5,7 @@
   list-style: none;
   text-align: center;
 }
+
 .slick-thumb-image li {
   display: inline-block;
   width: 150px;
@@ -17,13 +18,17 @@
   border-radius: 6px;
   overflow: hidden;
 }
+
 .slick-thumb-image .slick-active {
   width: 180px;
   filter: brightness(1);
 }
-.slick-slide >div{
+
+.slick-slide>div {
   margin: 0 10px;
 }
-/* .slick-list{
+
+.slick-list {
   margin: 0 -10px;
-} */
+  padding-bottom: 20px;
+}

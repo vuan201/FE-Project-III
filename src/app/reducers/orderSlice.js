@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { OrdersApi } from "../../Api";
 import {
-  fetchFailed,
-  fetchIdle,
-  fetchLoading,
-  fetchSucceeded,
+  COD,
+  FETCH_FAILED,
+  FETCH_IDLE,
+  FETCH_LOADING,
+  FETCH_SUCCEEDED,
 } from "../../config";
+import { productNameConnection } from "../../utils/productNameConnection";
 
 // tên reducers
 const baseName = "order";
@@ -48,14 +50,14 @@ export const orderSlice = createSlice({
     },
 
     paymentMethod: {
-      name: "COD",
+      name: COD,
       provider: null,
     },
     phoneNumber: "",
     fullName: "",
     voucher: null,
 
-    status: fetchIdle,
+    status: FETCH_IDLE,
     error: null,
 
     vnPayResult: {
@@ -66,8 +68,19 @@ export const orderSlice = createSlice({
   },
 
   reducers: {
-    setOrder: (state, action) => {
-      state.order = action.payload;
+    setOrderItems: (state, action) => {
+      const newItem = action.payload.map(
+        ({ sku, imageUrl, name, quantity, price, color, size }) => {
+          return {
+            sku,
+            imageUrl,
+            name: productNameConnection(name, color, size),
+            quantity,
+            price,
+          };
+        }
+      );
+      state.items = newItem;
     },
     setAddressId: (state, action) => {
       state.addressId = action.payload;
@@ -125,12 +138,25 @@ export const orderSlice = createSlice({
       }
     },
     removeOrderItem: (state, action) => {
+      // Xóa nhiều
+      if (Array.isArray(action.payload)) {
+        const newOrderItem = state.items.filter((item) =>
+          action.payload.some((orderItem) => item.sku !== orderItem.sku)
+        );
+        state.items = newOrderItem;
+        return;
+      }
+
+      // Xóa một
       if (state.items.some((item) => item.sku === action.payload)) {
         const newOrderItem = state.items.filter(
           (item) => item.sku !== action.payload
         );
         state.items = newOrderItem;
       }
+    },
+    resetOrderItem: (state) => {
+      state.items = [];
     },
     resetOrder: (state) => {
       state.items = [];
@@ -141,7 +167,7 @@ export const orderSlice = createSlice({
         specificAddress: "",
       };
       state.paymentMethod = {
-        name: "COD",
+        name: COD,
         provider: null,
       };
 
@@ -154,7 +180,7 @@ export const orderSlice = createSlice({
         StatusCode: "",
       };
 
-      state.status = fetchIdle;
+      state.status = FETCH_IDLE;
       state.voucher = null;
       state.error = null;
     },
@@ -165,23 +191,23 @@ export const orderSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addOrders.pending, (state) => {
-        state.status = fetchLoading;
+        state.status = FETCH_LOADING;
       })
       .addCase(addOrders.fulfilled, (state, action) => {
-        state.status = fetchSucceeded;
+        state.status = FETCH_SUCCEEDED;
         state.vnPayResult.Message = action.payload.Message ?? "";
         state.vnPayResult.PaymentUrl = action.payload.PaymentUrl ?? "";
         state.vnPayResult.StatusCode = action.payload.StatusCode ?? "";
       })
       .addCase(addOrders.rejected, (state, action) => {
-        state.status = fetchFailed;
+        state.status = FETCH_FAILED;
         state.error = action.error.message;
       });
   },
 });
 
 export const {
-  setOrder,
+  setOrderItems,
   setAddressId,
   setOrderAddress,
   setPaymentMethodName,
@@ -194,6 +220,7 @@ export const {
   setOrderWard,
   setOrderSpecificAddress,
   setFullName,
+  resetOrderItem,
   resetOrder,
 } = orderSlice.actions;
 

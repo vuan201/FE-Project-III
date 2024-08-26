@@ -9,12 +9,11 @@ const Popover = (props) => {
 
   const ref = useRef();
 
-  const className = clsx("transition-all h-[44px] border z-3 relative overflow-hidden rounded-md", {
+  const className = clsx("transition-all h-[44px] border z-10 relative overflow-hidden rounded-md", {
     // fix cứng kích thước khi không có icon (chỉ sử dụng cho sortButton)
     "w-[190px]": !Icon,
-
     "border-line-border hover:border-black": !showPopover,
-    "border-black": showPopover,
+    "border-black overflow-visible": showPopover,
   });
 
   useEffect(() => {

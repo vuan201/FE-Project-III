@@ -1,9 +1,6 @@
 .filterItem,
 .filterItemActive {
   transition: background-color 0.2s, border 0.2s;
-}
-.filterItem,
-.filterItemActive {
   font-size: 14px;
   display: flex;
   text-align: left;
@@ -15,10 +12,12 @@
   position: relative;
   background-color: white;
 }
+
 .filterItemActive,
 .filterItem:hover {
   background-color: rgb(var(--bg-color-filter-item-active));
 }
+
 .filterItemActive::before {
   left: 0;
   width: 3px;

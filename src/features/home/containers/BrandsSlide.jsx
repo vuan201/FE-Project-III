@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { brandsSlideSettings, fetchIdle, fetchLoading } from "../../../config";
+import { brandsSlideSettings, FETCH_IDLE, FETCH_LOADING } from "../../../config";
 import {Sliders, Loading, Image} from "../../../components";
 
 import {
@@ -18,12 +18,12 @@ const BrandsSlide = () => {
   const error = useSelector(selectBrandsError);
 
   useEffect(() => {
-    if (status === fetchIdle) {
+    if (status === FETCH_IDLE) {
       dispatch(fetchBrands());
     }
   }, [status, dispatch]);
 
-  if (status === fetchLoading) return <Loading />;
+  if (status === FETCH_LOADING) return <Loading />;
 
   return (
     <div className="mx-auto mb-10 px-12">

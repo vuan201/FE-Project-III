@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { cartsApi } from "../../Api";
 import {
-  fetchFailed,
-  fetchIdle,
-  fetchLoading,
-  fetchSucceeded,
+  FETCH_FAILED,
+  FETCH_IDLE,
+  FETCH_LOADING,
+  FETCH_SUCCEEDED,
 } from "../../config";
 
 // tên reducers
@@ -26,10 +26,11 @@ export const updateCartItems = createAsyncThunk(
     let newCartItems = [];
     let response;
 
-    if (Array.isArray(cartItems) && cartItems.length > 0)
+    if (Array.isArray(cartItems) && cartItems.length > 0) {
       newCartItems = cartItems.map(({ sku, quantity }) => {
         return { sku, quantity };
       });
+    }
 
     try {
       response = await cartsApi.update(newCartItems);
@@ -49,7 +50,7 @@ export const cartsSlice = createSlice({
     // carts: [],
     cartItems: JSON.parse(localStorage.getItem("carts")) ?? [],
     // carts: localStorage.removeItem("carts") ?? [],
-    status: fetchIdle,
+    status: FETCH_IDLE,
     error: null,
   },
 
@@ -57,6 +58,7 @@ export const cartsSlice = createSlice({
     setCarts: (state, action) => {
       state.cartItems = action.payload;
     },
+
     addItemToCart: (state, action) => {
       if (state.cartItems.some((cart) => cart.sku === action.payload.sku)) {
         const newCarts = state.cartItems.map((cart) => {
@@ -71,14 +73,16 @@ export const cartsSlice = createSlice({
 
       localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
     },
-    removeItemToCart: (state, action) => {
-      if (state.cartItems.some((cart) => cart.sku === action.payload)) {
-        state.cartItems = state.cartItems.filter(
-          (cart) => cart.sku !== action.payload
+    removeCartItems: (state, action) => {
+      if (Array.isArray(action.payload)) {
+        const newCartItems = state.cartItems.filter(
+          ({ sku }) => !action.payload.some((order) => order.sku === sku)
         );
-        localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
+        state.cartItems = newCartItems;
+        localStorage.setItem("carts", JSON.stringify(newCartItems ?? []));
       }
     },
+
     setQuantity: (state, action) => {
       if (state.cartItems.some((cart) => cart.sku === action.payload.sku)) {
         let newCartItems;
@@ -100,7 +104,7 @@ export const cartsSlice = createSlice({
       }
     },
     resetCartStatus: (state) => {
-      state.status = fetchIdle;
+      state.status = FETCH_IDLE;
     },
   },
 
@@ -109,27 +113,27 @@ export const cartsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCarts.pending, (state) => {
-        state.status = fetchLoading;
+        state.status = FETCH_LOADING;
       })
       .addCase(fetchCarts.fulfilled, (state, action) => {
-        state.status = fetchSucceeded;
+        state.status = FETCH_SUCCEEDED;
         state.cartItems = action.payload.items;
         localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
       })
       .addCase(fetchCarts.rejected, (state, action) => {
-        state.status = fetchFailed;
+        state.status = FETCH_FAILED;
         state.error = action.error.message;
       })
       .addCase(updateCartItems.pending, (state) => {
-        state.status = fetchLoading;
+        state.status = FETCH_LOADING;
       })
       .addCase(updateCartItems.fulfilled, (state, action) => {
-        state.status = fetchSucceeded;
+        state.status = FETCH_SUCCEEDED;
         state.cartItems = action.payload.items;
         localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
       })
       .addCase(updateCartItems.rejected, (state, action) => {
-        state.status = fetchFailed;
+        state.status = FETCH_FAILED;
         state.error = action.error.message;
       });
   },
@@ -137,9 +141,9 @@ export const cartsSlice = createSlice({
 
 export const {
   addItemToCart,
-  removeItemToCart,
   setQuantity,
   setCarts,
+  removeCartItems,
   resetCartStatus,
 } = cartsSlice.actions;
 

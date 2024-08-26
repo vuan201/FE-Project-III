@@ -12,6 +12,7 @@ import {
   updateCartItems,
   selectCartsStatus,
   selectCartsItem,
+  resetCartStatus,
 } from "../../../../app/reducers";
 import {
   ImageItem,
@@ -20,9 +21,9 @@ import {
   ProductStatus,
   ProductColorName,
 } from "../../components";
-import { AlertMessage, Button, InputQuantity } from "../../../../components";
+import { AlertMessage, Button, CustomSnackbar, InputQuantity } from "../../../../components";
 import { FaRegHeart } from "react-icons/fa";
-import { fetchSucceeded } from "../../../../config";
+import { ALERT_SUCCESS, FETCH_SUCCEEDED } from "../../../../config";
 import { priceConvert } from "../../../../utils/priceConvert";
 
 const ProductInfomation = ({ data }) => {
@@ -33,7 +34,6 @@ const ProductInfomation = ({ data }) => {
   const dispatch = useDispatch();
 
   const token = useSelector(selectAuthToken);
-  const carts = useSelector(selectCartsItem);
   const cartsStatus = useSelector(selectCartsStatus);
   const selectOption = useSelector(selectorOption);
 
@@ -43,18 +43,6 @@ const ProductInfomation = ({ data }) => {
   const newImages = Object.groupBy(images, ({ color }) => color);
   const optionsByColor = Object.groupBy(options, ({ color }) => color);
   const optionsBySize = Object.groupBy(options, ({ size }) => size);
-
-  const [localStatus, setLocalStatus] = useState(false);
-  const [hasMounted, setHasMounted] = useState(false); // Theo dõi lần đầu render
-
-  // lắng nghe để đưa ra thông báo khi thêm sản phẩm vào cart
-  useEffect(() => {
-    if (hasMounted && carts) {
-      setLocalStatus(true);
-    } else {
-      setHasMounted(true); // Đánh dấu đã render lần đầu tiên
-    }
-  }, [carts]);
 
   // xử lý lần đầu re-render
   useEffect(() => {
@@ -125,7 +113,6 @@ const ProductInfomation = ({ data }) => {
 
   // Thêm sản phẩm vào giỏ hàng
   const handleAddToCart = () => {
-    setLocalStatus(false);
     if (token) {
       dispatch(
         updateCartItems([
@@ -154,12 +141,6 @@ const ProductInfomation = ({ data }) => {
 
   return (
     <div className="my-4">
-      {(cartsStatus === fetchSucceeded || localStatus) && (
-        <AlertMessage type={"success"}>
-          Thêm sản phẩm vào giỏ hàng thành công
-        </AlertMessage>
-      )}
-
       <div className="mb-5 ">
         <h2 className="font-normal text-3xl">{name}</h2>
       </div>
@@ -182,7 +163,7 @@ const ProductInfomation = ({ data }) => {
         <ProductColorName color={selectColor} />
       </div>
 
-      <ul className="mb-5 flex">
+      <ul className="mb-5 flex flex-wrap">
         {Object.keys(newImages).map((key) => (
           <li key={key} className="mr-1">
             <ImageItem
@@ -199,7 +180,7 @@ const ProductInfomation = ({ data }) => {
         <span>Kích thước: {selectSize}</span>
       </div>
 
-      <ul className="mb-5 flex">
+      <ul className="mb-5 flex flex-wrap">
         {Object.keys(optionsBySize).map((key) => (
           <li key={key} className="mr-1">
             <SizeItem
@@ -218,6 +199,7 @@ const ProductInfomation = ({ data }) => {
 
       <div className="mb-5 ">
         <InputQuantity
+          min={1}
           limit={selectOption.quantity}
           value={quantity}
           setValue={setQuantity}
@@ -241,6 +223,13 @@ const ProductInfomation = ({ data }) => {
       <div className="mb-5">
         <ListPolicy />
       </div>
+      <CustomSnackbar
+        openSnackbar={cartsStatus === FETCH_SUCCEEDED}
+        handleCloseSnackbar={() => dispatch(resetCartStatus())}
+        snackbarSeverity={ALERT_SUCCESS}
+      >
+        Thêm sản phẩm vào giỏ hàng thành công
+      </CustomSnackbar>
     </div>
   );
 };

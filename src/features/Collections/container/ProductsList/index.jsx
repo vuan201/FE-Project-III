@@ -18,16 +18,16 @@ import {
   resetParamsPage,
 } from "../../../../app/reducers";
 import { Loading, ProductCard } from "../../../../components";
-import { fetchLoading, fetchSucceeded } from "../../../../config";
+import { FETCH_LOADING, FETCH_SUCCEEDED } from "../../../../config";
 
-const ProductsList = () => {
+const ProductsList = ({ categoryId }) => {
   const dispatch = useDispatch();
   const products = useSelector(selectProductsItem);
   const allProducts = useSelector(selectAllProducts);
   const status = useSelector(selectProductsStatus);
 
   // params
-  const category = useSelector(selectCategory);
+  // const category = useSelector(selectCategory);
   const filterColors = useSelector(selectFiltersColors);
   const filterSizes = useSelector(selectFiltersSizes);
   const filterPrice = useSelector(selectFiltersPrice);
@@ -38,7 +38,7 @@ const ProductsList = () => {
   // call lại api khi param thay đổi
   useEffect(() => {
     const params = {
-      category: category.id ?? null,
+      category: categoryId ?? null,
       minPrice: filterPrice[0],
       maxPrice: filterPrice[1],
       sort: sortType.sort,
@@ -53,11 +53,11 @@ const ProductsList = () => {
       ? (params.size = filterSizes.join(","))
       : (params.size = null);
     dispatch(fetchProducts(params));
-  }, [filterColors, filterSizes, filterPrice, sortType, category, page]);
+  }, [filterColors, filterSizes, filterPrice, sortType, categoryId, page]);
 
   // thêm các sản phẩm mới featch vào danh sách được in ra
   useEffect(() => {
-    if (status === fetchSucceeded) {
+    if (status === FETCH_SUCCEEDED) {
       dispatch(addProducts(products));
     }
   }, [products]);
@@ -66,7 +66,7 @@ const ProductsList = () => {
   useEffect(() => {
     dispatch(resetAllProducts());
     dispatch(resetParamsPage());
-  }, [filterColors, filterSizes, filterPrice, sortType, category]);
+  }, [filterColors, filterSizes, filterPrice, sortType, categoryId]);
 
   useEffect(() => {
     // Thêm sự kiện cuộn
@@ -84,7 +84,7 @@ const ProductsList = () => {
 
       if (
         scrollTop + clientHeight >= scrollHeight - 5 &&
-        status !== fetchLoading &&
+        status !== FETCH_LOADING &&
         products.length > 0
       ) {
         dispatch(setPage());
@@ -99,12 +99,12 @@ const ProductsList = () => {
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {status === FETCH_LOADING ?? <Loading />}
       {allProducts.length > 0
         ? allProducts.map((product, index) => (
             <ProductCard data={product} key={index} />
           ))
         : undefined}
-      {status === fetchLoading ?? <Loading />}
     </div>
   );
 };

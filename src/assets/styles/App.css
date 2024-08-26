@@ -36,9 +36,6 @@
   font-size: 28px;
   font-weight: 900;
   text-transform: uppercase;
-  /* font-style: italic; */
-  letter-spacing: 0;
-  line-height: 28px;
 }
 
 /* input:focus {

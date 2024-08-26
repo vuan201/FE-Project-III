@@ -3,10 +3,10 @@ import { authApi } from "../../Api";
 import Cookies from "js-cookie";
 import { getTimeByToken } from "../../utils/getTimeByToken";
 import {
-  fetchIdle,
-  fetchFailed,
-  fetchLoading,
-  fetchSucceeded,
+  FETCH_IDLE,
+  FETCH_LOADING,
+  FETCH_FAILED,
+  FETCH_SUCCEEDED,
 } from "../../config";
 
 // tên reducers
@@ -48,7 +48,7 @@ const authSlice = createSlice({
       password: "",
       passwordComfirmation: "",
     },
-    status: fetchIdle,
+    status: FETCH_IDLE,
     error: null,
   },
   reducers: {
@@ -60,13 +60,17 @@ const authSlice = createSlice({
         password: "",
         passwordComfirmation: "",
       };
-      state.status = fetchIdle;
+      state.status = FETCH_IDLE;
+      state.error = null;
+    },
+    resetAuthStatus: (state) => {
+      state.status = FETCH_IDLE;
       state.error = null;
     },
     logout: (state) => {
       state.token = null;
       state.error = null;
-      state.status = fetchIdle;
+      state.status = FETCH_IDLE;
       Cookies.remove("token");
     },
     setName: (state, action) => {
@@ -88,11 +92,11 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
-        state.status = fetchLoading;
+        state.status = FETCH_LOADING;
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.status = fetchSucceeded;
+        state.status = FETCH_SUCCEEDED;
         state.token = action.payload.token;
         Cookies.set("token", action.payload.token, {
           expires: getTimeByToken(action.payload.token),
@@ -100,16 +104,16 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(login.rejected, (state, action) => {
-        state.status = fetchFailed;
+        state.status = FETCH_FAILED;
         state.error = action.payload;
       })
 
       .addCase(register.pending, (state) => {
-        state.status = fetchLoading;
+        state.status = FETCH_LOADING;
         state.error = null;
       })
       .addCase(register.fulfilled, (state, action) => {
-        state.status = fetchSucceeded;
+        state.status = FETCH_SUCCEEDED;
         state.token = action.payload.token;
         Cookies.set(
           "token",
@@ -119,7 +123,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(register.rejected, (state, action) => {
-        state.status = fetchFailed;
+        state.status = FETCH_FAILED;
         state.error = action.payload;
       });
   },
@@ -131,6 +135,7 @@ export const {
   setEmail,
   setPhone,
   setPassword,
+  resetAuthStatus,
   setPasswordComfirmation,
   resetAuthState,
 } = authSlice.actions;

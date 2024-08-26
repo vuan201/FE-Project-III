@@ -4,7 +4,7 @@ import { FiMinus } from "react-icons/fi";
 import clsx from "clsx";
 
 const InputQuantity = (prop) => {
-  const { limit, value, setValue } = prop;
+  const { limit, value, setValue, min = 0, max } = prop;
 
 
   const spanClassName = clsx(
@@ -14,7 +14,7 @@ const InputQuantity = (prop) => {
     setValue(value + 1);
   };
   const handleDecrement = () => {
-    if (value > 0) setValue(value - 1);
+    if (value > min) setValue(value - 1);
   };
   const handleSetQuantity = (newValue) => {
     if (newValue > 1 && newValue < limit) setValue(newValue);

@@ -9,3 +9,4 @@ export { default as OrdersApi } from "./OrdersApi";
 export { default as addressListApi } from "./AddressListApi";
 export { default as customerApi } from "./customerApi";
 export { default as customerAddressesApi } from "./customerAddressesApi";
+export { default as ratingsApi } from "./ratingsApi";

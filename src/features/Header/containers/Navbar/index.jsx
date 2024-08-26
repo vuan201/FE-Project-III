@@ -15,7 +15,7 @@ import {
   selectCategoriesStatus,
   setParamsCategory,
 } from "../../../../app/reducers";
-import { fetchSucceeded } from "../../../../config";
+import { FETCH_SUCCEEDED } from "../../../../config";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -46,7 +46,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    if (brandsStatus === fetchSucceeded && categoriesStatus === fetchSucceeded) {
+    if (brandsStatus === FETCH_SUCCEEDED && categoriesStatus === FETCH_SUCCEEDED) {
       // console.log(111111);
       const newListBrands = brands.reduce((acc, brand) => {
         const categoryBrand = categories.find(
@@ -115,13 +115,13 @@ const Navbar = () => {
       </div> */}
       <div className={navItem}>
         <Dropdow listPage={listBrands} itemLeft>
-          Hãng
+          Nhãn hàng
         </Dropdow>
       </div>
       {/* ) : undefined} */}
       <div className={navItem}>
         <Dropdow listPage={listCategories} itemLeft>
-          Danh mục
+          Các loại giày
         </Dropdow>
       </div>
     </nav>

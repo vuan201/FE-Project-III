@@ -8,9 +8,11 @@ const FilterItem = ({ onClick, value, isActive }) => {
     filterItem: !isActive,
   });
   return (
-    <button className={className} onClick={() => onClick(value)}>
-      {value}
-    </button>
+    <div className="overflow-hidden rounded-md">
+      <button className={className} onClick={() => onClick(value)}>
+        {value}
+      </button>
+    </div>
   );
 };
 

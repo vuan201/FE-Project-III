@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { Breadcrumbs, Loading } from "../../components";
+import { Breadcrumbs, Container, Loading } from "../../components";
 import {
   LibraryStyles,
+  ProductDescription,
   ProductInfomation,
   ProductSlideImage,
 } from "./containers";
@@ -16,7 +17,7 @@ import {
   selectProductItem,
   selectProductStatus,
 } from "../../app/reducers";
-import { fetchFailed, fetchLoading, fetchSucceeded } from "../../config";
+import { FETCH_FAILED, FETCH_LOADING, FETCH_SUCCEEDED } from "../../config";
 const ProductDetail = () => {
   
   const { slug } = useParams();
@@ -34,24 +35,27 @@ const ProductDetail = () => {
     };
   }, [dispatch, slug]);
 
-  if (status === fetchLoading) return <Loading />;
-  else if (status === fetchFailed) return <div>{error}</div>;
-  else if (status === fetchSucceeded)
+  if (status === FETCH_LOADING) return <Loading />;
+  else if (status === FETCH_FAILED) return <div>{error}</div>;
+  else if (status === FETCH_SUCCEEDED)
     return (
       <>
-        <div className="mx-auto mb-10 px-12">
-          <div className="w-full m-auto max-w-container">
-            <Breadcrumbs breadcrumbs={[{ name: product.name }]} />
-            <div className={"grid grid-cols-1 md:grid-cols-2 gap-4"}>
-              <div className="w-full h-full">
-                <ProductSlideImage images={product.images} />
-              </div>
-              <div className="w-full h-full">
-                <ProductInfomation data={product} />
-              </div>
+        <Container>
+          <Breadcrumbs breadcrumbs={[{ name: product.name }]} />
+          <div className={"flex flex-col lg:flex-row gap-4"}>
+            <div className="w-full h-full lg:sticky lg:top-0">
+              <ProductSlideImage images={product.images} />
+            </div>
+            <div className="w-full h-full lg:sticky lg:top-0">
+              <ProductInfomation data={product} />
             </div>
           </div>
-        </div>
+        </Container>
+
+        <Container>
+          <ProductDescription data={product} />
+        </Container>
+        
         <div className="w-full my-5">
           <LibraryStyles />
         </div>

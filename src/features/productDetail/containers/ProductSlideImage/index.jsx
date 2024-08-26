@@ -8,25 +8,25 @@ const ProductSlideImage = ({ images }) => {
   const selectColor = useSelector(selectorColor);
 
   return (
-    <div className="grid grid-cols-2 gap-1">
+    <div className="grid grid-cols-2 gap-2">
       {newImages[selectColor] ? (
         newImages[selectColor].length > 1 ? (
           newImages[selectColor].map((image, index) => {
             if (index === 0)
               return (
-                <div key={index} className="col-span-2 aspect-square">
+                <div key={index} className="col-span-2 aspect-square rounded-md overflow-hidden">
                   <Image data={{ image: image.url, name: image.color }} />
                 </div>
               );
             else
               return (
-                <div key={index} className="aspect-square">
+                <div key={index} className="aspect-square rounded-md overflow-hidden">
                   <Image data={{ image: image.url, name: image.color }} />
                 </div>
               );
           })
         ) : (
-          <div className="col-span-2 aspect-square">
+          <div className="col-span-2 aspect-square rounded-md overflow-hidden">
             <Image
               data={{
                 image: newImages[selectColor][0].url,

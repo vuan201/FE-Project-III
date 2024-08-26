@@ -7,8 +7,8 @@ const categoriesApi = {
     const url = baseUrl;
     return axiosClient.get(url, { params });
   },
-  get(id) {
-    const url = `${baseUrl}/${id}`;
+  get(slug) {
+    const url = `${baseUrl}/${slug}`;
     return axiosClient.get(url);
   },
   add(data) {
