@@ -11,6 +11,7 @@ export { default as cartsSlice } from "./cartsSlice";
 export { default as orderSlice } from "./orderSlice";
 export { default as AddressListSlice } from "./AddressListSlice";
 export { default as customerSlice } from "./customerSlice";
+export { default as ratingsSlice } from "./ratingsSlice";
 
 export * from "./categoriesSlice";
 export * from "./brandsSlice";
@@ -25,3 +26,4 @@ export * from "./cartsSlice";
 export * from "./orderSlice";
 export * from "./AddressListSlice";
 export * from "./customerSlice";
+export * from "./ratingsSlice";

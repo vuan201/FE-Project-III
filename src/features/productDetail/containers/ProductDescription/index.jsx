@@ -1,8 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Title } from "../../../../components";
 import clsx from "clsx";
+import Rating from "../Ratings";
+import { fetchRatings, selectRatings, selectRatingsStatus } from "../../../../app/reducers";
+import { useDispatch, useSelector } from "react-redux";
 const ProductDescription = ({ data }) => {
-  const { name, description, brand, categories, options, slug } = data;
+  const { id, name, description, brand, categories, options, slug } = data;
+
+  const dispatch = useDispatch();
+  const ratings = useSelector(selectRatings);
+  const ratingStatus = useSelector(selectRatingsStatus);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchRatings(id));
+    }
+  }, []);
 
   // Lấy ra các giá trị duy nhất của size và màu và sau đó chuyển nó thành một chuỗi được cách nhau bởi dấu ,
   const color = Object.keys(Object.groupBy(options, ({ color }) => color));
@@ -42,6 +55,7 @@ const ProductDescription = ({ data }) => {
       <div>{description}</div>
 
       <Title>đánh giá sản phẩm</Title>
+      <Rating ratings={ratings} />
     </div>
   );
 };

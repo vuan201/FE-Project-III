@@ -57,7 +57,7 @@ export const ratingsSlice = createSlice({
 });
 
 // đẩy các dữ liệu ra ngoài
-export const selectRatingsItem = (state) => state.ratings.ratings;
+export const selectRatings = (state) => state.ratings.ratings;
 export const selectRatingsStatus = (state) => state.ratings.status;
 export const selectRatingsError = (state) => state.ratings.error;
 
