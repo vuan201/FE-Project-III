@@ -1,9 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-// Cancel token để hủy các request cũ
-let cancelTokenSource;
-
 const axiosClient = axios.create({
   // baseURL: 'http://localhost:4000',
   // baseURL: "http://localhost:8080/api/v1",
@@ -24,8 +21,12 @@ axiosClient.interceptors.request.use(
     // config.cancelToken = cancelTokenSource.token;
 
     // Làm gì đó trước khi request dược gửi đi
-    const token = Cookies.remove("token");
-    if (token) config.headers.Authorization = `Bearer ${token}`;
+
+    const token = Cookies.get("token");
+    if (token) {
+      // console.log(token);
+      config.headers.Authorization = `Bearer ${token}`;
+    }
 
     return config;
   },

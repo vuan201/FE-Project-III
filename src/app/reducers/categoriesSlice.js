@@ -1,12 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { categoriesApi } from "../../Api";
 
+import {
+  fetchIdle,
+  fetchLoading,
+  fetchSucceeded,
+  fetchFailed,
+} from "../../config";
+
 // tên reducers
-const baseame = "categories";
+const baseName = "categories";
 
 // Async thunks để gọi API
 export const fetchCategories = createAsyncThunk(
-  `${baseame}/fetchCategories`,
+  `${baseName}/fetchCategories`,
   async (params) => {
     const response = await categoriesApi.getAll(params);
     return response;
@@ -14,12 +21,12 @@ export const fetchCategories = createAsyncThunk(
 );
 
 export const categoriesSlice = createSlice({
-  name: baseame,
+  name: baseName,
 
   // các giá trị ban đầu
   initialState: {
     categories: [],
-    status: "idle",
+    status: fetchIdle,
     error: null,
   },
   reducers: {},
@@ -29,14 +36,14 @@ export const categoriesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCategories.pending, (state) => {
-        state.status = "loading";
+        state.status = fetchLoading;
       })
       .addCase(fetchCategories.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = fetchSucceeded;
         state.categories = action.payload;
       })
       .addCase(fetchCategories.rejected, (state, action) => {
-        state.status = "failed";
+        state.status = fetchFailed;
         state.error = action.error.message;
       });
   },

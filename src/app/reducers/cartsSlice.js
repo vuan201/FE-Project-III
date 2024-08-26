@@ -1,5 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { cartsApi } from "../../Api";
+import {
+  fetchFailed,
+  fetchIdle,
+  fetchLoading,
+  fetchSucceeded,
+} from "../../config";
 
 // tên reducers
 const baseName = "carts";
@@ -13,10 +19,24 @@ export const fetchCarts = createAsyncThunk(
   }
 );
 
-export const updateItemCarts = createAsyncThunk(
-  `${baseName}/updateItemCarts`,
+export const updateCartItems = createAsyncThunk(
+  `${baseName}/updateCartItems`,
+
   async (cartItems) => {
-    const response = await cartsApi.put(cartItems);
+    let newCartItems = [];
+    let response;
+
+    if (Array.isArray(cartItems) && cartItems.length > 0)
+      newCartItems = cartItems.map(({ sku, quantity }) => {
+        return { sku, quantity };
+      });
+
+    try {
+      response = await cartsApi.update(newCartItems);
+    } catch (error) {
+      console.log(error);
+    }
+
     return response;
   }
 );
@@ -26,40 +46,61 @@ export const cartsSlice = createSlice({
 
   // các giá trị ban đầu
   initialState: {
-    carts: JSON.parse(localStorage.getItem("carts")) ?? [],
+    // carts: [],
+    cartItems: JSON.parse(localStorage.getItem("carts")) ?? [],
     // carts: localStorage.removeItem("carts") ?? [],
-    status: "idle",
+    status: fetchIdle,
     error: null,
   },
-  reducers: {
-    addItemToCart: (state, action) => {
-      if (state.carts.some((cart) => cart.sku === action.payload.sku)) {
-        let newCarts;
 
-        if (state.carts.length > 1) {
-          const newCarts = state.carts.nap((cart) => {
-            if (cart.sky === action.payload.sky) {
-              cart.quantity = action.payload.quantity;
-            }
-          });
-          state.carts = newCarts;
-        } else {
-          if (state.carts[0].sky === action.payload.sky) {
-            state.carts[0].quantity = action.payload.quantity;
-          }
-        }
+  reducers: {
+    setCarts: (state, action) => {
+      state.cartItems = action.payload;
+    },
+    addItemToCart: (state, action) => {
+      if (state.cartItems.some((cart) => cart.sku === action.payload.sku)) {
+        const newCarts = state.cartItems.map((cart) => {
+          if (cart.sku === action.payload.sku)
+            cart.quantity += action.payload.quantity;
+          return cart;
+        });
+        state.cartItems = newCarts;
       } else {
-        state.carts.push(action.payload);
+        state.cartItems.push(action.payload);
       }
-      localStorage.setItem("carts", JSON.stringify(state.carts));
+
+      localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
     },
     removeItemToCart: (state, action) => {
-      if (state.carts.some((cart) => cart === action.payload)) {
-        state.carts = state.carts.filter(
-          (cart) => cart.sku !== action.payload.sku
+      if (state.cartItems.some((cart) => cart.sku === action.payload)) {
+        state.cartItems = state.cartItems.filter(
+          (cart) => cart.sku !== action.payload
         );
-        localStorage.setItem("carts", state.carts);
+        localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
       }
+    },
+    setQuantity: (state, action) => {
+      if (state.cartItems.some((cart) => cart.sku === action.payload.sku)) {
+        let newCartItems;
+
+        if (action.payload.quantity === 0) {
+          newCartItems = state.cartItems.filter(
+            (item) => item.sku !== action.payload.sku
+          );
+        } else {
+          newCartItems = state.cartItems.map((cart) => {
+            if (cart.sku === action.payload.sku)
+              cart.quantity = action.payload.quantity;
+            return cart;
+          });
+        }
+
+        state.cartItems = newCartItems;
+        localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
+      }
+    },
+    resetCartStatus: (state) => {
+      state.status = fetchIdle;
     },
   },
 
@@ -68,34 +109,42 @@ export const cartsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCarts.pending, (state) => {
-        state.status = "loading";
+        state.status = fetchLoading;
       })
       .addCase(fetchCarts.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.carts = action.payload;
+        state.status = fetchSucceeded;
+        state.cartItems = action.payload.items;
+        localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
       })
       .addCase(fetchCarts.rejected, (state, action) => {
-        state.status = "failed";
+        state.status = fetchFailed;
         state.error = action.error.message;
       })
-      .addCase(updateItemCarts.pending, (state) => {
-        state.status = "loading";
+      .addCase(updateCartItems.pending, (state) => {
+        state.status = fetchLoading;
       })
-      .addCase(updateItemCarts.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.carts = action.payload;
+      .addCase(updateCartItems.fulfilled, (state, action) => {
+        state.status = fetchSucceeded;
+        state.cartItems = action.payload.items;
+        localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
       })
-      .addCase(updateItemCarts.rejected, (state, action) => {
-        state.status = "failed";
+      .addCase(updateCartItems.rejected, (state, action) => {
+        state.status = fetchFailed;
         state.error = action.error.message;
       });
   },
 });
 
-export const { addItemToCart, removeItemToCart } = cartsSlice.actions;
+export const {
+  addItemToCart,
+  removeItemToCart,
+  setQuantity,
+  setCarts,
+  resetCartStatus,
+} = cartsSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
-export const selectCartsItem = (state) => state.carts.carts;
+export const selectCartsItem = (state) => state.carts.cartItems;
 export const selectCartsStatus = (state) => state.carts.status;
 export const selectCartsError = (state) => state.carts.error;
 

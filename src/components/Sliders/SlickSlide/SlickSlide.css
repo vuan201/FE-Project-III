@@ -1,6 +1,7 @@
 .slick:last-child {
   margin-right: 0;
 }
+
 .slick {
   display: inline-block;
   vertical-align: middle;
@@ -13,6 +14,11 @@
   width: 12px;
   height: 12px;
   transition: all ease 0.3s;
-  border: 1px solid #abb2bd;
-  background: #abb2bd;
+  border: 0.1px solid #767676;
+  background: #cdd5e0;
+}
+
+.slick-active .slick {
+  background: #fff;
+  transform: scale(1.3);
 }

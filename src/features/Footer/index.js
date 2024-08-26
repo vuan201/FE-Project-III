@@ -7,10 +7,13 @@ import {
   FaTiktok,
   FaPinterest,
   FaChevronDown,
+  FaMapMarkerAlt,
+  FaEnvelope,
+  FaPhone,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { logoApp } from "../../config";
-import Select from "./select";
+import Select from "./IconFotter/index";
 import ScrollToTopBtn from "../../utils/ScrollToTopBtn";
 
 const Footer = () => {
@@ -32,212 +35,125 @@ const Footer = () => {
             </Link>
 
             <ul className="text-sm leading-relaxed">
-              <li className="mb-1">Địa chỉ: VTC Online Building</li>
-              <li className="mb-1">
-                Email: <strong>QMShop@gmail.com</strong>
+              <li className="mb-2 flex items-center">
+                <FaMapMarkerAlt className="mr-2 text-sm text-black" />
+                <strong>
+                  VTC Online Building 18 Đ. Tam Trinh,
+                  <br /> Mai Động, Hai Bà Trưng, Hà Nội
+                </strong>
               </li>
-              <li className="mb-1">
-                Phone: <strong>0365087570</strong>
+              <li className="mb-2 flex items-center">
+                <FaEnvelope className="mr-2 text-sm text-black" />
+                <strong>qmshop@gmail.com.vn</strong>
+              </li>
+              <li className="mb-1 flex items-center">
+                <FaPhone className="mr-2 text-sm text-black" />
+                <strong>
+                  0365087570 <br /> Thứ 2 - Chủ nhật: 9:00 - 18:00{" "}
+                </strong>
               </li>
             </ul>
 
-            <Link
-              href=""
-              className="inline-flex items-center gap-x-1 mt-4 border-b border-black pb-1"
-            >
-              <p className="text-black text-sm font-bold">Get direction</p>
-
-              <HiOutlineExternalLink className="text-black" />
-            </Link>
-
             <div className="mt-6 flex gap-2 flex-wrap">
-              <Link className="size-10 flex items-center justify-center border border-black text-black rounded-full transition-all hover:border-[#fe2c55] hover:text-[#fe2c55]">
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                className="size-8 flex items-center justify-center border border-black text-black rounded-full transition-all hover:border-[#fe2c55] hover:text-[#fe2c55]"
+              >
                 <FaFacebookF />
-              </Link>
-              <Link className="size-10 flex items-center justify-center border border-black text-black rounded-full transition-all hover:border-[#fe2c55] hover:text-[#fe2c55]">
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                className="size-8 flex items-center justify-center border border-black text-black rounded-full transition-all hover:border-[#fe2c55] hover:text-[#fe2c55]"
+              >
                 <FaXTwitter />
-              </Link>
-              <Link className="size-10 flex items-center justify-center border border-black text-black rounded-full transition-all hover:border-[#fe2c55] hover:text-[#fe2c55]">
+              </a>
+
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                className="size-8 flex items-center justify-center border border-black text-black rounded-full transition-all hover:border-[#fe2c55] hover:text-[#fe2c55]"
+              >
                 <FaInstagram />
-              </Link>
-              <Link className="size-10 flex items-center justify-center border border-black text-black rounded-full transition-all hover:border-[#fe2c55] hover:text-[#fe2c55]">
+              </a>
+
+              <a
+                href="https://www.tiktok.com"
+                target="_blank"
+                className="size-8 flex items-center justify-center border border-black text-black rounded-full transition-all hover:border-[#fe2c55] hover:text-[#fe2c55]"
+              >
                 <FaTiktok />
-              </Link>
-              <Link className="size-10 flex items-center justify-center border border-black text-black rounded-full transition-all hover:border-[#fe2c55] hover:text-[#fe2c55]">
+              </a>
+
+              <a
+                href="https://www.pinterest.com"
+                target="_blank"
+                className="size-8 flex items-center justify-center border border-black text-black rounded-full transition-all hover:border-[#fe2c55] hover:text-[#fe2c55]"
+              >
                 <FaPinterest />
-              </Link>
+              </a>
             </div>
           </div>
 
           <div>
-            <h3 className="text-lg mb-4 font-medium text-black">TRỢ GIÚP</h3>
+            <h3 className="text-lg mb-4 font-medium text-black">
+              CHÍNH SÁCH MUA HÀNG
+            </h3>
 
             <ul>
               <li className="mb-[10px] text-sm">
                 <Link to="/privacy-policy" className="hover:text-[#db1215]">
-                  Chính sách bảo hành
+                  Chính sách bảo mật thông tin
                 </Link>
               </li>
               <li className="mb-[10px] text-sm">
-                <Link to="/return-policy" className="hover:text-[#db1215]">
-                  Chính sách đổi trả
+                <Link to="/warranty-policy" className="hover:text-[#db1215]">
+                  Chính sách bảo hành và đổi trả hàng
                 </Link>
               </li>
               <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">
-                  Chính sách bảo vệ thông tin khách hàng
+                <Link to="/payment-policy" className="hover:text-[#db1215]">
+                  Chính sách thanh toán
                 </Link>
               </li>
               <li className="mb-[10px] text-sm">
                 <Link to="/order-status" className="hover:text-[#db1215]">
-                  Trạng thái đơn hàng
+                  Chính sách giao hàng và kiểm hàng
                 </Link>
               </li>
               <li className="mb-[10px] text-sm">
                 <Link className="hover:text-[#db1215]">
-                  HÌnh thức giao hàng{" "}
+                  Chính sách xử lý khiếu nại
                 </Link>
               </li>
-              <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">
-                  Hình thức thanh toán
-                </Link>
-              </li>
-              <li className="mb-[10px] text-sm">
-                <Link to="/select-size" className="hover:text-[#db1215]">
-                  Hướng dẫn cách chọn Size
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg mb-4 font-medium text-black">Về QM SHOP</h3>
-
-            <ul>
-              <li className="mb-[10px] text-sm">
-                <Link to="/story" className="hover:text-[#db1215]">
-                  Câu chuyện về chúng tôi
-                </Link>
-              </li>
-              <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">Hoạt động</Link>
-              </li>
-              <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">Liên hệ</Link>
-              </li>
-              {/* <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">About Us</Link>
-              </li>
-              <li className="mb-[10px] text-sm">
-                <Link className="hover:text-[#db1215]">Account</Link>
-              </li> */}
             </ul>
           </div>
 
           <div>
             <h3 className="text-lg mb-4 font-medium text-black">
-              Đăng ký nhận bản tin
+              CÂU CHUYỆN VỀ QM SHOP
             </h3>
 
-            <p className="text-sm mt-8">
-              Để nhận các thông tin mới từ QM Shop cũng như các chương trình
-              khuyến mãi hấp dẫn
-            </p>
-
-            <form
-              action=""
-              className="flex items-center border border-[#ebebeb] mt-6 h-14 bg-white rounded px-3"
-            >
-              <input
-                type="text"
-                placeholder="Vui lòng nhập email của bạn"
-                className="flex-1 outline-none pr-3 text-sm"
-              />
-
-              <button className="flex items-center gap-x-1 bg-black rounded h-10 text-white justify-center px-3 text-sm font-semibold cursor-pointer">
-                ĐĂNG KÝ
-                <HiOutlineExternalLink />
-              </button>
-            </form>
-
-            <div className="flex gap-x-6 mt-8">
-              <Select
-                options={[
-                  {
-                    label: (
-                      <p className="text-sm text-black cursor-pointer hover:text-[#db1215]">
-                        EUR | France
-                      </p>
-                    ),
-                  },
-                  {
-                    label: (
-                      <p className="text-sm text-black cursor-pointer hover:text-[#db1215]">
-                        EUR | Germany
-                      </p>
-                    ),
-                  },
-                  {
-                    label: (
-                      <p className="text-sm text-black cursor-pointer hover:text-[#db1215]">
-                        USD | United state
-                      </p>
-                    ),
-                  },
-                  {
-                    label: (
-                      <p className="text-sm text-black cursor-pointer hover:text-[#db1215]">
-                        VND | Vietnam
-                      </p>
-                    ),
-                  },
-                ]}
-              >
-                <div className="flex items-center gap-x-3 cursor-pointer">
-                  <p className="text-sm text-black">USD</p>
-
-                  <FaChevronDown className="text-xs" />
-                </div>
-              </Select>
-
-              <Select
-                options={[
-                  {
-                    label: (
-                      <p className="text-sm text-black cursor-pointer hover:text-[#db1215]">
-                        English
-                      </p>
-                    ),
-                  },
-                  {
-                    label: (
-                      <p className="text-sm text-black cursor-pointer hover:text-[#db1215]">
-                        Vietnam
-                      </p>
-                    ),
-                  },
-                ]}
-              >
-                <div className="flex items-center gap-x-3 cursor-pointer">
-                  <p className="text-sm text-black">English</p>
-
-                  <FaChevronDown className="text-xs" />
-                </div>
-              </Select>
-            </div>
+            <ul>
+              <li className="mb-[10px] text-sm">
+                <Link to="/story" className="hover:text-[#db1215]">
+                  Giới thiệu
+                </Link>
+              </li>
+              <li className="mb-[10px] text-sm">
+                <Link className="hover:text-[#db1215]">Liên hệ</Link>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-      <ScrollToTopBtn/>
 
-      <div className="max-w-container mx-auto w-full px-12 py-6 flex justify-between flex-col gap-4 items-center md:flex-row">
-        <p className="text-sm">
-          © 2024 QM Shop. Powered by Haravan Enterprise.
-        </p>
+      <div className="max-w-container mx-auto w-full px-6 py-4 flex justify-between flex-col gap-4 items-center md:flex-row">
+        <p className="text-sm">© 2024 QM Shop, Inc. All rights reserved.</p>
 
         <div className="flex items-center gap-x-2">
-          <img src="/svg/visa.svg" alt="Visa" className="h-[30px]" />
+          {/* <img src="/svg/visa.svg" alt="Visa" className="h-[30px]" />
           <img src="/svg/paypal.svg" alt="Paypal" className="h-[30px]" />
           <img
             src="/svg/mastercard.svg"
@@ -253,7 +169,15 @@ const Footer = () => {
             src="/svg/diners-club.svg"
             alt="Diners club"
             className="h-[30px]"
-          />
+          /> */}
+          <a href="https://moit.gov.vn/" target="_blank">
+            <img
+              src="https://bizweb.dktcdn.net/100/394/646/themes/902388/assets/logo_bct.png?1723626210045"
+              alt="Bộ Công Thương Logo"
+              className="w-28 h-auto"
+            />
+          </a>
+          <ScrollToTopBtn />
         </div>
       </div>
     </footer>

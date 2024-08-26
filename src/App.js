@@ -4,9 +4,9 @@ import { Header, Footer } from "./features";
 import { Login, Home, Register, Collections, ProductDetail } from "./features";
 import ScrollToTop from "./utils/ScrollToTop";
 import Carts from "./features/Carts";
+import WarrantyPolicy from "./features/WarrantyPolicy";
 import PrivacyPolicy from "./features/PrivacyPolicy";
-import ReturnPolicy from "./features/ReturnPolicy";
-import SelectSize from "./features/SelectSize";
+import PaymentPolicy from "./features/PaymentPolicy";
 
 function App() {
   return (
@@ -22,9 +22,9 @@ function App() {
           <Route path="/collections/:category" element={<Collections />} />
           <Route path="/products/:slug" element={<ProductDetail />} />
           <Route path="/cart" element={<Carts />} />
+          <Route path="/warranty-policy" element={<WarrantyPolicy />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/return-policy" element={<ReturnPolicy />} />
-          <Route path="/select-size" element={<SelectSize />} />
+          <Route path="/payment-policy" element={<PaymentPolicy />} />
         </Routes>
       </div>
       <Footer />

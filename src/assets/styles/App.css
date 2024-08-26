@@ -15,7 +15,10 @@
 
 * {
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  /* font-family: "Inter", sans-serif; */
   text-decoration: none;
 }
 
@@ -55,6 +58,11 @@ header h1 {
   box-shadow: -6px 4px 19px 3px rgba(77, 77, 77, 0.3);
 }
 
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
 /* .logoImage {
   background-image: url(../images/logo/message.png);
   background-repeat: no-repeat;

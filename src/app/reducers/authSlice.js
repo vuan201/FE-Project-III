@@ -2,11 +2,18 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { authApi } from "../../Api";
 import Cookies from "js-cookie";
 import { getTimeByToken } from "../../utils/getTimeByToken";
+import {
+  fetchIdle,
+  fetchFailed,
+  fetchLoading,
+  fetchSucceeded,
+} from "../../config";
+
 // tên reducers
-const baseame = "auth";
+const baseName = "auth";
 
 export const login = createAsyncThunk(
-  `${baseame}/login`,
+  `${baseName}/login`,
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await authApi.login(credentials);
@@ -18,7 +25,7 @@ export const login = createAsyncThunk(
 );
 
 export const register = createAsyncThunk(
-  `${baseame}/register`,
+  `${baseName}/register`,
   async (infomation, { rejectWithValue }) => {
     try {
       const response = await authApi.register(infomation);
@@ -30,17 +37,18 @@ export const register = createAsyncThunk(
 );
 
 const authSlice = createSlice({
-  name: baseame,
+  name: baseName,
   initialState: {
     token: Cookies.get("token") ?? null,
+
     register: {
       name: "",
       email: "",
-      phone: "",
+      phoneNumber: "",
       password: "",
       passwordComfirmation: "",
     },
-    status: "idle",
+    status: fetchIdle,
     error: null,
   },
   reducers: {
@@ -48,17 +56,17 @@ const authSlice = createSlice({
       state.register = {
         name: "",
         email: "",
-        phone: "",
+        phoneNumber: "",
         password: "",
         passwordComfirmation: "",
       };
-      state.status = "idle";
+      state.status = fetchIdle;
       state.error = null;
     },
     logout: (state) => {
       state.token = null;
       state.error = null;
-      state.status = "idle";
+      state.status = fetchIdle;
       Cookies.remove("token");
     },
     setName: (state, action) => {
@@ -68,7 +76,7 @@ const authSlice = createSlice({
       state.register.email = action.payload;
     },
     setPhone: (state, action) => {
-      state.register.phone = action.payload;
+      state.register.phoneNumber = action.payload;
     },
     setPassword: (state, action) => {
       state.register.password = action.payload;
@@ -80,30 +88,28 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
-        state.status = "loading";
+        state.status = fetchLoading;
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = fetchSucceeded;
         state.token = action.payload.token;
-        Cookies.set(
-          "token",
-          action.payload.token,
-          getTimeByToken(action.payload.token)
-        );
+        Cookies.set("token", action.payload.token, {
+          expires: getTimeByToken(action.payload.token),
+        });
         state.error = null;
       })
       .addCase(login.rejected, (state, action) => {
-        state.status = "failed";
+        state.status = fetchFailed;
         state.error = action.payload;
       })
 
       .addCase(register.pending, (state) => {
-        state.status = "loading";
+        state.status = fetchLoading;
         state.error = null;
       })
       .addCase(register.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = fetchSucceeded;
         state.token = action.payload.token;
         Cookies.set(
           "token",
@@ -113,7 +119,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(register.rejected, (state, action) => {
-        state.status = "failed";
+        state.status = fetchFailed;
         state.error = action.payload;
       });
   },

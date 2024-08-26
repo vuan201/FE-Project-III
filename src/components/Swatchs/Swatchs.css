@@ -7,6 +7,8 @@
   margin: 2px;
   border: 1px solid #cbcbcb;
   cursor: pointer;
+  border-radius: 6px;
+  overflow: hidden;
 }
 .swatchs .active {
   border-color: #000;

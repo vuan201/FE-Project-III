@@ -1,12 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { colorsApi } from "../../Api";
+import {
+  fetchIdle,
+  fetchLoading,
+  fetchSucceeded,
+  fetchFailed,
+} from "../../config";
 
 // tên reducers
-const baseame = "colors";
+const baseName = "colors";
 
 // Async thunks để gọi API
 export const fetchColors = createAsyncThunk(
-  `${baseame}/fetchColors`,
+  `${baseName}/fetchColors`,
   async (params) => {
     const response = await colorsApi.getAll(params);
     return response;
@@ -14,12 +20,12 @@ export const fetchColors = createAsyncThunk(
 );
 
 export const colorsSlice = createSlice({
-  name: baseame,
+  name: baseName,
 
   // các giá trị ban đầu
   initialState: {
     colors: [],
-    status: "idle",
+    status: fetchIdle,
     error: null,
   },
   reducers: {},
@@ -29,14 +35,14 @@ export const colorsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchColors.pending, (state) => {
-        state.status = "loading";
+        state.status = fetchLoading;
       })
       .addCase(fetchColors.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = fetchSucceeded;
         state.colors = action.payload;
       })
       .addCase(fetchColors.rejected, (state, action) => {
-        state.status = "failed";
+        state.status = fetchFailed;
         state.error = action.error.message;
       });
   },
