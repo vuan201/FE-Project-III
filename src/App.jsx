@@ -1,6 +1,5 @@
 import React from "react";
 import { Routes, Route } from "react-router";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
   Header,
   Footer,
@@ -12,48 +11,14 @@ import {
   ProductDetail,
   Carts,
   Checkout,
+  WarrantyPolicy,
   PrivacyPolicy,
+  PaymentPolicy,
+  DeliveryPolicy,
 } from "./features";
-import ScrollToTop from "./utils/ScrollToTop";
 import "./assets/styles/App.css";
-
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Home />,
-//     children: [
-//       { path: "/login", element: <Login /> },
-//       { path: "/register", element: <Register /> },
-//       {
-//         path: "/collections",
-//         element: <Collections />,
-//         children: [
-//           {
-//             path: "/collections/:category",
-//             element: <Collections />,
-//           },
-//         ],
-//       },
-//       {
-//         path: "/products/:slug",
-//         element: <ProductDetail />,
-//       },
-//       {
-//         path: "/carts",
-//         element: <Carts />,
-//       },
-//       {
-//         path: "/checkout",
-//         element: <Checkout />,
-//       },
-//       {
-//         path: "/privacy-policy",
-//         element: <PrivacyPolicy />,
-//       },
-//     ],
-//   },
-// ]);
-
+import { ScrollToTopBtn } from "./components";
+import ScrollToTop from "./utils/ScrollToTop";
 function App() {
   return (
     <div className={"App bg-gray-50"}>
@@ -61,6 +26,7 @@ function App() {
         <Header />
         <div>
           <ScrollToTop />
+          <ScrollToTopBtn />
           <Routes>
             <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -71,8 +37,12 @@ function App() {
             <Route path="/carts" element={<Carts />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/checkout/results" element={<CheckoutResults />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/profile" element={<div />} />
+
+            <Route path="/warranty-policy" element={<WarrantyPolicy />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/payment-policy" element={<PaymentPolicy />} />
+            <Route path="/delivery-policy" element={<DeliveryPolicy />} />
           </Routes>
         </div>
         <Footer />
