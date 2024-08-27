@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { Breadcrumbs, Container, Loading } from "../../components";
+import { CustomBreadcrumbs, Container, Loading } from "../../components";
 import {
   LibraryStyles,
   ProductDescription,
@@ -19,7 +19,6 @@ import {
 } from "../../app/reducers";
 import { FETCH_FAILED, FETCH_LOADING, FETCH_SUCCEEDED } from "../../config";
 const ProductDetail = () => {
-  
   const { slug } = useParams();
 
   const dispatch = useDispatch();
@@ -41,7 +40,7 @@ const ProductDetail = () => {
     return (
       <>
         <Container>
-          <Breadcrumbs breadcrumbs={[{ name: product.name }]} />
+          <CustomBreadcrumbs breadcrumbs={[{ name: product.name }]} />
           <div className={"flex flex-col lg:flex-row gap-4"}>
             <div className="w-full h-full lg:sticky lg:top-0">
               <ProductSlideImage images={product.images} />
@@ -55,7 +54,7 @@ const ProductDetail = () => {
         <Container>
           <ProductDescription data={product} />
         </Container>
-        
+
         <div className="w-full my-5">
           <LibraryStyles />
         </div>

@@ -3,12 +3,12 @@ import { paymentMethods } from "../../../../../config";
 import { Image } from "../../../../../components";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectOrderPaymentMethod,
+  selectCheckoutPaymentMethod,
   setPaymentMethodName,
 } from "../../../../../app/reducers";
 const PaymentMethod = () => {
   const dispatch = useDispatch();
-  const paymentMethod = useSelector(selectOrderPaymentMethod);
+  const paymentMethod = useSelector(selectCheckoutPaymentMethod);
 
   return (
     <div className="space-y-2">

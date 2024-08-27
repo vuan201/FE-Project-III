@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { selectOrderItems } from "../../../../../app/reducers";
+import { selectCheckoutItems } from "../../../../../app/reducers";
 import { priceConvert } from "../../../../../utils/priceConvert";
 import { Image } from "../../../../../components";
 import { totalPrice } from "../../../../../utils/totalPrice";
 
 const CheckoutBillPreview = () => {
-  const listOrderItem = useSelector(selectOrderItems);
+  const listOrderItem = useSelector(selectCheckoutItems);
 
   const tempPrice = totalPrice(listOrderItem);
   const [discount, setDiscount] = useState({ name: "", discount: 100000 });

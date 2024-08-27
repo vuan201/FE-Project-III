@@ -5,7 +5,7 @@ export { default as colorsApi } from "./colorsApi";
 export { default as authApi } from "./authApi";
 export { default as sizesApi } from "./sizeApi";
 export { default as cartsApi } from "./cartsApi";
-export { default as OrdersApi } from "./OrdersApi";
+export { default as ordersApi } from "./ordersApi";
 export { default as addressListApi } from "./AddressListApi";
 export { default as customerApi } from "./customerApi";
 export { default as customerAddressesApi } from "./customerAddressesApi";

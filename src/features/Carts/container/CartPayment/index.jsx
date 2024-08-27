@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   removeCartItems,
-  removeOrderItem,
+  resetCheckoutItem,
   selectAuthToken,
   selectCartsItem,
-  selectOrderItems,
-  setOrderItems,
+  selectCheckoutItems,
+  setCheckoutItems,
   updateCartItems,
 } from "../../../../app/reducers";
 import { priceConvert } from "../../../../utils/priceConvert";
@@ -24,7 +24,7 @@ const CartPayment = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const orderListItem = useSelector(selectOrderItems);
+  const orderListItem = useSelector(selectCheckoutItems);
   const cartListItem = useSelector(selectCartsItem);
   const token = useSelector(selectAuthToken);
 
@@ -68,14 +68,14 @@ const CartPayment = () => {
       token
         ? dispatch(updateCartItems(cartItemUpdate))
         : dispatch(removeCartItems(cartItemUpdate));
-      dispatch(removeOrderItem(cartItemUpdate));
+      dispatch(resetCheckoutItem(cartItemUpdate));
     }
   };
 
   const handleSelectOrderItem = () => {
     orderListItem.length !== cartListItem.length
-      ? dispatch(setOrderItems(cartListItem))
-      : dispatch(setOrderItems([]));
+      ? dispatch(setCheckoutItems(cartListItem))
+      : dispatch(setCheckoutItems([]));
   };
 
   return (

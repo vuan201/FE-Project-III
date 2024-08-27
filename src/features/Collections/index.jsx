@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Breadcrumbs, BannerHeadPage, Container } from "../../components";
+import { CustomBreadcrumbs, BannerHeadPage, Container } from "../../components";
 import { SortButton, ProductsList, Filters } from "./container";
 
 import { fetchCategory, resetParams, selectCategory } from "../../app/reducers";
@@ -27,7 +27,7 @@ const Collections = () => {
       <BannerHeadPage title={category.name ?? "Bộ sưu tập"} />
       <div className="mx-auto mb-10 px-12 mt-4">
         <div className="w-full m-auto max-w-container">
-          <Breadcrumbs
+          <CustomBreadcrumbs
             breadcrumbs={[
               {
                 url: category

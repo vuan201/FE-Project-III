@@ -1,5 +1,5 @@
 import React from "react";
-import { Logo, Breadcrumbs } from "../../../../../components";
+import { Logo, CustomBreadcrumbs } from "../../../../../components";
 
 const CheckoutInfomationsHeader = () => {
   const BreadcrumbsList = [
@@ -19,7 +19,7 @@ const CheckoutInfomationsHeader = () => {
         <Logo />
       </div>
       <div className="my-4">
-        <Breadcrumbs breadcrumbs={BreadcrumbsList} />
+        <CustomBreadcrumbs breadcrumbs={BreadcrumbsList} />
       </div>
     </div>
   );

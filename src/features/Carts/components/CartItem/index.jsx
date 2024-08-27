@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { Checked, Image, InputQuantity } from "../../../../components";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  handleMutateOrderItems,
+  handleMutateCheckoutItems,
   removeItemToCart,
   selectAuthToken,
-  selectOrderItems,
-  setOrderQuantity,
+  selectCheckoutItems,
+  setCheckoutQuantity,
   setQuantity,
   updateCartItems,
 } from "../../../../app/reducers";
@@ -22,7 +22,7 @@ const CartItem = ({ cartItem }) => {
 
   const { name, imageUrl, slug, sku, price, quantity, color, size } = cartItem;
 
-  const orderItems = useSelector(selectOrderItems);
+  const orderItems = useSelector(selectCheckoutItems);
 
   const handleUpdateQuantity = (newQuantity) => {
     const item = {
@@ -42,7 +42,7 @@ const CartItem = ({ cartItem }) => {
       dispatch(setQuantity({ sku, quantity: newQuantity }));
     }
 
-    dispatch(setOrderQuantity({ sku, quantity: newQuantity }));
+    dispatch(setCheckoutQuantity({ sku, quantity: newQuantity }));
   };
 
   return (
@@ -53,7 +53,7 @@ const CartItem = ({ cartItem }) => {
           checked={orderItems.some((item) => item.sku === sku)}
           onClick={() =>
             dispatch(
-              handleMutateOrderItems({
+              handleMutateCheckoutItems({
                 sku,
                 imageUrl,
                 name: productNameConnection(name, color, size),

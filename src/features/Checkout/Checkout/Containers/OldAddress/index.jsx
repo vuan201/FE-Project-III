@@ -6,7 +6,7 @@ import {
   selectCustomerAddresses,
   selectCustomerAddressStatus,
   selectCustomerStatus,
-  selectOrderAddressId,
+  selectCheckoutAddressId,
   setAddressId,
 } from "../../../../../app/reducers";
 import { FETCH_SUCCEEDED } from "../../../../../config";
@@ -15,7 +15,7 @@ const OldAddress = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectAuthToken);
   const customerAddresses = useSelector(selectCustomerAddresses);
-  const AddressId = useSelector(selectOrderAddressId);
+  const AddressId = useSelector(selectCheckoutAddressId);
   const addressStatus = useSelector(selectCustomerAddressStatus);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-export { default as Breadcrumbs } from "./Breadcrumbs";
+export { default as CustomBreadcrumbs } from "./CustomBreadcrumbs";
 export { default as Button } from "./Button";
 export { default as CategoryCard } from "./Card/CategoryCard";
 export { default as StyleImageCard } from "./Card/StyleImageCard";

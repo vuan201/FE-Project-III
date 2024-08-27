@@ -6,8 +6,8 @@ import {
   selectCustomerName,
   selectCustomerPhone,
   selectCustomerStatus,
-  selectOrderFullName,
-  selectOrderPhoneNumber,
+  selectCheckoutFullName,
+  selectCheckoutPhoneNumber,
   setFullName,
   setPhoneNumber,
 } from "../../../../../app/reducers";
@@ -15,8 +15,8 @@ import { FETCH_SUCCEEDED } from "../../../../../config";
 
 const CheckoutForm = () => {
   const dispatch = useDispatch();
-  const phoneNumber = useSelector(selectOrderPhoneNumber);
-  const orderFullName = useSelector(selectOrderFullName);
+  const phoneNumber = useSelector(selectCheckoutPhoneNumber);
+  const orderFullName = useSelector(selectCheckoutFullName);
 
   const customerName = useSelector(selectCustomerName);
   const customerPhone = useSelector(selectCustomerPhone);

@@ -12,14 +12,14 @@ import {
   selectAddressListStatus,
   selectAddressListWard,
   selectAddressWard,
-  setOrderCity,
-  setOrderDistrict,
-  setOrderWard,
+  setCheckoutCity,
+  setCheckoutDistrict,
+  setCheckoutWard,
   setSelectCity,
   setSelectDistrict,
   setSelectWard,
-  selectOrderAddress,
-  setOrderSpecificAddress,
+  selectCheckoutAddress,
+  setCheckoutSpecificAddress,
 } from "../../../../../app/reducers";
 import Options from "../../Components/Options";
 import { Input } from "../../../../../components";
@@ -37,7 +37,7 @@ const NewAddress = () => {
 
   const fetchStatus = useSelector(selectAddressListStatus);
 
-  const orderAddress = useSelector(selectOrderAddress);
+  const orderAddress = useSelector(selectCheckoutAddress);
 
   useEffect(() => {
     dispatch(fetchCity());
@@ -62,7 +62,7 @@ const NewAddress = () => {
           "data-name"
         );
       dispatch(setSelectCity(cityId));
-      dispatch(setOrderCity(cityName));
+      dispatch(setCheckoutCity(cityName));
     },
     [dispatch]
   );
@@ -74,7 +74,7 @@ const NewAddress = () => {
           "data-name"
         );
       dispatch(setSelectDistrict(districtId));
-      dispatch(setOrderDistrict(districtName));
+      dispatch(setCheckoutDistrict(districtName));
     },
     [dispatch]
   );
@@ -86,7 +86,7 @@ const NewAddress = () => {
           "data-name"
         );
       dispatch(setSelectWard(wardId));
-      dispatch(setOrderWard(wardName));
+      dispatch(setCheckoutWard(wardName));
     },
     [dispatch]
   );
@@ -131,7 +131,7 @@ const NewAddress = () => {
       <div>
         <Input
           value={orderAddress.specificAddress}
-          onChange={(e) => dispatch(setOrderSpecificAddress(e.target.value))}
+          onChange={(e) => dispatch(setCheckoutSpecificAddress(e.target.value))}
         >
           Chi tiết địa chỉ giao hàng
         </Input>

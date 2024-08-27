@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { OrdersApi } from "../../Api";
+import { ordersApi } from "../../Api";
 import {
   COD,
   FETCH_FAILED,
@@ -10,23 +10,23 @@ import {
 import { productNameConnection } from "../../utils/productNameConnection";
 
 // tên reducers
-const baseName = "order";
+const baseName = "checkout";
 
 export const addOrders = createAsyncThunk(
   `${baseName}/addOrders`,
 
-  async (order) => {
-    let newOrderItem = [];
+  async (checkout) => {
+    let newCheckoutItem = [];
     let response;
-    if (Array.isArray(order.items) && order.items.length > 0) {
-      newOrderItem = order.items.map(({ sku, quantity }) => {
+    if (Array.isArray(checkout.items) && checkout.items.length > 0) {
+      newCheckoutItem = checkout.items.map(({ sku, quantity }) => {
         return { sku: sku, quantity: quantity };
       });
-      order.items = newOrderItem;
+      checkout.items = newCheckoutItem;
     }
 
     try {
-      response = await OrdersApi.add(order);
+      response = await ordersApi.add(checkout);
     } catch (error) {
       console.log(error);
     }
@@ -35,7 +35,7 @@ export const addOrders = createAsyncThunk(
   }
 );
 
-export const orderSlice = createSlice({
+export const checkoutSlice = createSlice({
   name: baseName,
 
   // các giá trị ban đầu
@@ -60,7 +60,7 @@ export const orderSlice = createSlice({
     status: FETCH_IDLE,
     error: null,
 
-    vnPayResult: {
+    result: {
       Message: "",
       PaymentUrl: "",
       StatusCode: "",
@@ -68,7 +68,7 @@ export const orderSlice = createSlice({
   },
 
   reducers: {
-    setOrderItems: (state, action) => {
+    setCheckoutItems: (state, action) => {
       const newItem = action.payload.map(
         ({ sku, imageUrl, name, quantity, price, color, size }) => {
           return {
@@ -85,7 +85,7 @@ export const orderSlice = createSlice({
     setAddressId: (state, action) => {
       state.addressId = action.payload;
     },
-    setOrderAddress: (state, action) => {
+    setCheckoutAddress: (state, action) => {
       state.address = action.payload;
     },
     setPaymentMethodName: (state, action) => {
@@ -97,20 +97,20 @@ export const orderSlice = createSlice({
     setFullName: (state, action) => {
       state.fullName = action.payload;
     },
-    setOrderCity: (state, action) => {
+    setCheckoutCity: (state, action) => {
       state.address.city = action.payload;
     },
-    setOrderDistrict: (state, action) => {
+    setCheckoutDistrict: (state, action) => {
       state.address.district = action.payload;
     },
-    setOrderWard: (state, action) => {
+    setCheckoutWard: (state, action) => {
       state.address.ward = action.payload;
     },
-    setOrderSpecificAddress: (state, action) => {
+    setCheckoutSpecificAddress: (state, action) => {
       state.address.specificAddress = action.payload;
     },
 
-    handleMutateOrderItems: (state, action) => {
+    handleMutateCheckoutItems: (state, action) => {
       if (state.items.some((item) => item.sku === action.payload.sku)) {
         state.items = state.items.filter(
           (item) => item.sku !== action.payload.sku
@@ -119,7 +119,7 @@ export const orderSlice = createSlice({
         state.items.push(action.payload);
       }
     },
-    setOrderQuantity: (state, action) => {
+    setCheckoutQuantity: (state, action) => {
       if (state.items.some((item) => item.sku === action.payload.sku)) {
         let newItems = {};
         if (action.payload.quantity === 0) {
@@ -137,28 +137,28 @@ export const orderSlice = createSlice({
         state.items = newItems;
       }
     },
-    removeOrderItem: (state, action) => {
+    removeCheckoutItem: (state, action) => {
       // Xóa nhiều
       if (Array.isArray(action.payload)) {
-        const newOrderItem = state.items.filter((item) =>
-          action.payload.some((orderItem) => item.sku !== orderItem.sku)
+        const newCheckoutItem = state.items.filter((item) =>
+          action.payload.some((checkoutItem) => item.sku !== checkoutItem.sku)
         );
-        state.items = newOrderItem;
+        state.items = newCheckoutItem;
         return;
       }
 
       // Xóa một
       if (state.items.some((item) => item.sku === action.payload)) {
-        const newOrderItem = state.items.filter(
+        const newCheckoutItem = state.items.filter(
           (item) => item.sku !== action.payload
         );
-        state.items = newOrderItem;
+        state.items = newCheckoutItem;
       }
     },
-    resetOrderItem: (state) => {
+    resetCheckoutItem: (state) => {
       state.items = [];
     },
-    resetOrder: (state) => {
+    resetCheckout: (state) => {
       state.items = [];
       state.address = {
         city: "",
@@ -174,7 +174,7 @@ export const orderSlice = createSlice({
       state.addressId = 0;
       state.phoneNumber = "";
       state.fullName = "";
-      state.vnPayResult = {
+      state.result = {
         Message: "",
         PaymentUrl: "",
         StatusCode: "",
@@ -195,9 +195,7 @@ export const orderSlice = createSlice({
       })
       .addCase(addOrders.fulfilled, (state, action) => {
         state.status = FETCH_SUCCEEDED;
-        state.vnPayResult.Message = action.payload.Message ?? "";
-        state.vnPayResult.PaymentUrl = action.payload.PaymentUrl ?? "";
-        state.vnPayResult.StatusCode = action.payload.StatusCode ?? "";
+        state.result = action.payload;
       })
       .addCase(addOrders.rejected, (state, action) => {
         state.status = FETCH_FAILED;
@@ -207,34 +205,35 @@ export const orderSlice = createSlice({
 });
 
 export const {
-  setOrderItems,
+  setCheckoutItems,
   setAddressId,
-  setOrderAddress,
+  setCheckoutAddress,
   setPaymentMethodName,
-  handleMutateOrderItems,
-  setOrderQuantity,
-  removeOrderItem,
+  handleMutateCheckoutItems,
+  setCheckoutQuantity,
+  removeCheckoutItem,
   setPhoneNumber,
-  setOrderCity,
-  setOrderDistrict,
-  setOrderWard,
-  setOrderSpecificAddress,
+  setCheckoutCity,
+  setCheckoutDistrict,
+  setCheckoutWard,
+  setCheckoutSpecificAddress,
   setFullName,
-  resetOrderItem,
-  resetOrder,
-} = orderSlice.actions;
+  resetCheckoutItem,
+  resetCheckout,
+} = checkoutSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
-export const selectOrderItems = (state) => state.order.items;
-export const selectOrderAddress = (state) => state.order.address;
-export const selectOrderAddressId = (state) => state.order.addressId;
-export const selectOrderPhoneNumber = (state) => state.order.phoneNumber;
-export const selectOrderFullName = (state) => state.order.fullName;
-export const selectOrderPaymentMethod = (state) => state.order.paymentMethod;
-export const selectOrderVnPayResult = (state) => state.order.vnPayResult;
+export const selectCheckoutItems = (state) => state.checkout.items;
+export const selectCheckoutAddress = (state) => state.checkout.address;
+export const selectCheckoutAddressId = (state) => state.checkout.addressId;
+export const selectCheckoutPhoneNumber = (state) => state.checkout.phoneNumber;
+export const selectCheckoutFullName = (state) => state.checkout.fullName;
+export const selectCheckoutPaymentMethod = (state) =>
+  state.checkout.paymentMethod;
+export const selectCheckoutResult = (state) => state.checkout.result;
 
-export const selectOrderVoucher = (state) => state.order.voucher;
-export const selectOrderStatus = (state) => state.order.status;
-export const selectOrderError = (state) => state.order.error;
+export const selectCheckoutVoucher = (state) => state.checkout.voucher;
+export const selectCheckoutStatus = (state) => state.checkout.status;
+export const selectCheckoutError = (state) => state.checkout.error;
 
-export default orderSlice.reducer;
+export default checkoutSlice.reducer;
