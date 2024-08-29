@@ -3,8 +3,17 @@ import CheckoutInfomations from "./Containers/CheckoutInfomations";
 import CheckoutBillPreview from "./Containers/CheckoutBillPreview";
 import { Container } from "@mui/material";
 import CheckoutInfomationsHeader from "./Components/CheckoutInfomationsHeader";
+import { useDispatch } from "react-redux";
+import { resetCheckout } from "../../../app/reducers";
 
 const Checkout = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    return () => {
+      dispatch(resetCheckout());
+    };
+  }, [dispatch]);
+
   return (
     <div className="my-8">
       <Container>

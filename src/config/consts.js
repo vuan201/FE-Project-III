@@ -29,7 +29,7 @@ export const VN_ORDER_STATUS_CANCEL = "ĐÃ HỦY";
 
 // Payment Status
 export const PAYMENT_STATUS_PAID = "PAID";
-export const PAYMENT_STATUS_UNPAID = "UNPAID ";
+export const PAYMENT_STATUS_UNPAID = "UNPAID";
 export const PAYMENT_STATUS_PROCESSING = "PROCESSING";
 export const PAYMENT_STATUS_CANCEL = "CANCEL";
 
@@ -37,3 +37,10 @@ export const VN_PAYMENT_STATUS_PAID = "ĐÃ THANH TOÁN";
 export const VN_PAYMENT_STATUS_UNPAID = "CHƯA THANH TOÁN ";
 export const VN_PAYMENT_STATUS_PROCESSING = "ĐANG XỬ LÝ";
 export const VN_PAYMENT_STATUS_CANCEL = "HỦY BỎ";
+
+// mã số thuế
+export const LEGAL_REGISTRATION_NO = "987654"
+
+export const SHOP_EMAIL = "qmstore@gmail.com"
+export const SHOP_PHONE = "0912345678"
+export const SHOP_WEBSITE = "www.qmstore.com.vn"

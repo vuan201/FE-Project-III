@@ -4,6 +4,8 @@ import { FaCheck } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
+import WarningIcon from "@mui/icons-material/Warning";
 import { BannerHeadPage, Button } from "../../../components";
 import BillDetail from "./BillDetail";
 const CheckoutResults = () => {
@@ -53,6 +55,19 @@ const CheckoutResults = () => {
 
   return (
     <div className="">
+      {orderid && (
+        <>
+          <BannerHeadPage>
+            <div className="flex gap-4 justify-center items-center text-center text-yellow-500">
+              <div>
+                <WarningAmberIcon sx={{ fontSize: 40 }} />
+              </div>
+              <span className="text-4xl">Đang chờ thanh toán</span>
+            </div>
+          </BannerHeadPage>
+          <BillDetail orderId={orderid} />
+        </>
+      )}
       {vnp_ResponseCode === "00" && (
         <>
           <BannerHeadPage>
