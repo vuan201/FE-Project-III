@@ -23,7 +23,7 @@ import {
 } from "../../components";
 import { AlertMessage, Button, CustomSnackbar, InputQuantity } from "../../../../components";
 import { FaRegHeart } from "react-icons/fa";
-import { ALERT_SUCCESS, FETCH_SUCCEEDED } from "../../../../config";
+import { ALERT_ERROR, ALERT_SUCCESS, FETCH_FAILED, FETCH_SUCCEEDED } from "../../../../config";
 import { priceConvert } from "../../../../utils/priceConvert";
 
 const ProductInfomation = ({ data }) => {
@@ -229,6 +229,13 @@ const ProductInfomation = ({ data }) => {
         snackbarSeverity={ALERT_SUCCESS}
       >
         Thêm sản phẩm vào giỏ hàng thành công
+      </CustomSnackbar>
+      <CustomSnackbar
+        openSnackbar={cartsStatus === FETCH_FAILED}
+        handleCloseSnackbar={() => dispatch(resetCartStatus())}
+        snackbarSeverity={ALERT_ERROR}
+      >
+        Thêm sản phẩm vào giỏ hàng không thành công
       </CustomSnackbar>
     </div>
   );

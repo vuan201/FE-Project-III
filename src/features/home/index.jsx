@@ -13,9 +13,13 @@ import {
   NewsletterSignupForm,
   MarketingContainer,
 } from "./containers";
+import useTitle from "../../hooks/useTitle";
 // import NewMarketingContainer from "./containers/NewMarketingContainer";
 
 const Home = () => {
+
+  useTitle('Trang chủ')
+
   return (
     <div className="m-auto">
       <IntroSlide />

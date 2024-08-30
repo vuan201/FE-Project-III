@@ -19,6 +19,7 @@ import {
 } from "../../../app/reducers/";
 import useAuthRedirect from "../../../hooks/useAuthRedirect";
 import { ALERT_ERROR, FETCH_FAILED } from "../../../config";
+import useTitle from "../../../hooks/useTitle";
 
 const Register = ({ page = "/" }) => {
   const dispatch = useDispatch();
@@ -33,6 +34,8 @@ const Register = ({ page = "/" }) => {
       dispatch(resetAuthState());
     };
   }, []);
+
+  useTitle('Đăng ký')
 
   useAuthRedirect(token, status, navigate, page);
 

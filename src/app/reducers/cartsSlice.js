@@ -130,7 +130,7 @@ export const cartsSlice = createSlice({
       .addCase(updateCartItems.fulfilled, (state, action) => {
         state.status = FETCH_SUCCEEDED;
         state.cartItems = action.payload.items;
-        localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
+        localStorage.setItem("carts", JSON.stringify(action.payload.items ?? []));
       })
       .addCase(updateCartItems.rejected, (state, action) => {
         state.status = FETCH_FAILED;

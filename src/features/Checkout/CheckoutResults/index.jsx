@@ -8,8 +8,11 @@ import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import WarningIcon from "@mui/icons-material/Warning";
 import { BannerHeadPage, Button } from "../../../components";
 import BillDetail from "./BillDetail";
+import useTitle from "../../../hooks/useTitle";
 const CheckoutResults = () => {
   const navigate = useNavigate();
+
+  useTitle('Thanh toán - kết quả')
 
   // Lấy location hiện tại từ react-router
   const location = useLocation();
@@ -52,6 +55,8 @@ const CheckoutResults = () => {
       Quay lại trang chủ
     </Button>
   );
+
+
 
   return (
     <div className="">

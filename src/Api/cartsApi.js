@@ -15,7 +15,7 @@ const cartsApi = {
     const url = `${baseUrl}/${data.id}`;
     return axiosClient.post(url);
   },
-  update(carts, headers) {
+  update(carts) {
     const url = `${baseUrl}`;
     return axiosClient.put(url, carts);
   },

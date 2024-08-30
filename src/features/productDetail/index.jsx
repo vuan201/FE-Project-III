@@ -18,6 +18,7 @@ import {
   selectProductStatus,
 } from "../../app/reducers";
 import { FETCH_FAILED, FETCH_LOADING, FETCH_SUCCEEDED } from "../../config";
+import useTitle from "../../hooks/useTitle";
 const ProductDetail = () => {
   const { slug } = useParams();
 
@@ -33,6 +34,8 @@ const ProductDetail = () => {
       dispatch(resetCartStatus());
     };
   }, [dispatch, slug]);
+
+  useTitle(product.name ?? "Sản phẩm")
 
   if (status === FETCH_LOADING) return <Loading />;
   else if (status === FETCH_FAILED) return <div>{error}</div>;

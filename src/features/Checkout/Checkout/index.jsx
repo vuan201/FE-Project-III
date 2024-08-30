@@ -5,6 +5,7 @@ import { Container } from "@mui/material";
 import CheckoutInfomationsHeader from "./Components/CheckoutInfomationsHeader";
 import { useDispatch } from "react-redux";
 import { resetCheckout } from "../../../app/reducers";
+import useTitle from "../../../hooks/useTitle";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,8 @@ const Checkout = () => {
       dispatch(resetCheckout());
     };
   }, [dispatch]);
+
+  useTitle('Thanh toán')
 
   return (
     <div className="my-8">

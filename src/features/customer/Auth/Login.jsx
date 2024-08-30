@@ -16,6 +16,7 @@ import {
 } from "../../../app/reducers";
 import useAuthRedirect from "../../../hooks/useAuthRedirect";
 import { ALERT_ERROR, FETCH_FAILED } from "../../../config";
+import useTitle from "../../../hooks/useTitle";
 
 const Login = ({ page = "/" }) => {
   const navigate = useNavigate();
@@ -32,6 +33,8 @@ const Login = ({ page = "/" }) => {
       dispatch(resetAuthState());
     };
   }, []);
+
+  useTitle('Đăng nhập')
 
   useAuthRedirect(token, status, navigate, page);
 
